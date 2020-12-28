@@ -1,0 +1,70 @@
+{
+  "type": "external",
+  "name": "jQuery",
+  "version": "5.0.1",
+  "revision": "9747",
+  "path": "externals\/jQuery",
+  "repository": null,
+  "sku": null,
+  "date": "Tue, 03 Mar 2020 10:38:58 +0000",
+  "title": "jQuery",
+  "description": null,
+  "thumb": null,
+  "developer": null,
+  "authors": [
+    "Webligo Developments"
+  ],
+  "meta": {
+    "date": "Tue, 03 Mar 2020 10:38:58 +0000",
+    "title": "jQuery",
+    "description": null,
+    "developer": null,
+    "authors": [
+      "Webligo Developments"
+    ],
+    "changeLog": null
+  },
+  "actions": [
+    
+  ],
+  "callback": null,
+  "dependencies": null,
+  "tests": [
+    
+  ],
+  "permissions": [
+    
+  ],
+  "structure": {
+    "externals\/jQuery": {
+      "type": "directory",
+      "path": "externals\/jQuery",
+      "structure": [
+        {
+          "path": "jquery-1.12.4.min.js",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 97205,
+          "sha1": "6492bd590347bc997b03e99122613b819e1679e5"
+        },
+        {
+          "path": "manifest.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 422,
+          "sha1": "a81e89a610516f75a1bf41ed8bf72a51e621bff2"
+        },
+        {
+          "path": "jquery.min.js",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 97210,
+          "sha1": "218ba3a2e8954b346e677acd05be6f5bb0bbadd6"
+        }
+      ]
+    }
+  }
+}

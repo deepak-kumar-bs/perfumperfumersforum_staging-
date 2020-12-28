@@ -1,0 +1,58 @@
+/* ADD YOUR CUSTOM CSS HERE */
+
+
+form#sitereviews_create .form-recipe-wrapper{margin-bottom:20px; padding-right:40px}
+
+form#sitereviews_create .form-recipe-wrapper .form-element{display:flex!important; position:relative; overflow:visible; margin-bottom:20px!important;}
+#sitereviews_create .form-recipe-wrapper .form-element .name,
+#sitereviews_create .form-recipe-wrapper .form-element .amount,
+#sitereviews_create .form-recipe-wrapper .form-element .dilution{margin-right:10px; max-width:unset;}
+#sitereviews_create .form-recipe-wrapper .form-element .name > select{padding:8px; width:100%}
+#sitereviews_create .form-recipe-wrapper .form-element .name{width:43%;}
+#sitereviews_create .form-recipe-wrapper .form-element .amount,
+#sitereviews_create .form-recipe-wrapper .form-element .dilution{width:25%;}
+#sitereviews_create .form-recipe-wrapper .form-element .dilution{margin-right:0}
+#sitereviews_create .form-recipe-wrapper .form-element button.remove_button{border-radius:3px;position: absolute;right: -40px;top: 17px;width: 37px;height: 37px; padding:0; }
+#sitereviews_create .form-recipe-wrapper .form-element:nth-child(n+3){margin-left:165px;}
+#sitereviews_create .form-recipe-wrapper .form-label .add_new_material{bottom:0; margin-left:165px;}
+#overview-element textarea{visibility:visible;}
+#global_page_sitereview-index-edit form#sitereviews_create .form-recipe-wrapper .form-element{width:50%}
+
+.sr_quick_specs.sr_side_widget ul li span:first-child{width:25%!important}
+
+.sr_quick_specs.sr_side_widget ul li span:last-child{width:62%!important;overflow-x: auto;overflow-y: hidden;}
+
+tr.recipe_elements > td {
+    width: 100%;
+    padding: 5px;
+   text-align:center;
+}
+tr.recipe_elements > td  > a{word-break:keep-all}
+
+tr.recipe_elements th {
+    white-space: nowrap;
+    padding: 5px;
+}
+
+/*#global_page_sitereview-index-create .select2-container.select2-container--default.select2-container--open{width:inherit!important} */
+#global_page_sitereview-index-create .select2-container .select2-selection--single .select2-selection__rendered{width:160px}
+#global_page_sitereview-index-create .select2-container .select2-selection--single{overflow:hidden;}
+#global_page_sitereview-index-create .select2-container
+{width:initial!important}
+
+@media only screen and (max-width: 920px){
+form#sitereviews_create .form-label {
+    margin-right: 2%;
+    padding: 0;
+    width: 100%;
+}
+#sitereviews_create .form-recipe-wrapper .form-label .add_new_material,
+#sitereviews_create .form-recipe-wrapper .form-element:nth-child(n+3)
+{margin-left:0;}
+div#global_content .sr_dashboard_content .form-element,
+div#global_content .sr_dashboard_content .form-label
+{width:100%!important}
+#global_page_sitereview-index-create .select2-container .select2-selection--single .select2-selection__rendered{width:80%;}
+#global_page_sitereview-index-create .select2-container{width:100%!important}
+}
+

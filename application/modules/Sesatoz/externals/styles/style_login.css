@@ -1,0 +1,225 @@
+
+#smoothbox_window{
+	background-color:transparent !important;
+}
+body{
+	background-image:url(../images/login-bg.png) !important;;
+	background-size: cover;
+	width:100%;
+	height:100%;
+	background-position: top center;
+}
+#global_content_simple{
+	display:block;
+}
+.layout_sesatoz_login{
+	background-color:transparent !important;
+	box-shadow: none !important;
+	width:100%;
+}
+.sesatoz_login_main{
+	width:400px;
+	margin:30px auto;
+}
+.sesatoz_login_main .sesatoz_site_logo a{
+	display:inline-block;
+	width:100%;
+	text-align:center;
+	margin-bottom:40px;
+}
+.sesatoz_login_main #user_form_login > div > div > h3 + p + div {
+  float: none;
+}
+.sesatoz_login_main #user_form_login #forgot-wrapper {
+	left:auto;
+  right: 0;
+}
+.sesatoz_social_login_btns .sessocial_login_btns{
+	padding-top:10px !important;
+}
+.sesatoz_login_main .sesatoz_site_logo a img{
+	width:35%;
+}
+.sesatoz_login_main .sesatoz_login_form_cont{
+	padding:0px 40px;
+}
+.sesatoz_login_main .global_form{
+	margin:0px !important;
+}
+.sesatoz_login_main .sesatoz_login_form{
+	display:inline-block;
+	width:100%;
+	box-shadow:1px 10px 22px -11px #4a4a4a;
+	padding:20px 0px;
+	background-color:rgba(255, 255, 255, 0.85)
+}
+.sesatoz_login_main .global_form > div > div{
+	background-color:transparent;
+	padding:0px !important;
+}
+.sesatoz_login_main .global_form h3,
+.sesatoz_login_main .global_form p.form-description{
+	display:none;
+}
+.sesatoz_login_main .global_form .form-elements{
+	position:relative;
+}
+.sesatoz_login_main .sesatoz_login_tittle{
+	margin:16px 0px;
+	display:inline-block;
+	width:100%;
+}
+.sesatoz_login_main .sesatoz_login_tittle h3{
+	text-align:center;
+	font-size: 26px;
+	color: #2c2538;
+	font-weight: bold;
+}
+.sesatoz_ligin_with_social{
+	clear:both;
+	overflow:hidden;
+	color:#fff;
+	padding:0px 30px 10px;
+	margin-top:10px;
+	border-bottom:1px solid #c29590;
+}
+.sesatoz_ligin_with_social .facebook_btn{
+	margin-bottom:15px;
+}
+.sesatoz_ligin_with_social a .facebook_icon {
+	width:35px;
+	display:inline-block;
+	text-align:center;
+	background:#334e89;
+	padding:10px 7px;
+	float:left;
+	color:#fff;
+}
+.sesatoz_ligin_with_social a .facebook{
+	overflow:hidden;
+	padding:10px 7px;
+	text-align:center;
+	background:#3a5795;
+	color:#fff;
+}
+.sesatoz_ligin_with_social a .twitter_icon {
+	width:35px;
+	display:inline-block;
+	text-align:center;
+	background:#2CA0EC;
+	padding:10px 7px;
+	float:left;
+	color:#fff;
+}
+.sesatoz_ligin_with_social a .twitter{
+	overflow:hidden;
+	padding:10px 7px;
+	text-align:center;
+	background:#60B5F0;
+	color:#fff;
+}
+.sesatoz_login_main .sesatoz_info_text{
+	font-weight:bold;
+	text-align:center;
+	margin:10px 0px 10px 0px;
+	color:#2c2538;
+	font-size:15px;
+}
+.sesatoz_login_main .global_form div.form-label{
+	display:none !important;
+}
+.sesatoz_login_main .global_form input[type=text],
+.sesatoz_login_main .global_form input[type=email], 
+.sesatoz_login_main .global_form input[type=password]{
+	background-color:transparent !important;
+	border-bottom:1px solid rgba(44, 37, 56, 0.37);
+	border-top:0px;
+	border-left:0px;
+	border-right:0px;
+	border-radius:0px;
+	color:#2c2538 !important;
+	padding:10px 0px;
+	width:100%;
+}
+.sesatoz_login_main .global_form input[type=text]::-webkit-input-placeholder , 
+.sesatoz_login_main .global_form input[type=email]::-webkit-input-placeholder , 
+.sesatoz_login_main .global_form input[type=password]::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color:#2c2538;
+}
+
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active, 
+input:-webkit-autofill, 
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+	transition:background-color:10000s ease-in-out 1000s !important;
+}
+.sesatoz_login_main .global_form div.form-element,
+.sesatoz_login_main #user_form_login #submit-wrapper{
+	max-width:100%;
+	min-width:100%;
+	width:100%;
+}
+.sesatoz_login_main .global_form button[type=submit]{
+	width:100%;
+	margin:10px 0 0;
+	padding:10px 0;
+}
+.sesatoz_login_main .global_form #buttons-element button{
+	margin: 0 5px;
+	width: calc(50% - 10px);
+	float: left;
+	padding: 10px;
+}
+.sesatoz_login_main #user_form_login #remember-wrapper{
+	padding-left:0px;
+	float:left;
+}
+.sesatoz_login_main #user_form_login #remember-element input[type=checkbox]{
+	margin-top:4px;
+	border:none;
+	background-color:#65525d;
+}
+.sesatoz_login_main #user_form_login #remember-element label{
+	color:#2c2538;
+	opacity:0.7;
+	float:left;
+}
+.sesatoz_login_main #user_form_login #forgot-wrapper{
+	float:right;
+}
+.sesatoz_login_main #user_form_login #forgot-wrapper .form-element{
+	min-width:inherit;
+}
+.sesatoz_login_main #user_form_login #forgot-element span a{
+	color:#513750;
+}
+.global_form #facebook-wrapper,
+.global_form #twitter-wrapper{display:none;}
+@media (max-width:499px){
+	.sesatoz_login_main{	
+		width:100%;
+	}
+}
+@media (max-width:390px){
+	.sesatoz_ligin_with_social a .facebook{
+	font-size:12px;
+	height:39px;
+	}
+	.sesatoz_login_main #user_form_login #forgot-element span{
+		position:inherit;
+		float:left;
+	}
+}
+@media (max-wdith:768px){
+	body{
+		background-size:cover;
+	}
+	.sesatoz_login_main {
+    width: 60%;
+    float: none;
+    margin: auto;
+	}
+}

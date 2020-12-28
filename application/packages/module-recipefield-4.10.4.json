@@ -1,0 +1,498 @@
+{
+  "type": "module",
+  "name": "recipefield",
+  "version": "4.10.4",
+  "revision": null,
+  "path": "application\/modules\/Recipefield",
+  "repository": null,
+  "sku": null,
+  "date": "Wed, 27 Nov 2019 10:07:05 +0000",
+  "title": "Recipefield",
+  "description": "new recipe field element will get added.",
+  "thumb": null,
+  "developer": null,
+  "authors": [
+    ""
+  ],
+  "meta": {
+    "date": "Wed, 27 Nov 2019 10:07:05 +0000",
+    "title": "Recipefield",
+    "description": "new recipe field element will get added.",
+    "developer": null,
+    "authors": [
+      ""
+    ],
+    "changeLog": null
+  },
+  "actions": [
+    "install",
+    "upgrade",
+    "refresh",
+    "enable",
+    "disable"
+  ],
+  "callback": {
+    "path": "application\/modules\/Recipefield\/settings\/install.php",
+    "class": "Recipefield_Installer",
+    "priority": 2000
+  },
+  "dependencies": null,
+  "tests": [
+    
+  ],
+  "permissions": [
+    
+  ],
+  "structure": {
+    "application\/modules\/Recipefield": {
+      "type": "directory",
+      "path": "application\/modules\/Recipefield",
+      "structure": [
+        {
+          "path": "settings",
+          "dir": true,
+          "file": false,
+          "perms": "2777",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "settings\/install.php",
+          "dir": false,
+          "file": true,
+          "perms": "0777",
+          "size": 278,
+          "sha1": "56099e5139473ad7066eea8a44da582de0288372"
+        },
+        {
+          "path": "settings\/install.sql",
+          "dir": false,
+          "file": true,
+          "perms": "0777",
+          "size": 1064,
+          "sha1": "961e9097dd7f3b842352c1c5b5abd604ee3578c6"
+        },
+        {
+          "path": "settings\/manifest.php",
+          "dir": false,
+          "file": true,
+          "perms": "0777",
+          "size": 1888,
+          "sha1": "a29a215f5ab99cfb799209ea9d44608917790c2c"
+        },
+        {
+          "path": "externals",
+          "dir": true,
+          "file": false,
+          "perms": "2777",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "externals\/.htaccess",
+          "dir": false,
+          "file": true,
+          "perms": "0777",
+          "size": 147,
+          "sha1": "9f1638a8edbe1c5d28789e017fb35b2f2465f01e"
+        },
+        {
+          "path": "externals\/scripts",
+          "dir": true,
+          "file": false,
+          "perms": "2777",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "externals\/scripts\/Recipe_old.js",
+          "dir": false,
+          "file": true,
+          "perms": "0777",
+          "size": 4555,
+          "sha1": "f7dad1f5134c51d07191682a83e7396c19ba0992"
+        },
+        {
+          "path": "externals\/scripts\/select2.min.js",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 67946,
+          "sha1": "ceb9efdd95ff55575cf27ed7aa2ae988776258e1"
+        },
+        {
+          "path": "externals\/scripts\/Recipe.js",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 6035,
+          "sha1": "1e6f96325bf654906c8e860e2d1ad3b1f89f5068"
+        },
+        {
+          "path": "externals\/scripts\/jquery.min.js",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 86144,
+          "sha1": "611f7e39d5367bdb80e761ae6e3cac712f230a1f"
+        },
+        {
+          "path": "externals\/scripts\/.htempty",
+          "dir": false,
+          "file": true,
+          "perms": "0777",
+          "size": 0,
+          "sha1": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+        },
+        {
+          "path": "externals\/images",
+          "dir": true,
+          "file": false,
+          "perms": "2777",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "externals\/images\/.htempty",
+          "dir": false,
+          "file": true,
+          "perms": "0777",
+          "size": 0,
+          "sha1": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+        },
+        {
+          "path": "externals\/styles",
+          "dir": true,
+          "file": false,
+          "perms": "2777",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "externals\/styles\/select2.min.css",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 15515,
+          "sha1": "686b40ce29de82863ea03fc90531107f6f8a25a4"
+        },
+        {
+          "path": "externals\/styles\/main.css",
+          "dir": false,
+          "file": true,
+          "perms": "0777",
+          "size": 2143,
+          "sha1": "856cf5e7ad5a965bee27bcc8bd940704246241b9"
+        },
+        {
+          "path": "controllers",
+          "dir": true,
+          "file": false,
+          "perms": "2777",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "controllers\/IndexController.php",
+          "dir": false,
+          "file": true,
+          "perms": "0777",
+          "size": 1783,
+          "sha1": "a9adc2d9b0072428041032cfbeed4a1e5e5233f5"
+        },
+        {
+          "path": "Bootstrap.php",
+          "dir": false,
+          "file": true,
+          "perms": "0777",
+          "size": 90,
+          "sha1": "5e58b8c5be94ffd96599d13827fdee72c15f17aa"
+        },
+        {
+          "path": "Model",
+          "dir": true,
+          "file": false,
+          "perms": "2777",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "Model\/DbTable",
+          "dir": true,
+          "file": false,
+          "perms": "2777",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "Model\/DbTable\/.htempty",
+          "dir": false,
+          "file": true,
+          "perms": "0777",
+          "size": 0,
+          "sha1": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+        },
+        {
+          "path": "views",
+          "dir": true,
+          "file": false,
+          "perms": "2777",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "views\/scripts",
+          "dir": true,
+          "file": false,
+          "perms": "2777",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "views\/scripts\/index",
+          "dir": true,
+          "file": false,
+          "perms": "2777",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "views\/scripts\/index\/index.tpl",
+          "dir": false,
+          "file": true,
+          "perms": "0777",
+          "size": 84,
+          "sha1": "8589c60da9b91d22f8ab6323bec71ef07a87ca9f"
+        },
+        {
+          "path": "views\/scripts\/_recipe.tpl",
+          "dir": false,
+          "file": true,
+          "perms": "0777",
+          "size": 339,
+          "sha1": "6720dea207c141869a1d4ec643ea97e83eae322d"
+        },
+        {
+          "path": "Form",
+          "dir": true,
+          "file": false,
+          "perms": "2777",
+          "size": 4096,
+          "sha1": null
+        },
+        {
+          "path": "Form\/.htempty",
+          "dir": false,
+          "file": true,
+          "perms": "0777",
+          "size": 0,
+          "sha1": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+        }
+      ]
+    },
+    "application\/libraries\/Engine\/View\/Helper\/FormRecipe.php": {
+      "type": "file",
+      "path": "application\/libraries\/Engine\/View\/Helper\/FormRecipe.php",
+      "structure": {
+        "path": "FormRecipe.php",
+        "dir": false,
+        "file": true,
+        "perms": "0777",
+        "size": 9116,
+        "sha1": "13eee6e96687d62a2edca6d8958cd4cefff81d14"
+      }
+    },
+    "application\/modules\/Fields\/Form\/Admin\/Field\/Recipe.php": {
+      "type": "file",
+      "path": "application\/modules\/Fields\/Form\/Admin\/Field\/Recipe.php",
+      "structure": {
+        "path": "Recipe.php",
+        "dir": false,
+        "file": true,
+        "perms": "0777",
+        "size": 680,
+        "sha1": "63d580a872e655e52300fa9042f85f1d2e83a53e"
+      }
+    },
+    "application\/modules\/Fields\/Form\/Element\/Recipe.php": {
+      "type": "file",
+      "path": "application\/modules\/Fields\/Form\/Element\/Recipe.php",
+      "structure": {
+        "path": "Recipe.php",
+        "dir": false,
+        "file": true,
+        "perms": "0777",
+        "size": 1305,
+        "sha1": "956d0c5667799a5be62d1c2d19ad5e85d29b2959"
+      }
+    },
+    "application\/modules\/Fields\/Model\/Meta.php": {
+      "type": "file",
+      "path": "application\/modules\/Fields\/Model\/Meta.php",
+      "structure": {
+        "path": "Meta.php",
+        "dir": false,
+        "file": true,
+        "perms": "0777",
+        "size": 5573,
+        "sha1": "3193084eec369c4791b4d94be0a72126d09c067e"
+      }
+    },
+    "application\/modules\/Fields\/View\/Helper\/FieldRecipe.php": {
+      "type": "file",
+      "path": "application\/modules\/Fields\/View\/Helper\/FieldRecipe.php",
+      "structure": {
+        "path": "FieldRecipe.php",
+        "dir": false,
+        "file": true,
+        "perms": "0777",
+        "size": 2277,
+        "sha1": "14e9d6d0a687efe02166d77860a57d604410995d"
+      }
+    },
+    "application\/modules\/Fields\/settings\/fields.php": {
+      "type": "file",
+      "path": "application\/modules\/Fields\/settings\/fields.php",
+      "structure": {
+        "path": "fields.php",
+        "dir": false,
+        "file": true,
+        "perms": "0777",
+        "size": 13364,
+        "sha1": "9f12d596eea58d34eb3d68e1c65cca1e49ae121a"
+      }
+    },
+    "application\/modules\/Sitereview\/Form\/Custom\/Standard.php": {
+      "type": "file",
+      "path": "application\/modules\/Sitereview\/Form\/Custom\/Standard.php",
+      "structure": {
+        "path": "Standard.php",
+        "dir": false,
+        "file": true,
+        "perms": "0777",
+        "size": 16367,
+        "sha1": "61ddc98754ab4e99877328ae9939dea00c305de4"
+      }
+    },
+    "application\/modules\/Fields\/Api\/Core.php": {
+      "type": "file",
+      "path": "application\/modules\/Fields\/Api\/Core.php",
+      "structure": {
+        "path": "Core.php",
+        "dir": false,
+        "file": true,
+        "perms": "0777",
+        "size": 22089,
+        "sha1": "f96a6285bd487444ac5132ada6052bc5171f673f"
+      }
+    },
+    "application\/modules\/Sitereview\/controllers\/AdminFieldsController.php": {
+      "type": "file",
+      "path": "application\/modules\/Sitereview\/controllers\/AdminFieldsController.php",
+      "structure": {
+        "path": "AdminFieldsController.php",
+        "dir": false,
+        "file": true,
+        "perms": "0777",
+        "size": 36779,
+        "sha1": "10802235d37a251c91b6f5b18825f11612faca57"
+      }
+    },
+    "application\/modules\/Fields\/views\/helpers\/AdminFieldMeta.php": {
+      "type": "file",
+      "path": "application\/modules\/Fields\/views\/helpers\/AdminFieldMeta.php",
+      "structure": {
+        "path": "AdminFieldMeta.php",
+        "dir": false,
+        "file": true,
+        "perms": "0777",
+        "size": 6135,
+        "sha1": "58d3bce54d8e5accedd955e29bdddd0265196aec"
+      }
+    },
+    "application\/modules\/Sitereview\/Model\/DbTable\/Listingtypes.php": {
+      "type": "file",
+      "path": "application\/modules\/Sitereview\/Model\/DbTable\/Listingtypes.php",
+      "structure": {
+        "path": "Listingtypes.php",
+        "dir": false,
+        "file": true,
+        "perms": "0777",
+        "size": 8534,
+        "sha1": "fb8c9916e6397e8a77175cec62cc4c83331ac045"
+      }
+    },
+    "application\/modules\/Sitereview\/Model\/DbTable\/Listings.php": {
+      "type": "file",
+      "path": "application\/modules\/Sitereview\/Model\/DbTable\/Listings.php",
+      "structure": {
+        "path": "Listings.php",
+        "dir": false,
+        "file": true,
+        "perms": "0777",
+        "size": 81511,
+        "sha1": "4dd4f11ea7ec413ee093127cc1562a7b16684d02"
+      }
+    },
+    "application\/modules\/Sitereview\/controllers\/IndexController.php": {
+      "type": "file",
+      "path": "application\/modules\/Sitereview\/controllers\/IndexController.php",
+      "structure": {
+        "path": "IndexController.php",
+        "dir": false,
+        "file": true,
+        "perms": "0777",
+        "size": 180092,
+        "sha1": "0e0d9fa7a80396559944bd2dd9f242137e78caeb"
+      }
+    },
+    "application\/modules\/Sitereview\/views\/scripts\/admin-fields\/index.tpl": {
+      "type": "file",
+      "path": "application\/modules\/Sitereview\/views\/scripts\/admin-fields\/index.tpl",
+      "structure": {
+        "path": "index.tpl",
+        "dir": false,
+        "file": true,
+        "perms": "0777",
+        "size": 3998,
+        "sha1": "222033a7dcbd8e25705523a3966336199798f257"
+      }
+    },
+    "application\/modules\/Sitereviewlistingtype\/Form\/Admin\/Listingtypes\/Create.php": {
+      "type": "file",
+      "path": "application\/modules\/Sitereviewlistingtype\/Form\/Admin\/Listingtypes\/Create.php",
+      "structure": {
+        "path": "Create.php",
+        "dir": false,
+        "file": true,
+        "perms": "0777",
+        "size": 25829,
+        "sha1": "20904490f0777ecb54b683ab7fd87cece2884f77"
+      }
+    },
+    "application\/modules\/Sitereview\/Model\/DbTable\/Recipeinfo.php": {
+      "type": "file",
+      "path": "application\/modules\/Sitereview\/Model\/DbTable\/Recipeinfo.php",
+      "structure": {
+        "path": "Recipeinfo.php",
+        "dir": false,
+        "file": true,
+        "perms": "0777",
+        "size": 1499,
+        "sha1": "25c8bb437f521577fc122e6d9f48596546419e1a"
+      }
+    },
+    "application\/modules\/Sitereview\/Model\/Recipeinfo.php": {
+      "type": "file",
+      "path": "application\/modules\/Sitereview\/Model\/Recipeinfo.php",
+      "structure": {
+        "path": "Recipeinfo.php",
+        "dir": false,
+        "file": true,
+        "perms": "0777",
+        "size": 410,
+        "sha1": "b2cc8812e98827edf2b0e4e47aa72a6465c8a4e9"
+      }
+    }
+  }
+}

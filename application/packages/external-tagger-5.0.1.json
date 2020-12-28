@@ -1,0 +1,62 @@
+{
+  "type": "external",
+  "name": "tagger",
+  "version": "5.0.1",
+  "revision": "9747",
+  "path": "externals\/tagger",
+  "repository": null,
+  "sku": null,
+  "date": "Tue, 03 Mar 2020 10:38:58 +0000",
+  "title": "Tagger",
+  "description": null,
+  "thumb": null,
+  "developer": null,
+  "authors": [
+    "Webligo Developments"
+  ],
+  "meta": {
+    "date": "Tue, 03 Mar 2020 10:38:58 +0000",
+    "title": "Tagger",
+    "description": null,
+    "developer": null,
+    "authors": [
+      "Webligo Developments"
+    ],
+    "changeLog": null
+  },
+  "actions": [
+    
+  ],
+  "callback": null,
+  "dependencies": null,
+  "tests": [
+    
+  ],
+  "permissions": [
+    
+  ],
+  "structure": {
+    "externals\/tagger": {
+      "type": "directory",
+      "path": "externals\/tagger",
+      "structure": [
+        {
+          "path": "manifest.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 365,
+          "sha1": "503f967d39b4084ac1c6861d48640b78a32b8811"
+        },
+        {
+          "path": "tagger.js",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 12622,
+          "sha1": "32e7eca6ade031736ded861e4eedd6e6d7e13d63"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "type": "external",
+  "name": "jscolor",
+  "version": "5.0.1",
+  "revision": "9747",
+  "path": "externals\/jscolor",
+  "repository": null,
+  "sku": null,
+  "date": "Tue, 03 Mar 2020 10:38:58 +0000",
+  "title": "jscolor",
+  "description": null,
+  "thumb": null,
+  "developer": null,
+  "authors": [
+    "Webligo Developments"
+  ],
+  "meta": {
+    "date": "Tue, 03 Mar 2020 10:38:58 +0000",
+    "title": "jscolor",
+    "description": null,
+    "developer": null,
+    "authors": [
+      "Webligo Developments"
+    ],
+    "changeLog": null
+  },
+  "actions": [
+    
+  ],
+  "callback": null,
+  "dependencies": null,
+  "tests": [
+    
+  ],
+  "permissions": [
+    
+  ],
+  "structure": {
+    "externals\/jscolor": {
+      "type": "directory",
+      "path": "externals\/jscolor",
+      "structure": [
+        {
+          "path": "cross.gif",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 83,
+          "sha1": "563b3d5d8cb15f4b5f99e05206c5a6d238111210"
+        },
+        {
+          "path": "manifest.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 426,
+          "sha1": "baa49ee6d9b0b57444166a261b897c6c45aab385"
+        },
+        {
+          "path": "jscolor.js",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 29447,
+          "sha1": "1261cd0cef12409d000256bdc9b81bd8b1d51f42"
+        },
+        {
+          "path": "hv.png",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 2865,
+          "sha1": "1781663d8c4c2937de23de0b7fdc2899ec7aec7a"
+        },
+        {
+          "path": "hs.png",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 2684,
+          "sha1": "8a937187ca475f678753774b244deecbb06fbd82"
+        },
+        {
+          "path": "arrow.gif",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 66,
+          "sha1": "425fee7ea7bc578c8e3f6298ebd6c3619738f2eb"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "type": "external",
+  "name": "musicbox-font",
+  "version": "5.0.1",
+  "revision": "9729",
+  "path": "externals\/musicbox-font",
+  "repository": null,
+  "sku": null,
+  "date": "Tue, 03 Mar 2020 10:38:58 +0000",
+  "title": "Musicbox Font",
+  "description": null,
+  "thumb": null,
+  "developer": null,
+  "authors": [
+    "Webligo Developments"
+  ],
+  "meta": {
+    "date": "Tue, 03 Mar 2020 10:38:58 +0000",
+    "title": "Musicbox Font",
+    "description": null,
+    "developer": null,
+    "authors": [
+      "Webligo Developments"
+    ],
+    "changeLog": null
+  },
+  "actions": [
+    "install",
+    "upgrade",
+    "refresh"
+  ],
+  "callback": null,
+  "dependencies": null,
+  "tests": [
+    
+  ],
+  "permissions": [
+    
+  ],
+  "structure": {
+    "externals\/musicbox-font": {
+      "type": "directory",
+      "path": "externals\/musicbox-font",
+      "structure": [
+        {
+          "path": "manifest.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 508,
+          "sha1": "25ebd6a57d44f2c40c30003db8a4549a44ee18df"
+        },
+        {
+          "path": "font.css",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 59,
+          "sha1": "23df4b0935b50c7b03493479a844bc4236764332"
+        }
+      ]
+    }
+  }
+}

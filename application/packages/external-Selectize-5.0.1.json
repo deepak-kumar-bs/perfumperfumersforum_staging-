@@ -1,0 +1,86 @@
+{
+  "type": "external",
+  "name": "Selectize",
+  "version": "5.0.1",
+  "revision": "9747",
+  "path": "externals\/selectize",
+  "repository": null,
+  "sku": null,
+  "date": "Tue, 03 Mar 2020 10:38:58 +0000",
+  "title": "external",
+  "description": null,
+  "thumb": null,
+  "developer": null,
+  "authors": [
+    "Webligo Developments"
+  ],
+  "meta": {
+    "date": "Tue, 03 Mar 2020 10:38:58 +0000",
+    "title": "external",
+    "description": null,
+    "developer": null,
+    "authors": [
+      "Webligo Developments"
+    ],
+    "changeLog": null
+  },
+  "actions": [
+    
+  ],
+  "callback": null,
+  "dependencies": null,
+  "tests": [
+    
+  ],
+  "permissions": [
+    
+  ],
+  "structure": {
+    "externals\/selectize": {
+      "type": "directory",
+      "path": "externals\/selectize",
+      "structure": [
+        {
+          "path": "css",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 96,
+          "sha1": null
+        },
+        {
+          "path": "css\/normalize.css",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 10963,
+          "sha1": "acffe3cd33efe1230f0e881d4b46ba9926097c7f"
+        },
+        {
+          "path": "js",
+          "dir": true,
+          "file": false,
+          "perms": "0755",
+          "size": 96,
+          "sha1": null
+        },
+        {
+          "path": "js\/selectize.js",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 135324,
+          "sha1": "265c8103ca0e57aed2f1394349b2d61092dc75fa"
+        },
+        {
+          "path": "manifest.php",
+          "dir": false,
+          "file": true,
+          "perms": "0644",
+          "size": 433,
+          "sha1": "c5e1f5238145658730c0cb995c9ba652364fd036"
+        }
+      ]
+    }
+  }
+}

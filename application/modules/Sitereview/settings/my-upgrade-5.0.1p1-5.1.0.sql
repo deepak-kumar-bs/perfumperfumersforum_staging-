@@ -1,0 +1,1 @@
+ALTER TABLE `engine4_sitereview_listing_fields_meta`ADD COLUMN `icon` varchar(255) COLLATE utf8_unicode_ci;

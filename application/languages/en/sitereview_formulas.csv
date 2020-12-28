@@ -1,0 +1,478 @@
+"{item:$subject} commented on {item:$owner}'s {var:$listingtype} listing {item:$object:$title}: {body:$body}";"{item:$subject} commented on {item:$owner}'s formula formula {item:$object:$title}: {body:$body}"
+"{item:$subject} replied to a comment on {item:$owner}'s {var:$listingtype} listing {item:$object:$title}: {body:$body}";"{item:$subject} replied to a comment on {item:$owner}'s formula formula {item:$object:$title}: {body:$body}"
+"You can also choose the photo snapshot for the video displayed in the slideshow by using 'Video Snapshot' option.";"You can also choose the photo snapshot for the video displayed in the slideshow by using 'Video Snapshot' option."
+"posted by";"posted by"
+"Popular Tags";"Popular Tags"
+"Popular Tags (%s)";"Popular Tags (%s)"
+"Note: Users will not be able to create listings in '%s', until you have created atleast one category. Please create some categories from the Admin Panel for this listing type to enable users to create listings.";"Note: Users will not be able to create formulas in '%s', until you have created atleast one category. Please create some categories from the Admin Panel for this formula type to enable users to create formulas."
+"Sorry, you can not post a new listing right now. Please try again after sometime or contact us by filling the 'Contact Us' form using the 'Contact' link available in the footer of our site.";"Sorry, you can not post a new formula right now. Please try again after sometime or contact us by filling the 'Contact Us' form using the 'Contact' link available in the footer of our site."
+"There are currently no paid packages available of the site. Please upgrade your package.";"There are currently no paid packages available of the site. Please upgrade your package."
+"ADMIN_ACTIVITY_TYPE_SITEREVIEW_NEW_LISTTYPE_4";"Multiple Formula Types - When a new formula is posted in a module."
+"_ACTIVITY_ACTIONTYPE_SITEREVIEW_NEW_LISTTYPE_4";"New formula in a module."
+"ADMIN_ACTIVITY_TYPE_SITEREVIEW_PHOTO_UPLOAD_LISTTYPE_4";"Multiple Formula Types - When someone uploads a photo to formula."
+"_ACTIVITY_ACTIONTYPE_SITEREVIEW_PHOTO_UPLOAD_LISTTYPE_4";"Uploading a photo to formula"
+"ADMIN_ACTIVITY_TYPE_VIDEO_SITEREVIEW_LISTTYPE_4";"Multiple Formula Types - When someone uploads a video to formula."
+"_ACTIVITY_ACTIONTYPE_VIDEO_SITEREVIEW_LISTTYPE_4";"Uploading a video to formula"
+"ADMIN_ACTIVITY_TYPE_SITEREVIEW_VIDEO_NEW_LISTTYPE_4";"Multiple Formula Types - When someone uploads a video to formula."
+"_ACTIVITY_ACTIONTYPE_SITEREVIEW_VIDEO_NEW_LISTTYPE_4";"Uploading a video to formula"
+"ADMIN_ACTIVITY_TYPE_SITEREVIEW_REVIEW_ADD_LISTTYPE_4";"Multiple Formula Types - When someone write a review on formula."
+"_ACTIVITY_ACTIONTYPE_SITEREVIEW_REVIEW_ADD_LISTTYPE_4";"Writing a new formula review"
+"ADMIN_ACTIVITY_TYPE_SITEREVIEW_TOPIC_CREATE_LISTTYPE_4";"Multiple Formula Types - When someone creates a new formula topic."
+"_ACTIVITY_ACTIONTYPE_SITEREVIEW_TOPIC_CREATE_LISTTYPE_4";"Creating formula discussion topic"
+"ADMIN_ACTIVITY_TYPE_SITEREVIEW_TOPIC_REPLY_LISTTYPE_4";"Multiple Formula Types - When someone replies to formula topic."
+"_ACTIVITY_ACTIONTYPE_SITEREVIEW_TOPIC_REPLY_LISTTYPE_4";"Replying to formula discussion topic"
+"ADMIN_ACTIVITY_TYPE_SITEREVIEW_CHANGE_PHOTO_LISTTYPE_4";"Multiple Formula Types - When formula Owner change their formula profile photo as User."
+"_ACTIVITY_ACTIONTYPE_SITEREVIEW_CHANGE_PHOTO_LISTTYPE_4";"When formula Owner change their formula profile photo as User"
+"ADMIN_ACTIVITY_TYPE_SITEREVIEW_WISHLIST_ADD_LISTING_LISTTYPE_4";"Multiple Formula Types - When someone adds formula in wishlist."
+"_ACTIVITY_ACTIONTYPE_SITEREVIEW_WISHLIST_ADD_LISTING_LISTTYPE_4";"Adding formula to wishlist"
+"{item:$subject} posted a new formula listing:";"{item:$subject} posted a new formula formula:"
+"{item:$subject} added {var:$count} photo(s) to the formula listing: {item:$object:$title} {body:$body}";"{item:$subject} added {var:$count} photo(s) to the formula formula: {item:$object:$title} {body:$body}"
+"{item:$subject} posted a new discussion {item:$object:topic} in the formula listing {itemParent:$object:sitereview}: {body:$body}";"{item:$subject} posted a {item:$object:topic} in the formula formula {itemParent:$object:sitereview}: {body:$body}"
+"{item:$subject} replied to discussion {item:$object:topic} in the formula listing {itemParent:$object:sitereview_listing}: {body:$body}";"{item:$subject} replied to discussion {item:$object:topic} in the formula formula {itemParent:$object:sitereview_formula}: {body:$body}"
+"{item:$subject} changed the profile picture of the formula listing {item:$object:$title}:";"{item:$subject} changed the profile picture of the formula formula {item:$object:$title}:"
+"{item:$subject} added a new video in the formula listing {item:$object:$title}: {body:$body}";"{item:$subject} added a new video in the formula formula {item:$object:$title}: {body:$body}"
+"{item:$subject} added a new video in the formula listing {item:$object}:";"{item:$subject} added a new video in the formula formula {item:$object}:"
+"{item:$subject} rated and wrote a review for the formula listing {item:$object}:";"{item:$subject} rated and wrote a review for the formula formula {item:$object}:"
+"{item:$subject} posted a new formula listing: {item:$object}.";"{item:$subject} posted a new formula formula: {item:$object}."
+"Edit Formula Location";"Edit Formula Location"
+"Edit the location of your formula by clicking on 'Edit Formula Location' below. You can accurately mark the position of your formula on the map by dragging-and-dropping the marker on the map at the right position, and then clicking on Save Changes to save the position.";"Edit the location of your formula by clicking on 'Edit Formula Location' below. You can accurately mark the position of your formula on the map by dragging-and-dropping the marker on the map at the right position, and then clicking on Save Changes to save the position."
+"You have not added a location for your formula. %1$sClick here%2$s to add a location for your formula.";"You have not added a location for your formula. %1$sClick here%2$s to add a location for your formula."
+"Post New Formula";"Post New Formula"
+"Compose your new formula below, then click 'Submit' to publish the formula.";"Compose your new formula below, then click 'Submit' to publish the formula."
+"Formula Title";"Formula Title"
+"Who may see this formula?";"Who may see this formula?"
+"Who may comment on this formula?";"Who may comment on this formula?"
+"Who may upload photos for this formula?";"Who may upload photos for this formula?"
+"Who may create videos for this formula?";"Who may create videos for this formula?"
+"Select the networks, members of which should be able to see your formula. (Press Ctrl and click to select multiple networks. You can also choose to make your formula viewable to everyone.)";"Select the networks, members of which should be able to see your formula. (Press Ctrl and click to select multiple networks. You can also choose to make your formula viewable to everyone.)"
+"Show this formula in search results";"Show this formula in search results"
+"Show this formula on browse page and in various blocks.";"Show this formula on browse page and in various blocks."
+"SEPARATE_FORMULA_TAGS_WITH_COMMAS";"Separate tags with commas."
+"Your formula has been successfully created. You can enhance your formula from this Dashboard by creating other components.";"Your formula has been successfully created. You can enhance your formula from this Dashboard by creating other components."
+"View Formula";"View Formula"
+"View Formula &raquo;";"View Formula &raquo;"
+"End formula on a specific date. (Please select date by clicking on the calendar icon below.)";"End formula on a specific date. (Please select date by clicking on the calendar icon below.)"
+"When should this formula end?";"When should this formula end?"
+"Note: your formula will be expired in %1$s %2$s after an approval or it may be changed by admin.";"Note: your formula will be expired in %1$s %2$s after an approval or it may be changed by admin."
+"All Formulas";"All Formulas"
+"Only Open Formulas";"Only Open Formulas"
+"Only Closed Formulas";"Only Closed Formulas"
+"Everyone's Formulas";"Everyone's Formulas"
+"Only My Friends' Formulas";"Only My Friends' Formulas"
+"Formulas I Like";"Formulas I Like"
+"Only Expired Formulas";"Only Expired Formulas"
+"Formulas Having";"Formulas Having"
+"Only Formulas With Photos";"Only Formulas With Photos"
+"Only Formula With Photos";"Only Formula With Photos"
+"Edit the overview for your formula using the editor below, and then click 'Save Overview' to save changes.";"Edit the overview for your formula using the editor below, and then click 'Save Overview' to save changes."
+"DASHBOARD_FORMULA_SAVE_OVERVIEW";"Save Overview"
+"DASHBOARD_FORMULA_EDIT_OVERVIEW";"Edit Overview"
+"Edit Formula Overview";"Edit Formula Overview"
+"Contact information will be displayed on your formula profile.";"Contact information will be displayed on your formula profile."
+"ADD_DASHBOARD_FORMULA_WHERE_TO_BUY_OPTION";"Add Where to Buy Option"
+"EDIT_DASHBOARD_FORMULA_WHERE_TO_BUY_OPTION";"Edit Where to Buy"
+"Add DASHBOARD_FORMULA_WHERE_TO_BUY option for this formula using the form below. Enter the name of the Store and other details where this formula is available.";"Add Where to Buy option for this formula using the form below. Enter the name of the Store and other details where this formula is available."
+"Select the online store for your formula from available stores drop-down below.";"Select the online store for your formula from available stores drop-down below."
+"Enter the URL of the Store's webpage where this formula is available. (We recommend you to enter complete URL.)";"Enter the URL of the Store's webpage where this formula is available. (We recommend you to enter complete URL.)"
+"Edit Formula Style";"Edit Formula Style"
+"Edit the CSS style of your formula using the text area below, and then click 'Save Style' to save changes.";"Edit the CSS style of your formula using the text area below, and then click 'Save Style' to save changes."
+"Add your own CSS code above to give your formula a more personalized look.";"Add your own CSS code above to give your formula a more personalized look."
+"Custom Advanced formula Style";"Custom Advanced formula Style"
+"Meta keywords are a great way to provide search engines with information about your formula so that search engines populate your formula in search results. Below, you can add meta keywords for this formula. (The tags entered by you for this formula will also be added to the meta keywords.)";"Meta keywords are a great way to provide search engines with information about your formula so that search engines populate your formula in search results. Below, you can add meta keywords for this formula. (The tags entered by you for this formula will also be added to the meta keywords.)"
+"Edit Formula Info";"Edit Formula Info"
+"Edit the information of your formula using the form below.";"Edit the information of your formula using the form below."
+"Delete Formula?";"Delete Formula?"
+"Are you sure that you want to delete the Formula with the title ""%1$s"" last modified %2$s? It will not be recoverable after being deleted.";"Are you sure that you want to delete the Formula with the title ""%1$s"" last modified %2$s? It will not be recoverable after being deleted."
+"You have not added a location for your formula. %s to add a location for your formula.";"You have not added a location for your formula. %s to add a location for your formula."
+"(You can edit the end date to make the formula live again.)";"(You can edit the end date to make the formula live again.)"
+"You do not have any formula that match your search criteria.";"You do not have any formula that match your search criteria."
+"You do not have any formulas.";"You do not have any formulas."
+"Get started by %1$sposting%2$s a new formula.";"Get started by %1$sposting%2$s a new formula."
+"You have already created the maximum number of formulas allowed. If you would like to create a new formula, please delete an old one first.";"You have already created the maximum number of formulas allowed. If you would like to create a new formula, please delete an old one first."
+"Publish Formula";"Publish Formula"
+"Close Formula";"Close Formula"
+"Open Formula";"Open Formula"
+"Delete Formula";"Delete Formula"
+"Popular Formula Tags";"Popular Formula Tags"
+"Browse the tags created for formula by the various members.";"Browse the tags created for formula by the various members."
+"Edit Formula Photos";"Edit Formula Photos"
+"Edit and manage the photos of your formula below.";"Edit and manage the photos of your formula below."
+"An attractive photo and video Slideshow will be displayed on your Formula Profile page. Below, you can choose the photos to be displayed in this slideshow by using the 'Show in Slideshow' option.";"An attractive photo and video Slideshow will be displayed on your Formula Profile page. Below, you can choose the photos to be displayed in this slideshow by using the 'Show in Slideshow' option."
+"There are currently no photos in this formula. %1$sClick here%2$s to add photos now!";"There are currently no photos in this formula. %1$sClick here%2$s to add photos now!"
+"Choose photos on your computer to add to this formula. (2MB maximum).";"Choose photos on your computer to add to this formula. (2MB maximum)."
+"DASHBOARD_FORMULA_WHERE_TO_BUY options of %s";"Where to Buy options of %s"
+"There are currently no DASHBOARD_FORMULA_WHERE_TO_BUY option for this formula. Click %s to add options now!";"There are currently no Where to Buy option for this formula. Click %s to add options now!"
+"Edit Formula Videos";"Edit Formula Videos"
+"Edit and manage the videos of your formula below.";"Edit and manage the videos of your formula below."
+"There are currently no videos in this formula. Click %s to add videos now!";"There are currently no videos in this formula. Click %s to add videos now!"
+"An attractive photo and video Slideshow will be displayed on your Formula Profile page. Below, you can select a video to be displayed in that slideshow by using the 'Show in Slideshow' option.";"An attractive photo and video Slideshow will be displayed on your Formula Profile page. Below, you can select a video to be displayed in that slideshow by using the 'Show in Slideshow' option."
+"Add a new video in this formula using the form below.";"Add a new video in this formula using the form below."
+"Click 'Add Photos' to select one or more photos from your computer. After you have selected the photos, they will begin to upload right away. When your upload is finished, click the button below your photo to save them to your formula.";"Click 'Add Photos' to select one or more photos from your computer. After you have selected the photos, they will begin to upload right away. When your upload is finished, click the button below your photo to save them to your formula."
+"Go to the Formula %s";"Go to the Formula %s"
+"Please %s to update your reviews for this Formula.";"Please %s to update your reviews for this Formula."
+"Post a New Formula";"New Formula"
+"You have not composed an overview for your formula. Click %s to compose it from the Dashboard of your formula.";"You have not composed an overview for your formula. Click %s to compose it from the Dashboard of your formula."
+"You have not added any photo in your formula. %1$sClick here%2s to add your first photo.";"You have not added any photo in your formula. %1$sClick here%2s to add your first photo."
+"You have not added any video in your formula. %1$sClick here%2$s to add your first video.";"You have not added any video in your formula. %1$sClick here%2$s to add your first video."
+"There are currently no videos in this formula. %1$sClick here%2$s to add your first video.";"There are currently no videos in this formula. %1$sClick here%2$s to add your first video."
+"No formulas have been posted yet.";"No formulas have been posted yet."
+"BE_THE_FIRST_FORMULA_TO %1$spost%2$s one!";"Be the first to %1$spost%2$s one!"
+"Nobody has posted a formula with that criteria.";"Nobody has posted a formula with that criteria."
+"Be the first to formula %1$spost%2$s one!";"Be the first to %1$spost%2$s one!"
+"This is the formula browse page.";"This is the formula browse page."
+"Create your message with the form given below. (This message will be sent to the owner of this Formula.)";"Create your message with the form given below. (This message will be sent to the owner of this Formula.)"
+"DASHBOARD_FORMULA_WHERE_TO_BUY";"Where to Buy"
+"DASHBOARD_FORMULA_OVERVIEW";"Overview"
+"Formulas Home";"Formulas Home"
+"Browse Formulas";"Browse Formulas"
+"My Formulas";"My Formulas"
+"Top Rated Formulas";"Top Rated Formulas"
+"Most Liked Formulas";"Most Liked Formulas"
+"Popular Formulas";"Popular Formulas"
+"Most Commented Formulas";"Most Commented Formulas"
+"FORMULA_TAG_(Keywords)";"Tags (Keywords)"
+"Please %1$sclick here%2$s to give your review and ratings for this formula.";"Please %1$sclick here%2$s to give your review and ratings for this formula."
+"Please %1$sclick here%2$s to update your reviews for this formula.";"Please %1$sclick here%2$s to update your reviews for this formula."
+"Please select the wishlists in which you want to add this formula.";"Please select the wishlists in which you want to add this formula."
+"You have not created any wishlist yet. Get Started by creating and adding formulas.";"You have not created any wishlist yet. Get Started by creating and adding formulas."
+"You can also add this formula in a new wishlist below:";"You can also add this formula in a new wishlist below:"
+"FORMULA_TAG :";"Tag :"
+"FORMULA_TAGS:";"Tags:"
+"FORMULA_TAGS";"Tags"
+"EXPLORE_FORMULA_TAGS &raquo;";"Explore Tags &raquo;"
+"Featured Formulas";"Featured Formulas"
+"Sponsored Formulas";"Sponsored Formulas"
+"%s formula found.";"%s formula found.";"%s formulas found."
+"%s formula";"%s formula";"%s formulas"
+"%s formula entry";"%s formula entry";"%s formulas entries"
+"Formulas";"Formulas"
+"Formula of the Day";"Formula of the Day"
+"This formula has been closed by the owner.";"This formula has been closed by the owner."
+"What do you like about this Formula?";"What do you like about this Formula?"
+"What do you dislike about this Formula?";"What do you dislike about this Formula?"
+"You may add a video to your formula either by choosing from your existing videos, or by posting a new video:";"You may add a video to your formula either by choosing from your existing videos, or by posting a new video:"
+"No discussion topics have been posted in this formula yet. Click %1$s to start a discussion.";"No discussion topics have been posted in this formula yet. Click %1$s to start a discussion."
+"'s Formula";"'s Formula"
+"This message corresponds to the Formula: ";"This message corresponds to the Formula: "
+"Your formula's location has been modified successfully.";"Your formula's location has been modified successfully."
+"FORMULA_STORE";"Store"
+"FORMULA_STORE_URL";"Store URL"
+"Delete DASHBOARD_FORMULA_WHERE_TO_BUY?";"Delete Where to Buy?"
+"Are you sure that you want to delete this DASHBOARD_FORMULA_WHERE_TO_BUY? It will not be recoverable after being deleted.";"Are you sure that you want to delete this Where to Buy? It will not be recoverable after being deleted."
+"FORMULA_POSTED_BY";"Posted By"
+"FORMULA_POSTED_ON:";"Posted On :"
+"FORMULA_POSTED_BY:";"Posted By :"
+"FORMULA_posted_by";"posted by"
+"VIEW_ALL_FORMULA_STORES";"View all Stores &raquo;"
+"ENTER_THE_ADDRESS_OF_FORMULA_STORE";"Enter the address of the store."
+"FORMULA_AT %s store";"at %s store";"at %s stores"
+"* The above cost for the %s is estimated and may slightly vary after including the taxes, manufacturer rebate, shipping cost, or any other sales / promotion on formulas Stores.";"* The above cost for the %s is estimated and may slightly vary after including the taxes, manufacturer rebate, shipping cost, or any other sales / promotion on Stores."
+"No reviews have been written for this formula yet.";"No reviews have been written for this formula yet."
+"Select the best alternatives for %s below. (Selected alternatives will be displayed in 'Best Alternatives' block on this formula's profile page.)";"Select the best alternatives for %s below. (Selected alternatives will be displayed in 'Best Alternatives' block on this formula's profile page.)"
+"Select the Store where this formula is available.";"Select the Store where this formula is available."
+"This formula has beed expired.";"This formula has beed expired."
+"Edit Where to Buy option for this formula using the form below.";"Edit Where to Buy option for this formula using the form below."
+"NEW_FORMULA_WHERE_TO_BUY_OPTION_HAS_BEEN_ADDED_SUCCESSFULLY";"New 'Where to Buy' option has been added successfully."
+"EDIT_FORMULA_WHERE_TO_BUY_OPTION_HAS_BEEN_EDITED_SUCCESSFULLY";"'Where to Buy' option has been edited successfully."
+"DELETE_FORMULA_WHERE_TO_BUY_OPTION_HAS_BEEN_DELETED_SUCCESSFULLY";"'Where to Buy' option has been deleted successfully."
+"Oops! Something went wrong and you can not add this Formula to your wishlist. Please try again after sometime.";"Oops! Something went wrong and you can not add this Formula to your wishlist. Please try again after sometime."
+"Showing formulas tagged with: ";"Showing formulas tagged with: "
+"No formula have been posted yet.";"No formula have been posted yet."
+"If this formula is published, it cannot be switched back to draft mode.";"If this formula is published, it cannot be switched back to draft mode."
+"You are already subscribed to this member's formulas.";"You are already subscribed to this member's formulas."
+"Would you like to subscribe to this member's formulas?";"Would you like to subscribe to this member's formulas?"
+"You are now subscribed to this member's formulas.";"You are now subscribed to this member's formulas."
+"You are already not subscribed to this member's formulas.";"You are already not subscribed to this member's formulas."
+"Would you like to unsubscribe from this member's formulas?";"Would you like to unsubscribe from this member's formulas?"
+"You are no longer subscribed to this member's formulas.";"You are no longer subscribed to this member's formulas."
+"{item:$subject} added a new event in the formula listing {item:$object}:";"{item:$subject} added a new event in the formula formula {item:$object}:"
+"Who may post discussion topics for this formula?";"Who may post discussion topics for this formula?"
+"Who may create event for this formula?";"Who may create event for this formula?"
+"ADMIN_ACTIVITY_TYPE_SITEREVIEW_EVENT_NEW_LISTTYPE_4";"Multiple Formula Types - When someone creates a new event in formula formula."
+"_ACTIVITY_ACTIONTYPE_SITEREVIEW_EVENT_NEW_LISTTYPE_4";"Create event in formula formula"
+"Formulas I Have Claimed";"Formulas I Have Claimed"
+"There are no formulas to be claimed yet.";"There are no formulas to be claimed yet."
+"About You and Your formula: ";"About You and Your formula: "
+"You have not claimed for any formulas yet.";"You have not claimed for any formulas yet."
+"Create a Formula";"Create a Formula"
+"Create a formula using these quick, easy steps and get going.";"Create a formula using these quick, easy steps and get going."
+"1. Choose a formula Package";"1. Choose a formula Package"
+"Select a package that best matches your requirements. Packages differ in terms of features available to formulas created under them. You can change your package anytime later.";"Select a package that best matches your requirements. Packages differ in terms of features available to formulas created under them. You can change your package anytime later."
+"Are you sure you want to change package for this Formula? Once you change package, all the settings of this formula will be applied according to the new package, including features available, price, etc.";"Are you sure you want to change package for this Formula? Once you change package, all the settings of this formula will be applied according to the new package, including features available, price, etc."
+"If you want to change the package for your formula, please select one package from the following list of available packages.";"If you want to change the package for your formula, please select one package from the following list of available packages."
+"Note: Once you change package for your formula, all the settings of the formula will be applied according to the new package, including apps available, features available, price, etc.";"Note: Once you change package for your formula, all the settings of the formula will be applied according to the new package, including apps available, features available, price, etc."
+"Thank you for submitting your payment. Your payment is currently pending - your formula will be activated when we are notified that the payment has completed successfully. Please return to our login formula when you receive an email notifying you that the payment has completed.";"Thank you for submitting your payment. Your payment is currently pending - your formula will be activated when we are notified that the payment has completed successfully. Please return to our login formula when you receive an email notifying you that the payment has completed."
+"You have already applied for this formula.";"You have already applied for this formula."
+"Back to Dashboard formula";"Back to Dashboard formula"
+"Back to My formulas";"Back to My formulas"
+"Thank you! Your payment for your formula has been completed successfully.";"Thank you! Your payment for your formula has been completed successfully."
+"Continue to Dashboard formula";"Continue to Dashboard formula"
+"Continue to My formulas";"Continue to My formulas"
+"Your formula is pending payment. You will receive an email when the
+  payment completes.";"Your formula is pending payment. You will receive an email when the
+  payment completes."
+"You have created a formula that requires payment. You will be taken to a secure checkout area where you can pay for your formula.";"You have created a formula that requires payment. You will be taken to a secure checkout area where you can pay for your formula."
+"Order your Formula";"Order your Formula"
+"Your Formula requires payment:";"Your Formula requires payment:"
+" to renew formula.";" to renew formula."
+"The package for your Formula requires payment. You have not fulfilled the payment for this Formula.";"The package for your Formula requires payment. You have not fulfilled the payment for this Formula."
+"Your package for this Formula has expired and needs to be renewed.";"Your package for this Formula has expired and needs to be renewed."
+"Your package for this Formula is about to expire and needs to be renewed.";"Your package for this Formula is about to expire and needs to be renewed."
+"2. Configure your formula based on the package you have chosen.";"2. Configure your formula based on the package you have chosen."
+"Below, you can file a claim for a formula on this community that you believe should be owned by you. Your request will be sent to the administration.";"Below, you can file a claim for a formula on this community that you believe should be owned by you. Your request will be sent to the administration."
+"Formula Name";"Formula Name"
+"Start typing the name of the formula";"Start typing the name of the formula"
+"About You and the Formula";"About You and the Formula"
+"Renew Formula";"Renew Formula"
+"_EMAIL_SITEREVIEW_FORMULA_CANCELLED_TITLE";"Formula Formula Cancelled"
+"_EMAIL_SITEREVIEW_FORMULA_CANCELLED_DESCRIPTION";"This is the email that gets sent to a member when their formula formula is cancelled."
+"_EMAIL_SITEREVIEW_FORMULA_CANCELLED_SUBJECT";"Your formula formula: [list_title] has been cancelled."
+"_EMAIL_SITEREVIEW_FORMULA_CANCELLED_BODY";"[header]
+
+Your formula formula: [list_title_with_link] has been cancelled.
+
+To visit this formula formula, click on the link below, or copy-paste it in your browser:
+[object_link]
+
+If your formula formula required to be renewed, then you may do so from its dashboard.
+
+[footer]"
+"_EMAIL_SITEREVIEW_FORMULA_EXPIRED_TITLE";"Formula Formula Expired: (for free packages)"
+"_EMAIL_SITEREVIEW_FORMULA_EXPIRED_DESCRIPTION";"This is the email that gets sent to a member when their formula formula belonging to a free package expires."
+"_EMAIL_SITEREVIEW_FORMULA_EXPIRED_SUBJECT";"Your formula Formula: [list_title] has expired."
+"_EMAIL_SITEREVIEW_FORMULA_EXPIRED_BODY";"[header]
+
+
+Your formula formula: [list_title_with_link] has expired. It has reached the limit of its package.
+
+
+To visit this formula formula, click on the link below, or copy-paste it in your browser:
+[object_link]
+
+
+[footer]"
+"_EMAIL_SITEREVIEW_FORMULA_RENEW_TITLE";"Formula Expired: (for paid packages)"
+"_EMAIL_SITEREVIEW_FORMULA_RENEW_DESCRIPTION";"This is the email that gets sent to a member when their formula belonging to a paid package expires."
+"_EMAIL_SITEREVIEW_FORMULA_RENEW_SUBJECT";"Your formula Formula: [list_title] has expired and needs to be renewed."
+"_EMAIL_SITEREVIEW_FORMULA_RENEW_BODY";"[header]
+
+Your formula formula: [list_title_with_link] has expired. It has reached the limit of its package. You may renew this formula from its dashboard.
+
+To visit this formula formula, click on the link below, or copy-paste it in your browser:
+[object_link]
+
+[footer]"
+"_EMAIL_SITEREVIEW_FORMULA_OVERDUE_TITLE";"Formula Formula Overdue"
+"_EMAIL_SITEREVIEW_FORMULA_OVERDUE_DESCRIPTION";"This is the email that gets sent to a member when their formula formula is overdue."
+"_EMAIL_SITEREVIEW_FORMULA_OVERDUE_SUBJECT";"Your formula formula: [list_title] is overdue."
+"_EMAIL_SITEREVIEW_FORMULA_OVERDUE_BODY";"[header]
+
+Your formula formula: [list_title_with_link] is overdue because of a failed or missed payment.
+
+To visit this formula formula, click on the link below, or copy-paste it in your browser:
+[object_link]
+
+To renew your formula formula, you may do so from its dashboard.
+
+[footer]"
+"_EMAIL_SITEREVIEW_FORMULA_PENDING_TITLE";"Formula Formula Activation Pending"
+"_EMAIL_SITEREVIEW_FORMULA_PENDING_DESCRIPTION";"This is the email that gets sent to a member when their formula formula activation is pending."
+"_EMAIL_SITEREVIEW_FORMULA_PENDING_SUBJECT";"Your formula formula activation is pending."
+"_EMAIL_SITEREVIEW_FORMULA_PENDING_BODY";"[header]
+
+Thank you for creating your formula formula on our social network! Your formula activation is pending, awaiting completion of the transaction. Your formula will be activated soon; we will notify you by email when it is ready.
+Thank you for your patience.
+
+[list_title]
+[list_description]
+
+[footer]"
+"_EMAIL_SITEREVIEW_FORMULA_ACTIVE_TITLE";"Formula Formula Activated"
+"_EMAIL_SITEREVIEW_FORMULA_ACTIVE_DESCRIPTION";"This is the email that gets sent to a member when their formula formula is activated."
+"_EMAIL_SITEREVIEW_FORMULA_ACTIVE_SUBJECT";"Your formula formula: [list_title] is now active."
+"_EMAIL_SITEREVIEW_FORMULA_ACTIVE_BODY";"[header]
+
+Thank you for creating your formula formula on [site_title]! Your formula is now active.
+
+[list_title]
+[list_description]
+
+To visit this formula formula, click on the link below, or copy-paste it in your browser:
+[object_link]
+
+[footer]"
+"_EMAIL_SITEREVIEW_FORMULA_RECURRENCE_TITLE";"Formula Formula Payment Recurrence"
+"_EMAIL_SITEREVIEW_FORMULA_RECURRENCE_DESCRIPTION";"This is the email that gets sent to a member when they are billed for a recurring payment."
+"_EMAIL_SITEREVIEW_FORMULA_RECURRENCE_SUBJECT";"Your payment for your formula formula has been billed."
+"_EMAIL_SITEREVIEW_FORMULA_RECURRENCE_BODY";"[header]
+
+Your payment for your formula formula has been billed. You should receive an email from the
+payment gateway regarding this charge. Thank you for subscribing to our social
+network.
+
+[list_title]
+[list_description]
+
+To visit this formula formula, click on the link below, or copy-paste it in your browser:
+[object_link]
+
+[footer]"
+"_EMAIL_SITEREVIEW_FORMULA_REFUNDED_TITLE";"Formula Formula Payment Refunded"
+"_EMAIL_SITEREVIEW_FORMULA_REFUNDED_DESCRIPTION";"This is the email that gets sent to a member when their formula formula payment is refunded."
+"_EMAIL_SITEREVIEW_FORMULA_REFUNDED_SUBJECT";"Your payment for your formula formula has been refunded."
+"_EMAIL_SITEREVIEW_FORMULA_REFUNDED_BODY";"[header]
+
+Your payment for your formula formula has been refunded.
+
+[list_title]
+[list_description]
+
+[footer]"
+"_EMAIL_SITEREVIEW_FORMULA_APPROVED_TITLE";"Formula Approved"
+"_EMAIL_SITEREVIEW_FORMULA_APPROVED_DESCRIPTION";"This is the email that gets sent to a member when their formula formula is approved."
+"_EMAIL_SITEREVIEW_FORMULA_APPROVED_SUBJECT";"Your formula formula: [list_title] has been approved."
+"_EMAIL_SITEREVIEW_FORMULA_APPROVED_BODY";"[header]
+
+Thank you for creating your formula formula on our social network! Your formula has now been approved.
+
+[list_title]
+[list_description]
+
+To visit this formula, click on the link below, or copy-paste it in your browser:
+[object_link]
+
+[footer]"
+"_EMAIL_SITEREVIEW_FORMULA_DISAPPROVED_TITLE";"Formula Disapproved"
+"_EMAIL_SITEREVIEW_FORMULA_DISAPPROVED_DESCRIPTION";"This is the email that gets sent to a member when their formula is disapproved."
+"_EMAIL_SITEREVIEW_FORMULA_DISAPPROVED_SUBJECT";"Your formula formula: [list_title] has been disapproved."
+"_EMAIL_SITEREVIEW_FORMULA_DISAPPROVED_BODY";"[header]
+
+Your formula has been disapproved.
+
+[list_title]
+[list_description]
+
+To visit this formula formula, click on the link below, or copy-paste it in your browser:
+[object_link]
+
+[footer]"
+"_EMAIL_SITEREVIEW_FORMULA_APPROVAL_PENDING_TITLE";"Formula Formula Approval Pending"
+"_EMAIL_SITEREVIEW_FORMULA_APPROVAL_PENDING_DESCRIPTION";"This is the email that gets sent to a member when their formula formula is pending for approval."
+"_EMAIL_SITEREVIEW_FORMULA_APPROVAL_PENDING_SUBJECT";"Your formula formula: [list_title] is in pending state and awaiting administrative approval."
+"_EMAIL_SITEREVIEW_FORMULA_APPROVAL_PENDING_BODY";"[header]
+
+Your formula formula is in pending state and awaiting administrative approval.
+
+[list_title]
+[list_description]
+
+To visit this formula formula, click on the link below, or copy-paste it in your browser:
+[object_link]
+
+[footer]"
+"_EMAIL_SITEREVIEW_FORMULA_DECLINED_TITLE";"Formula Formula Declined"
+"_EMAIL_SITEREVIEW_FORMULA_DECLINED_DESCRIPTION";"This is the email that gets sent to a member when their formula formula is declined."
+"_EMAIL_SITEREVIEW_FORMULA_DECLINED_SUBJECT";"Your formula formula: [list_title] has been declined."
+"_EMAIL_SITEREVIEW_FORMULA_DECLINED_BODY";"[header]
+
+Your formula formula has been declined.
+
+[list_title]
+[list_description]
+
+[footer]"
+"_EMAIL_SITEREVIEW_FORMULA_CHANGEOWNER_EMAIL_TITLE";"Formula - Formula Owner Changed"
+"_EMAIL_SITEREVIEW_FORMULA_CHANGEOWNER_EMAIL_DESCRIPTION";"This is the email that goes to a member when owner of their formula formula has been changed."
+"_EMAIL_SITEREVIEW_FORMULA_CHANGEOWNER_EMAIL_SUBJECT";"Owner of the formula formula: [list_title] has been changed."
+"_EMAIL_SITEREVIEW_FORMULA_CHANGEOWNER_EMAIL_BODY";"[header]
+
+The owner of the formula formula: [list_title_with_link] has been changed. You are now no more the owner of this formula. All ownership rights for this formula have been transferred to the new owner.
+
+For any queries or comments, you may contact us here: [site_contact_us_link].
+
+To visit this formula formula, click on the link below, or copy-paste it in your browser:
+[object_link]
+
+[footer]"
+"_EMAIL_SITEREVIEW_FORMULA_CLAIMOWNER_EMAIL_TITLE";"Formula Formula Claimed"
+"_EMAIL_SITEREVIEW_FORMULA_CLAIMOWNER_EMAIL_DESCRIPTION";"This mail is sent to the Site Admin when any member claims that Formula."
+"_EMAIL_SITEREVIEW_FORMULA_CLAIMOWNER_EMAIL_SUBJECT";"This formula formula: [list_title] has been claimed."
+"_EMAIL_SITEREVIEW_FORMULA_CLAIMOWNER_EMAIL_BODY";"[header]
+
+This formula formula: [list_title_with_link] has been claimed.
+
+To view this formula formula, click on the link below, or copy-paste it in your browser:
+[object_link]
+
+[footer]
+"
+"_EMAIL_SITEREVIEW_FORMULA_CLAIM_APPROVED_EMAIL_TITLE";"Formula - Formula Owner Changed"
+"_EMAIL_SITEREVIEW_FORMULA_CLAIM_APPROVED_EMAIL_DESCRIPTION";"This is the email that goes to a member when their claim for a formula has been approved."
+"_EMAIL_SITEREVIEW_FORMULA_CLAIM_APPROVED_EMAIL_SUBJECT";"Your claim for formula formula: [list_title] has been approved"
+"_EMAIL_SITEREVIEW_FORMULA_CLAIM_APPROVED_EMAIL_BODY";"[header]
+
+Congratulations! Your claim for the formula Formula: [list_title_with_link] has been approved. You are now the owner of this formula.
+
+To visit this formula formula, click on the link below, or copy-paste it in your browser:
+[object_link]
+
+[footer]"
+"_EMAIL_SITEREVIEW_FORMULA_BECOMEOWNER_EMAIL_TITLE";"Formula - Formula Ownership Given"""
+"_EMAIL_SITEREVIEW_FORMULA_BECOMEOWNER_EMAIL_DESCRIPTION";"This email goes to the new owner of the formula formula when owner of a formula formula is changed."
+"_EMAIL_SITEREVIEW_FORMULA_BECOMEOWNER_EMAIL_SUBJECT";"You are now the owner of the formula formula: [list_title]."
+"_EMAIL_SITEREVIEW_FORMULA_BECOMEOWNER_EMAIL_BODY";"[header]
+
+You are now the owner of the formula Formula: [list_title_with_link]. All ownership rights for this formula have been provided to you.
+
+For any queries or comments, you may contact us here: [site_contact_us_link].
+
+To visit this formula formula, click on the link below, or copy-paste it in your browser:
+[object_link]
+
+[footer]"
+"_EMAIL_SITEREVIEW_FORMULA_CLAIM_HOLDING_EMAIL_TITLE";"Formula Formula Claim Approval on Hold"
+"_EMAIL_SITEREVIEW_FORMULA_CLAIM_HOLDING_EMAIL_DESCRIPTION";"This is the email that goes to a member when their claim for a formula formula has been put on hold for approval."
+"_EMAIL_SITEREVIEW_FORMULA_CLAIM_HOLDING_EMAIL_SUBJECT";"Your claim for formula formula: [list_title] has been put on hold for approval"
+"_EMAIL_SITEREVIEW_FORMULA_CLAIM_HOLDING_EMAIL_BODY";"[header]
+
+Your claim for the formula Formula: [list_title_with_link] has been put on hold for approval.
+
+To visit this formula, click on the link below, or copy-paste it in your browser:
+[object_link]
+
+[comments]
+
+[footer]
+"
+"_EMAIL_SITEREVIEW_FORMULA_CLAIM_DECLINED_EMAIL_TITLE";"Formula Formula Claim Declined"""
+"_EMAIL_SITEREVIEW_FORMULA_CLAIM_DECLINED_EMAIL_DESCRIPTION";"This is the email that goes to a member when their claim for a formula formula has been declined."
+"_EMAIL_SITEREVIEW_FORMULA_CLAIM_DECLINED_EMAIL_SUBJECT";"Your claim for formula formula: [list_title] has been declined"
+"_EMAIL_SITEREVIEW_FORMULA_CLAIM_DECLINED_EMAIL_BODY";"[header]
+
+Your claim for this formula Formula: [list_title_with_link] has been declined.
+
+To visit this formula formula, click on the link below, or copy-paste it in your browser:
+[object_link]
+
+[comments]
+
+[footer]
+"
+"FORMULA Creation";"Formula Creation"
+"Edit Formula";"Edit Formula"
+"Edit Formula Contact Details";"Edit Formula Contact Details"
+"Edit Formula Meta Keywords";"Edit Formula Meta Keywords"
+"Edit Formula Where to Buy";"Edit Formula Where to Buy"
+"Edit Formula Profile Picture";"Edit Formula Profile Picture"
+"Edit Formula 'Where to Buy'";"Edit Formula 'Where to Buy'"
+"Edit Formula Details";"Edit Formula Details"
+"Formula Listings";"Formula Formulas"
+"Post new formula listings to this page.";"Post new formula formulas to this page."
+"Post / Manage Formula Listings";"Post / Manage Formula Formulas"
+"Post New Formula Listing";"Post New Formula Formula"
+"Add Formula Listings";"Add Formula Formulas"
+"Here, you can add various Formula Listings to be associated with and displayed on your Page by using the auto-suggest below. From the auto-suggest, you can choose to add the Formula Listings created by this Page’s Admins. Listings added by you here will display in a tab on your Page Profile.<br />Below, you can also remove listings added by you by using the link for each.";"Here, you can add various Formula Formulas to be associated with and displayed on your Page by using the auto-suggest below. From the auto-suggest, you can choose to add the Formula Formulas created by this Page’s Admins. Formulas added by you here will display in a tab on your Page Profile.<br />Below, you can also remove formulas added by you by using the link for each."
+"Here, you can add various Formula Listings to be associated with and displayed on your Page by using the auto-suggest below. From the auto-suggest, you can choose to add the Formula Listings from various Formula Listings created on this site. Listings added by you here will display in a tab on your Page Profile.<br />Below, you can also remove listings added by you by using the link for each.";"Here, you can add various Formula Formulas to be associated with and displayed on your Page by using the auto-suggest below. From the auto-suggest, you can choose to add the Formula Formulas from various Formula Formulas created on this site. Formulas added by you here will display in a tab on your Page Profile.<br />Below, you can also remove formulas added by you by using the link for each."
+"Here, you can add various Formula Listings to be associated with and displayed on your Page by using the auto-suggest below. From the auto-suggest, you can choose to add the Formula Listings created by you. Listings added by you here will display in a tab on your Page Profile.<br />Below, you can also remove listings added by you by using the link for each.";"Here, you can add various Formula Formulas to be associated with and displayed on your Page by using the auto-suggest below. From the auto-suggest, you can choose to add the Formula Formulas created by you. Formulas added by you here will display in a tab on your Page Profile.<br />Below, you can also remove formulas added by you by using the link for each."
+"Create Formulas";"Create Formulas"
+"Manage Formulas";"Manage Formulas"

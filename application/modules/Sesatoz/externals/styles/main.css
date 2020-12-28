@@ -1,0 +1,166 @@
+.sescontest_ongoing_type,.sescontest_ongoing_hover_box a{
+	background:$theme_button_background_color;
+}
+.sescontest_ongoing_type i,.sescontest_ongoing_hover_box a,.app_second_left > .mobile-friendly,.app_second_left > h3,.app_second_left > h5,.app_second_left .support{
+	color:$theme_button_font_color !important;
+}
+#global_page_core-error-requireuser,#global_page_core-help-contact,#global_page_user-auth-login{
+	background-color:$theme_box_background_color;
+}
+#global_page_core-help-contact #global_wrapper .layout_middle > div{
+	background:$theme_list_background_color_hover;
+}
+.sesatoz_purcahse_main > .sesatoz_purcahse_inner ._link{
+	background:$theme_box_background_color;
+}
+.sesatoz_features_three_inner > div:hover ._icon{
+	border-color:$theme_button_background_color;
+}
+.sesatoz_features_three_inner > div:before{
+	border-color:$theme_border_color;
+}
+.sesatoz_features_two_inner > div:before{
+	border-top:1px solid $theme_base_color;
+	border-bottom:1px solid $theme_base_color;
+}
+.sesatoz_features_two_inner > div:after{
+	border-left:1px solid $theme_button_background_color;
+	border-right:1px solid $theme_button_background_color;
+}
+.sesatoz_features_two_inner > div > ._icon{
+	border:1px solid $theme_base_color;
+}
+.atoz_member_block_members > a{
+	border:1px solid $theme_base_color;
+}
+.sesatoz_pages_carousel .slick-arrow{
+	color:$theme_font_color;
+}
+.sesatoz_app_wrapper_inner .sesatoz_emailbox ._inputbox{
+	background:$theme_input_background_color;
+	color:$theme_input_font_color;
+	border:1px solid $theme_input_border_colors;
+}
+.sesatoz_features_block .sesatoz_feature_bg a i{
+	color:$theme_button_font_color
+}
+.sesatoz_group_cont span,.sesatoz_group_cont a,{
+	color:$theme_button_font_color !important;
+}
+.sesatoz_content_item_inner .sesatoz_content_data > ._cat,.sesatoz_content_carousel .blog_date{
+	background-color:$theme_base_color;
+	color:$theme_button_font_color;
+}
+.sesatoz_content_item .sesatoz_content_item_inner{
+	border-top-color:$theme_button_background_color;
+}
+.sesatoz_content_item_inner div i,.sesatoz_app_wrapper_inner .cont_left ul li:before,.feature-item .feature-icon,.more_feature_item ._cont a {
+	color:$theme_base_color;
+}
+.sesatoz_features_block .sesatoz_feature_bg a,.sesatoz_purcahse_main,.sesatoz_app_wrapper:before,.sesatoz_app_wrapper:after,.sesatoz_app_wrapper_inner:after{
+	background:$theme_base_color;
+}
+.sesatoz_home_slider_btns a:first-child{
+	background-color:$theme_base_color;
+	border-color:$theme_button_background_color;
+	color:$theme_button_font_color;
+}
+.sesatoz_home_slider_btns a:hover,.sesatoz_purcahse_main > .sesatoz_purcahse_inner ._link:hover{
+	background-color:$theme_button_background_color_hover;
+	color:$theme_button_font_hover_color;
+	border-color:$theme_button_background_color_hover;
+}
+.sesatoz_purcahse_main > .sesatoz_purcahse_inner ._link:hover a{
+	color:$theme_button_font_hover_color;
+}
+.sesatoz_features_block .sesatoz_feature_bg a:hover{
+	background:$theme_button_background_color_hover;
+}
+.sesatoz_features_block .sesatoz_feature_bg a:hover i{
+	color:$theme_button_font_color_hover;
+}
+.sesatoz_group_cont .group_join a,.atoz_parallax_btn a:hover{
+	color:$theme_button_background_color_hover;
+	background-color:$theme_button_font_hover_color;
+}
+.sesatoz_features_block .sesatoz_feature_inner,.sesatoz_landing_page .sesatoz_content_inner,.sesatoz_landing_page .sesatoz_highlights_cont,.sesatoz_group_wrapper_inner,.sesatoz_video_wrapper_inner,.atoz_member_block,.sesatoz_features_two_inner,.sesatoz_features_three_inner,.sesatoz_newsletter_wrapper_inner,.sesatoz_static_buttons_inner,.sesatoz_ongoing_contest_main,.sesatoz_features_second,.sesatoz_app_second_inner,.sesatoz_more_features_inner,.atoz_parallax_foreground_container {
+	max-width:$theme_content_width;
+}
+.sesatoz_features_block .sesatoz_feature_bg:before,.sesatoz_features_block .sesatoz_feature_bg:after,.sesatoz_group_cont:before,.sesatoz_pages_carousel_item_cont .pages_title:before,.sesatoz_newsletter_wrapper{
+	background:$theme_base_color;
+}
+.atoz_banner_btns a{
+	background-color:$theme_button_background_color;
+	border:1px solid $theme_button_border_color;
+  color:$theme_button_font_color !important;
+}
+.atoz_banner_btns a:hover{
+	background-color:$theme_button_background_color_hover;
+  cursor:pointer;
+	color:$theme_button_font_hover_color !important;
+	text-decoration:none;
+}
+.sesatoz_landing_page .sesatoz_content_carousel .slick-list,.sesatoz_app_wrapper_inner{
+	max-width:$theme_content_width;
+}
+.sesatoz_highlights_item a{
+	color:$theme_font_color;
+	background:$sesatoz_content_background_color;
+}
+.sesatoz_feature_item:hover .sesatoz_feature_item_icon i.icon_feature{
+	+animation;
+	border-color:$theme_base_color;
+}
+.sesatoz_feature_item:hover .sesatoz_feature_item_cont h3 a{
+	+animation;
+	color:$theme_link_color_hover;
+}
+.sesatoz_feature_item:hover .sesatoz_feature_item_cont h3{
+	+animation;
+	color:$theme_button_background_color_hover;
+}
+.sesatoz_home_slider_cont_inner #typed-cursor{
+	background-color:$theme_link_color;
+	color:$theme_link_color;
+}
+@media only screen and (max-width:$theme_content_width){
+	.sesatoz_landing_page .sesatoz_highlights_cont,
+	.sesatoz_landing_page .sesatoz_content_inner{
+		width:100%;
+	}
+	.sesatoz_landing_page .sesatoz_content_carousel .slick-list{
+		max-width:100%;
+	}	
+	.sesatoz_highlights_cont{
+		padding:0 10px;
+		width:100%
+	}
+}
+/*Login - Signup Popup*/
+.sesatoz_quick_popup{
+	background-color:$theme_box_background_color;
+}
+.sesatoz_popup_header_btns a.active{
+	color:$theme_button_font_color !important;
+	background:$theme_button_background_color;
+}
+.sesatoz_popup_login .form-elements > .form-wrapper:nth-child(1) .form-element:before,
+.sesatoz_popup_login .form-elements > .form-wrapper:nth-child(2) .form-element:before{
+	border:1px solid $theme_button_background_color;
+	color:$theme_button_background_color;
+}
+.sesatoz_popup_content_sep{
+	background-color:$theme_border_color;
+}
+.sesatoz_popup_content_sep span{
+	background-color:$theme_border_color;
+}
+.sesatoz_quick_popup button.mfp-close{
+	color:$theme_font_color !important;
+}
+.sesatoz_lp_header_inner ul.main_menu_submenu{
+	background:$theme_button_background_color;
+}
+.sesatoz_lp_header_inner ul.main_menu_submenu li a{
+	color:$theme_button_font_color;
+}

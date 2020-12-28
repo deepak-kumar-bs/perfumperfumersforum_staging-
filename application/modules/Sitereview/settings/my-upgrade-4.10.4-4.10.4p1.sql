@@ -1,0 +1,2 @@
+INSERT IGNORE INTO `engine4_core_mailtemplates` (`type`, `module`, `vars`) VALUES
+("SITEREVIEW_EMAILME_EMAIL", "sitereview", "[host],[sender_email],[sender_name],[listing_media_type],[listing_title],[message],[object_link]");
