@@ -1,0 +1,16 @@
+temporary
+public
+collectorspark
+application/Deepaktest
+application/settings
+*.log
+*~
+application/settings/enabled_module_directories.php
+application/settings/general.php
+application/themes/*/customization.css
+application/themes/sitepwa/*/custom.css
+application/themes/*/custom-*
+application/themes/sitepwa/custom-*
+/nbproject/private/
+firebase-messaging-sw.js
+nbproject/
