@@ -63,17 +63,17 @@ class Sitereview_Form_Editor_Create extends Engine_Form {
     //                      ),
     // ));
 
-    // $this->addElement('Textarea', 'title', array(
-    //     'label' => 'The Bottom Line',
-    //     'allowEmpty' => false,
-    //     'attribs' => array('rows' => 3),
-    //     'maxlength' => 500,
-    //     'required' => true,
-    //      'filters' => array(
-    //                         'StripTags',
-    //                      new Engine_Filter_Censor(),
-    //                      ),
-    // ));
+    $this->addElement('Textarea', 'title', array(
+        'label' => 'Title',
+        'allowEmpty' => false,
+        'attribs' => array('rows' => 3),
+        'maxlength' => 500,
+        'required' => true,
+         'filters' => array(
+                            'StripTags',
+                         new Engine_Filter_Censor(),
+                         ),
+    ));
 
     $profileTypeReview = $this->getProfileTypeReview();
     if (!empty($profileTypeReview)) {

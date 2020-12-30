@@ -169,8 +169,14 @@ endif;
               <div class="">
 
                 <div class="sr_editor_full_review">
-                  <?php // echo $this->body_pages; ?>
-                  <?php echo $review->body; ?>
+
+                  <?php if($review->title):?>
+                    <div class="sr_reviews_listing_proscons">
+                      <?php //echo '<b>' . $this->translate("The Bottom Line:") . ' </b>' . $review->title; ?>
+                      <?php echo '<b>' .$review->title . '</b>'; ?>
+                    </div>
+                  <?php endif;?>
+                  
 
                   <div class="">
                 <?php if ($this->min_price < 0): ?>
@@ -345,6 +351,10 @@ endif;
             </div>
           <?php endif; ?> -->
 
+          <dir class="editor_review_body">
+            <?php // echo $this->body_pages; ?>
+            <?php echo $review->body; ?>
+          </dir>
 
       <?PHP endforeach; ?>
 
