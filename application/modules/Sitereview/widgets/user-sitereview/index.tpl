@@ -31,128 +31,131 @@ $this->headLink()
   <?php $reviewDescriptionsTable = Engine_Api::_()->getDbtable('reviewDescriptions', 'sitereview'); ?>
   <div id="user_review"></div>
   <?php if (empty($this->isajax)) : ?>
-    <div class="sr_profile_review b_medium sr_review_block">
-      <div class="sr_profile_review_left">
-        <div class="sr_profile_review_title">
-          <?php if (empty($reviewcatTopbox['ratingparam_name'])): ?>
-            <?php echo $this->translate("Average User Rating"); ?>
-          <?php endif; ?>
-        </div>
-        <?php $iteration = 1; ?>
-        <div class="sr_profile_review_stars">
-          <span class="sr_profile_review_rating">
-            <span class="fleft">
-              <?php echo $this->showRatingStar($this->subject()->rating_users, 'user', 'big-star', $this->sitereview->listingtype_id); ?>
-            </span>
-            <?php if (count($this->ratingDataTopbox) > 1): ?>
-              <i class="arrow_btm fleft"></i>
-            <?php endif; ?>
-          </span>    
-        </div>
-
-        <?php if (count($this->ratingDataTopbox) > 1): ?>
-          <div class="sr_ur_bdown_box_wrapper br_body_bg b_medium">
-            <div class="sr_ur_bdown_box">
-              <div class="sr_profile_review_title">
-                <?php echo $this->translate("Average User Rating"); ?>
-              </div>
-              <div class="sr_profile_review_stars">
-                <?php echo $this->showRatingStar($this->subject()->rating_users, 'user', 'big-star', $this->sitereview->listingtype_id); ?>
-              </div>
-
-              <div class="sr_profile_rating_parameters">
-                <?php $iteration = 1; ?>
-                <?php foreach ($this->ratingDataTopbox as $reviewcatTopbox): ?>
-                  <?php if (!empty($reviewcatTopbox['ratingparam_name'])): ?>	         
-                    <div class="o_hidden">
-                      <div class="parameter_title">
-                        <?php echo $this->translate($reviewcatTopbox['ratingparam_name']) ?>
-                      </div>
-                      <div class="parameter_value">
-                        <?php echo $this->showRatingStar($reviewcatTopbox['avg_rating'], 'user', 'small-box', $this->sitereview->listingtype_id, $reviewcatTopbox['ratingparam_name']); ?>     
-                      </div>
-                      <div class="parameter_count"><?php echo $this->subject()->getNumbersOfUserRating('user', $reviewcatTopbox['ratingparam_id']); ?></div>
-                    </div>
-                  <?php endif; ?>
-                  <?php $iteration++; ?>
-                <?php endforeach; ?>
-              </div>
-              <div class="clr"></div>
-            </div>
-          </div>
-        <?php endif; ?>
-
-        <?php if(!empty($this->listingtypeArray->allow_review)):?>
-					<div class="sr_profile_review_stat clr">
-						<?php echo $this->translate(array('Based on %s review', 'Based on %s reviews', $this->totalReviews), $this->locale()->toNumber($this->totalReviews)); ?>
-					</div>
-        <?php endif;?>
-
-        <?php if(Engine_Api::_()->getApi('settings', 'core')->getSetting('sitereview.recommend', 1)):?>
-					<div class="sr_profile_review_stat clr">
-						<?php echo $this->translate("Recommended by %s users", '<b>' . $this->recommend_percentage . '%</b>'); ?>
-					</div>
-        <?php endif;?>
-        <?php if (!empty($this->viewer_id) && $this->can_create && empty($this->isajax)): ?>
-          <?php $rating_value_2 = 0; ?>	
-          <?php if (!empty($this->reviewRateData)): ?>	
-            <?php foreach ($this->reviewRateData as $reviewRateData): ?>
-              <?php if ($reviewRateData['ratingparam_id'] == 0): ?>
-                <?php $rating_value_2 = $reviewRateData['rating']; ?>
-              <?php endif; ?>
-            <?php endforeach; ?>
-          <?php endif; ?>
-          <div class="sr_profile_review_title" id="review-my-rating" style="margin-top:5px;">
-            <?php echo $this->translate("My Rating"); ?>
-          </div>	
-          <div class="sr_profile_review_stars">
-            <?php echo $this->showRatingStar($rating_value_2, 'user', 'big-star', $this->sitereview->listingtype_id); ?>		     
-          </div>
-          <?php if(!empty($this->listingtypeArray->allow_review)):?>
-						<?php if (!empty($this->reviewRateData) && !empty($this->hasPosted) && !empty($this->can_update)): ?>
-							<div class="sr_profile_review_stat mtop10">
-								<?php echo $this->translate('Please %1$sclick here%2$s to update your reviews for this '.$this->listing_singular_lc.'.', "<a href='javascript:void(0);' onclick='showForm();'>","</a>"); ?>
-							</div>	
-						<?php endif; ?>
-						<?php if (empty($this->reviewRateData) && empty($this->hasPosted) && !empty($this->create_level_allow)): ?>
-							<div class="sr_profile_review_stat">
-								<?php echo $this->translate('Please %1$sclick here%2$s to give your review and ratings for this '.$this->listing_singular_lc.'.', "<a href='javascript:void(0);' onclick='showForm();'>","</a>"); ?>
-							</div>	
-						<?php endif; ?>
-          <?php endif;?>
-        <?php endif; ?>
-      </div>
-
-      <!--Rating Breakdown Hover Box Starts-->
-      <div class="sr_profile_review_right">
-        <div class="sr_rating_breakdowns">
+    <?php if($this->canshowrating): ?>
+      <div class="sr_profile_review b_medium sr_review_block">
+        <div class="sr_profile_review_left">
           <div class="sr_profile_review_title">
-            <?php echo $this->translate("Ratings Breakdown"); ?>
+            <?php if (empty($reviewcatTopbox['ratingparam_name'])): ?>
+              <?php echo $this->translate("Average User Rating"); ?>
+            <?php endif; ?>
           </div>
-          <ul>
-            <?php for ($i = 5; $i > 0; $i--): ?>
-              <li>
-                <div class="left"><?php echo $this->translate(array("%s star:", "%s stars:", $i), $i); ?></div>
-                <?php $count = $this->subject()->getNumbersOfUserRating('user', 0, $i);
-                $pr = $count ? ($count * 100 / $this->totalReviews) : 0; ?>
-                <div class="count"><?php echo $count; ?></div>
-                <div class="rate_bar b_medium">
-                  <span style="width:<?php echo $pr; ?>%;" <?php echo empty($count) ? "class='sr_border_none'" : "" ?>></span>
+          <?php $iteration = 1; ?>
+          <div class="sr_profile_review_stars">
+            <span class="sr_profile_review_rating">
+              <span class="fleft">
+                <?php echo $this->showRatingStar($this->subject()->rating_users, 'user', 'big-star', $this->sitereview->listingtype_id); ?>
+              </span>
+              <?php if (count($this->ratingDataTopbox) > 1): ?>
+                <i class="arrow_btm fleft"></i>
+              <?php endif; ?>
+            </span>    
+          </div>
+
+          <?php if (count($this->ratingDataTopbox) > 1): ?>
+            <div class="sr_ur_bdown_box_wrapper br_body_bg b_medium">
+              <div class="sr_ur_bdown_box">
+                <div class="sr_profile_review_title">
+                  <?php echo $this->translate("Average User Rating"); ?>
                 </div>
-              </li>
-            <?php endfor; ?>
-          </ul>
+                <div class="sr_profile_review_stars">
+                  <?php echo $this->showRatingStar($this->subject()->rating_users, 'user', 'big-star', $this->sitereview->listingtype_id); ?>
+                </div>
+
+                <div class="sr_profile_rating_parameters">
+                  <?php $iteration = 1; ?>
+                  <?php foreach ($this->ratingDataTopbox as $reviewcatTopbox): ?>
+                    <?php if (!empty($reviewcatTopbox['ratingparam_name'])): ?>	         
+                      <div class="o_hidden">
+                        <div class="parameter_title">
+                          <?php echo $this->translate($reviewcatTopbox['ratingparam_name']) ?>
+                        </div>
+                        <div class="parameter_value">
+                          <?php echo $this->showRatingStar($reviewcatTopbox['avg_rating'], 'user', 'small-box', $this->sitereview->listingtype_id, $reviewcatTopbox['ratingparam_name']); ?>     
+                        </div>
+                        <div class="parameter_count"><?php echo $this->subject()->getNumbersOfUserRating('user', $reviewcatTopbox['ratingparam_id']); ?></div>
+                      </div>
+                    <?php endif; ?>
+                    <?php $iteration++; ?>
+                  <?php endforeach; ?>
+                </div>
+                <div class="clr"></div>
+              </div>
+            </div>
+          <?php endif; ?>
+
+          <?php if(!empty($this->listingtypeArray->allow_review) && $this->listingtypeArray->allow_review != 2):?>
+  					<div class="sr_profile_review_stat clr">
+  						<?php echo $this->translate(array('Based on %s review', 'Based on %s reviews', $this->totalReviews), $this->locale()->toNumber($this->totalReviews)); ?>
+  					</div>
+          <?php endif;?>
+
+          <?php if(Engine_Api::_()->getApi('settings', 'core')->getSetting('sitereview.recommend', 1)):?>
+  					<div class="sr_profile_review_stat clr">
+  						<?php echo $this->translate("Recommended by %s users", '<b>' . $this->recommend_percentage . '%</b>'); ?>
+  					</div>
+          <?php endif;?>
+          <?php if (!empty($this->viewer_id) && $this->can_create && empty($this->isajax)): ?>
+            <?php $rating_value_2 = 0; ?>	
+            <?php if (!empty($this->reviewRateData)): ?>	
+              <?php foreach ($this->reviewRateData as $reviewRateData): ?>
+                <?php if ($reviewRateData['ratingparam_id'] == 0): ?>
+                  <?php $rating_value_2 = $reviewRateData['rating']; ?>
+                <?php endif; ?>
+              <?php endforeach; ?>
+            <?php endif; ?>
+            <div class="sr_profile_review_title" id="review-my-rating" style="margin-top:5px;">
+              <?php echo $this->translate("My Rating"); ?>
+            </div>	
+            <div class="sr_profile_review_stars">
+              <?php echo $this->showRatingStar($rating_value_2, 'user', 'big-star', $this->sitereview->listingtype_id); ?>		     
+            </div>
+            <?php if(!empty($this->listingtypeArray->allow_review) && $this->listingtypeArray->allow_review != 2):?>
+  						<?php if (!empty($this->reviewRateData) && !empty($this->hasPosted) && !empty($this->can_update)): ?>
+  							<div class="sr_profile_review_stat mtop10">
+  								<?php echo $this->translate('Please %1$sclick here%2$s to update your reviews for this '.$this->listing_singular_lc.'.', "<a href='javascript:void(0);' onclick='showForm();'>","</a>"); ?>
+  							</div>	
+  						<?php endif; ?>
+  						<?php if (empty($this->reviewRateData) && empty($this->hasPosted) && !empty($this->create_level_allow)): ?>
+  							<div class="sr_profile_review_stat">
+  								<?php echo $this->translate('Please %1$sclick here%2$s to give your review and ratings for this '.$this->listing_singular_lc.'.', "<a href='javascript:void(0);' onclick='showForm();'>","</a>"); ?>
+  							</div>	
+  						<?php endif; ?>
+            <?php endif;?>
+          <?php endif; ?>
         </div>
-        <div class="clr"></div>
+
+        <!--Rating Breakdown Hover Box Starts-->
+        <div class="sr_profile_review_right">
+          <div class="sr_rating_breakdowns">
+            <div class="sr_profile_review_title">
+              <?php echo $this->translate("Ratings Breakdown"); ?>
+            </div>
+            <ul>
+              <?php for ($i = 5; $i > 0; $i--): ?>
+                <li>
+                  <div class="left"><?php echo $this->translate(array("%s star:", "%s stars:", $i), $i); ?></div>
+                  <?php $count = $this->subject()->getNumbersOfUserRating('user', 0, $i);
+                  $pr = $count ? ($count * 100 / $this->totalReviews) : 0; ?>
+                  <div class="count"><?php echo $count; ?></div>
+                  <div class="rate_bar b_medium">
+                    <span style="width:<?php echo $pr; ?>%;" <?php echo empty($count) ? "class='sr_border_none'" : "" ?>></span>
+                  </div>
+                </li>
+              <?php endfor; ?>
+            </ul>
+          </div>
+          <div class="clr"></div>
+        </div>
+        <!--Rating Breakdown Hover Box Ends-->
       </div>
-      <!--Rating Breakdown Hover Box Ends-->
-    </div>
+  <?php endif; ?>
   <?php endif; ?>
 
-  <?php if (!empty($this->totalReviews) && !empty($this->listingtypeArray->allow_review)): ?>
+  <?php if ( (!empty($this->totalReviews) || $this->listingtypeArray->allow_review == 2) && !empty($this->listingtypeArray->allow_review)): ?>
     <?php if (empty($this->isajax)) : ?>
       <!--User Over All Rating Block End -->
       <!--Filters Starts-->
+
       <?php if ($this->sitereview_proscons || ($this->paginator->getTotalItemCount() > 1)): ?>
         <div class="sr_profile_userreview_filters b_medium" <?php if (!$this->sitereview_proscons): ?> style="border:none;"<?php endif; ?>>
           <?php if ($this->sitereview_proscons): ?>
@@ -220,10 +223,11 @@ $this->headLink()
                 <?php foreach ($ratingData as $reviewcat): ?>
                   <?php if (empty($reviewcat['ratingparam_name'])): ?>
                     <?php $rating_value = $reviewcat['rating'];
-                    break; ?>
+                    // break; ?>
                   <?php endif; ?>
                 <?php endforeach; ?>
                 <?php $countR = count($ratingData); ?>
+                <?php if($this->canshowrating): ?>
                 <div class="sr_ur_show_rating_star">
                   <span class="fright">
                     <span class="fleft">
@@ -259,6 +263,7 @@ $this->headLink()
                     </div>
                   <?php endif; ?>
                 </div>
+              <?php endif; ?>
                 <?php if ($review->featured): ?>
                   <i class="sr_icon seaocore_icon_featured fright" title="<?php echo $this->translate('Featured'); ?>"></i> 
                 <?php endif; ?>	          	
@@ -312,7 +317,7 @@ $this->headLink()
             <?php if ($this->reviewOption == 'fullreviews'): ?>
               <?php if ($review->body): ?>
                 <div class='sr_reviews_listing_proscons'>
-                  <b><?php echo $this->translate("Summary:") ?></b>
+                  <b><?php //echo $this->translate("Summary:") ?></b>
                   <?php
                   if (strlen($review->body) > 300) {
                     $read_complete_review = $this->htmlLink($review->getHref(), $this->translate('Read complete review'), array('title' => ''));
@@ -327,7 +332,8 @@ $this->headLink()
                 </div>
               <?php endif; ?>
               <?php $this->reviewDescriptions = $reviewDescriptionsTable->getReviewDescriptions($review->review_id); ?>
-              <?php if (count($this->reviewDescriptions) > 0): ?>
+              <?php // if (count($this->reviewDescriptions) > 0): 
+              if(false):?>
                 <div class="sitereview_profile_info_des_update sr_review_block">        
                   <?php foreach ($this->reviewDescriptions as $value) : ?>
                     <?php if ($value->body): ?>
@@ -409,8 +415,10 @@ $this->headLink()
   </div>
 
   <?php if($this->listingtypeArray->allow_review):?>
+    <?php $allow_review =  $this->listingtypeArray->allow_review; ?>
 		<div id="sr_user_review_form_wapper">
 			<?php if (empty($this->isajax) && $this->hasPosted && $this->can_update): ?>
+        <div id="edit_review_form_toggle" class="edit_review" onclick="showHideEditReviewForm();">Edit Your Review</div>
 				<?php echo $this->update_form->setAttrib('class', 'sr_review_form global_form')->render($this) ?>
 				<?php include_once APPLICATION_PATH . '/application/modules/Sitereview/views/scripts/_formUpdateReview.tpl'; ?>
 			<?php endif; ?>
@@ -486,3 +494,12 @@ $this->headLink()
 		}
 	</script>
 <?php endif; ?>
+<script type="text/javascript">
+  // $('sitereview_update').style.display = 'none';
+  function showHideEditReviewForm(){
+    if($('sitereview_update')){
+      $('sitereview_update').style.display = 'block';
+    }
+  }
+  showHideEditReviewForm();
+</script>

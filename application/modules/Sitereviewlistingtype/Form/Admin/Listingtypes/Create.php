@@ -46,7 +46,7 @@ class Sitereviewlistingtype_Form_Admin_Listingtypes_Create extends Engine_Form {
     if (Engine_Api::_()->getDbtable('modules', 'core')->isModuleEnabled('recipefield')) {
       $this->addElement('Select', 'listingtype_category', array(
           'label' => 'Listing Type Category',
-          'description' => 'Choose the category of listing type. Weather it is ingredient type or belongs to some other category?)',
+          'description' => 'Choose whether this listing type is an ingredient for recipes extension.',
           'multiOptions' => array(
               '0' => 'Other',
               '1' => 'ingredients'
@@ -74,6 +74,40 @@ class Sitereviewlistingtype_Form_Admin_Listingtypes_Create extends Engine_Form {
     $this->addElement('Text', 'title_plural', array(
         'label' => 'Plural Listing Title',
         'description' => 'Please enter the Plural Title for listings. This text will come in places like Main Navigation Menu, Listing Navigation Menu, widgets etc.',
+        'allowEmpty' => false,
+        'required' => true,
+        'validators' => array(
+            array('NotEmpty', true),
+            // array('Alnum', true),
+            array('StringLength', true, array(3, 32)),
+            array('Regex', true, array('/^[a-zA-Z0-9-_\s]+$/')),
+        ),
+        'filters' => array(
+            'StripTags',
+            new Engine_Filter_Censor(),
+        //new Engine_Filter_StringLength(array('max' => '32')),
+            )));
+
+    $this->addElement('Text', 'review_title_singular', array(
+        'label' => 'Singular Review Title',
+        'description' => 'Please enter the Singular Title for review. This text will come in places like admin panel, feeds generated, widgets etc.',
+        'allowEmpty' => false,
+        'required' => true,
+        'validators' => array(
+            array('NotEmpty', true),
+            // array('Alnum', true),
+            array('StringLength', true, array(3, 32)),
+            array('Regex', true, array('/^[a-zA-Z0-9-_\s]+$/')),
+        ),
+        'filters' => array(
+            'StripTags',
+            new Engine_Filter_Censor(),
+        //new Engine_Filter_StringLength(array('max' => '32')),
+            )));
+
+    $this->addElement('Text', 'review_title_plural', array(
+        'label' => 'Plural Review Title',
+        'description' => 'Please enter the Plural Title for review. This text will come in places like Main Navigation Menu, Listing Navigation Menu, widgets etc.',
         'allowEmpty' => false,
         'required' => true,
         'validators' => array(
@@ -275,6 +309,7 @@ class Sitereviewlistingtype_Form_Admin_Listingtypes_Create extends Engine_Form {
         'label' => 'Allow Only User Ratings',
         'description' => "Do you want to allow users to only rate listings?",
         'multiOptions' => array(
+            2 => 'No, Don\'t allow Users and Editors to rate listings.',
             0 => 'Yes, allow Users to only rate listings.',
             1 => 'No, allow users to review and rate listings.',
         ),

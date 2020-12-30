@@ -53,9 +53,14 @@ class Sitereview_Widget_ProfileReviewSitereviewController extends Seaocore_Conte
     $resource_type = $sitereview->getType();
     $this->view->listingtype_id = $listingtype_id = $sitereview->listingtype_id;
     Engine_Api::_()->sitereview()->setListingTypeInRegistry($listingtype_id);
-    $listingtypeArray = Zend_Registry::get('listingtypeArray' . $listingtype_id);
+    $this->view->listingtypeArray = $listingtypeArray = Zend_Registry::get('listingtypeArray' . $listingtype_id);
     $this->view->listing_singular_uc = ucfirst($listingtypeArray->title_singular);
     $this->view->listing_singular_lc = strtolower($listingtypeArray->title_singular);
+    $this->view->canshowrating = false;
+    if($listingtypeArray->allow_review != 2 ){
+      $params['rating'] = 'rating';
+      $this->view->canshowrating = true;
+    }
     if (empty($listingtypeArray->reviews) || $listingtypeArray->reviews == 1 || empty($sitereviewProfileReview)) {
       return $this->setNoRender();
     }

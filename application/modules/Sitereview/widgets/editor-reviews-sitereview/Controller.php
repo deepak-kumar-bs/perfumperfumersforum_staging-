@@ -41,6 +41,11 @@ class Sitereview_Widget_EditorReviewsSitereviewController extends Seaocore_Conte
       $this->view->addEditorReview = $editor_review_id = 0;
     }
 
+    $this->view->canshowratings = false;
+    if($listingType->allow_review != 2){
+      $this->view->canshowratings = true;
+    }
+
     $params = $this->_getAllParams();
     $this->view->params = $params;
     $this->view->params = $params = array_merge($params, array('listingtype_id'=> $sitereview->listingtype_id));
@@ -98,6 +103,17 @@ class Sitereview_Widget_EditorReviewsSitereviewController extends Seaocore_Conte
     //GET REVIEW
     $request = Zend_Controller_Front::getInstance()->getRequest();
     $this->view->review = $review = Engine_Api::_()->getItem('sitereview_review', $editor_review_id);
+
+    $reviewTable = Engine_Api::_()->getDbTable('reviews', 'sitereview');
+    $select = $reviewTable->select()
+              ->where('resource_id = ?', $sitereview->listing_id)
+              ->where('resource_type = ?', $sitereview->getType())
+              ->where('type = ?', 'editor')->where('status = ?', 1);
+    $this->view->reviews = $reviews = $reviewTable->fetchAll($select);
+
+    // echo "<pre>"; print_r($reviews); die;
+
+
     if (!empty($review)) {
       $this->view->editor = Engine_Api::_()->getDbTable('editors', 'sitereview')->getEditor($review->owner_id, $sitereview->listingtype_id);
 

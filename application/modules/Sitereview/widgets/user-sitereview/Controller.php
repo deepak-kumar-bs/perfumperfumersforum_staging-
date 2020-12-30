@@ -190,8 +190,11 @@ class Sitereview_Widget_UserSitereviewController extends Seaocore_Content_Widget
     //GET SORTING ORDER
     $this->view->reviewOrder = $params['order'] = $this->_getParam('order', 'creationDate');
     $this->view->rating_value = $this->_getParam('rating_value', 0);
-
-    $params['rating'] = 'rating';
+    $this->view->canshowrating = false;
+    if($listingtypeArray->allow_review != 2 ){
+      $params['rating'] = 'rating';
+      $this->view->canshowrating = true;
+    }
     $params['rating_value'] = $this->view->rating_value;
     $params['resource_id'] = $listing_id;
     $params['resource_type'] = $sitereview->getType();

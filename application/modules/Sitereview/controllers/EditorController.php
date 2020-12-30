@@ -104,9 +104,18 @@ class Sitereview_EditorController extends Seaocore_Controller_Action_Standard {
     $this->view->listing_id = $listing_id = $sitereview->listing_id;
     $this->view->listingtype_id = $listingtype_id = $sitereview->listingtype_id;
 
+    $this->view->editor_rating = Engine_Api::_()->getDbTable('listingtypes', 'sitereview')->getListingTypeColumn($listingtype_id, 'allow_review');
+
     //CHECK EDITOR REVIEW IS ALLOWED OR NOT
     $allow_editor_review = Engine_Api::_()->getDbTable('listingtypes', 'sitereview')->getListingTypeColumn($listingtype_id, 'reviews');
     if (empty($allow_editor_review) || $allow_editor_review == 2) {
+      return $this->_forward('requireauth', 'error', 'core');
+    }
+
+    //CHECK MEMBER LEVEL EDITOR REVIEW IS ALLOWED OR NOT
+    $level_id = $viewer->level_id;
+    $autorizationApi = Engine_Api::_()->authorization();
+    if(!$autorizationApi->getPermission($level_id, 'sitereview_listing', "editor_review_create_listtype_$listingtype_id") ) {
       return $this->_forward('requireauth', 'error', 'core');
     }
 
@@ -184,7 +193,7 @@ class Sitereview_EditorController extends Seaocore_Controller_Action_Standard {
 
     if ($this->getRequest()->isPost() && $form->isValid($this->getRequest()->getPost())) {
 
-      if (empty($_POST['review_rate_0'])) {
+      if (empty($_POST['review_rate_0']) && $this->view->editor_rating != 2) {
 
         $error = $this->view->translate('Please choose Overall Rating field - it is required.');
         $error = Zend_Registry::get('Zend_Translate')->_($error);
@@ -306,6 +315,9 @@ class Sitereview_EditorController extends Seaocore_Controller_Action_Standard {
     $this->view->listing_id = $listing_id = $sitereview->listing_id;
     $this->view->listingtype_id = $listingtype_id = $sitereview->listingtype_id;
 
+    $this->view->editor_rating = Engine_Api::_()->getDbTable('listingtypes', 'sitereview')->getListingTypeColumn($listingtype_id, 'allow_review');
+
+
     //SHOW THIS LINK ONLY EDITOR FOR THIS LISTING TYPE
     $isEditor = Engine_Api::_()->getDbTable('editors', 'sitereview')->isEditor($viewer_id, $listingtype_id);
     if (empty($isEditor)) {
@@ -390,7 +402,7 @@ class Sitereview_EditorController extends Seaocore_Controller_Action_Standard {
       $this->view->reviewRateData = Engine_Api::_()->sitereview()->prefieldRatingData($_POST);
       $this->_GETLISTINGTYPE = Engine_Api::_()->getApi('listingType', 'sitereview')->getListingTypeInfo();
 
-      if (empty($_POST['review_rate_0'])) {
+      if (empty($_POST['review_rate_0']) && $this->view->editor_rating != 2) {
 
         $error = $this->view->translate('Please choose Overall Rating field - it is required.');
         $error = Zend_Registry::get('Zend_Translate')->_($error);

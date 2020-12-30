@@ -667,8 +667,17 @@ class Sitereview_ReviewController extends Seaocore_Controller_Action_Standard {
         $postData['resource_type'] = $sitereview->getType();
         $postData['review_id'] = $review_id;
         $postData['profile_type_review'] = $profileTypeReview;
-        $reviewDescription = Engine_Api::_()->getDbtable('reviewDescriptions', 'sitereview');
-        $reviewDescription->insert(array('review_id' => $review_id, 'body' => $postData['body'], 'modified_date' => date('Y-m-d H:i:s'), 'user_id' => $viewer_id));
+        // $reviewDescription = Engine_Api::_()->getDbtable('reviewDescriptions', 'sitereview');
+        // $reviewDescription->insert(array('review_id' => $review_id, 'body' => $postData['body'], 'modified_date' => date('Y-m-d H:i:s'), 'user_id' => $viewer_id));
+
+        // $reviewTable = Engine_Api::_()->getDbtable('reviews', 'sitereview');
+        // $reviewRow = $reviewTable->fetchRow($reviewTable->select()->where('review_id = ?',$review_id;));
+        $reviewRow = Engine_Api::_()->getItem('sitereview_review', $review_id);
+        $reviewRow->title = $postData['title'];
+        $reviewRow->body = $postData['body'];
+        $reviewRow->modified_date = date('Y-m-d H:i:s');
+        $reviewRow->save();
+        
         $reviewRatingTable = Engine_Api::_()->getDbtable('ratings', 'sitereview');
         $reviewRatingTable->delete(array('review_id = ?' => $review_id));
         //CREATE RATING DATA

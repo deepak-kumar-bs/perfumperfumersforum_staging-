@@ -622,6 +622,8 @@ class Sitereview_Plugin_Menus {
 
     public function sitereviewGutterMessageowner($row) {
 
+        return false;
+
         //RETURN FALSE IF SUBJECT IS NOT SET
         if (!Engine_Api::_()->core()->hasSubject('sitereview_listing')) {
             return false;
@@ -796,6 +798,14 @@ class Sitereview_Plugin_Menus {
         //GET LISTING TYPE ID
         $listingtype_id = $sitereview->listingtype_id;
 
+        //CHECK MEMBER LEVEL EDITOR REVIEW IS ALLOWED OR NOT
+        $viewer = Engine_Api::_()->user()->getViewer();
+        $level_id = $viewer->level_id;
+        $autorizationApi = Engine_Api::_()->authorization();
+        if(!$autorizationApi->getPermission($level_id, 'sitereview_listing', "editor_review_create_listtype_$listingtype_id") ) {
+          return false;
+        }
+
         //CHECK EDITOR REVIEW IS ALLOWED OR NOT
         $allow_editor_review = Engine_Api::_()->getDbTable('listingtypes', 'sitereview')->getListingTypeColumn($listingtype_id, 'reviews');
         if (empty($allow_editor_review) || $allow_editor_review == 2) {
@@ -808,12 +818,40 @@ class Sitereview_Plugin_Menus {
             return false;
         }
 
+        // //EDITOR REVIEW HAS BEEN POSTED OR NOT
+        // $params = array();
+        // $params['resource_id'] = $sitereview->listing_id;
+        // $params['resource_type'] = $sitereview->getType();
+        // $params['type'] = 'editor';
+        // $params['notIncludeStatusCheck'] = 1;
+        // $isEditorReviewed = Engine_Api::_()->getDbTable('reviews', 'sitereview')->canPostReview($params);
+
+        // $params = array();
+        // $params['listing_id'] = $sitereview->getIdentity();
+        // if (!empty($isEditorReviewed)) {
+
+        //     $editorreview = Engine_Api::_()->getApi('settings', 'core')->getSetting('sitereview.editorreview', 0);
+        //     $review = Engine_Api::_()->getItem('sitereview_review', $isEditorReviewed);
+        //     if (empty($editorreview) && $viewer_id != $review->owner_id) {
+        //         return false;
+        //     }
+
+        //     $label = Zend_Registry::get('Zend_Translate')->_('Edit an Editor Review');
+        //     $action = 'edit';
+        //     $params['review_id'] = $isEditorReviewed;
+        // } else {
+        //     $label = Zend_Registry::get('Zend_Translate')->_('Write an Editor Review');
+        //     $action = 'create';
+        // }
+
+
         //EDITOR REVIEW HAS BEEN POSTED OR NOT
         $params = array();
         $params['resource_id'] = $sitereview->listing_id;
         $params['resource_type'] = $sitereview->getType();
         $params['type'] = 'editor';
         $params['notIncludeStatusCheck'] = 1;
+        $params['viewer_id'] = $viewer_id;
         $isEditorReviewed = Engine_Api::_()->getDbTable('reviews', 'sitereview')->canPostReview($params);
 
         $params = array();
@@ -822,9 +860,9 @@ class Sitereview_Plugin_Menus {
 
             $editorreview = Engine_Api::_()->getApi('settings', 'core')->getSetting('sitereview.editorreview', 0);
             $review = Engine_Api::_()->getItem('sitereview_review', $isEditorReviewed);
-            if (empty($editorreview) && $viewer_id != $review->owner_id) {
-                return false;
-            }
+            // if (empty($editorreview) && $viewer_id != $review->owner_id) {
+            //     return false;
+            // }
 
             $label = Zend_Registry::get('Zend_Translate')->_('Edit an Editor Review');
             $action = 'edit';

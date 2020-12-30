@@ -19,6 +19,10 @@
 	<?php endif;?>
 	<script type="text/javascript">
   function writeAReview(option){
+  	if($('sitereview_update')){
+      $('sitereview_update').style.display = 'block';
+      // $('edit_review_form_toggle').innerHTML = 'Edit Your Review';
+    }
     <?php if($this->listing_profile_page): ?>
       if($('main_tabs') && $('main_tabs').getElement('.tab_layout_sitereview_user_sitereview')){
         if($('sitereview_create') && $('main_tabs').getElement('.tab_layout_sitereview_user_sitereview').hasClass('active')){

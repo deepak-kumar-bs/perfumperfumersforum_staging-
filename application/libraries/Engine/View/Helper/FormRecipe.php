@@ -94,7 +94,7 @@ class Engine_View_Helper_FormRecipe extends Zend_View_Helper_FormElement
           }
           
         } else {
-          $set_value = array('name' => '','amount' => '', 'dilution' => '' );
+          $set_value = array('name' => '','amount' => '', 'dilution' => '100' );
           $recipe_data = json_encode(array('field_name'=> $name, 'field_id' => $field_id));
         }
 
