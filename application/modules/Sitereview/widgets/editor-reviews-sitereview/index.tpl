@@ -156,7 +156,12 @@ endif;
         </div>
       <?php endif; ?>
 
-      <div class="editor_review_heading"><?php echo $this->translate("Editor Reviews") ?></div>
+      <div class="sr_browse_lists_view_options b_medium">
+        <div> 
+          <?php echo $this->translate(array("%s $this->reviewTitleSingular found.", "%s $this->reviewTitlePlular found.", count($this->reviews)), $this->locale()->toNumber(count($this->reviews))) ?></div>
+      </div>
+
+      <div class="editor_review_heading"><?php echo $this->translate("Editor $this->reviewTitlePlular") ?></div>
 
       <?php foreach ($this->reviews as $key => $review):?>
 

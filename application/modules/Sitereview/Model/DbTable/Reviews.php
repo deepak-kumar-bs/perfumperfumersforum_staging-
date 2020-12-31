@@ -256,6 +256,19 @@ class Sitereview_Model_DbTable_Reviews extends Engine_Db_Table {
       } else if ($params['order'] == 'featured') {
         $select->order("$reviewTableName.featured DESC");
       }
+    } elseif(isset($params['order_by_1'])){
+      if ($params['order_by_1'] == 'view_most') {
+        $select->order("$reviewTableName.view_count DESC");
+      } else if ($params['order_by_1'] == 'like_most') {
+        $select->order("$reviewTableName.like_count DESC");
+      } else if ($params['order_by_1'] == 'helpfull_most') {
+        $select->order("$reviewTableName.helpful_count DESC");
+      } else if ($params['order_by_1'] == 'replay_most') {
+        $select->order("$reviewTableName.reply_count DESC");
+      } else if ($params['order_by_1'] == 'featured') {
+        $select->order("$reviewTableName.featured DESC");
+      }
+
     }
     $select->order("$reviewTableName.modified_date DESC");
 

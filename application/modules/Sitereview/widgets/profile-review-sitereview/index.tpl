@@ -100,7 +100,7 @@ $this->headLink()
       <?php endif; ?>
 
       <div class="sr_profile_review_stat clr">
-        <?php echo $this->translate(array('Based on %s review', 'Based on %s reviews', $this->totalReviews), $this->locale()->toNumber($this->totalReviews)); ?>
+        <?php echo $this->translate(array("Based on %s $this->reviewTitleSingular", "Based on %s $this->reviewTitlePlular", $this->totalReviews), $this->locale()->toNumber($this->totalReviews)); ?>
       </div>
 
 			<?php if (Engine_Api::_()->getApi('settings', 'core')->getSetting('sitereview.recommend', 1)):?>
@@ -125,12 +125,12 @@ $this->headLink()
         </div>
         <?php if (!empty($this->reviewRateMyData) && !empty($this->hasPosted) && !empty($this->can_update)): ?>
           <div class="sr_profile_review_stat mtop10">
-            <?php echo $this->translate('Please %1$sclick here%2$s to update your reviews for this '.$this->listing_singular_lc.'.', "<a href='javascript:void(0);' onclick='showForm();'>", "</a>"); ?>
+            <?php echo $this->translate("Please %1$sclick here%2$s to update your $this->reviewTitlePlular for this ".$this->listing_singular_lc.'.', "<a href='javascript:void(0);' onclick='showForm();'>", "</a>"); ?>
           </div>	
         <?php endif; ?>
         <?php if (empty($this->reviewRateMyData) && empty($this->hasPosted) && !empty($this->create_level_allow)): ?>
           <div class="sr_profile_review_stat">
-            <?php echo $this->translate('Please %1$sclick here%2$s to give your review and ratings for this '.$this->listing_singular_lc.'.', "<a href='javascript:void(0);' onclick='showForm();'>", "</a>"); ?>
+            <?php echo $this->translate("Please %1$sclick here%2$s to give your $this->reviewTitleSingular and ratings for this ".$this->listing_singular_lc.'.', "<a href='javascript:void(0);' onclick='showForm();'>", "</a>"); ?>
           </div>	
         <?php endif; ?>
       <?php endif; ?>
@@ -166,7 +166,7 @@ $this->headLink()
     <?php if ($review->status == 0): ?>
       <div class="tip">
         <span>
-          <?php echo $this->translate("This review has been written by a visitor of your site and is not visible to the users of your site. Please %s to take an appropriate action on this review.", $this->htmlLink(array('route' => 'admin_default', 'module' => 'sitereview', 'controller' => 'review', 'action' => 'take-action', 'review_id' => $review->review_id, 'listing_id' => $this->sitereview->listing_id), $this->translate('click over here'), array('class' => 'smoothbox'))); ?>
+          <?php echo $this->translate("This $this->reviewTitleSingular has been written by a visitor of your site and is not visible to the users of your site. Please %s to take an appropriate action on this $this->reviewTitleSingular.", $this->htmlLink(array('route' => 'admin_default', 'module' => 'sitereview', 'controller' => 'review', 'action' => 'take-action', 'review_id' => $review->review_id, 'listing_id' => $this->sitereview->listing_id), $this->translate('click over here'), array('class' => 'smoothbox'))); ?>
         </span>
       </div>
     <?php endif; ?>
@@ -307,7 +307,7 @@ $this->headLink()
   <?php else: ?>
     <?php if ($this->level_id == 1): ?>
       <div class="tip">
-        <span><?php echo $this->translate("Comments on review have been disabled, as this review was written by a visitor of your site."); ?></span>
+        <span><?php echo $this->translate("Comments on $this->reviewTitleSingular have been disabled, as this $this->reviewTitleSingular was written by a visitor of your site."); ?></span>
       </div>
     <?php endif; ?>
   <?php endif; ?>
@@ -315,7 +315,7 @@ $this->headLink()
   <div class="clr o_hidden b_medium sr_review_view_footer fleft">  
     <div class="fleft">
       <a href='<?php echo $this->url(array('listing_id' => $this->sitereview->listing_id, 'slug' => $this->sitereview->getSlug(), 'tab' => $this->tab_id), "sitereview_entry_view_listtype_$this->listingtype_id", true) ?>' class="buttonlink sr_item_icon_back">
-        <?php echo $this->translate('Back to Reviews'); ?>
+        <?php echo $this->translate("Back to $this->reviewTitleSingular"); ?>
       </a>
     </div>      
     <div class="o_hidden fright sr_review_view_paging">

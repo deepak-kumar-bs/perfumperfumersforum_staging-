@@ -813,6 +813,10 @@ EOF;
         //SEND LISTING TYPE TITLE TO TPL
         $this->view->title = ucfirst($this->_listingType->title_singular);
 
+        //SEND REVIEW TITLE TO TPL
+        $this->view->reviewTitleSingular = $this->_listingType->review_title_singular ? $this->_listingType->review_title_singular : 'Review';
+        $this->view->reviewTitlePlular = $this->_listingType->review_title_plural ? $this->_listingType->review_title_plural : 'Reviews';
+
         //GET NAVIGATION
         $this->view->navigation = Engine_Api::_()->getApi('menus', 'core')->getNavigation("sitereview_main_listtype_$listingtype_id");
 

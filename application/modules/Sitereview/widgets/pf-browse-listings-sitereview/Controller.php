@@ -164,6 +164,16 @@ class Sitereview_Widget_PfBrowseListingsSitereviewController extends Seaocore_Co
 	      $this->view->listingtype_id = $listingtype_id = $params['listingtype_id'] = $request->getParam('listingtype_id', null);
 	    }
 
+	    //GET REVIEW TITLE
+	    if ($listingtype_id) {
+	    	$listingtypetable = Engine_Api::_()->getDbTable('listingtypes', 'sitereview');
+	      $review_title_singular = $listingtypetable->getListingTypeColumn($listingtype_id, 'review_title_singular');
+	      $review_title_plural = $listingtypetable->getListingTypeColumn($listingtype_id, 'review_title_plural');
+	    }
+	    $this->view->reviewTitleSingular = $review_title_singular ? $review_title_singular : 'Review';
+	    $this->view->reviewTitlePlular = $review_title_plural ? $review_title_plural : 'Reviews';
+
+
 	    Engine_Api::_()->sitereview()->setListingTypeInRegistry($listingtype_id);
 
 	    $this->view->listingtypeArray = $listingtypeArray = Zend_Registry::get('listingtypeArray' . $listingtype_id);

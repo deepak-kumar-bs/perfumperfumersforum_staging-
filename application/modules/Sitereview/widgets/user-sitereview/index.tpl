@@ -210,7 +210,7 @@ $this->headLink()
     <?php if (( $this->paginator->getTotalItemCount() > 0) && !empty($this->listingtypeArray->allow_review)): ?>
       <div class="sr_browse_lists_view_options b_medium">
         <div> 
-          <?php echo $this->translate(array("%s review found.", "%s reviews found.", $this->paginator->getTotalItemCount()), $this->locale()->toNumber($this->paginator->getTotalItemCount())) ?>
+          <?php echo $this->translate(array("%s $this->reviewTitleSingular found.", "%s $this->reviewTitlePlular found.", $this->paginator->getTotalItemCount()), $this->locale()->toNumber($this->paginator->getTotalItemCount())) ?>
         </div>
       </div>
       <ul class="sr_reviews_listing">
@@ -400,7 +400,7 @@ $this->headLink()
       <?php if (!$this->can_create): ?>
         <div class="tip">
           <span>
-            <?php echo $this->translate("No reviews have been written for this $this->listing_singular_lc yet."); ?>	
+            <?php echo $this->translate("No $this->reviewTitlePlular have been written for this $this->listing_singular_lc yet."); ?>	
             <?php if (empty($this->viewer_id) && empty($this->create_level_allow)): ?>
               <?php
               $show_link = $this->htmlLink(

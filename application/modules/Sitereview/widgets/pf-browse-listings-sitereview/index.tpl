@@ -236,7 +236,7 @@ $this->headScript()->appendFile("https://maps.googleapis.com/maps/api/js?librari
                             }
                           ?>
                           <?php if($this->listingtypeArray->allow_review):?>
-                            <?php echo $this->translate(array('Based on %s review', 'Based on %s reviews', $totalUserReviews), $this->locale()->toNumber($totalUserReviews)) ?>
+                            <?php echo $this->translate(array("Based on %s $this->reviewTitleSingular", "Based on %s $this->reviewTitlePlular", $totalUserReviews), $this->locale()->toNumber($totalUserReviews)) ?>
                           <?php endif;?>
                         </div>
                          <?php $ratingData = $this->ratingTable->ratingbyCategory($sitereview->listing_id, 'user', $sitereview->getType());?>
@@ -285,7 +285,7 @@ $this->headScript()->appendFile("https://maps.googleapis.com/maps/api/js?librari
                       <div class="clr">
                         <?php if($this->listingtypeArray->allow_review):?>
                           <div class="sr_browse_list_rating_stats">
-                            <?php echo $this->translate(array('Based on %s review', 'Based on %s reviews', $sitereview->review_count), $this->locale()->toNumber($sitereview->review_count)) ?>
+                            <?php echo $this->translate(array("Based on %s $this->reviewTitleSingular", "Based on %s $this->reviewTitlePlular", $sitereview->review_count), $this->locale()->toNumber($sitereview->review_count)) ?>
                           </div>
                         <?php endif;?>
                          <?php $ratingData = $this->ratingTable->ratingbyCategory($sitereview->listing_id, null, $sitereview->getType());?>
@@ -356,7 +356,7 @@ $this->headScript()->appendFile("https://maps.googleapis.com/maps/api/js?librari
                  
                      if(in_array('reviewCount', $this->statistics) && (!empty($this->listingtypeArray->allow_review) || (isset($sitereview->rating_editor) && $sitereview->rating_editor))) {
                       $statistics .= $this->partial(
-                      '_showReview.tpl', 'sitereview', array('sitereview'=>$sitereview)).', ';
+                      '_showReview.tpl', 'sitereview', array('sitereview'=>$sitereview, 'reviewTitlePlular' => $this->reviewTitlePlular, 'reviewTitleSingular' => $this->reviewTitleSingular)).', ';
                     }
 
                     if(in_array('viewCount', $this->statistics)) {
@@ -573,7 +573,7 @@ $this->headScript()->appendFile("https://maps.googleapis.com/maps/api/js?librari
                             }
                           ?>
                           <?php if($this->listingtypeArray->allow_review):?>
-                            <?php echo $this->translate(array('Based on %s review', 'Based on %s reviews', $totalUserReviews), $this->locale()->toNumber($totalUserReviews)) ?>
+                            <?php echo $this->translate(array("Based on %s $this->reviewTitleSingular", "Based on %s $this->reviewTitlePlular", $totalUserReviews), $this->locale()->toNumber($totalUserReviews)) ?>
                           <?php endif;?>
                         </div>
                          <?php $ratingData = $this->ratingTable->ratingbyCategory($sitereview->listing_id, 'user', $sitereview->getType());?>
@@ -624,7 +624,7 @@ $this->headScript()->appendFile("https://maps.googleapis.com/maps/api/js?librari
                           <div class="sr_browse_list_rating_stats">
     <!--                      <?php //echo $this->translate("Overall Rating");?><br />-->
 
-                            <?php echo $this->translate(array('Based on %s review', 'Based on %s reviews', $sitereview->review_count), $this->locale()->toNumber($sitereview->review_count)) ?>
+                            <?php echo $this->translate(array("Based on %s $this->reviewTitleSingular", "Based on %s $this->reviewTitlePlular", $sitereview->review_count), $this->locale()->toNumber($sitereview->review_count)) ?>
                             </div>
                           <?php endif;?>
                          <?php $ratingData = $this->ratingTable->ratingbyCategory($sitereview->listing_id, null, $sitereview->getType());?>
@@ -700,7 +700,7 @@ $this->headScript()->appendFile("https://maps.googleapis.com/maps/api/js?librari
 
                      if(in_array('reviewCount', $this->statistics) && (!empty($this->listingtypeArray->allow_review) || (isset($sitereview->rating_editor) && $sitereview->rating_editor))) {
                             $statistics .= $this->partial(
-                          '_showReview.tpl', 'sitereview', array('sitereview'=>$sitereview)).', ';
+                          '_showReview.tpl', 'sitereview', array('sitereview'=>$sitereview, 'reviewTitlePlular' => $this->reviewTitlePlular, 'reviewTitleSingular' => $this->reviewTitleSingular)).', ';
                           }
 
                           if(in_array('viewCount', $this->statistics)) {
@@ -882,8 +882,8 @@ $this->headScript()->appendFile("https://maps.googleapis.com/maps/api/js?librari
                         <?php if(!empty($this->statistics) && in_array('reviewCount', $this->statistics)): ?>
                           <span class="fright">
                            <?php echo $this->htmlLink($sitereview->getHref(), $this->partial(
-                          '_showReview.tpl', 'sitereview', array('sitereview'=>$sitereview)), array('title' => $this->partial(
-                          '_showReview.tpl', 'sitereview', array('sitereview'=>$sitereview)))); ?>
+                          '_showReview.tpl', 'sitereview', array('sitereview'=>$sitereview, 'reviewTitlePlular' => $this->reviewTitlePlular, 'reviewTitleSingular' => $this->reviewTitleSingular)), array('title' => $this->partial(
+                          '_showReview.tpl', 'sitereview', array('sitereview'=>$sitereview, 'reviewTitlePlular' => $this->reviewTitlePlular, 'reviewTitleSingular' => $this->reviewTitleSingular)))); ?>
                           </span>
                         <?php endif; ?> 
                         <?php if ($ratingValue == 'rating_both'): ?>

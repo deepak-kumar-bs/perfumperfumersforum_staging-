@@ -93,6 +93,12 @@ class Sitereview_Widget_RecentlyPopularRandomSitereviewController extends Engine
     Engine_Api::_()->sitereview()->setListingTypeInRegistry($params['listingtype_id']);
 
     $this->view->listingtypeArray = $listingtypeArray = Zend_Registry::get('listingtypeArray' . $listingtype_id);
+
+    //SEND REVIEW TITLE TO TPL
+    $this->view->reviewTitleSingular = $listingtypeArray->review_title_singular ? $listingtypeArray->review_title_singular : 'Review';
+    $this->view->reviewTitlePlular = $listingtypeArray->review_title_plural ? $listingtypeArray->review_title_plural : 'Reviews';
+
+    
     $this->view->category_id = 0;
     $this->view->subcategory_id = 0;
     $this->view->subsubcategory_id = 0;

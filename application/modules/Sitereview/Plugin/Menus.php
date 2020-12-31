@@ -854,6 +854,9 @@ class Sitereview_Plugin_Menus {
         $params['viewer_id'] = $viewer_id;
         $isEditorReviewed = Engine_Api::_()->getDbTable('reviews', 'sitereview')->canPostReview($params);
 
+        $reviewTitle = Engine_Api::_()->getDbTable('listingtypes', 'sitereview')->getListingTypeColumn($listingtype_id, 'review_title_singular');
+        $reviewTitle = $reviewTitle ? $reviewTitle : 'Review';
+
         $params = array();
         $params['listing_id'] = $sitereview->getIdentity();
         if (!empty($isEditorReviewed)) {
@@ -864,11 +867,11 @@ class Sitereview_Plugin_Menus {
             //     return false;
             // }
 
-            $label = Zend_Registry::get('Zend_Translate')->_('Edit an Editor Review');
+            $label = Zend_Registry::get('Zend_Translate')->_("Edit an Editor $reviewTitle");
             $action = 'edit';
             $params['review_id'] = $isEditorReviewed;
         } else {
-            $label = Zend_Registry::get('Zend_Translate')->_('Write an Editor Review');
+            $label = Zend_Registry::get('Zend_Translate')->_('Write an Editor $$reviewTitle');
             $action = 'create';
         }
 

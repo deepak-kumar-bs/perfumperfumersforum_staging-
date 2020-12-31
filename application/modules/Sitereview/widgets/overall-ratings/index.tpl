@@ -56,7 +56,7 @@
       <?php if(!empty($this->allow_review)):?>
 				<div class="sr_up_overall_rating_stat">
 					<?php echo $this->translate(
-			array('Based on %s review', 'Based on %s reviews', $this->subject()->getNumbersOfUserRating($this->type)), '<b>'.$this->locale()->toNumber($this->subject()->getNumbersOfUserRating($this->type)).'</b>') ?>
+			array("Based on %s $this->reviewTitleSingular", "Based on %s $this->reviewTitlePlular", $this->subject()->getNumbersOfUserRating($this->type)), '<b>'.$this->locale()->toNumber($this->subject()->getNumbersOfUserRating($this->type)).'</b>') ?>
 				</div>
       <?php endif;?>
     <?php else: ?>
@@ -71,7 +71,7 @@
       <?php if(!empty($this->allow_review)):?>
 				<div class="sr_up_overall_rating_stat">
 					<?php echo $this->translate(
-			array('Based on %s review', 'Based on %s reviews', $this->subject()->getNumbersOfUserRating($this->type)), '<b>'.$this->locale()->toNumber($this->subject()->getNumbersOfUserRating($this->type)).'</b>') ?>
+			array("Based on %s $this->reviewTitleSingular", "Based on %s $this->reviewTitlePlular", $this->subject()->getNumbersOfUserRating($this->type)), '<b>'.$this->locale()->toNumber($this->subject()->getNumbersOfUserRating($this->type)).'</b>') ?>
 				</div>
       <?php endif;?>
     <?php endif; ?>

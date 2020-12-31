@@ -35,6 +35,11 @@ class Sitereview_Widget_EditorReviewsSitereviewController extends Seaocore_Conte
     Engine_Api::_()->sitereview()->setListingTypeInRegistry($sitereview->listingtype_id);
     $this->view->listingType = $listingType = Zend_Registry::get('listingtypeArray' . $sitereview->listingtype_id);
 
+    //SEND REVIEW TITLE TO TPL
+    $this->view->reviewTitleSingular = $listingType->review_title_singular ? $listingType->review_title_singular : 'Review';
+    $this->view->reviewTitlePlular = $listingType->review_title_plural ? $listingType->review_title_plural : 'Reviews';
+
+
     if ($listingType->reviews == 1 || $listingType->reviews == 3) {
       $this->view->addEditorReview = $editor_review_id = Engine_Api::_()->getDbTable('reviews', 'sitereview')->canPostReview($params);
     } else {

@@ -65,7 +65,7 @@ class Sitereview_ReviewController extends Seaocore_Controller_Action_Standard {
     $params['type'] = '';
 
     $params = $this->_getAllParams();
-    if (!isset($params['order']) || empty($params['order']))
+    if ((!isset($params['order']) || empty($params['order'])) && empty($params['order_by_1']))
       $params['order'] = 'recent';
     if (isset($params['show'])) {
 
@@ -149,6 +149,15 @@ class Sitereview_ReviewController extends Seaocore_Controller_Action_Standard {
         return $this->_forwardCustom('requireauth', 'error', 'core');
       }
     }
+
+    //GET REVIEW TITLE
+    if ($listingtype_id) {
+      $review_title_singular = Engine_Api::_()->getDbTable('listingtypes', 'sitereview')->getListingTypeColumn($listingtype_id, 'review_title_singular');
+      $review_title_plural = Engine_Api::_()->getDbTable('listingtypes', 'sitereview')->getListingTypeColumn($listingtype_id, 'review_title_plural');
+    }
+
+    $this->view->reviewTitleSingular = $review_title_singular ? $review_title_singular : 'Review';
+    $this->view->reviewTitlePlular = $review_title_plural ? $review_title_plural : 'Reviews';
 
     //GET LISTING TITLE
     if ($listingtype_id) {

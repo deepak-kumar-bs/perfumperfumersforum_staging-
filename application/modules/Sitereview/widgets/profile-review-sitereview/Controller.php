@@ -56,6 +56,12 @@ class Sitereview_Widget_ProfileReviewSitereviewController extends Seaocore_Conte
     $this->view->listingtypeArray = $listingtypeArray = Zend_Registry::get('listingtypeArray' . $listingtype_id);
     $this->view->listing_singular_uc = ucfirst($listingtypeArray->title_singular);
     $this->view->listing_singular_lc = strtolower($listingtypeArray->title_singular);
+    
+    //SEND REVIEW TITLE TO TPL
+    $this->view->reviewTitleSingular = $listingtypeArray->review_title_singular ? $listingtypeArray->review_title_singular : 'Review';
+    $this->view->reviewTitlePlular = $listingtypeArray->review_title_plural ? $listingtypeArray->review_title_plural : 'Reviews';
+
+
     $this->view->canshowrating = false;
     if($listingtypeArray->allow_review != 2 ){
       $params['rating'] = 'rating';
