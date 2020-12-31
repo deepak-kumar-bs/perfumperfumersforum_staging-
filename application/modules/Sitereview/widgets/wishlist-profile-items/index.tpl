@@ -251,12 +251,12 @@ if ($this->ratingType == 'rating_editor') {
 
                   <a class="seaocore_follow_button seaocore_follow_button_following" href="javascript:void(0);">
                     <i class="following"></i>
-                    <span><?php echo $this->translate('Following Wishlist') ?></span>
+                    <span><?php echo $this->translate('Following List') ?></span>
                   </a>
 
                   <a class="seaocore_follow_button seaocore_follow_button_unfollow" href="javascript:void(0);" onclick = "seaocore_content_type_follows('<?php echo $this->wishlist->wishlist_id; ?>', 'sitereview_wishlist');">
                     <i class="unfollow"></i>
-                    <span><?php echo $this->translate('Un-follow Wishlist') ?></span>
+                    <span><?php echo $this->translate('Un-follow List') ?></span>
                   </a>
 
                 </div>
@@ -264,7 +264,7 @@ if ($this->ratingType == 'rating_editor') {
                 <div id="sitereview_most_follows_<?php echo $this->wishlist->wishlist_id;?>" style ='display:<?php echo empty($check_availability) ?"block":"none"?>'>
                   <a class="seaocore_follow_button" href="javascript:void(0);" onclick = "seaocore_content_type_follows('<?php echo $this->wishlist->wishlist_id; ?>', 'sitereview_wishlist');">
                     <i class="follow"></i>
-                    <span><?php echo $this->translate('Follow Wishlist') ?></span>
+                    <span><?php echo $this->translate('Follow List') ?></span>
                   </a>
                 </div>
                 <input type ="hidden" id = "sitereview_follow_<?php echo $this->wishlist->wishlist_id;?>" value = '<?php echo $check_availability ? $check_availability :0; ?>' />
@@ -275,15 +275,15 @@ if ($this->ratingType == 'rating_editor') {
     
         <?php if ($this->viewer_id): ?>
           <div class="sr_wishlist_item_options clr O_hidden mtop10 pleft10">
-            <?php echo $this->htmlLink(array('route' => 'sitereview_wishlist_general', 'action' => 'create'), $this->translate('Create New Wishlist'), array('class' => 'smoothbox sr_icon_wishlist_add')) ?>
+            <?php echo $this->htmlLink(array('route' => 'sitereview_wishlist_general', 'action' => 'create'), $this->translate('Create New List'), array('class' => 'smoothbox sr_icon_wishlist_add')) ?>
             <?php if (!empty($this->messageOwner)): ?>
               <?php echo $this->htmlLink(array('route' => 'sitereview_wishlist_general', 'action' => 'message-owner', 'wishlist_id' => $this->wishlist->getIdentity()), $this->translate('Message Owner'), array('class' => 'smoothbox icon_sitereviews_messageowner')) ?>
             <?php endif; ?>
             <?php if ($this->wishlist->owner_id == $this->viewer_id || $this->level_id == 1): ?>
-              <?php echo $this->htmlLink(array('route' => "sitereview_wishlist_general", 'action' => 'edit', 'wishlist_id' => $this->wishlist->getIdentity()), $this->translate('Edit Wishlist'), array('title' => $this->translate('Edit Wishlist'), 'class' => 'smoothbox seaocore_icon_edit', 'style' => 'margin-left:0px;')) ?> 
-              <?php echo $this->htmlLink(array('route' => "sitereview_wishlist_general", 'action' => 'delete', 'wishlist_id' => $this->wishlist->getIdentity()), $this->translate('Delete Wishlist'), array('title' => $this->translate('Delete Wishlist'), 'class' => 'smoothbox seaocore_icon_delete')) ?>
+              <?php echo $this->htmlLink(array('route' => "sitereview_wishlist_general", 'action' => 'edit', 'wishlist_id' => $this->wishlist->getIdentity()), $this->translate('Edit List'), array('title' => $this->translate('Edit List'), 'class' => 'smoothbox seaocore_icon_edit', 'style' => 'margin-left:0px;')) ?> 
+              <?php echo $this->htmlLink(array('route' => "sitereview_wishlist_general", 'action' => 'delete', 'wishlist_id' => $this->wishlist->getIdentity()), $this->translate('Delete List'), array('title' => $this->translate('Delete List'), 'class' => 'smoothbox seaocore_icon_delete')) ?>
             <?php endif; ?>
-            <?php echo $this->htmlLink(array('route' => "sitereview_wishlist_general", 'text' => $this->wishlist->getOwner()->getTitle()), $this->wishlist->getOwner()->getTitle().$this->translate("'s Wishlists"), array('title' => $this->wishlist->getOwner()->getTitle().$this->translate("'s Wishlists"), 'class' => 'sr_icon_wishlist')) ?>
+            <?php echo $this->htmlLink(array('route' => "sitereview_wishlist_general", 'text' => $this->wishlist->getOwner()->getTitle()), $this->wishlist->getOwner()->getTitle().$this->translate("'s Lists"), array('title' => $this->wishlist->getOwner()->getTitle().$this->translate("'s Lists"), 'class' => 'sr_icon_wishlist')) ?>
           </div>
         <?php endif; ?>
     <?php else: ?>
@@ -294,25 +294,25 @@ if ($this->ratingType == 'rating_editor') {
           <?php echo $this->translate('This page lists all the entries added by you as favourites.'); ?>
         </div>     
     <?php endif;?>
-		<div class="sr_item_filters_wrapper b_medium clr">
-			<?php echo $this->searchForm->setAttrib('class', 'sr_item_filters')->render($this) ?>
-			
-		  <?php if (count($this->viewTypes) > 1 && $this->total_item > 0): ?>
-		  	<div class="sr_wishlist_view_select fright">
-			    <?php if (in_array('list', $this->viewTypes)): ?>
-		        <span class="seaocore_tab_select_wrapper fright">
-		          <div class="seaocore_tab_select_view_tooltip"><?php echo $this->translate("List View"); ?></div>
-		          <span class="seaocore_tab_icon tab_icon_list_view" onclick="toggoleViewWishListProfile('list');" ></span>
-		        </span>
-			    <?php endif; ?>
-			    <?php if (in_array('pin', $this->viewTypes)): ?>
-		        <span class="seaocore_tab_select_wrapper fright">
-		          <div class="seaocore_tab_select_view_tooltip"><?php echo $this->translate("Pinboard View"); ?></div>
-		          <span class="seaocore_tab_icon tab_icon_pin_view" onclick="toggoleViewWishListProfile('pin');" ></span>
-		        </span>
-			    <?php endif; ?>
-		    </div>
-		  <?php endif; ?>
+    <div class="sr_item_filters_wrapper b_medium clr">
+      <?php echo $this->searchForm->setAttrib('class', 'sr_item_filters')->render($this) ?>
+      
+      <?php if (count($this->viewTypes) > 1 && $this->total_item > 0): ?>
+        <div class="sr_wishlist_view_select fright">
+          <?php if (in_array('list', $this->viewTypes)): ?>
+            <span class="seaocore_tab_select_wrapper fright">
+              <div class="seaocore_tab_select_view_tooltip"><?php echo $this->translate("List View"); ?></div>
+              <span class="seaocore_tab_icon tab_icon_list_view" onclick="toggoleViewWishListProfile('list');" ></span>
+            </span>
+          <?php endif; ?>
+          <?php if (in_array('pin', $this->viewTypes)): ?>
+            <span class="seaocore_tab_select_wrapper fright">
+              <div class="seaocore_tab_select_view_tooltip"><?php echo $this->translate("Pinboard View"); ?></div>
+              <span class="seaocore_tab_icon tab_icon_pin_view" onclick="toggoleViewWishListProfile('pin');" ></span>
+            </span>
+          <?php endif; ?>
+        </div>
+      <?php endif; ?>
     </div>
     
     <div id="sitereview_wishlist_items">
@@ -365,28 +365,28 @@ if ($this->ratingType == 'rating_editor') {
               <i class="sr_list_new_label" title="<?php echo $this->translate('New'); ?>"></i>
             <?php endif; ?>
             <div class="sr_board_list_thumb">
-            	<a href="<?php echo $listing->getHref(array('profile_link' => 1)) ?>" class="sr_thumb">
-	              <table style="height: <?php echo 30 * $noOfButtons ?>px;">
-	                <tr valign="middle">
-	                  <td>
-	                               
-	                    <?php
-	                    $options = array('align' => 'center');
-	
-	                    if (isset($this->params['withoutStretch']) && $this->params['withoutStretch']):
-	                      $options['style'] = 'width:auto; max-width:' . ($this->itemWidth - 18) . 'px;';
-	                    endif;
-	                    ?>  
-	                      <?php echo $this->itemPhoto($listing, ($this->itemWidth > 300) ? 'thumb.main' : 'thumb.profile', '', $options); ?>
-	                      <?php if (!empty($listing->sponsored)): ?>
-	                      <div class="sr_list_sponsored_label" style="background: <?php echo $listingType->sponsored_color; ?>">
-	                        <?php echo $this->translate('SPONSORED'); ?>                 
-	                      </div>
-	                    <?php endif; ?>
-	                  </td> 
-	                </tr> 
-	              </table>
-	             </a>
+              <a href="<?php echo $listing->getHref(array('profile_link' => 1)) ?>" class="sr_thumb">
+                <table style="height: <?php echo 30 * $noOfButtons ?>px;">
+                  <tr valign="middle">
+                    <td>
+                                 
+                      <?php
+                      $options = array('align' => 'center');
+  
+                      if (isset($this->params['withoutStretch']) && $this->params['withoutStretch']):
+                        $options['style'] = 'width:auto; max-width:' . ($this->itemWidth - 18) . 'px;';
+                      endif;
+                      ?>  
+                        <?php echo $this->itemPhoto($listing, ($this->itemWidth > 300) ? 'thumb.main' : 'thumb.profile', '', $options); ?>
+                        <?php if (!empty($listing->sponsored)): ?>
+                        <div class="sr_list_sponsored_label" style="background: <?php echo $listingType->sponsored_color; ?>">
+                          <?php echo $this->translate('SPONSORED'); ?>                 
+                        </div>
+                      <?php endif; ?>
+                    </td> 
+                  </tr> 
+                </table>
+               </a>
             </div>
             <div class="sr_board_list_cont">
               <div class="sr_title">
@@ -468,7 +468,7 @@ if ($this->ratingType == 'rating_editor') {
                 <?php if (in_array('wishlist', $this->show_buttons) && Zend_Registry::get('listingtypeArray' . $listing->listingtype_id)->wishlist): ?> 
                   
                   <?php if(!$favouriteSetting): ?>
-                    <?php echo $this->addToWishlist($listing, array('classIcon' => 'sr_board_icon', 'classLink' => 'wishlist_icon', 'text' => $this->translate('Wishlist')));?>
+                    <?php echo $this->addToWishlist($listing, array('classIcon' => 'sr_board_icon', 'classLink' => 'wishlist_icon', 'text' => $this->translate('List')));?>
                   <?php endif; ?>
                 <?php endif; ?>
                 
@@ -559,7 +559,7 @@ if ($this->ratingType == 'rating_editor') {
                 <?php if($favouriteSetting): ?>
                     <?php $removeText = 'Remove from Favourites';?>
                 <?php else: ?>
-                    <?php $removeText = 'Remove from this Wishlist';?>
+                    <?php $removeText = 'Remove from this List';?>
                 <?php endif; ?>
                 <?php echo $this->htmlLink(array('route' => "sitereview_wishlist_general", 'action' => 'remove', 'listing_id' => $listing->listing_id, 'wishlist_id' => $this->wishlist->wishlist_id), $this->translate($removeText), array('class' => 'smoothbox seaocore_icon_delete')) ?>
               <?php endif; ?>                
@@ -575,7 +575,7 @@ if ($this->ratingType == 'rating_editor') {
         <div class="tip">
           <span>
             <?php if(!$favouriteSetting): ?>  
-                <?php echo $this->translate('There are currently no entries in this wishlist.'); ?>
+                <?php echo $this->translate('There are currently no entries in this List.'); ?>
             <?php else: ?>
                 <?php echo $this->translate('You have not added any entry in your favourites.'); ?>
             <?php endif; ?>  
@@ -616,7 +616,7 @@ if ($this->ratingType == 'rating_editor') {
       }
 
       var url = '<?php echo $this->url(array('module' => 'sitereview', 'controller' => 'review', 'action' => 'categories'), "default", true); ?>';
-      en4.core.request.send(new Request.JSON({      	
+      en4.core.request.send(new Request.JSON({        
         url : url,
         data : {
           format : 'json',
@@ -660,7 +660,7 @@ if ($this->ratingType == 'rating_editor') {
 
     function clear(element)
     { 
-      for (var i = (element.options.length-1); i >= 0; i--)	{
+      for (var i = (element.options.length-1); i >= 0; i--) {
         element.options[ i ] = null;
       }
     }

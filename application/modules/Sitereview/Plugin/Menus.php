@@ -78,9 +78,11 @@ class Sitereview_Plugin_Menus {
                     'browse' == $request->getActionName()) {
                 $route['active'] = true;
             }
+            $reviewTitle = $listingtypeArray->review_title_plural ? $listingtypeArray->review_title_plural : "Review";
+            $route['label'] = "Browse $reviewTitle";
             return $route;
         }
-        return true;
+        return false;
     }
 
     public function canViewCategories($row) {

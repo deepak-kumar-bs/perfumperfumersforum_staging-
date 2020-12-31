@@ -80,7 +80,7 @@ $this->headLink()
   </form>
   <div class="sr_browse_lists_view_options b_medium">
     <div class="fleft">
-			<?php echo $this->translate(array('%s wishlist found.', '%s wishlists found.', $this->paginator->getTotalItemCount()), $this->locale()->toNumber($this->paginator->getTotalItemCount())) ?>
+			<?php echo $this->translate(array('%s list found.', '%s lists found.', $this->paginator->getTotalItemCount()), $this->locale()->toNumber($this->paginator->getTotalItemCount())) ?>
     </div>
     <?php if(count($this->viewTypes)>1): ?>
       <?php if (in_array('list',$this->viewTypes)): ?>
@@ -280,13 +280,13 @@ $this->headLink()
 <?php elseif ($this->isSearched > 2): ?>
   <div class="tip">
     <span>
-      <?php echo $this->translate('Nobody has created a wishlist with that criteria. Be the first to %1$screate%2$s one!', '<a class="smoothbox" href="' . $this->url(array('action' => 'create'), "sitereview_wishlist_general") . '">', '</a>'); ?>
+      <?php echo $this->translate('Nobody has created a list with that criteria. Be the first to %1$screate%2$s one!', '<a class="smoothbox" href="' . $this->url(array('action' => 'create'), "sitereview_wishlist_general") . '">', '</a>'); ?>
     </span>
   </div>
 <?php else: ?>
   <div class="tip">
     <span>
-      <?php echo $this->translate('Nobody has created a wishlist yet. Be the first to %1$screate%2$s one!', '<a class="smoothbox" href="' . $this->url(array('action' => 'create'), "sitereview_wishlist_general") . '">', '</a>'); ?>
+      <?php echo $this->translate('Nobody has created a list yet. Be the first to %1$screate%2$s one!', '<a class="smoothbox" href="' . $this->url(array('action' => 'create'), "sitereview_wishlist_general") . '">', '</a>'); ?>
     </span>
   </div>
 <?php endif; ?>

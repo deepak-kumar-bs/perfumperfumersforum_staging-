@@ -14,12 +14,12 @@ class Sitereview_Form_Wishlist_Create extends Engine_Form {
 
   public function init() {
 
-    $this->setTitle('Create New Wishlist')
+    $this->setTitle('Create New List')
             ->setAttrib('id', 'form-upload-wishlist')
             ->setAttrib('enctype', 'multipart/form-data');
 
     $this->addElement('Text', 'title', array(
-        'label' => 'Wishlist Name',
+        'label' => 'List Name',
         'maxlength' => '63',
         'required' => true,
         'allowEmpty' => false,
@@ -31,7 +31,7 @@ class Sitereview_Form_Wishlist_Create extends Engine_Form {
     ));
 
     $this->addElement('Textarea', 'body', array(
-        'label' => 'Wishlist Note',
+        'label' => 'List Note',
         'maxlength' => '512',
         'filters' => array(
             'StripTags',
@@ -61,7 +61,7 @@ class Sitereview_Form_Wishlist_Create extends Engine_Form {
     } else {
       $this->addElement('Select', 'auth_view', array(
           'label' => 'View Privacy',
-          'description' => 'Who may see this wishlist?',
+          'description' => 'Who may see this list?',
           'multiOptions' => $viewOptions,
           'value' => key($viewOptions),
       ));

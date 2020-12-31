@@ -18,7 +18,7 @@
         <?php $wishlist = Engine_Api::_()->getItem('sitereview_wishlist', $this->wishlist_id);?>
         <?php echo $this->htmlLink($wishlist->getHref(), $this->translate('My Favourites'), array('class' => 'buttonlink sr_icon_wishlist_add')) ?>
       <?php else: ?>  
-        <?php echo $this->htmlLink(array('route' => 'sitereview_wishlist_general', 'action' => 'create'), $this->translate('Create New Wishlist'), array('class' => 'smoothbox buttonlink sr_icon_wishlist_add')) ?>
+        <?php echo $this->htmlLink(array('route' => 'sitereview_wishlist_general', 'action' => 'create'), $this->translate('Create New List'), array('class' => 'smoothbox buttonlink sr_icon_wishlist_add')) ?>
       <?php endif; ?>  
     </li>
 		</li>
