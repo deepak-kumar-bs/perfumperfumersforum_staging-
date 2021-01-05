@@ -873,7 +873,7 @@ class Sitereview_Plugin_Menus {
             $action = 'edit';
             $params['review_id'] = $isEditorReviewed;
         } else {
-            $label = Zend_Registry::get('Zend_Translate')->_('Write an Editor $$reviewTitle');
+            $label = Zend_Registry::get('Zend_Translate')->_("Write an Editor $reviewTitle");
             $action = 'create';
         }
 

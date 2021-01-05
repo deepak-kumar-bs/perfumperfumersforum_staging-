@@ -2672,6 +2672,9 @@ class Sitereview_Api_ListingType extends Core_Api_Abstract {
     $titleSinLc = strtolower($listingType->title_singular);
     $titlePluLc = strtolower($listingType->title_plural);
 
+    $reviewTitleSinLc = strtolower($listingType->review_title_singular);
+    $reviewTitlePluLc = strtolower($listingType->review_title_plural);
+
     $subject = '$subject';
     $body = '$body';
     $count = '$count';
@@ -2700,7 +2703,11 @@ class Sitereview_Api_ListingType extends Core_Api_Abstract {
             
 ('sitereview_video_new_listtype_$listingTypeId', 'sitereview', '{item:$subject} added a new video in the $titleSinLc listing {item:$object}:', 1, 3, 1, 1, 1, 1),      
 
-('sitereview_review_add_listtype_$listingTypeId', 'sitereview', '{item:$subject} rated and wrote a review for the $titleSinLc listing {item:$object}:', 1, 7, 1, 1, 1, 1);            
+('sitereview_review_add_listtype_$listingTypeId', 'sitereview', '{item:$subject} rated and wrote a $reviewTitleSinLc for the $titleSinLc listing {item:$object}:', 1, 7, 1, 1, 1, 1),
+
+('sitereview_editorreview_add_listtype_$listingTypeId', 'sitereview', '{item:$subject} rated and wrote a $reviewTitleSinLc for the $titleSinLc listing {item:$object}:', 1, 7, 1, 1, 1, 1);
+
+
     ");
 
 
@@ -3025,6 +3032,24 @@ class Sitereview_Api_ListingType extends Core_Api_Abstract {
 
     $db->query("UPDATE `engine4_activity_actiontypes` SET `body` = REPLACE(body, '$previousTitleSin', '$titleSinUc') WHERE `type` LIKE '%_listtype_$listingTypeId' AND `module` = 'sitereview' AND  `body` LIKE '%$previousTitleSin%'");
     $db->query("UPDATE `engine4_activity_actiontypes` SET `body` = REPLACE(body, '$previousTitlePlu', '$titleSinUc') WHERE `type` LIKE '%_listtype_$listingTypeId' AND `module` = 'sitereview' AND  `body` LIKE '%$previousTitlePlu%'");
+  }
+
+
+  public function activityFeedQueryForReviewEdit($listingType, $previousTitleSin, $previousTitlePlu) {
+
+    //GET DATABASE
+    $db = Zend_Db_Table_Abstract::getDefaultAdapter();
+
+    //GET LISTING TYPE DETAILS
+    $listingTypeId = $listingType->listingtype_id;
+    $titlePluUc = strtolower($listingType->review_title_plural);
+    $titleSinUc = strtolower($listingType->review_title_singular);
+    $previousTitleSin = strtolower($previousTitleSin);
+    $previousTitlePlu = strtolower($previousTitlePlu);
+
+    
+    $db->query("UPDATE `engine4_activity_actiontypes` SET `body` = REPLACE(body, '$previousTitleSin', '$titleSinUc') WHERE `type` LIKE '%sitereview_review_add_listtype_$listingTypeId' AND `module` = 'sitereview'");
+    $db->query("UPDATE `engine4_activity_actiontypes` SET `body` = REPLACE(body, '$previousTitleSin', '$titleSinUc') WHERE `type` LIKE '%sitereview_editorreview_add_listtype_$listingTypeId' AND `module` = 'sitereview'");
   }
 
   public function searchFormSettingEdit($listingType, $previousTitleSin, $previousTitlePlu) {

@@ -39,7 +39,6 @@ class Sitereview_Widget_EditorReviewsSitereviewController extends Seaocore_Conte
     $this->view->reviewTitleSingular = $listingType->review_title_singular ? $listingType->review_title_singular : 'Review';
     $this->view->reviewTitlePlular = $listingType->review_title_plural ? $listingType->review_title_plural : 'Reviews';
 
-
     if ($listingType->reviews == 1 || $listingType->reviews == 3) {
       $this->view->addEditorReview = $editor_review_id = Engine_Api::_()->getDbTable('reviews', 'sitereview')->canPostReview($params);
     } else {
@@ -113,10 +112,9 @@ class Sitereview_Widget_EditorReviewsSitereviewController extends Seaocore_Conte
     $select = $reviewTable->select()
               ->where('resource_id = ?', $sitereview->listing_id)
               ->where('resource_type = ?', $sitereview->getType())
-              ->where('type = ?', 'editor')->where('status = ?', 1);
+              ->where('type = ?', 'editor')->where('status = ?', 1)
+              ->order('review_id DESC');
     $this->view->reviews = $reviews = $reviewTable->fetchAll($select);
-
-    // echo "<pre>"; print_r($reviews); die;
 
 
     if (!empty($review)) {

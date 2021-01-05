@@ -83,7 +83,7 @@ class Sitereview_Form_Review_Search extends Sitereview_Form_Searchfields {
       }
     } else {
       $this->addElement('Select', 'type', array(
-          'label' => '$reviewTitlePlular Written By',
+          'label' => "$reviewTitlePlular Written By",
           'multiOptions' => array('' => 'Everyone', 'editor' => 'Editors', 'user' => 'Users'),
           'onchange' => "addReviewTypeOptions(this.value);",
           'order' => $order++,

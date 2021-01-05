@@ -99,6 +99,7 @@ class Sitereviewlistingtype_Form_Admin_Listingtypes_Create extends Engine_Form {
             array('StringLength', true, array(3, 32)),
             array('Regex', true, array('/^[a-zA-Z0-9-_\s]+$/')),
         ),
+        'value' => 'Review',
         'filters' => array(
             'StripTags',
             new Engine_Filter_Censor(),
@@ -116,6 +117,7 @@ class Sitereviewlistingtype_Form_Admin_Listingtypes_Create extends Engine_Form {
             array('StringLength', true, array(3, 32)),
             array('Regex', true, array('/^[a-zA-Z0-9-_\s]+$/')),
         ),
+        'value' => 'Reviews',
         'filters' => array(
             'StripTags',
             new Engine_Filter_Censor(),

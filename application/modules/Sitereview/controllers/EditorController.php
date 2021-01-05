@@ -267,6 +267,17 @@ class Sitereview_EditorController extends Seaocore_Controller_Action_Standard {
           $auth->setAllowed($review, $role, 'comment', ($i <= $commentMax));
         }
 
+        if ($_POST['status'] == 1) {
+          $activityApi = Engine_Api::_()->getDbtable('actions', 'activity');
+
+          //ACTIVITY FEED
+          $action = $activityApi->addActivity($viewer, $sitereview, 'sitereview_editorreview_add_listtype_' . $listingtype_id);
+
+          if ($action != null) {
+            $activityApi->attachActivity($action, $review);
+          }
+        }
+
         if ($sitereview->owner_id != $viewer_id) {
 
           $host = $_SERVER['HTTP_HOST'];
@@ -442,6 +453,19 @@ class Sitereview_EditorController extends Seaocore_Controller_Action_Standard {
 
         //CREATE RATING DATA
         $reviewRatingTable->createRatingData($_POST, 'editor');
+
+
+        if ($_POST['status'] == 1) {
+
+          $activityApi = Engine_Api::_()->getDbtable('actions', 'activity');
+
+          //ACTIVITY FEED
+          $action = $activityApi->addActivity($viewer, $sitereview, 'sitereview_editorreview_add_listtype_' . $listingtype_id);
+
+          if ($action != null) {
+            $activityApi->attachActivity($action, $review);
+          }
+        }
 
         //IF PUBLISHED 
         if ($review->status == 1) {
