@@ -99,6 +99,12 @@ class Sitereview_Widget_ListingsSitereviewController extends Seaocore_Content_Wi
     Engine_Api::_()->sitereview()->setListingTypeInRegistry($listingtype_id);
 
     $this->view->listingtypeArray = $listingtypeArray = Zend_Registry::get('listingtypeArray' . $listingtype_id);
+
+    //SEND REVIEW TITLE TO TPL
+    $this->view->reviewTitleSingular = $listingtypeArray->review_title_singular ? $listingtypeArray->review_title_singular : 'Review';
+    $this->view->reviewTitlePlular = $listingtypeArray->review_title_plural ? $listingtypeArray->review_title_plural : 'Reviews';
+
+
     $this->view->showContent = $params['showContent'] = $this->_getParam('showContent', array("price", "location")); 
     $this->view->truncation = $params['truncation'] = $this->_getParam('truncation', 16);
     $this->view->truncationList = $params['truncationList'] = $this->_getParam('truncationList', 100);

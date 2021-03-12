@@ -42,7 +42,7 @@
 
               if(in_array('reviewCount', $this->statistics) && (!empty($listingType->allow_review) || (isset($sitereview->rating_editor) && $sitereview->rating_editor))) {
                 $statistics .= $this->partial(
-                '_showReview.tpl', 'sitereview', array('sitereview'=>$sitereview)).', ';
+                '_showReview.tpl', 'sitereview', array('sitereview'=>$sitereview, 'reviewTitlePlular' => $this->reviewTitlePlular, 'reviewTitleSingular' => $this->reviewTitleSingular)).', ';
               }
 
               if(in_array('viewCount', $this->statistics)) {
@@ -142,7 +142,7 @@
           <?php if(in_array('reviewCount', $this->statistics) && ($listingtypeArray->reviews == 3 || $listingtypeArray->reviews == 2)):  ?>
           <span class="fright">
             <?php echo $this->htmlLink($sitereview->getHref(), $this->partial(
-                            '_showReview.tpl', 'sitereview', array('sitereview' => $sitereview))); ?>
+                            '_showReview.tpl', 'sitereview', array('sitereview' => $sitereview, 'reviewTitlePlular' => $this->reviewTitlePlular, 'reviewTitleSingular' => $this->reviewTitleSingular))); ?>
           </span>
           <?php endif; ?>
           <?php if ($ratingValue == 'rating_both'): ?>

@@ -61,11 +61,12 @@ $this->headLink()
       break;
   }
   ?>
-
+  <!-- custom work for rating settings for user-review -->
+  <?php if($allow_review != 2 ): ?>
   <div class="form-wrapper" id="overall_rating">
     <div class="form-label">
       <label>
-        <?php echo $this->translate("Overall Rating"); ?>
+        <?php echo $this->translate("Overall Ratingss"); ?>
       </label>
     </div>	
     <div id="overall_rating-element" class="form-element">
@@ -79,6 +80,7 @@ $this->headLink()
       <input type="hidden" name='review_rate_0' id='review_rate_0' value='<?php echo $rating_value_2; ?>' />
     </div>
   </div>
+<?php endif; ?>
 
   <div id="rating-box">
     <?php $rating_value_1 = 0; ?>

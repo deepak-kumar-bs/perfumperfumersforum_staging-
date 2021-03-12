@@ -255,7 +255,7 @@ echo $this->partial('_jsSwitch.tpl', 'fields', array(
             <?php echo $this->translate(array('%s comment', '%s comments', $item->comment_count), $this->locale()->toNumber($item->comment_count)) ?>,
             
             <?php if($this->listingtypeArray->reviews == 3 || $this->listingtypeArray->reviews == 2): ?>
-              <?php echo $this->partial('_showReview.tpl', 'sitereview', array('sitereview' => $item)) ?>,
+              <?php echo $this->partial('_showReview.tpl', 'sitereview', array('sitereview' => $item, 'reviewTitlePlular' => $this->reviewTitlePlular, 'reviewTitleSingular' => $this->reviewTitleSingular)) ?>,
             <?php endif; ?>        
                     
             <?php echo $this->translate(array('%s view', '%s views', $item->view_count), $this->locale()->toNumber($item->view_count)) ?>,

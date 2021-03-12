@@ -17,7 +17,7 @@ class Sitereview_Form_Wishlist_TellAFriend extends Engine_Form {
     public function init() {
 
         $this->setTitle('Tell a Friend')
-                ->setDescription("Please fill the form below and then click on 'Tell a Friend' button to let your friends know about this Wishlist.");
+                ->setDescription("Please fill the form below and then click on 'Tell a Friend' button to let your friends know about this List.");
         $this->setAttrib('class', 'global_form seaocore_form_comment');
         $viewer = Engine_Api::_()->user()->getViewer();
         $viewer_id = $viewer->getIdentity();

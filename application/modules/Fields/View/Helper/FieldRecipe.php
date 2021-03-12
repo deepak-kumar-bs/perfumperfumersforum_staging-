@@ -43,7 +43,7 @@ class Fields_View_Helper_FieldRecipe extends Fields_View_Helper_FieldAbstract
  
   	}
 
-  	$lastContents = '<table class = "'.'recipe_data'.'"><tr class = "'.'recipe_elements'.'"><th>Dilution</th><th>Amount</th><th>Material</th></tr>';
+  	$lastContents = '<table class = "'.'recipe_data'.'"><tr class = "'.'recipe_elements'.'"><th>Amount</th><th>Material</th><th>Dilution</th></tr>';
   	foreach ($content['Name'] as $key => $name) {
 
   		$amount = 0;
@@ -68,7 +68,8 @@ class Fields_View_Helper_FieldRecipe extends Fields_View_Helper_FieldAbstract
         $listing_link = $view->htmlLink($listing_href, $this->view->translate($sitereview->title), array('target' => '_blank'));
       }
       
-  		$lastContents .= '<tr class = "'.'recipe_elements'.'"><td>'.$dilution.'%</td><td>'.$amount.'</td><td>'.$listing_link.'</td></tr>';
+  		// $lastContents .= '<tr class = "'.'recipe_elements'.'"><td>'.$dilution.'%</td><td>'.$amount.'</td><td>'.$listing_link.'</td></tr>';
+      $lastContents .= '<tr class = "'.'recipe_elements'.'"><td>'.$amount.'</td><td>'.$listing_link.'</td><td>'.$dilution.'%</td></tr>';
   	}
   	$lastContents .= '</table>';
  

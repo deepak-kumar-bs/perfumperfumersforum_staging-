@@ -33,13 +33,13 @@ class Sitereview_Form_Wishlist_Search extends Engine_Form {
     $viewer_id = Engine_Api::_()->user()->getViewer()->getIdentity();
     if($viewer_id) {
       $this->addElement('Select', 'search_wishlist', array(
-          'label' => 'Wishlists',
+          'label' => 'Lists',
           'multiOptions' => array(
               '' => '',
-              'my_wishlists' => 'My Wishlists',
-              'friends_wishlists' => 'My Friends Wishlists',
-              'like_wishlists' => 'Wishlists I Liked',
-              'follow_wishlists' => 'Wishlists Followed by me',
+              'my_wishlists' => 'My Lists',
+              'friends_wishlists' => 'My Friends Lists',
+              'like_wishlists' => 'Lists I Liked',
+              'follow_wishlists' => 'Lists Followed by me',
           ),
           'onchange' => 'showMemberNameSearch();',
       )); 

@@ -123,6 +123,16 @@ $statisticsElement = array(
     ),
 );
 
+$statisticsElementforPf = array(
+    'MultiCheckbox',
+    'statistics',
+    array(
+        'label' => $view->translate('Choose the statistics that you want to be displayed for the Listings in this block.'),
+        'multiOptions' => array("image" => "Image", "description" => "Description", "postedDate" => "Date Posted", 'compare' => 'Compare','wishlist' => 'Wishlist', "viewCount" => "Views", "likeCount" => "Likes", "commentCount" => "Comments", 'reviewCount' => 'Reviews'),
+    //'value' =>array("viewCount","likeCount","commentCount","reviewCount"),
+    ),
+);
+
 $statisticsWishlistElement = array(
     'MultiCheckbox',
     'statisticsWishlist',
@@ -139,6 +149,15 @@ $ratingTypeElement = array(
     array(
         'label' => $view->translate('Rating Type'),
         'multiOptions' => array('rating_avg' => $view->translate('Average Ratings'), 'rating_editor' => $view->translate('Only Editor Ratings'), 'rating_users' => $view->translate('Only User Ratings'), 'rating_both' => $view->translate('Both User and Editor Ratings')),
+    )
+);
+
+$ratingTypeElementForPf = array(
+    'Select',
+    'ratingType',
+    array(
+        'label' => $view->translate('Rating Type'),
+        'multiOptions' => array('' => $view->translate('Don’t Show Ratings'), 'rating_avg' => $view->translate('Average Ratings'), 'rating_editor' => $view->translate('Only Editor Ratings'), 'rating_users' => $view->translate('Only User Ratings'), 'rating_both' => $view->translate('Both User and Editor Ratings')),
     )
 );
 
@@ -1631,6 +1650,191 @@ $final_array = array(
             ),
         ),
     ),
+
+    array(
+        'title' => $view->translate('PF Browse Listings'),
+        'description' => $view->translate('Displays a list of all the listings on your site. This widget should be placed on Multiple Listing Types - Browse Listings page.'),
+        'category' => 'Multiple Listing Types',
+        'type' => 'widget',
+        'autoEdit' => true,
+        'name' => 'sitereview.pf-browse-listings-sitereview',
+        'defaultParams' => array(
+            'title' => '',
+            'titleCount' => true,
+            'layouts_views' => array("1", "2", "3"),
+            'layouts_order' => 1,
+            'statistics' => array("image", "description", "postedDate", "compare", "wishlist", "viewCount", "likeCount", "commentCount", "reviewCount"),
+            'columnWidth' => '180',
+            'truncationGrid' => 90,
+            'ratingType' => 'rating_both'
+        ),
+        'adminForm' => array(
+            'elements' => array(
+                $listingTypeElement1,
+                $ratingTypeElementForPf,
+                $detactLocationElement,
+                $defaultLocationDistanceElement,
+                array(
+                    'MultiCheckbox',
+                    'layouts_views',
+                    array(
+                        'label' => $view->translate('Choose the view types that you want to be available for listings.'),
+                        'multiOptions' => array("1" => $view->translate("List View"), "2" => $view->translate("Grid View"), "3" => $view->translate("Map View")),
+                    //'value' => array("0" => "1", "1" => "2", "2" => "3"),
+                    ),
+                ),
+                array(
+                    'Radio',
+                    'layouts_order',
+                    array(
+                        'label' => $view->translate('Select a default view type for Listings.'),
+                        'multiOptions' => array("1" => $view->translate("List View"), "2" => $view->translate("Grid View"), "3" => $view->translate("Map View")),
+                        'value' => 1,
+                    )
+                ),
+                array(
+                    'Text',
+                    'columnWidth',
+                    array(
+                        'label' => $view->translate('Column Width For Grid View.'),
+                        'value' => '180',
+                    )
+                ),
+                array(
+                    'Text',
+                    'columnHeight',
+                    array(
+                        'label' => $view->translate('Column Height For Grid View.'),
+                        'value' => '328',
+                    )
+                ),
+                $statisticsElementforPf,
+                array(
+                    'Radio',
+                    'showExpiry',
+                    array(
+                        'label' => $view->translate('Show Expiry Date'),
+                        'multiOptions' => array("1" => "Yes", "0" => "No"),
+                        'value' => 0,
+                    )
+                ),
+                array(
+                    'Radio',
+                    'viewType',
+                    array(
+                        'label' => $view->translate("Do you want to show 'Where to Buy' options associated with the listings in this block? (Note: If you select 'Yes' below, then you should place this widget in the Right Extended / Left Extended Column.)"),
+                        'multiOptions' => array(
+                            '1' => $view->translate('Yes'),
+                            '0' => $view->translate('No'),
+                        ),
+                        'value' => '1',
+                    )
+                ),
+                array(
+                    'Radio',
+                    'bottomLine',
+                    array(
+                        'label' => $view->translate('Choose from below what you want to display with listing title.'),
+                        'multiOptions' => array(
+                            '1' => $view->translate("Editor Review's Bottom line (If there is no Editor Review, then Listing's description will be displayed.)"),
+                            '0' => $view->translate("Listing's description"),
+                        ),
+                        'value' => '1',
+                    )
+                ),
+                array(
+                    'Radio',
+                    'postedby',
+                    array(
+                        'label' => $view->translate("Show posted by option. (Selecting 'Yes' here will display the member's name who has created the listing.)"),
+                        'multiOptions' => array(
+                            1 => $view->translate('Yes'),
+                            0 => $view->translate('No')
+                        ),
+                        'value' => '1',
+                    )
+                ),
+                array(
+                    'Radio',
+                    'quick_specif',
+                    array(
+                        'label' => $view->translate("Include quick specifications?"),
+                        'multiOptions' => array(
+                            '1' => $view->translate('Yes'),
+                            '0' => $view->translate('No'),
+                        ),
+                        'value' => '1',
+                    )
+                ),
+                array(
+                    'Radio',
+                    'quick_specif_mobile',
+                    array(
+                        'label' => $view->translate("Show quick specifications on mobile?"),
+                        'multiOptions' => array(
+                            '1' => $view->translate('Yes'),
+                            '0' => $view->translate('No'),
+                        ),
+                        'value' => '1',
+                    )
+                ), 
+                array(
+                    'Radio',
+                    'orderby',
+                    array(
+                        'label' => $view->translate('Default ordering in Browse Listings. (Note: Selecting multiple ordering will make your page load slower.)'),
+                        'multiOptions' => array(
+                          'like_desc' => $view->translate('All listings in descending order of likes.'),
+                            'creation_date' => $view->translate('All listings in descending order of creation.'),
+                            'view_count' => $view->translate('All listings in descending order of views.'),
+                            'title' => $view->translate('All listings in alphabetical order.'),
+                            'sponsored' => $view->translate('Sponsored listings followed by others in descending order of creation.'),
+                            'featured' => $view->translate('Featured listings followed by others in descending order of creation.'),
+                            'fespfe' => $view->translate('Sponsored & Featured listings followed by Sponsored listings followed by Featured listings followed by others in descending order of creation.'),
+                            'spfesp' => $view->translate('Featured & Sponsored listings followed by Featured listings followed by Sponsored listings followed by others in descending order of creation.'),
+                            'newlabel' => $view->translate('Listings marked as New followed by others in descending order of creation.'),
+                        ),
+                        'value' => 'creation_date',
+                    )
+                ),
+                array(
+                    'Text',
+                    'itemCount',
+                    array(
+                        'label' => $view->translate('Count'),
+                        'description' => $view->translate('(number of Listings to show)'),
+                        'value' => 10,
+                    )
+                ),
+                array(
+                    'Text',
+                    'truncation',
+                    array(
+                        'label' => $view->translate('Title Truncation Limit'),
+                        'value' => 25,
+                        'validators' => array(
+                            array('Int', true),
+                            array('GreaterThan', true, array(0)),
+                        ),
+                    )
+                ),
+                array(
+                    'Text',
+                    'truncationGrid',
+                    array(
+                        'label' => $view->translate('Title Truncation Limit in Grid View'),
+                        'value' => 90,
+                        'validators' => array(
+                            array('Int', true),
+                            array('GreaterThan', true, array(0)),
+                        ),
+                    )
+                ),
+                $showViewMoreContent,
+            ),
+        ),
+    ),
+
     array(
         'title' => $view->translate('Browse Top Rated Listings'),
         'description' => $view->translate('Displays a list of all the top rated listings on your site. This widget should be placed on Multiple Listing Types - Browse Top Rated Listings page.'),

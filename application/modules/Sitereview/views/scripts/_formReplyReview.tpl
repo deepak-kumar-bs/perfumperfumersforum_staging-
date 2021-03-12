@@ -11,13 +11,20 @@
  */
 ?>
 
+<?php
+$reviewTitleSingular = $this->reviewTitleSingular ? $this->reviewTitleSingular : 'Review';
+$reviewTitlePlular = $this->reviewTitlePlular ? $this->reviewTitlePlular : 'Reviews';
+
+
+?>
+
 <div class="sr_reviews_listing_option b_medium" id= "reply-form">
   <ul> 
-    <?php if ($this->checkPage == "listingProfile") : ?>
+    <?php if ($this->checkPage == "listingProfile") : ?> 
       <?php $reviewGuid = $review->getGuid() . "_0"; ?>
       <?php if (!empty($this->can_reply) && $review->owner_id) : ?>
         <li> 
-          <?php echo $this->htmlLink($review->getHref() . "#comments-form_$reviewGuid", $this->translate('<b>Comment on this review</b>'), array('title' => $this->translate("Comment on this review"), 'class' => 'reply icon_sitereviews_comment')) ?>
+          <?php echo $this->htmlLink($review->getHref() . "#comments-form_$reviewGuid", $this->translate("<b>Comment on this $reviewTitleSingular</b>"), array('title' => $this->translate("Comment on this $reviewTitleSingular"), 'class' => 'reply icon_sitereviews_comment')) ?>
         </li> 
         <li>|</li>  
       <?php endif; ?>
@@ -35,7 +42,7 @@
     <li> 
       <div> 
         <div id="review_helpful_<?php echo $review->review_id; ?>" style="display:block;">
-          <span><?php echo $this->translate("Was this review helpful?"); ?></span> 
+          <span><?php echo $this->translate("Was this $reviewTitleSingular helpful?"); ?></span> 
           <?php $this->countHelpfulReviews = $helpfulTable->getCountHelpful($review->review_id, 1); ?>
           <a href="javascript:void(0);" onclick="reviewHelpful(1, '<?php echo $review->review_id; ?>');" title="<?php echo $this->translate('Yes'); ?>"><i class="thumbup"></i></a>
           <?php echo $this->countHelpfulReviews ?>
@@ -49,7 +56,7 @@
             <?php echo $this->translate("Thanks for your feedback!"); ?>
           </div>
           <div id="review_helpful_already_message_<?php echo $review->review_id; ?>" style="display:none;">
-            <?php echo $this->translate("You have already submitted your feedback for this Review!"); ?>
+            <?php echo $this->translate("You have already submitted your feedback for this $reviewTitleSingular!"); ?>
           </div>
         <?php endif; ?>
       </div> 
@@ -57,20 +64,20 @@
   </ul> 
   <div class="action_link"> 
     <?php if ($this->sitereview_report && $this->viewer_id): ?>
-      <?php echo $this->htmlLink($this->url(array('action' => 'create', 'module' => 'core', 'controller' => 'report', 'subject' => $review->getGuid()), 'default', true), $this->translate("Report Review"), array('title' => $this->translate("Report Review"), 'class' => "seaocore_icon_report smoothbox")) ?>
+      <?php echo $this->htmlLink($this->url(array('action' => 'create', 'module' => 'core', 'controller' => 'report', 'subject' => $review->getGuid()), 'default', true), $this->translate("Report $reviewTitleSingular"), array('title' => $this->translate("Report $reviewTitleSingular"), 'class' => "seaocore_icon_report smoothbox")) ?>
     <?php endif; ?>
     <?php if ($this->sitereview_share && $review->owner_id != 0): ?>
       <?php echo $this->htmlLink($this->url(array('action' => 'share', 'module' => 'seaocore', 'controller' => 'activity', 'type' => $review->getType(), 'id' => $review->review_id, 'format' => 'smoothbox', 'not_parent_refresh' => 1), 'default', true), $this->translate("Share Review"), array('title' => $this->translate("Share Review"), 'class' => "seaocore_icon_share smoothbox")) ?>
     <?php endif; ?>
     <?php if ($this->sitereview_email): ?>
       <?php $url = $this->url(array('action' => 'email', 'listing_id' => $this->listing_id, 'review_id' => $review->review_id), "sitereview_user_general_listtype_$this->listingtype_id"); ?>
-      <a class="icon_sitereviews_mail smoothbox" title="<?php echo $this->translate('Email Review'); ?>" href="<?php echo $url; ?>"><?php $this->translate("Email Review"); ?></a> 
+      <a class="icon_sitereviews_mail smoothbox" title="<?php echo $this->translate('Email $reviewTitleSingular'); ?>" href="<?php echo $url; ?>"><?php $this->translate("Email $reviewTitleSingular"); ?></a> 
     <?php endif; ?>
     <?php if ($this->checkPage == 'listingProfile'): ?>
       <?php echo $this->htmlLink($review->getHref(), $this->translate("Permalink"), array('title' => $this->translate("Permalink"), 'class' => "sr_icon_link")) ?>
     <?php endif; ?>
     <?php if (!empty($this->can_delete) && ($this->can_delete != 1 || $this->viewer_id == $review->owner_id)) : ?>
-      <?php echo $this->htmlLink($this->url(array('action' => 'delete', 'listing_id' => $this->listing_id, 'review_id' => $review->review_id, 'tab' => Engine_Api::_()->sitereview()->existWidget('sitereview_reviews', 0, $this->listingtype_id)), "sitereview_user_general_listtype_$this->listingtype_id", true), $this->translate("Delete Review"), array('title' => $this->translate("Delete Review"), 'class' => "smoothbox seaocore_icon_delete")) ?>
+      <?php echo $this->htmlLink($this->url(array('action' => 'delete', 'listing_id' => $this->listing_id, 'review_id' => $review->review_id, 'tab' => Engine_Api::_()->sitereview()->existWidget('sitereview_reviews', 0, $this->listingtype_id)), "sitereview_user_general_listtype_$this->listingtype_id", true), $this->translate("Delete $reviewTitleSingular"), array('title' => $this->translate("Delete $reviewTitleSingular"), 'class' => "smoothbox seaocore_icon_delete")) ?>
     <?php endif; ?>
   </div> 
 </div>

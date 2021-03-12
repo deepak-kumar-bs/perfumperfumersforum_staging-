@@ -34,6 +34,11 @@ class Sitereview_Widget_SimilarItemsSitereviewController extends Seaocore_Conten
     $this->view->statistics = $this->_getParam('statistics', array("likeCount", "reviewCount", "commentCount"));
     Engine_Api::_()->sitereview()->setListingTypeInRegistry($sitereview->listingtype_id);
     $listingtypeArray = Zend_Registry::get('listingtypeArray' . $sitereview->listingtype_id);
+
+    //SEND REVIEW TITLE TO TPL
+    $this->view->reviewTitleSingular = $listingtypeArray->review_title_singular ? $listingtypeArray->review_title_singular : 'Review';
+    $this->view->reviewTitlePlular = $listingtypeArray->review_title_plural ? $listingtypeArray->review_title_plural : 'Reviews';
+    
     if (!empty($this->view->statistics) && empty($listingtypeArray->reviews) || $listingtypeArray->reviews == 1) {
       $key = array_search('reviewCount', $this->view->statistics);
       if (!empty($key)) {

@@ -31,6 +31,16 @@ class Sitereview_Widget_OverallRatingsController extends Seaocore_Content_Widget
     $this->view->listingtype_id = $listingtype_id = $sitereview->listingtype_id;
     Engine_Api::_()->sitereview()->setListingTypeInRegistry($listingtype_id);
     $listingtypeArray = Zend_Registry::get('listingtypeArray' . $listingtype_id);
+
+    if($listingtypeArray->allow_review == 2){
+      return $this->setNoRender();
+    }
+
+
+    //SEND REVIEW TITLE TO TPL
+    $this->view->reviewTitleSingular = $listingtypeArray->review_title_singular ? $listingtypeArray->review_title_singular : 'Review';
+    $this->view->reviewTitlePlular = $listingtypeArray->review_title_plural ? $listingtypeArray->review_title_plural : 'Reviews';
+
     $this->view->allow_review = $listingtypeArray->allow_review;
     $this->view->listing_singular_uc = ucfirst($listingtypeArray->title_singular);
 

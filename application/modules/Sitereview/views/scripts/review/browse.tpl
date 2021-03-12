@@ -22,7 +22,7 @@
   ?>
 	<div class="sr_browse_lists_view_options mbot15 b_medium">
 		<div> 
-			<?php echo $this->translate(array("%s review found.", "%s reviews found.", $count),$this->locale()->toNumber($count)) ?>
+			<?php echo $this->translate(array("%s $this->reviewTitleSingular found.", "%s $this->reviewTitlePlular found.", $count),$this->locale()->toNumber($count)) ?>
 		</div>
 	</div>
   <ul class="sr_reviews_listing">
@@ -141,7 +141,7 @@
 							<?php
 									$truncation_limit = 300;
 									$tmpBody = strip_tags($review->body);
-									echo ( Engine_String::strlen($tmpBody) > $truncation_limit ? Engine_String::substr($tmpBody, 0, $truncation_limit) . "... ".$this->htmlLink($review->getHref(), $this->translate('Read complete review'), array('title' => '')) : $tmpBody );
+									echo ( Engine_String::strlen($tmpBody) > $truncation_limit ? Engine_String::substr($tmpBody, 0, $truncation_limit) . "... ".$this->htmlLink($review->getHref(), $this->translate("Read complete $this->reviewTitleSingular"), array('title' => '')) : $tmpBody );
 								?>
 						</div>
           <?php endif; ?>
@@ -151,7 +151,7 @@
               <li> 
                 <div> 
                   <div id="review_helpful_<?php echo $review->review_id; ?>" style="display:block;">
-                    <span><?php echo $this->translate("Was this review helpful?"); ?></span> 
+                    <span><?php echo $this->translate("Was this $this->reviewTitleSingular helpful?"); ?></span> 
                     <a href="javascript:void(0)" onclick="reviewHelpful(1, '<?php echo $review->review_id; ?>');" title="<?php echo $this->translate('Yes');?>"><i class="thumbup"></i></a>
                     <?php echo $review->getCountHelpful(1) ?>
 

@@ -14,9 +14,9 @@
 
   $this->headLink()
     ->prependStylesheet($this->layout()->staticBaseUrl . 'application/modules/Sitereview/externals/styles/style_rating.css')
-		->prependStylesheet($this->layout()->staticBaseUrl . 'application/modules/Sitereview/externals/styles/style_sitereview.css')
+    ->prependStylesheet($this->layout()->staticBaseUrl . 'application/modules/Sitereview/externals/styles/style_sitereview.css')
     ->prependStylesheet($this->layout()->staticBaseUrl . 'application/modules/Seaocore/externals/styles/styles.css');
-	$this->headScript()
+  $this->headScript()
         ->appendFile($this->layout()->staticBaseUrl . 'application/modules/Sitereview/externals/scripts/core.js');
         $this->headScript()
         ->appendFile($this->layout()->staticBaseUrl . 'application/modules/Seaocore/externals/scripts/core.js');
@@ -25,8 +25,8 @@
 <script type="text/javascript" >
 
 function owner(thisobj) {
-	var Obj_Url = thisobj.href;
-	Smoothbox.open(Obj_Url);
+  var Obj_Url = thisobj.href;
+  Smoothbox.open(Obj_Url);
 }
 </script>
 
@@ -180,7 +180,7 @@ $this->headScript()->appendFile("https://maps.googleapis.com/maps/api/js?librari
                 <?php if($this->listingtypeArray->reviews): ?>
                   <div class="sr_browse_list_rating">
                     <?php if(!empty($sitereview->rating_editor) && ($ratingValue == 'rating_both'|| $ratingValue == 'rating_editor')): ?>
-                      <div class="clr">	
+                      <div class="clr"> 
                         <div class="sr_browse_list_rating_stats">
                           <?php echo $this->translate("Editor Rating");?>
                         </div>
@@ -212,7 +212,7 @@ $this->headScript()->appendFile("https://maps.googleapis.com/maps/api/js?librari
                                     <?php else: ?>
                                       <div class="parameter_title">
                                         <?php echo $this->translate("Overall Rating"); ?>
-                                      </div>	
+                                      </div>  
                                       <div class="parameter_value" style="margin: 0px 0px 5px;">
                                         <?php echo $this->showRatingStar($reviewcat['avg_rating'], 'editor', 'big-star', $sitereview->listingtype_id); ?>
                                       </div>
@@ -236,7 +236,7 @@ $this->headScript()->appendFile("https://maps.googleapis.com/maps/api/js?librari
                             }
                           ?>
                           <?php if($this->listingtypeArray->allow_review):?>
-														<?php echo $this->translate(array("Based on %s $this->reviewTitleSingular", "Based on %s $this->reviewTitlePlular", $totalUserReviews), $this->locale()->toNumber($totalUserReviews)) ?>
+                            <?php echo $this->translate(array("Based on %s $this->reviewTitleSingular", "Based on %s $this->reviewTitlePlular", $totalUserReviews), $this->locale()->toNumber($totalUserReviews)) ?>
                           <?php endif;?>
                         </div>
                          <?php $ratingData = $this->ratingTable->ratingbyCategory($sitereview->listing_id, 'user', $sitereview->getType());?>
@@ -267,7 +267,7 @@ $this->headScript()->appendFile("https://maps.googleapis.com/maps/api/js?librari
                                      <?php else: ?>
                                        <div class="parameter_title">
                                          <?php echo $this->translate("Overall Rating"); ?>
-                                       </div>	
+                                       </div> 
                                        <div class="parameter_value" style="margin: 0px 0px 5px;">
                                          <?php echo $this->showRatingStar($reviewcat['avg_rating'], 'user', 'big-star', $sitereview->listingtype_id); ?>
                                        </div>
@@ -284,9 +284,9 @@ $this->headScript()->appendFile("https://maps.googleapis.com/maps/api/js?librari
                     <?php if(!empty($sitereview->rating_avg) && ($ratingValue == 'rating_avg')): ?>
                       <div class="clr">
                         <?php if($this->listingtypeArray->allow_review):?>
-													<div class="sr_browse_list_rating_stats">
-														<?php echo $this->translate(array('Based on %s review', 'Based on %s reviews', $sitereview->review_count), $this->locale()->toNumber($sitereview->review_count)) ?>
-													</div>
+                          <div class="sr_browse_list_rating_stats">
+                            <?php echo $this->translate(array("Based on %s $this->reviewTitleSingular", "Based on %s $this->reviewTitlePlular", $sitereview->review_count), $this->locale()->toNumber($sitereview->review_count)) ?>
+                          </div>
                         <?php endif;?>
                          <?php $ratingData = $this->ratingTable->ratingbyCategory($sitereview->listing_id, null, $sitereview->getType());?>
                           <div class="sr_ur_show_rating_star fnone o_hidden">
@@ -316,7 +316,7 @@ $this->headScript()->appendFile("https://maps.googleapis.com/maps/api/js?librari
                                      <?php else: ?>
                                        <div class="parameter_title">
                                          <?php echo $this->translate("Overall Rating"); ?>
-                                       </div>	
+                                       </div> 
                                        <div class="parameter_value" style="margin: 0px 0px 5px;">
                                          <?php echo $this->showRatingStar($reviewcat['avg_rating'], 'user', 'big-star', $sitereview->listingtype_id); ?>
                                        </div>
@@ -462,7 +462,7 @@ $this->headScript()->appendFile("https://maps.googleapis.com/maps/api/js?librari
                       <i class="sr_list_new_label" title="<?php echo $this->translate('New'); ?>"></i>
                     <?php endif;?>
                   <?php endif;?>
-                  <?php echo $this->htmlLink($sitereview->getHref(array('profile_link' => 1)), $this->itemPhoto($sitereview, 'thumb.normal', '', array('align' => 'center'))) ?>
+                  <?php if(in_array('image', $this->statistics)) echo $this->htmlLink($sitereview->getHref(array('profile_link' => 1)), $this->itemPhoto($sitereview, 'thumb.normal', '', array('align' => 'center'))); ?>
                   <?php if(Engine_Api::_()->getApi('settings', 'core')->getSetting('sitereview.fs.markers', 1)):?>
                     <?php if (!empty($sitereview->sponsored)): ?>
                         <div class="sr_list_sponsored_label" style="background: <?php echo $this->listingtypeArray->sponsored_color; ?>">
@@ -516,7 +516,7 @@ $this->headScript()->appendFile("https://maps.googleapis.com/maps/api/js?librari
 
                   <div class="sr_browse_list_rating">
                     <?php if(!empty($sitereview->rating_editor) && ($ratingValue == 'rating_both'|| $ratingValue == 'rating_editor')): ?>
-                      <div class="clr">	
+                      <div class="clr"> 
                         <div class="sr_browse_list_rating_stats">
                           <?php echo $this->translate("Editor Rating");?>
                         </div>
@@ -548,7 +548,7 @@ $this->headScript()->appendFile("https://maps.googleapis.com/maps/api/js?librari
                                     <?php else: ?>
                                       <div class="parameter_title">
                                         <?php echo $this->translate("Overall Rating"); ?>
-                                      </div>	
+                                      </div>  
                                       <div class="parameter_value" style="margin: 0px 0px 5px;">
                                         <?php echo $this->showRatingStar($reviewcat['avg_rating'], 'editor', 'big-star', $sitereview->listingtype_id); ?>
                                       </div>
@@ -573,7 +573,7 @@ $this->headScript()->appendFile("https://maps.googleapis.com/maps/api/js?librari
                             }
                           ?>
                           <?php if($this->listingtypeArray->allow_review):?>
-														<?php echo $this->translate(array('Based on %s review', 'Based on %s reviews', $totalUserReviews), $this->locale()->toNumber($totalUserReviews)) ?>
+                            <?php echo $this->translate(array("Based on %s $this->reviewTitleSingular", "Based on %s $this->reviewTitlePlular", $totalUserReviews), $this->locale()->toNumber($totalUserReviews)) ?>
                           <?php endif;?>
                         </div>
                          <?php $ratingData = $this->ratingTable->ratingbyCategory($sitereview->listing_id, 'user', $sitereview->getType());?>
@@ -604,7 +604,7 @@ $this->headScript()->appendFile("https://maps.googleapis.com/maps/api/js?librari
                                      <?php else: ?>
                                        <div class="parameter_title">
                                          <?php echo $this->translate("Overall Rating"); ?>
-                                       </div>	
+                                       </div> 
                                        <div class="parameter_value" style="margin: 0px 0px 5px;">
                                          <?php echo $this->showRatingStar($reviewcat['avg_rating'], 'user', 'big-star', $sitereview->listingtype_id); ?>
                                        </div>
@@ -621,12 +621,12 @@ $this->headScript()->appendFile("https://maps.googleapis.com/maps/api/js?librari
                     <?php if(!empty($sitereview->rating_avg) && ($ratingValue == 'rating_avg')): ?>
                       <div class="clr">
                         <?php if($this->listingtypeArray->allow_review):?>
-												  <div class="sr_browse_list_rating_stats">
-		<!--	                    <?php //echo $this->translate("Overall Rating");?><br />-->
+                          <div class="sr_browse_list_rating_stats">
+    <!--                      <?php //echo $this->translate("Overall Rating");?><br />-->
 
-														<?php echo $this->translate(array("Based on %s $this->reviewTitleSingular", "Based on %s $this->reviewTitlePlular", $sitereview->review_count), $this->locale()->toNumber($sitereview->review_count)) ?>
-													  </div>
-													<?php endif;?>
+                            <?php echo $this->translate(array("Based on %s $this->reviewTitleSingular", "Based on %s $this->reviewTitlePlular", $sitereview->review_count), $this->locale()->toNumber($sitereview->review_count)) ?>
+                            </div>
+                          <?php endif;?>
                          <?php $ratingData = $this->ratingTable->ratingbyCategory($sitereview->listing_id, null, $sitereview->getType());?>
                           <div class="sr_ur_show_rating_star fnone o_hidden">
                             <span class="sr_browse_list_rating_stars">
@@ -655,7 +655,7 @@ $this->headScript()->appendFile("https://maps.googleapis.com/maps/api/js?librari
                                      <?php else: ?>
                                        <div class="parameter_title">
                                          <?php echo $this->translate("Overall Rating"); ?>
-                                       </div>	
+                                       </div> 
                                        <div class="parameter_value" style="margin: 0px 0px 5px;">
                                          <?php echo $this->showRatingStar($reviewcat['avg_rating'], $ratingType, 'big-star', $sitereview->listingtype_id); ?>
                                        </div>
@@ -680,10 +680,12 @@ $this->headScript()->appendFile("https://maps.googleapis.com/maps/api/js?librari
                     </div>  
 
                     <div class='sr_browse_list_info_blurb'>
-                      <?php if($this->bottomLine): ?>
-                        <?php echo $this->viewMore($sitereview->getBottomLine(), 125, 5000);?>
-                      <?php else: ?>
-                        <?php echo $this->viewMore(strip_tags($sitereview->body), 125, 5000);?>
+                      <?php if(in_array('description', $this->statistics)):?>
+                        <?php if($this->bottomLine): ?>
+                          <?php echo $this->viewMore($sitereview->getBottomLine(), 125, 5000);?>
+                        <?php else: ?>
+                          <?php echo $this->viewMore(strip_tags($sitereview->body), 125, 5000);?>
+                        <?php endif; ?>
                       <?php endif; ?>
                     </div>
 
@@ -723,7 +725,7 @@ $this->headScript()->appendFile("https://maps.googleapis.com/maps/api/js?librari
                       </div>
                     <?php endif; ?>
                     <div class='sr_browse_list_info_stat seaocore_txt_light'>
-                      <?php echo $this->timestamp(strtotime($sitereview->creation_date)) ?><?php if($this->postedby): ?> - <?php echo $this->translate(strtoupper($this->listingtypeArray->title_singular). '_posted_by'); ?>
+                      <?php if(in_array('postedDate', $this->statistics)) echo $this->timestamp(strtotime($sitereview->creation_date)); ?><?php if($this->postedby): ?> - <?php echo $this->translate(strtoupper($this->listingtypeArray->title_singular). '_posted_by'); ?>
                       <?php echo $this->htmlLink($sitereview->getOwner()->getHref(), $sitereview->getOwner()->getTitle()) ?><?php endif; ?>
                     </div>
                     <?php if($this->showExpiry):?>
@@ -760,8 +762,8 @@ $this->headScript()->appendFile("https://maps.googleapis.com/maps/api/js?librari
                     <?php endif; ?>
 
                     <div class="mtop10 sr_browse_list_info_footer clr o_hidden">
-                      <?php echo $this->compareButton($sitereview);?>
-                      <?php echo $this->addToWishlist($sitereview, array('classIcon' => 'sr_wishlist_href_link', 'classLink' => ''));?>
+                      <?php if(in_array('compare', $this->statistics)) echo $this->compareButton($sitereview);?>
+                      <?php if(in_array('wishlist', $this->statistics)) echo $this->addToWishlist($sitereview, array('classIcon' => 'sr_wishlist_href_link', 'classLink' => ''));?>
 
                       <?php if(!Engine_Api::_()->getApi('settings', 'core')->getSetting('sitereview.fs.markers', 1)) :?>  
                       <span class="sr_browse_list_info_footer_icons">
@@ -778,6 +780,34 @@ $this->headScript()->appendFile("https://maps.googleapis.com/maps/api/js?librari
                       <?php endif;?>
                     </div>
                   </div>
+
+                  
+                  <?php if(!empty($this->quick_specif) ): ?>
+                    <?php
+
+                      $sitereview = Engine_Api::_()->getItem('sitereview_listing', $sitereview->listing_id);
+
+                      $fieldStructure = Engine_Api::_()->fields()->getFieldsStructurePartial($sitereview);
+
+                      if (Engine_API::_()->seaocore()->checkSitemobileMode('fullsite-mode')) {
+                        $show_quick_fields = $this->fieldValueLoopQuickInfo($sitereview, $fieldStructure, 5);
+                      } else {
+                        $show_quick_fields = $this->fieldValueLoopQuickInfoSM($sitereview, $fieldStructure, 5);
+                      }
+                    ?>
+                    <?php if (!empty($show_quick_fields)): ?>
+                      <?php if(!Engine_API::_()->seaocore()->isMobile()): ?>
+                        <div class="list_quick_specification">
+                          <?php echo $show_quick_fields; ?>
+                        </div>
+                        <?php elseif(!empty($this->quick_specif_mobile)): ?>
+                          <div class="list_quick_specification">
+                            <?php echo $show_quick_fields; ?>
+                          </div> 
+                      <?php endif; ?>
+                    <?php endif;?>
+                  <?php endif; ?>
+
               </li>
             <?php endforeach; ?>
           </ul>
@@ -798,16 +828,18 @@ $this->headScript()->appendFile("https://maps.googleapis.com/maps/api/js?librari
                     <?php if($sitereview->newlabel):?>
                       <i class="sr_list_new_label" title="<?php echo $this->translate('New'); ?>"></i>
                     <?php endif;?>
-                  <a href="<?php echo $sitereview->getHref(array('profile_link' => 1)) ?>" class ="sr_thumb">
-                    <?php
-                    $url = $sitereview->getPhotoUrl($isLarge ?'thumb.main' :'thumb.normal');
+                    <?php if(in_array('image', $this->statistics)): ?>
+                      <a href="<?php echo $sitereview->getHref(array('profile_link' => 1)) ?>" class ="sr_thumb">
+                        <?php
+                        $url = $sitereview->getPhotoUrl($isLarge ?'thumb.main' :'thumb.normal');
 
 
-                    if (empty($url)):  $url = $this->layout()->staticBaseUrl . 'application/modules/Sitereview/externals/images/nophoto_listing_thumb_normal.png';
-                    endif;
-                    ?>
-                    <?php echo $this->itemBackgroundPhoto($sitereview,null,null,array('tag' => 'span',)); ?>
-                  </a>
+                        if (empty($url)):  $url = $this->layout()->staticBaseUrl . 'application/modules/Sitereview/externals/images/nophoto_listing_thumb_normal.png';
+                        endif;
+                        ?>
+                        <?php echo $this->itemBackgroundPhoto($sitereview,null,null,array('tag' => 'span',)); ?>
+                      </a>
+                    <?php endif; ?>
                   <div class="sr_title">
                     <?php echo $this->htmlLink($sitereview->getHref(), Engine_Api::_()->seaocore()->seaocoreTruncateText($sitereview->getTitle(), $this->title_truncationGrid),array('title'=>$sitereview->getTitle())) ?>
                   </div>
@@ -845,22 +877,24 @@ $this->headScript()->appendFile("https://maps.googleapis.com/maps/api/js?librari
                         $this->subject = $sitereview;
                         include APPLICATION_PATH . '/application/modules/Seaocore/views/scripts/_shareReviewButtons.tpl';
                     ?>
-                  <div class="sr_ratingbar seaocore_txt_light">
-                    <?php if(!empty($this->statistics) && in_array('reviewCount', $this->statistics)): ?>
-                      <span class="fright">
-                       <?php echo $this->htmlLink($sitereview->getHref(), $this->partial(
-                      '_showReview.tpl', 'sitereview', array('sitereview'=>$sitereview, 'reviewTitlePlular' => $this->reviewTitlePlular, 'reviewTitleSingular' => $this->reviewTitleSingular)), array('title' => $this->partial(
-                      '_showReview.tpl', 'sitereview', array('sitereview'=>$sitereview, 'reviewTitlePlular' => $this->reviewTitlePlular, 'reviewTitleSingular' => $this->reviewTitleSingular)))); ?>
-                      </span>
-                    <?php endif; ?> 
-                    <?php if ($ratingValue == 'rating_both'): ?>
-                      <?php echo $this->showRatingStar($sitereview->rating_editor, 'editor', $ratingShow, $sitereview->listingtype_id); ?>
-                      <br/>
-                      <?php echo $this->showRatingStar($sitereview->rating_users, 'user', $ratingShow, $sitereview->listingtype_id); ?>
-                    <?php else: ?>
-                      <?php echo $this->showRatingStar($sitereview->$ratingValue, $ratingType, $ratingShow, $sitereview->listingtype_id); ?>
-                    <?php endif; ?> 
-                  </div>
+                    <?php if(!empty($this->ratingType)): ?>
+                      <div class="sr_ratingbar seaocore_txt_light">
+                        <?php if(!empty($this->statistics) && in_array('reviewCount', $this->statistics)): ?>
+                          <span class="fright">
+                           <?php echo $this->htmlLink($sitereview->getHref(), $this->partial(
+                          '_showReview.tpl', 'sitereview', array('sitereview'=>$sitereview, 'reviewTitlePlular' => $this->reviewTitlePlular, 'reviewTitleSingular' => $this->reviewTitleSingular)), array('title' => $this->partial(
+                          '_showReview.tpl', 'sitereview', array('sitereview'=>$sitereview, 'reviewTitlePlular' => $this->reviewTitlePlular, 'reviewTitleSingular' => $this->reviewTitleSingular)))); ?>
+                          </span>
+                        <?php endif; ?> 
+                        <?php if ($ratingValue == 'rating_both'): ?>
+                          <?php echo $this->showRatingStar($sitereview->rating_editor, 'editor', $ratingShow, $sitereview->listingtype_id); ?>
+                          <br/>
+                          <?php echo $this->showRatingStar($sitereview->rating_users, 'user', $ratingShow, $sitereview->listingtype_id); ?>
+                        <?php else: ?>
+                          <?php echo $this->showRatingStar($sitereview->$ratingValue, $ratingType, $ratingShow, $sitereview->listingtype_id); ?>
+                        <?php endif; ?> 
+                      </div>
+                    <?php endif; ?>
                   <div class="sr_grid_view_list_btm b_medium">
 
                     <?php echo $this->compareButton($sitereview); ?>
@@ -919,7 +953,7 @@ $this->headScript()->appendFile("https://maps.googleapis.com/maps/api/js?librari
               <?php if (Engine_Api::_()->sitereview()->hasPackageEnable()):?>
                 <?php echo $this->translate('BE_THE_FIRST_'.strtoupper($this->listingtypeArray->title_singular).'_TO %1$spost%2$s one!', '<a href="' . $this->url(array('action' => 'index'), "sitereview_package_listtype_$this->listingtype_id") . '">', '</a>'); ?>
               <?php else:?>
-								<?php echo $this->translate('BE_THE_FIRST_'.strtoupper($this->listingtypeArray->title_singular).'_TO %1$spost%2$s one!', '<a href="' . $this->url(array('action' => 'create'), "sitereview_general_listtype_$this->listingtype_id") . '">', '</a>'); ?>
+                <?php echo $this->translate('BE_THE_FIRST_'.strtoupper($this->listingtypeArray->title_singular).'_TO %1$spost%2$s one!', '<a href="' . $this->url(array('action' => 'create'), "sitereview_general_listtype_$this->listingtype_id") . '">', '</a>'); ?>
               <?php endif;?>
             <?php endif; ?>
         </span> 
@@ -1218,15 +1252,15 @@ $this->headScript()->appendFile("https://maps.googleapis.com/maps/api/js?librari
       function doOnScrollLoadPage()
       {
         if($('scroll_bar_height')) {
-					if (typeof($('scroll_bar_height').offsetParent) != 'undefined') {
-						var elementPostionY = $('scroll_bar_height').offsetTop;
-					} else {
-						var elementPostionY = $('scroll_bar_height').y;
-					}
-					if (elementPostionY <= window.getScrollTop() + (window.getSize().y - 40)) {
-						if ((totalCount != currentPageNumber) && (totalCount != 0))
-							viewMoreListings();
-					}
+          if (typeof($('scroll_bar_height').offsetParent) != 'undefined') {
+            var elementPostionY = $('scroll_bar_height').offsetTop;
+          } else {
+            var elementPostionY = $('scroll_bar_height').y;
+          }
+          if (elementPostionY <= window.getScrollTop() + (window.getSize().y - 40)) {
+            if ((totalCount != currentPageNumber) && (totalCount != 0))
+              viewMoreListings();
+          }
         }
       }
       
@@ -1360,11 +1394,11 @@ $this->headScript()->appendFile("https://maps.googleapis.com/maps/api/js?librari
 <?php endif; ?> 
   
 <script type="text/javascript">
-		
+    
     en4.core.runonce.add(function () {
-		
+    
        showReviewShareLinks();
-		
+    
     });  
-		
+    
 </script>

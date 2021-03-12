@@ -43,6 +43,10 @@ class Sitereview_Widget_RecentlyViewedSitereviewController extends Seaocore_Cont
       }
     }
 
+    //SEND REVIEW TITLE TO TPL
+    $this->view->reviewTitleSingular = $listingtypeArray->review_title_singular ? $listingtypeArray->review_title_singular : 'Review';
+    $this->view->reviewTitlePlular = $listingtypeArray->review_title_plural ? $listingtypeArray->review_title_plural : 'Reviews';
+
     $this->view->count = $params['limit'] = $this->_getParam('count', 3);
     $fea_spo = $this->_getParam('fea_spo', '');
     if ($fea_spo == 'featured') {

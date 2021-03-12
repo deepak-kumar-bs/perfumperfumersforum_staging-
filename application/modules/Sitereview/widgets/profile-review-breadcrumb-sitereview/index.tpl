@@ -32,7 +32,7 @@
 	<?php echo '<span class="brd-sep seaocore_txt_light">&raquo;</span>'; ?>
 	<?php echo $this->htmlLink($this->sitereview->getHref(), $this->sitereview->getTitle()) ?>
 	<?php echo '<span class="brd-sep seaocore_txt_light">&raquo;</span>';?>
-	<a href='<?php echo $this->url(array('listing_id' => $this->sitereview->listing_id, 'slug' => $this->sitereview->getSlug(), 'tab' => $this->tab_id), 'sitereview_entry_view_listtype_'.$this->listingtype_id, true) ?>'><?php echo $this->translate('Reviews'); ?></a>
+	<a href='<?php echo $this->url(array('listing_id' => $this->sitereview->listing_id, 'slug' => $this->sitereview->getSlug(), 'tab' => $this->tab_id), 'sitereview_entry_view_listtype_'.$this->listingtype_id, true) ?>'><?php echo $this->translate("$this->reviewTitleSingular"); ?></a>
 	<?php echo '<span class="brd-sep seaocore_txt_light">&raquo;</span>';?>
 	<?php echo $this->reviews->getTitle(); ?>
 </div>

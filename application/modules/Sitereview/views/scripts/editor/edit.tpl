@@ -50,16 +50,16 @@
   </div>
 	<?php echo $this->form->setAttrib('class', 'sr_review_form global_form')->render($this); ?>
 
-	<div id="addPageLink" class="form-wrapper">
+	<!-- <div id="addPageLink" class="form-wrapper">
 		<div class="form-label">&nbsp;</div>
 		<div class="form-element">
 			<a href="javascript: void(0);" onclick="return addAnotherPage('');"><b><?php echo $this->translate("Add another page") ?></b>      </a>
 		</div>
-	</div>
+	</div> -->
 
 </div>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 
 	var optionParent = $('body').getParent().getParent();
 	$('addPageLink').inject(optionParent, 'before');
@@ -117,13 +117,35 @@
 
 	function addTinyMCE(element_id) {
 		<?php
+  	// echo $this->tinyMCESEAO()->render(array('element_id'=>'element_id',
+    //  'language' => $this->language,
+    //  'directionality' => $this->directionality,
+    //  'upload_url' => $this->upload_url));
+  ?>
+	}
+
+</script> -->
+
+<script type="text/javascript">
+	addTinyMCE('body');
+
+	function addTinyMCE(element_id) {
+      
+  <?php
   echo $this->tinyMCESEAO()->render(array('element_id'=>'element_id',
       'language' => $this->language,
       'directionality' => $this->directionality,
       'upload_url' => $this->upload_url));
   ?>
+		
 	}
 
 </script>
 
 <?php include APPLICATION_PATH . '/application/modules/Sitereview/views/scripts/editorReviewElements.tpl'; ?>
+
+<script type="text/javascript">
+	if($('pros-wrapper')){
+		$('pros-wrapper').style.display = 'none';
+	}
+</script>

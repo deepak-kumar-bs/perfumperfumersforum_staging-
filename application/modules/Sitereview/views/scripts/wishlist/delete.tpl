@@ -13,9 +13,9 @@
 
 <form method="post" class="global_form_popup">
   <div>
-    <h3><?php echo $this->translate('Delete Wishlist?'); ?></h3>
+    <h3><?php echo $this->translate('Delete List?'); ?></h3>
     <p>
-      <?php echo $this->translate('Are you sure that you want to delete this Wishlist? It will not be recoverable after being deleted.'); ?>
+      <?php echo $this->translate('Are you sure that you want to delete this list? It will not be recoverable after being deleted.'); ?>
     </p>
     <br />
     <p>

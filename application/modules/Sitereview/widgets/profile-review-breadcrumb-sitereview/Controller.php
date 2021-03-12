@@ -27,6 +27,10 @@ class Sitereview_Widget_ProfileReviewBreadcrumbSitereviewController extends Seao
     $this->view->listingtype_id = $listingtype_id = $sitereview->listingtype_id;
     Engine_Api::_()->sitereview()->setListingTypeInRegistry($sitereview->listingtype_id);
 $this->view->listingType = $listingType = Zend_Registry::get('listingtypeArray' . $sitereview->listingtype_id);
+
+  //SEND REVIEW TITLE TO TPL
+    $this->view->reviewTitleSingular = $listingType->review_title_singular ? $listingType->review_title_singular : 'Review';
+    $this->view->reviewTitlePlular = $listingType->review_title_plural ? $listingType->review_title_plural : 'Reviews';
     //GET TAB ID
     $this->view->tab_id = Engine_Api::_()->sitereview()->existWidget('sitereview_reviews', 0, $listingtype_id);
 
