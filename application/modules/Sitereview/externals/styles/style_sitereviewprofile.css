@@ -925,7 +925,7 @@ a.price_see_it_button{
 }
 .sr_pro_specs ul > li > span + span{
 	font-weight:bold;
-	width:60%;
+	width:100%;
 	margin-left:10px;
 }
 [dir="rtl"] .sr_pro_specs ul > li > span + span{
@@ -1085,6 +1085,7 @@ a.price_see_it_button{
 }
 #editorReviewContent{
 	margin-bottom:15px;
+	position: relative;
 }
 /*User Reviews filter tabs*/
 .sr_profile_userreview_filters{
@@ -1570,4 +1571,16 @@ ul.sr_profile_likes_widget .likes_member_sitereview .likes_member_name{
 @media only screen and (max-width:320px){
    /* Product profile page slideshow inside photo container */
    .sr_prpfile_photos_strip{width:84%;}	
+}
+
+#review_content {
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.editor_review_heading {
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #ddd;
 }

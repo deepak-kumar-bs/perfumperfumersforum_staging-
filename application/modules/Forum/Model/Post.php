@@ -312,4 +312,9 @@ class Forum_Model_Post extends Core_Model_Item_Abstract
     }
   }
 
+  public function tags()
+  {
+    return new Engine_ProxyObject($this, Engine_Api::_()->getDbtable('tags', 'core'));
+  }
+
 }

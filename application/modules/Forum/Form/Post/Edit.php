@@ -49,6 +49,16 @@ class Forum_Form_Post_Edit extends Engine_Form
       $filter->setAllowedTags($allowedTags);
     }
 
+    $this->addElement('Text', 'tags', array(
+      'label'=>'Tags (Keywords)',
+      'autocomplete' => 'off',
+      'description' => 'Separate tags with commas.',
+      'filters' => array(
+        'StripTags',
+        new Engine_Filter_Censor(),
+      ),
+    ));
+
     if( $allowHtml || $allowBbcode ) {
       $uploadUrl = "";
       if( Engine_Api::_()->authorization()->isAllowed('album', $viewer, 'create') ) {

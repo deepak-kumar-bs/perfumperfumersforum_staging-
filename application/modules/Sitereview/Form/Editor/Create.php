@@ -31,9 +31,12 @@ class Sitereview_Form_Editor_Create extends Engine_Form {
     $sitereview = Engine_Api::_()->getItem('sitereview_listing', $listing_id);
 
     $sitereview_title = "<b>" . $sitereview->title . "</b>";
+
+    $listingtypeArray = Engine_Api::_()->getItem('sitereview_listingtype', $sitereview->listingtype_id);
+    $reviewTitleSingular = $listingtypeArray->review_title_singular ? $listingtypeArray->review_title_singular : 'Review';
     $this->loadDefaultDecorators();
 
-    $this->setTitle('Write an Editor Review')
+    $this->setTitle("Write an Editor $reviewTitleSingular")
             ->setDescription(sprintf(Zend_Registry::get('Zend_Translate')->_("Give your ratings and opinion for %s below:"), $sitereview_title))
             ->setAttrib('name', 'sitereview_create')
             ->setAttrib('id', 'sitereview_create')

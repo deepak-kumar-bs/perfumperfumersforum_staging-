@@ -350,3 +350,11 @@ $this->headScript()->appendFile("https://maps.googleapis.com/maps/api/js?librari
   }
   
 </script>
+
+<script type="text/javascript">
+  en4.core.runonce.add(function()
+  {
+    document.getElementById("1_4_34_field_34").rows = "1";
+    document.getElementById("1_4_34_field_34").cols = "35";
+  });
+</script>

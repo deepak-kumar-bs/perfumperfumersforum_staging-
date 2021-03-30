@@ -116,4 +116,9 @@ class Sitereview_Model_Topic extends Core_Model_Item_Abstract {
     return new Engine_ProxyObject($this, Engine_Api::_()->getDbtable('likes', 'core'));
   }
 
+  public function tags()
+  {
+    return new Engine_ProxyObject($this, Engine_Api::_()->getDbtable('tags', 'core'));
+  }
+
 }

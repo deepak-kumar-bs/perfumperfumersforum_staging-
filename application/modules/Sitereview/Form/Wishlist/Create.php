@@ -30,6 +30,17 @@ class Sitereview_Form_Wishlist_Create extends Engine_Form {
         )
     ));
 
+    $this->addElement('Text', 'tags', array(
+      'label'=>'Tags (Keywords)',
+      'autocomplete' => 'off',
+      'description' => 'Separate tags with commas.',
+      'filters' => array(
+        'StripTags',
+        new Engine_Filter_Censor(),
+      ),
+    ));    
+      $this->tags->getDecorator("Description")->setOption("placement", "append");
+
     $this->addElement('Textarea', 'body', array(
         'label' => 'List Note',
         'maxlength' => '512',

@@ -103,7 +103,7 @@ class Fields_View_Helper_FieldValueLoop extends Fields_View_Helper_FieldAbstract
           }
           $notice = $isHidden && $showHidden
                   ? sprintf('<div class="tip"><span>%s</span></div>',
-                      $this->view->translate('This field is hidden and only visible to you and admins:'))
+                      $this->view->translate('This field is hidden and only visible to you:'))
                   : '';
           $alreadyId[] = $field->field_id;
           if( !$isHidden || $showHidden ) {

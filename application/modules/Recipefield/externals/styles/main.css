@@ -7,14 +7,30 @@
 	bottom: 0;
 }
 #sitereviews_create .form-recipe-wrapper .form-element {
-	margin-bottom: 30px !important;
-    max-width: 100%;
-    min-width: 100%;
+    float: none;
 }
 .form-recipe-wrapper .form-element .name, .form-recipe-wrapper .form-element .amount, .form-recipe-wrapper .form-element .dilution {
 	display: inline-block;
 	width: 100%;
 	max-width: 30%;
+}
+.seaocore_searchform_criteria ul > li > span, .seaocore_searchformcriteria #filter_form label, .seaocore_searchform_criteria ul > .form-wrapper span label {
+	font-weight: 600;
+}
+.seaocore_searchform_criteria ul > li, .seaocore_searchform_criteria .form-wrapper {
+	vertical-align: top;
+}
+.seaocore_searchform_criteria ul > li, .seaocore_searchform_criteria .form-wrapper
+.seaocore_searchform_criteria ul > li:last-child, .seaocore_searchform_criteria .form-wrapper:last-child {
+	vertical-align: bottom;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+.seaocore_searchform_criteria ul > li .form-options-wrapper li {
+	min-width: 120px;
+}
+.seaocore_searchform_criteria ul > li button, .seaocore_searchform_criteria .form-wrapper button {
+	padding: 12px 16px;
 }
 .form-recipe-wrapper .form-element .name input, .form-recipe-wrapper .form-element .amount input, .form-recipe-wrapper .form-element .dilution input {
 	padding: 10px;
@@ -36,37 +52,57 @@
 .layout_sitereview_specification_sitereview ul li {
 	display: flex;
         width: 100%;
-        box-shadow: rgba(0, 0, 0, 0.1) 0 5px 5px;
         box-sizing: border-box;
         border: 0 !important;
 }
 .layout_sitereview_specification_sitereview ul li span {
-	display: inline-block;
-	width: 100% !important;
-	max-width: 25%;
-	font-weight: 700;
-	padding: 5px 15px;
-	box-sizing: border-box;
+	font-weight: 600;
 }
 .layout_sitereview_specification_sitereview ul li span + span {
-	width: 100% !important;
-	max-width: 75%;
-	padding: 0;
-        border-left: 1px dashed #999;
+	font-weight: 100 !important;
+}
+.layout_sitereview_specification_sitereview .profile_fields ul li {
+	justify-content: space-between;
+	align-items: center;
+}
+.layout_sitereview_specification_sitereview .profile_fields ul li .tip + span {
+	margin: 0 15px;
 }
 .layout_sitereview_specification_sitereview ul li span + span table {
-       margin-left: 25px;
        width: 100%;
 }
+.layout_sitereview_specification_sitereview ul li span + span .recipe_data .recipe_elements {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
 .layout_sitereview_specification_sitereview ul li span + span .recipe_data .recipe_elements th {
-	padding: 5px 15px;
+	padding: 5px 10px;
 	box-sizing: border-box;
-	text-align: left;
+	text-align: right;
+	width: 100px;
 }
 .layout_sitereview_specification_sitereview ul li span + span .recipe_data .recipe_elements td {
 	font-weight: 100;
-	padding: 5px 15px;
+	padding: 5px 10px;
 	box-sizing: border-box;
+	text-align: right;
+	width: 100px;
+}
+.layout_sitereview_specification_sitereview ul li span + span .recipe_data .recipe_elements td, .layout_sitereview_specification_sitereview ul li span + span .recipe_data .recipe_elements th {
+	line-height: 10px;
+	width: 100%;
+}
+.layout_sitereview_specification_sitereview ul li span + span .recipe_data .recipe_elements td:nth-child(2) {
+	width: 100%;
+    text-align: justify;
+    direction: ltr;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+}
+.layout_sitereview_specification_sitereview ul li span + span .recipe_data .recipe_elements th:nth-child(2) {
 	text-align: left;
 }
 

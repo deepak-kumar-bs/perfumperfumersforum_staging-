@@ -55,6 +55,16 @@ class Authorization_Form_Admin_Level_Edit extends Authorization_Form_Admin_Level
         ));
       }
 
+      $this->addElement('Radio', "editor_review", array(
+          'label' => 'Allow Editor Reviews',
+          'description' => 'Do you want to let editors write reviews for listings.(Note: This setting only work for MLT plugin.)',
+          'multiOptions' => array(
+              1 => 'Yes, allow editors to write reviews.',
+              0 => 'No, do not allow editors to write reviews.',
+          ),
+          'value' => 0,
+      ));
+
       // Element: style
       $this->addElement('Radio', 'style', array(
         'label' => 'Allow Profile Style',

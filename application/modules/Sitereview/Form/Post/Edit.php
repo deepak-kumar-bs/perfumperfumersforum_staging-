@@ -16,6 +16,16 @@ class Sitereview_Form_Post_Edit extends Engine_Form {
     
     $this->setTitle('Edit Post');
 
+    $this->addElement('Text', 'tags', array(
+      'label'=>'Tags (Keywords)',
+      'autocomplete' => 'off',
+      'description' => 'Separate tags with commas.',
+      'filters' => array(
+        'StripTags',
+        new Engine_Filter_Censor(),
+      ),
+    ));
+
     if (!Engine_Api::_()->getApi('settings', 'core')->getSetting('sitereview.tinymceditor', 1)) {
       $this->addElement('Textarea', 'body', array(
           //'label' => 'Body',

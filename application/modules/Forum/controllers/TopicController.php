@@ -531,6 +531,23 @@ class Forum_TopicController extends Core_Controller_Action_Standard
         ));
       }
 
+      //ADDING TAGS
+      $keywords = '';
+      if (isset($values['tags']) && !empty($values['tags'])) {
+          $tags = preg_split('/[,]+/', $values['tags']);
+          $tags = array_filter(array_map("trim", $tags));
+          $post->tags()->addTagMaps($viewer, $tags);
+
+          foreach ($tags as $tag) {
+              $keywords .= " $tag";
+          }
+      }
+
+      //UPDATE KEYWORDS IN SEARCH TABLE
+      if (!empty($keywords)) {
+          Engine_Api::_()->getDbTable('search', 'core')->update(array('keywords' => $keywords), array('type = ?' => 'forum_post', 'id = ?' => $post->post_id));
+      }
+
       // Activity
       $action = $activityApi->addActivity($viewer, $topic, 'forum_topic_reply');
       if( $action ) {

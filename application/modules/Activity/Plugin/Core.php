@@ -361,6 +361,19 @@ class Activity_Plugin_Core
         'identity' => 0
       ));
     }
+
+    if( $content == 'everyone' && $object->getType() == 'sitereview_topic') {
+      $event->addResponse(array(
+        'type' => 'everyone',
+        'identity' => 0
+      ));
+    }
+    if( $content == 'everyone' && $object->getType() == 'sitereview_post') {
+      $event->addResponse(array(
+        'type' => 'everyone',
+        'identity' => 0
+      ));
+    }
   }
 
   public function onActivityCommentCreateAfter($event)

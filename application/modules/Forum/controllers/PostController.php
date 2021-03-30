@@ -112,7 +112,18 @@ class Forum_PostController extends Core_Controller_Action_Standard
     }
     
     $form->body->setValue($body);
-    $form->photo->setValue($post->file_id);   
+    $form->photo->setValue($post->file_id);  
+
+    $tagStr = '';
+      foreach( $post->tags()->getTagMaps() as $tagMap ) {
+        $tag = $tagMap->getTag();
+        if( !isset($tag->text) ) continue;
+        if( '' !== $tagStr ) $tagStr .= ', ';
+        $tagStr .= $tag->text;
+      }
+      $form->populate(array(
+        'tags' => $tagStr,
+      )); 
 
     if( !$this->getRequest()->isPost() ) {
       return;
@@ -146,6 +157,22 @@ class Forum_PostController extends Core_Controller_Action_Standard
 
       $post->save();
 
+      //ADDING TAGS
+      $keywords = '';
+      if (isset($values['tags']) && !empty($values['tags'])) {
+          $tags = preg_split('/[,]+/', $values['tags']);
+          $tags = array_filter(array_map("trim", $tags));
+          $post->tags()->setTagMaps($viewer, $tags);
+
+          foreach ($tags as $tag) {
+              $keywords .= " $tag";
+          }
+      }
+
+      //UPDATE KEYWORDS IN SEARCH TABLE
+      if (!empty($keywords)) {
+          Engine_Api::_()->getDbTable('search', 'core')->update(array('keywords' => $keywords), array('type = ?' => 'forum_post', 'id = ?' => $post->post_id));
+      }
       $db->commit();
 
       return $this->_helper->redirector->gotoRoute(array('post_id'=>$post->getIdentity(), 'topic_id' => $post->getParent()->getIdentity()), 'forum_topic', true);

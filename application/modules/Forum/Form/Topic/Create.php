@@ -37,6 +37,17 @@ class Forum_Form_Topic_Create extends Engine_Form
         array('StringLength', true, array(1, 64)),
       ),
     ));
+
+    $this->addElement('Text', 'tags', array(
+      'label'=>'Tags (Keywords)',
+      'autocomplete' => 'off',
+      'description' => 'Separate tags with commas.',
+      'filters' => array(
+        'StripTags',
+        new Engine_Filter_Censor(),
+      ),
+    ));
+    
     $viewer = Engine_Api::_()->user()->getViewer();
 
     $allowHtml = (bool) $settings->getSetting('forum_html', 0);

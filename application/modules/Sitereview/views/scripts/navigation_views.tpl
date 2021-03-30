@@ -32,8 +32,18 @@ if ($showCategriesMenu): ?>
   <?php echo $this->content()->renderWidget("sitereview.listtypes-categories", array('beforeNavigation'=>1, 'listingtype_id' => $listingtype_id)) ?>
 <?php endif; ?>
 
+<?php 
+$reviewTitle = 'Reviews';
+if($this->listingtype_id){
+  $listingType = Engine_Api::_()->getItem('sitereview_listingtype', $this->listingtype_id);
+  if(!empty($listingType->review_title_singular)){
+    $reviewTitle = $listingType->review_title_singular;
+  }
+}
+?>
+
 <div class="headline">
-  <h2 > <?php echo $this->title ? $this->translate($this->title) : $this->translate("Reviews"); ?> </h2>
+  <h2 > <?php echo $this->title ? $this->translate($this->title) : $this->translate($reviewTitle); ?> </h2>
   <div class="tabs">
     <?php $navigation_common = Engine_Api::_()->getApi('menus', 'core')->getNavigation("sitereview_main_common"); ?>
     <?php

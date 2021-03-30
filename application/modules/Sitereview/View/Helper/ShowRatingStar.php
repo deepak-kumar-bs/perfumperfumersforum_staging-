@@ -26,6 +26,10 @@ class Sitereview_View_Helper_ShowRatingStar extends Zend_View_Helper_Abstract {
     Engine_Api::_()->sitereview()->setListingTypeInRegistry($listingtype_id);
     $listingtypeArray = Zend_Registry::get('listingtypeArray' . $listingtype_id);
 
+    if ($listingtypeArray->allow_review == 2) {
+      return;
+    }
+
     /*
      * $listingtypeArray->reviews = 3 (Both rating allowed)
      * $listingtypeArray->reviews = 2 (Only user rating allowed)

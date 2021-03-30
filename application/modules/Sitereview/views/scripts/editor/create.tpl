@@ -44,7 +44,7 @@
     <h2>	
       <?php echo $this->sitereview->__toString() ?>	
       <?php echo $this->translate('&raquo; ');?>
-      <?php echo $this->translate('Editor Review') ?>
+      <?php echo $this->translate('Editor '.$reviewTitle) ?>
     </h2>
   </div>
 	<?php echo $this->form->setAttrib('class', 'sr_review_form global_form')->render($this); ?>

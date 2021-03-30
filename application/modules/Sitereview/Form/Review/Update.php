@@ -44,9 +44,11 @@ class Sitereview_Form_Review_Update extends Engine_Form {
     $hasPosted = $reviewTable->canPostReview($params);
 
     $review = Engine_Api::_()->getItem('sitereview_review', $hasPosted);
+    $listingtypeArray = Engine_Api::_()->getItem('sitereview_listingtype', $getItemListing->listingtype_id);
+    $reviewTitleSingular = $listingtypeArray->review_title_singular ? $listingtypeArray->review_title_singular : 'Review';
 
     //IF NOT HAS POSTED THEN THEN SET FORM
-    $this->setTitle('Update your Review')
+    $this->setTitle("Update your $reviewTitleSingular")
             ->setDescription(sprintf(Zend_Registry::get('Zend_Translate')->_("You can update your review for %s below:"), $sitereview_title))
             ->setAttrib('name', 'sitereview_update')
             ->setAttrib('id', 'sitereview_update')

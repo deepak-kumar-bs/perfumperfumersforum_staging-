@@ -41,6 +41,15 @@ class Core_Form_Search extends Engine_Form
       ),
     ));
 
+    $this->addElement('Select', 'order', array(
+      'multiOptions' => array(
+        '' => 'Most Recent',
+      ),
+      'decorators' => array(
+        'ViewHelper',
+      ),
+    ));
+
     $this->addElement('Button', 'submit', array(
       'label' => 'Search',
       'type' => 'submit',

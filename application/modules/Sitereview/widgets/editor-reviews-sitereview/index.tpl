@@ -98,7 +98,7 @@ endif;
             <?php endif; ?>
           </div>
         
-          <div class="sr_profile_review_user fright">
+          <div class="sr_profile_review_right ">
             <?php if($this->canshowratings): ?>
               <div class="sr_profile_review_title t_right">
                 <?php echo $this->translate("Average User Rating"); ?>
@@ -183,40 +183,40 @@ endif;
                   <?php endif;?>
                   
 
-                  <div class="">
-                <?php if ($this->min_price < 0): ?>
-                  <div class="sr_profile_review_title">
-                    <?php // echo $this->translate("Review Date:"); ?>
-                  </div>
-                  <div>
-                    <?php echo $this->timestamp(strtotime($review->creation_date)) ?>
-                  </div>
-                <?php else: ?>
-                  <div>
-                    <?php if ($this->min_price == $this->max_price && $this->min_price > 0): ?>
-                      <span style='font-size:24px;'>
-                        <?php echo Engine_Api::_()->sitereview()->getPriceWithCurrency($this->min_price); ?>
-                      </span>
-                    <?php elseif($this->min_price > 0 && $this->max_price > 0): ?>
+                  <div class=" review_date_owner_info">
+                    <?php if ($this->min_price < 0): ?>
+                      <!-- <div class="sr_profile_review_title">
+                        <?php // echo $this->translate("Review Date:"); ?>
+                      </div> -->
+                      <div>
+                        <?php echo $this->timestamp(strtotime($review->creation_date)) ?>
+                      </div>
+                    <?php else: ?>
+                      <div>
+                        <?php if ($this->min_price == $this->max_price && $this->min_price > 0): ?>
+                          <span style='font-size:24px;'>
+                            <?php echo Engine_Api::_()->sitereview()->getPriceWithCurrency($this->min_price); ?>
+                          </span>
+                        <?php elseif($this->min_price > 0 && $this->max_price > 0): ?>
 
-                      <?php echo $this->translate("%s to %1s", "<span style='font-size:24px;'>" . Engine_Api::_()->sitereview()->getPriceWithCurrency($this->min_price). "</span>", Engine_Api::_()->sitereview()->getPriceWithCurrency($this->max_price)); ?>
+                          <?php echo $this->translate("%s to %1s", "<span style='font-size:24px;'>" . Engine_Api::_()->sitereview()->getPriceWithCurrency($this->min_price). "</span>", Engine_Api::_()->sitereview()->getPriceWithCurrency($this->max_price)); ?>
+                        <?php endif; ?>
+                        <div>
+                          <?php // echo $this->translate("Review Date:"); ?>
+                          <?php echo $this->timestamp(strtotime($review->creation_date)); ?>
+                          <?php  echo $this->translate("By:"); ?>
+                      <?php echo $review->getOwner(); ?>
+                        </div>
+                      </div>
                     <?php endif; ?>
-                    <div>
-                      <?php // echo $this->translate("Review Date:"); ?>
-                      <?php echo $this->timestamp(strtotime($review->creation_date)); ?>
-                    </div>
                   </div>
-                <?php endif; ?>
-              </div>
-                  <?php  echo $this->translate("By:"); ?>
-                  <?php echo $review->getOwner(); ?>
+                  
                 </div>
-                <div class="">
                   <?php if($this->canshowratings): ?>
                       
-                    <div class="sr_profile_review_title">
+                    <!-- <div class="sr_profile_review_title">
                       <?php // echo $this->translate("Editor Rating"); ?>
-                    </div>   
+                    </div>  -->  
                     <div class="sr_profile_review_stars">
                       <?php $ratingData = Engine_Api::_()->getDbtable('ratings', 'sitereview')->profileRatingbyCategory($review->review_id); ?>
                       <?php foreach ($ratingData as $reviewCat): ?>
@@ -271,7 +271,6 @@ endif;
                     <?php endif; ?>
                     <!--Rating Breakdown Hover Box Ends-->
                   <?php endif; ?>
-                </div>
               
               
 
@@ -356,10 +355,12 @@ endif;
             </div>
           <?php endif; ?> -->
 
-          <dir class="editor_review_body">
+          <div class="editor_review_body">
             <?php // echo $this->body_pages; ?>
             <?php echo $review->body; ?>
-          </dir>
+          </div>
+
+        </div>
 
       <?PHP endforeach; ?>
 

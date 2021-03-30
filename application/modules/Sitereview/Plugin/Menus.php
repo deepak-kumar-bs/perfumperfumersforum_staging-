@@ -804,9 +804,14 @@ class Sitereview_Plugin_Menus {
         $viewer = Engine_Api::_()->user()->getViewer();
         $level_id = $viewer->level_id;
         $autorizationApi = Engine_Api::_()->authorization();
-        if(!$autorizationApi->getPermission($level_id, 'sitereview_listing', "editor_review_create_listtype_$listingtype_id") ) {
+
+        if(!$autorizationApi->getPermission($level_id, 'user', "editor_review") ) {
           return false;
         }
+        
+        // if(!$autorizationApi->getPermission($level_id, 'sitereview_listing', "editor_review_create_listtype_$listingtype_id") ) {
+        //   return false;
+        // }
 
         //CHECK EDITOR REVIEW IS ALLOWED OR NOT
         $allow_editor_review = Engine_Api::_()->getDbTable('listingtypes', 'sitereview')->getListingTypeColumn($listingtype_id, 'reviews');
@@ -815,10 +820,10 @@ class Sitereview_Plugin_Menus {
         }
 
         //SHOW THIS LINK ONLY EDITOR FOR THIS LISTING TYPE
-        $isEditor = Engine_Api::_()->getDbTable('editors', 'sitereview')->isEditor($viewer_id, $listingtype_id);
-        if (empty($isEditor)) {
-            return false;
-        }
+        // $isEditor = Engine_Api::_()->getDbTable('editors', 'sitereview')->isEditor($viewer_id, $listingtype_id);
+        // if (empty($isEditor)) {
+        //     return false;
+        // }
 
         // //EDITOR REVIEW HAS BEEN POSTED OR NOT
         // $params = array();

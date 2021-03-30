@@ -271,4 +271,9 @@ class Forum_Model_Topic extends Core_Model_Item_Abstract
   {
     return $this->getParent();
   }
+
+  public function tags()
+  {
+    return new Engine_ProxyObject($this, Engine_Api::_()->getDbtable('tags', 'core'));
+  }
 }

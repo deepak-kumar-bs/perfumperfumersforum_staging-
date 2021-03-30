@@ -317,7 +317,7 @@ $this->headLink()
             <?php if ($this->reviewOption == 'fullreviews'): ?>
               <?php if ($review->body): ?>
                 <div class='sr_reviews_listing_proscons'>
-                  <b><?php //echo $this->translate("Summary:") ?></b>
+                  <!-- <b><?php //echo $this->translate("Summary:") ?></b> -->
                   <?php
                   if (strlen($review->body) > 300) {
                     $read_complete_review = $this->htmlLink($review->getHref(), $this->translate('Read complete review'), array('title' => ''));
@@ -328,7 +328,7 @@ $this->headLink()
                     $item_body = $review->body;
                   }
                   ?>
-                  <?php echo $item_body; ?>
+                  <?php echo nl2br($item_body); ?>
                 </div>
               <?php endif; ?>
               <?php $this->reviewDescriptions = $reviewDescriptionsTable->getReviewDescriptions($review->review_id); ?>
@@ -418,7 +418,7 @@ $this->headLink()
     <?php $allow_review =  $this->listingtypeArray->allow_review; ?>
 		<div id="sr_user_review_form_wapper">
 			<?php if (empty($this->isajax) && $this->hasPosted && $this->can_update): ?>
-        <div id="edit_review_form_toggle" class="edit_review" onclick="showHideEditReviewForm();">Edit Your Review</div>
+        <button id="edit_review_form_toggle" class="edit_review sr_review_button" onclick="showHideEditReviewForm();"><?php echo $this->translate("Update your $this->reviewTitleSingular") ?></button>
 				<?php echo $this->update_form->setAttrib('class', 'sr_review_form global_form')->render($this) ?>
 				<?php include_once APPLICATION_PATH . '/application/modules/Sitereview/views/scripts/_formUpdateReview.tpl'; ?>
 			<?php endif; ?>

@@ -625,6 +625,16 @@ class Activity_IndexController extends Core_Controller_Action_Standard
                 ));
             }
 
+
+            // $activityApi = Engine_Api::_()->getDbtable('actions', 'activity');
+
+            // //ACTIVITY FEED
+            // $activityAction = $activityApi->addActivity($viewer, $action, 'comment_activity_action');
+
+            // if ($activityAction != null) {
+            //     $activityApi->attachActivity($action, $commentRow);
+            // }
+
             // Add a notification for all users that commented or like except the viewer and poster
             // @todo we should probably limit this
             foreach ($action->comments()->getAllCommentsUsers() as $notifyUser) {

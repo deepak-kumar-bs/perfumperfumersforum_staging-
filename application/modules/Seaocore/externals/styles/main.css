@@ -4031,3 +4031,10 @@ button.seaocore_event_calendar{
 .seaocore_login_popup_wrapper ._form_wapper ._navigation._footer_bottom li{
 		color: $theme_font_color_light;
 }
+
+.hasgtag_custom_form ul.form-options-wrapper li {
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+    max-width: 24%;
+}

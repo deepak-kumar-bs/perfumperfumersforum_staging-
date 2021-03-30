@@ -169,9 +169,12 @@ class Sitereview_Widget_PfBrowseListingsSitereviewController extends Seaocore_Co
 	    	$listingtypetable = Engine_Api::_()->getDbTable('listingtypes', 'sitereview');
 	      $review_title_singular = $listingtypetable->getListingTypeColumn($listingtype_id, 'review_title_singular');
 	      $review_title_plural = $listingtypetable->getListingTypeColumn($listingtype_id, 'review_title_plural');
+
+	      $ratingShouldShow = $listingtypetable->getListingTypeColumn($listingtype_id, 'allow_review');
 	    }
 	    $this->view->reviewTitleSingular = $review_title_singular ? $review_title_singular : 'Review';
 	    $this->view->reviewTitlePlular = $review_title_plural ? $review_title_plural : 'Reviews';
+	    $this->view->ratingShouldShow = $ratingShouldShow == 2 ? false : true;
 
 
 	    Engine_Api::_()->sitereview()->setListingTypeInRegistry($listingtype_id);

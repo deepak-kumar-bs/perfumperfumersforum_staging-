@@ -90,7 +90,40 @@ class Activity_Widget_FeedController extends Engine_Content_Widget_Abstract
 
     if($this->view->isHashtagPage) {
       $this->view->search = $config['hashtag'] = preg_replace('/^#/', '', $request->getParam('search'));
+      $this->view->content_type = $config['content_type'] = $request->getParam('content_type');
+      $this->view->actionOrder = $config['actionOrder'] = $request->getParam('order');
+      $this->view->isListingHashtagPage = $config['isHashtagPage'] = 'hashtagPage';
     }
+
+    if($request->getModuleName() == 'seaocore' && $request->getControllerName() == 'search' && $request->getActionName() == 'index') {
+
+      $this->view->length           = $length = 50;
+
+      $this->view->actionBodyText = $config['actionBodyText'] = $request->getParam('query');
+      $this->view->actionOrder = $config['actionOrder'] = $request->getParam('order');
+      if(empty($this->view->actionBodyText)){
+        return $this->setNoRender();
+      }
+      if($request->getParam('type') != "post"){
+        return $this->setNoRender();
+      }
+
+      $this->view->updateSettings = empty($this->view->actionBodyText) ? $this->view->updateSettings : false;
+    }
+
+    if($request->getModuleName() == 'sitereview' && $request->getControllerName() == 'hashtagfeed' && $request->getActionName() == 'index') {
+
+      $this->view->length           = $length = 50;
+
+      $this->view->search = $config['hashtag'] = preg_replace('/^#/', '', $request->getParam('search'));
+      $this->view->content_type = $config['content_type'] = $request->getParam('content_type');
+      $this->view->actionOrder = $config['actionOrder'] = $request->getParam('order');
+      $this->view->isListingHashtagPage = $config['isListingHashtagPage'] = 'listingHashtagPage';
+
+      $this->view->updateSettings = false;
+    }
+
+    $config['limit'] = (int) $length;
 
     // Pre-process feed items
     $selectCount = 0;

@@ -13,9 +13,9 @@
 
 <?php if($this->listingtypeArray->allow_review):?>
 	<?php if($this->createAllow == 1):?>
-		<button class="sr_review_button" onclick="writeAReview('create');"><?php echo $this->translate("Write a Review") ?></button>
+		<button class="sr_review_button" onclick="writeAReview('create');"><?php echo $this->translate("Write a $this->reviewTitleSingular") ?></button>
 	<?php elseif($this->createAllow == 2):?>
-		<button class="sr_review_button" onclick="writeAReview('update');"><?php echo $this->translate("Update your Review") ?></button>
+		<button class="sr_review_button" onclick="writeAReview('update');"><?php echo $this->translate("Update your $this->reviewTitleSingular") ?></button>
 	<?php endif;?>
 	<script type="text/javascript">
   function writeAReview(option){

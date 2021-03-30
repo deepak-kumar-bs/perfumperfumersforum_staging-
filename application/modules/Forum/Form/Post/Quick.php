@@ -59,6 +59,16 @@ class Forum_Form_Post_Quick extends Engine_Form
         $editorOptions = array_merge($editorOptions, array('html' => 0, 'bbcode' => 1));
       }
 
+      $this->addElement('Text', 'tags', array(
+        'label'=>'Tags (Keywords)',
+        'autocomplete' => 'off',
+        'description' => 'Separate tags with commas.',
+        'filters' => array(
+          'StripTags',
+          new Engine_Filter_Censor(),
+        ),
+      ));
+
       $this->addElement('TinyMce', 'body', array(
         'disableLoadDefaultDecorators' => true,
         'required' => true,
@@ -71,6 +81,17 @@ class Forum_Form_Post_Quick extends Engine_Form
         )
       ));
     } else {    
+
+    $this->addElement('Text', 'tags', array(
+      'label'=>'Tags (Keywords)',
+      'autocomplete' => 'off',
+      'description' => 'Separate tags with commas.',
+      'filters' => array(
+        'StripTags',
+        new Engine_Filter_Censor(),
+      ),
+    ));
+    
     $this->addElement('textarea', 'body', array(
         'label' => 'Quick Reply',
         'required' => true,

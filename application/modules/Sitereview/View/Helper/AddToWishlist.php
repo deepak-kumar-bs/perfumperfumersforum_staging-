@@ -38,7 +38,7 @@ class Sitereview_View_Helper_AddToWishlist extends Zend_View_Helper_Abstract {
     $data['item'] = $item;
     $data['classIcon'] = isset($params['classIcon']) ? $params['classIcon'] : '';
     $data['classLink'] = isset($params['classLink']) ? $params['classLink']: '';
-    $data['text'] = isset($params['text']) ? $params['text'] : "Add to Wishlist";
+    $data['text'] = isset($params['text']) ? $params['text'] : "Add to List";
     
     return $this->view->partial('_addToWishlist.tpl', 'sitereview', $data);
   }

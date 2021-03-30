@@ -90,7 +90,7 @@ class Sitereviewlistingtype_Form_Admin_Listingtypes_Create extends Engine_Form {
 
     $this->addElement('Text', 'review_title_singular', array(
         'label' => 'Singular Review Title',
-        'description' => 'Please enter the Singular Title for review. This text will come in places like admin panel, feeds generated, widgets etc.',
+        'description' => 'Please enter the Singular Title for review. This text will come in places like feeds generated, widgets etc.',
         'allowEmpty' => false,
         'required' => true,
         'validators' => array(
@@ -108,7 +108,7 @@ class Sitereviewlistingtype_Form_Admin_Listingtypes_Create extends Engine_Form {
 
     $this->addElement('Text', 'review_title_plural', array(
         'label' => 'Plural Review Title',
-        'description' => 'Please enter the Plural Title for review. This text will come in places like Main Navigation Menu, Listing Navigation Menu, widgets etc.',
+        'description' => 'Please enter the Plural Title for review. This text will come in places like Listing Navigation Menu, widgets etc.',
         'allowEmpty' => false,
         'required' => true,
         'validators' => array(
@@ -308,12 +308,12 @@ class Sitereviewlistingtype_Form_Admin_Listingtypes_Create extends Engine_Form {
     ));
 
     $this->addElement('Radio', 'allow_review', array(
-        'label' => 'Allow Only User Ratings',
-        'description' => "Do you want to allow users to only rate listings?",
+        'label' => 'Disable Ratings',
+        'description' => "Do you want to disable ratings for listings of this type",
         'multiOptions' => array(
-            2 => 'No, Don\'t allow Users and Editors to rate listings.',
-            0 => 'Yes, allow Users to only rate listings.',
-            1 => 'No, allow users to review and rate listings.',
+            // 0 => 'Yes, allow Users to only rate listings.',
+            1 => 'No',
+            2 => 'Yes',
         ),
         'value' => 1,
     ));

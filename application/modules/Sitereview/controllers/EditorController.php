@@ -115,15 +115,15 @@ class Sitereview_EditorController extends Seaocore_Controller_Action_Standard {
     //CHECK MEMBER LEVEL EDITOR REVIEW IS ALLOWED OR NOT
     $level_id = $viewer->level_id;
     $autorizationApi = Engine_Api::_()->authorization();
-    if(!$autorizationApi->getPermission($level_id, 'sitereview_listing', "editor_review_create_listtype_$listingtype_id") ) {
+    if(!$autorizationApi->getPermission($level_id, 'user', "editor_review") ) {
       return $this->_forward('requireauth', 'error', 'core');
     }
 
     //SHOW THIS LINK ONLY EDITOR FOR THIS LISTING TYPE
-    $isEditor = Engine_Api::_()->getDbTable('editors', 'sitereview')->isEditor($viewer_id, $listingtype_id);
-    if (empty($isEditor)) {
-      return $this->_forward('requireauth', 'error', 'core');
-    }
+    // $isEditor = Engine_Api::_()->getDbTable('editors', 'sitereview')->isEditor($viewer_id, $listingtype_id);
+    // if (empty($isEditor)) {
+    //   return $this->_forward('requireauth', 'error', 'core');
+    // }
 
     //EDITOR REVIEW HAS BEEN POSTED OR NOT
     $params = array();
@@ -328,12 +328,18 @@ class Sitereview_EditorController extends Seaocore_Controller_Action_Standard {
 
     $this->view->editor_rating = Engine_Api::_()->getDbTable('listingtypes', 'sitereview')->getListingTypeColumn($listingtype_id, 'allow_review');
 
-
-    //SHOW THIS LINK ONLY EDITOR FOR THIS LISTING TYPE
-    $isEditor = Engine_Api::_()->getDbTable('editors', 'sitereview')->isEditor($viewer_id, $listingtype_id);
-    if (empty($isEditor)) {
+    $level_id = $viewer->level_id;
+    $autorizationApi = Engine_Api::_()->authorization();
+    if(!$autorizationApi->getPermission($level_id, 'user', "editor_review") ) {
       return $this->_forward('requireauth', 'error', 'core');
     }
+
+
+    //SHOW THIS LINK ONLY EDITOR FOR THIS LISTING TYPE
+    // $isEditor = Engine_Api::_()->getDbTable('editors', 'sitereview')->isEditor($viewer_id, $listingtype_id);
+    // if (empty($isEditor)) {
+    //   return $this->_forward('requireauth', 'error', 'core');
+    // }
 
     $review_id = $this->_getParam('review_id', null);
     $review = Engine_Api::_()->getItem('sitereview_review', $review_id);

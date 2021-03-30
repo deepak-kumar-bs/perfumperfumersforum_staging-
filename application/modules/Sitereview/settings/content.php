@@ -4800,6 +4800,21 @@ $video_widgets = array(
             ),
         ),
     ),
+
+    array(
+        'title' => 'Listing Search Hashtags',
+        'description' => 'This widget searches hashtags over various popularity criterias. This widget can be placed on listing page.',
+        'category' => 'Hashtag',
+        'type' => 'widget',
+        'name' => 'sitereview.search-hashtags',
+        'autoEdit' => true,
+        'adminForm' => array(
+            'elements' => array(
+               
+            )
+        ),
+    ),
+
     array(
         'title' => 'My Claimed Listings',
         'description' => 'Display a list of all the listings claimed by member.  This widget should be placed on Multiple Listing Types - My Claimed Listing page.',

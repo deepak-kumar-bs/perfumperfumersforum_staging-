@@ -292,6 +292,7 @@ class Sitereview_WishlistController extends Seaocore_Controller_Action_Standard 
               $action = $activityApi->addActivity($viewer, $wishlistData, "sitereview_wishlist_add_listing_listtype_" . $sitereview->listingtype_id, '', array('listing' => array($sitereview->getType(), $sitereview->getIdentity())));
               if ($action)
                 $activityApi->attachActivity($action, $sitereview);
+                $activityApi->attachActivity($action, $wishlistData);
             }
           }
 
@@ -714,6 +715,23 @@ class Sitereview_WishlistController extends Seaocore_Controller_Action_Standard 
       $wishlist->setFromArray($values);
       $wishlist->save();
 
+      //ADDING TAGS
+      $keywords = '';
+      if (isset($values['tags']) && !empty($values['tags'])) {
+          $tags = preg_split('/[,]+/', $values['tags']);
+          $tags = array_filter(array_map("trim", $tags));
+          $wishlist->tags()->addTagMaps($viewer, $tags);
+
+          foreach ($tags as $tag) {
+              $keywords .= " $tag";
+          }
+      }
+
+      //UPDATE KEYWORDS IN SEARCH TABLE
+      if (!empty($keywords)) {
+          Engine_Api::_()->getDbTable('search', 'core')->insert(array('keywords' => $keywords, 'type' => 'sitereview_wishlist', 'id' => $wishlist->wishlist_id, 'title' => $wishlist->title, 'description' => $wishlist->body));
+      }
+
       //PRIVACY WORK
       $auth = Engine_Api::_()->authorization()->context;
       $roles = array('owner', 'owner_member', 'owner_member_member', 'owner_network', 'registered', 'everyone');
@@ -730,6 +748,11 @@ class Sitereview_WishlistController extends Seaocore_Controller_Action_Standard 
         $auth->setAllowed($wishlist, $role, 'view', ($i <= $viewMax));
         $auth->setAllowed($wishlist, $role, 'comment', ($i <= $commentMax));
       }
+
+      $activityApi = Engine_Api::_()->getDbtable('actions', 'activity');
+        $action = $activityApi->addActivity($viewer, $wishlist, "sitereview_new_wishlist");
+        if ($action)
+          $activityApi->attachActivity($action, $wishlist);
 
       $db->commit();
     } catch (Exception $e) {
@@ -807,6 +830,17 @@ class Sitereview_WishlistController extends Seaocore_Controller_Action_Standard 
 
       $form->populate($wishlist->toArray());
       $form->populate($perms);
+      
+      $tagStr = '';
+      foreach( $wishlist->tags()->getTagMaps() as $tagMap ) {
+        $tag = $tagMap->getTag();
+        if( !isset($tag->text) ) continue;
+        if( '' !== $tagStr ) $tagStr .= ', ';
+        $tagStr .= $tag->text;
+      }
+      $form->populate(array(
+        'tags' => $tagStr,
+      ));
       return;
     }
 
@@ -838,6 +872,23 @@ class Sitereview_WishlistController extends Seaocore_Controller_Action_Standard 
       $viewMax = array_search($values['auth_view'], $roles);
       foreach ($roles as $i => $role) {
         $auth->setAllowed($wishlist, $role, 'view', ($i <= $viewMax));
+      }
+
+      //ADDING TAGS
+      $keywords = '';
+      if (isset($values['tags']) && !empty($values['tags'])) {
+          $tags = preg_split('/[,]+/', $values['tags']);
+          $tags = array_filter(array_map("trim", $tags));
+          $wishlist->tags()->setTagMaps($viewer, $tags);
+
+          foreach ($tags as $tag) {
+              $keywords .= " $tag";
+          }
+      }
+
+      //UPDATE KEYWORDS IN SEARCH TABLE
+      if (!empty($keywords)) {
+          Engine_Api::_()->getDbTable('search', 'core')->insert(array('keywords' => $keywords, 'type' => 'sitereview_wishlist', 'id' => $wishlist->wishlist_id, 'title' => $wishlist->title, 'description' => $wishlist->body));
       }
 
       $db->commit();

@@ -170,6 +170,23 @@ class Forum_ForumController extends Core_Controller_Action_Standard
         'watch' => (bool) $values['watch'],
       ));
 
+      //ADDING TAGS
+      $keywords = '';
+      if (isset($values['tags']) && !empty($values['tags'])) {
+          $tags = preg_split('/[,]+/', $values['tags']);
+          $tags = array_filter(array_map("trim", $tags));
+          $topic->tags()->addTagMaps($viewer, $tags);
+
+          foreach ($tags as $tag) {
+              $keywords .= " $tag";
+          }
+      }
+
+      //UPDATE KEYWORDS IN SEARCH TABLE
+      if (!empty($keywords)) {
+          Engine_Api::_()->getDbTable('search', 'core')->update(array('keywords' => $keywords), array('type = ?' => 'forum_topic', 'id = ?' => $topic->topic_id));
+      }
+
       // Add activity
       $activityApi = Engine_Api::_()->getDbtable('actions', 'activity');
       $action = $activityApi->addActivity($viewer, $topic, 'forum_topic_create');
