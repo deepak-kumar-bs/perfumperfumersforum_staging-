@@ -122,7 +122,7 @@
 			<li>
 				<a href="javascript:void(0);" onClick="faq_show('faq_5');"><?php echo $this->translate("The widths of the page columns are not coming fine on the Listings Home page. What might be the reason?");?></a>
 				<div class='faq' style='display: none;' id='faq_5'>
-					<?php echo $this->translate('This is happening because none or very few listings have been created and viewed on your site, and thus the widgets on the Listings Home page are currently empty. Once listings are rated and liked on your site, and more activity happens, these widgets will get populated and the Listings Home page will look good.<br /> If still the width of the pages are not coming fine, then edit the width of the page column by using the "Column Width" widget available in the SociaEngineAddOns-Core block in the Available Blocks section of the Layout Editor.');?>
+					<?php echo $this->translate('This is happening because none or very few listings have been created and viewed on your site, and thus the widgets on the Listings Home page are currently empty. Once listings are rated and liked on your site, and more activity happens, these widgets will get populated and the Listings Home page will look good.<br /> If still the width of the pages are not coming fine, then edit the width of the page column by using the "Column Width" widget available in the SocialApps.tech-Core block in the Available Blocks section of the Layout Editor.');?>
 				</div>
 			</li>
 			<li>

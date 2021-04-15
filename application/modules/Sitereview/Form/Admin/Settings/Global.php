@@ -22,7 +22,7 @@ class Sitereview_Form_Admin_Settings_Global extends Engine_Form {
 
     $this->addElement('Text', 'sitereview_lsettings', array(
         'label' => 'Enter License key For Multiple Listing Types Plugin Core (Reviews & Ratings Plugin)',
-        'description' => "Please enter your license key that was provided to you when you purchased this plugin. If you do not know your license key, please contact the Support Team of SocialEngineAddOns from the Support section of your Account Area.(Key Format: XXXXXX-XXXXXX-XXXXXX )",
+        'description' => "Please enter your license key that was provided to you when you purchased this plugin. If you do not know your license key, please contact the Support Team of SocialApps.tech from the Support section of your Account Area.(Key Format: XXXXXX-XXXXXX-XXXXXX )",
         'value' => $settings->getSetting('sitereview.lsettings'),
     ));
 
@@ -30,7 +30,7 @@ class Sitereview_Form_Admin_Settings_Global extends Engine_Form {
     if( !empty($isSitereviewlistingtypeEnabled) ) {
       $this->addElement('Text', 'sitereviewlistingtype_lsettings', array(
           'label' => 'Enter License key For Reviews & Ratings - Multiple Listing Types Extension',
-          'description' => "Please enter your license key that was provided to you when you purchased this plugin. If you do not know your license key, please contact the Support Team of SocialEngineAddOns from the Support section of your Account Area.(Key Format: XXXXXX-XXXXXX-XXXXXX )",
+          'description' => "Please enter your license key that was provided to you when you purchased this plugin. If you do not know your license key, please contact the Support Team of SocialApps.tech from the Support section of your Account Area.(Key Format: XXXXXX-XXXXXX-XXXXXX )",
           'value' => $settings->getSetting('sitereviewlistingtype.lsettings'),
       ));
     }
@@ -39,7 +39,7 @@ class Sitereview_Form_Admin_Settings_Global extends Engine_Form {
     if( !empty($isSitereviewpaidlistingEnabled) ) {
       $this->addElement('Text', 'sitereviewpaidlisting_lsettings', array(
           'label' => 'Enter License key For Multiple Listing Types - Paid Listings Extension',
-          'description' => "Please enter your license key that was provided to you when you purchased this plugin. If you do not know your license key, please contact the Support Team of SocialEngineAddOns from the Support section of your Account Area.(Key Format: XXXXXX-XXXXXX-XXXXXX )",
+          'description' => "Please enter your license key that was provided to you when you purchased this plugin. If you do not know your license key, please contact the Support Team of SocialApps.tech from the Support section of your Account Area.(Key Format: XXXXXX-XXXXXX-XXXXXX )",
           'value' => $settings->getSetting('sitereviewpaidlisting.lsettings'),
       ));
     }

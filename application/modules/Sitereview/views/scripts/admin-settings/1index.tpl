@@ -26,10 +26,10 @@ $this->headScript()->appendFile("https://maps.googleapis.com/maps/api/js?librari
 <?php 
   if(Engine_Api::_()->getDbtable('modules', 'core')->isModuleEnabled('sitereview') && Engine_Api::_()->getDbtable('modules', 'core')->isModuleEnabled('sitereviewlistingtype')) {
     if($this->moduleSitereview->version > $this->moduleSitereviewlistingtype->version) {
-      echo "<div class='tip'><span>" . $this->translate('Note: You do not have the latest version of the "%s". Please upgrade it to the latest version. <br />The latest version of this plugin is available to you in your SocialEngineAddOns Client Area. Login into your SocialEngineAddOns Client Area here: <a href="http://www.socialengineaddons.com/user/login">http://www.socialengineaddons.com/user/login</a>.', $this->moduleSitereviewlistingtype->title) . "</span></div>"; 
+      echo "<div class='tip'><span>" . $this->translate('Note: You do not have the latest version of the "%s". Please upgrade it to the latest version. <br />The latest version of this plugin is available to you in your SocialApps.tech Client Area. Login into your SocialApps.tech Client Area here: <a href="http://www.socialapps.tech/user/login">http://www.socialapps.tech/user/login</a>.', $this->moduleSitereviewlistingtype->title) . "</span></div>"; 
     }
     elseif($this->moduleSitereview->version < $this->moduleSitereviewlistingtype->version) {
-      echo "<div class='tip'><span>" . $this->translate('Note: You do not have the latest version of the "%1$s". Please upgrade it to the latest version from %2$s. <br />The latest version of this plugin is also available to you in your SocialEngineAddOns Client Area. Login into your SocialEngineAddOns Client Area here: <a href="http://www.socialengineaddons.com/user/login">http://www.socialengineaddons.com/user/login</a>.', $this->moduleSitereview->title, "<a href='$url'>here</a>") . "</span></div>";    
+      echo "<div class='tip'><span>" . $this->translate('Note: You do not have the latest version of the "%1$s". Please upgrade it to the latest version from %2$s. <br />The latest version of this plugin is also available to you in your SocialApps.tech Client Area. Login into your SocialApps.tech Client Area here: <a href="http://www.socialapps.tech/user/login">http://www.socialapps.tech/user/login</a>.', $this->moduleSitereview->title, "<a href='$url'>here</a>") . "</span></div>";    
     }
   }
 ?>    
@@ -62,7 +62,7 @@ $this->headScript()->appendFile("https://maps.googleapis.com/maps/api/js?librari
              endforeach;
       ?>
       </ul>
-      <?php echo $this->translate("1) If you do not want to use this plugin on Multiple Domains, then please click on 'Dismiss' button.<br/> 2) If above is not the case and you want to use this plugin on multiple domains, then please file a support ticket from your SocialEngineAddOns <a href='http://www.socialengineaddons.com/user/login' target='_blank'>client area</a>."); ?>
+      <?php echo $this->translate("1) If you do not want to use this plugin on Multiple Domains, then please click on 'Dismiss' button.<br/> 2) If above is not the case and you want to use this plugin on multiple domains, then please file a support ticket from your SocialEngineAddOns <a href='http://www.socialapps.tech/user/login' target='_blank'>client area</a>."); ?>
     </div>
   </div>
 </div>

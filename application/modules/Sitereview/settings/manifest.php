@@ -109,15 +109,6 @@ if (empty($request) || !($module == "default" && ( strpos( $getURL, '/install') 
       )
   );
 
-  $routes['sitereview_hasgtagfeed'] = array(
-            'route' => 'listingHashtags/*',
-            'defaults' => array(
-                'module' => 'sitereview',
-                'controller' => 'hashtagfeed',
-                'action' => 'index'
-            )
-        );
-
   $db = Engine_Db_Table::getDefaultAdapter();
   $listingTypes = $db->query("SELECT listingtype_id, slug_plural, slug_singular FROM `engine4_sitereview_listingtypes`")->fetchAll();
   foreach ($listingTypes as $listingType) {
@@ -575,11 +566,11 @@ return array(
     array(
         'type' => 'module',
         'name' => 'sitereview',
-        'version' => '5.2.1p7',
+        'version' => '5.4.1p6',
         'path' => 'application/modules/Sitereview',
         'title' => 'Multiple Listing Types Plugin Core (Reviews & Ratings Plugin)',
         'description' => 'Multiple Listing Types Plugin Core (Reviews & Ratings Plugin)',
-        'author' => '<a href="http://www.socialengineaddons.com" style="text-decoration:underline;" target="_blank">SocialEngineAddOns</a>',
+        'author' => '<a href="http://www.socialapps.tech" style="text-decoration:underline;" target="_blank">SocialApps.tech</a>',
         'actions' => array(
             'install',
             'upgrade',

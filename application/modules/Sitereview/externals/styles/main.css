@@ -7,6 +7,11 @@
 	line-height: 16px;
 	margin-right: 7px;
 }
+.rating_star_half:before, [dir="rtl"] .rating_star_half:before {
+  content: "\\f5c0";
+  color: #FFC107;
+  font-weight: 900;
+}
 a.sr_icon_link::before 					{content: "\\f0c1";}
 a.icon_sitereviews_mail::before {content: "\\f0e0";}
 /*Icons*/
@@ -663,15 +668,17 @@ html[dir="rtl"] .sr_video_thumb_wrapper{
 	font-style: normal;
 	font-size: 16px;
 	line-height: 16px;
+  font-weight: 900;
 }
  .sitereview_grid_footer ul.dropdown-menu li.share-btn > a {
     font-size: 16px;
 }
 .sitereview_grid_footer ul.dropdown-menu a span {
-    font-family: 'Font Awesome 5 Free','fontawesome';
+    font-family: 'Font Awesome 5 Free';
     font-style: normal;
     font-size: 14px;
     margin-right: 5px;
+    font-weight: 600;
     }
 	
 .sr_dashboard_content{

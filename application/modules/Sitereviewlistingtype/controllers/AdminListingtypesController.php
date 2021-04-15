@@ -185,10 +185,30 @@ class Sitereviewlistingtype_AdminListingtypesController extends Core_Controller_
           );
           $userSettingsNotfication = array("ACTIVITY_TYPE_" . $languageModTitle . "_SUGGESTION" => "When I receive a " . strtolower($getReviewTitle) . " suggestion.");
           $userNotification = array($notificationLanguage => $notificationLanguage);
+          $languageTitleName = "SITEREVIEW_" . strtoupper($tempReviewTitle);
+          $makeClaimArray = array(
+            "_EMAIL_".$languageTitleName."_CLAIM_APPROVED_EMAIL_TITLE" =>  $tempReviewTitle." Listing Claim Approved",
+            "_EMAIL_".$languageTitleName."_BECOMEOWNER_EMAIL_TITLE" => $tempReviewTitle." - Listing Ownership Given",
+            "_EMAIL_".$languageTitleName."_CLAIMOWNER_EMAIL_TITLE" => $tempReviewTitle." Listing Claimed",
+            "_EMAIL_".$languageTitleName."_CLAIM_HOLDING_EMAIL_TITLE" => $tempReviewTitle." Listing Claim Approval on Hold",
+            "_EMAIL_".$languageTitleName."_CHANGEOWNER_EMAIL_TITLE" => $tempReviewTitle."- Listing Owner Changed",
+            "_EMAIL_".$languageTitleName."_CLAIM_DECLINED_EMAIL_TITLE" => $tempReviewTitle." Listing Claim Declined",
+            "_EMAIL_".$languageTitleName."_CLAIMOWNER_EMAIL_DESCRIPTION" => "This mail is sent to the Site Admin when any member claims that Listing.",
+            "_EMAIL_".$languageTitleName."_CLAIMOWNER_EMAIL_SUBJECT" => "This ".$tempReviewTitle." listing: [list_title] has been claimed.",
+            "_EMAIL_".$languageTitleName."_CLAIMOWNER_EMAIL_BODY" => "[header]
 
+            This ".$tempReviewTitle." listing: [list_title_with_link] has been claimed.
+
+            To view this ".$tempReviewTitle." listing, click on the link below, or copy-paste it in your browser:
+            [object_link]
+
+            [footer]
+          "
+          );
           $this->addPhraseAction($makeEmailArray);
           $this->addPhraseAction($userSettingsNotfication);
           $this->addPhraseAction($userNotification);
+          $this->addPhraseAction($makeClaimArray);
 
           $this->addPhraseAction($language1);
           $this->addPhraseAction($language2);
@@ -310,6 +330,27 @@ class Sitereviewlistingtype_AdminListingtypesController extends Core_Controller_
           $db->query('INSERT IGNORE INTO `engine4_core_menuitems` (`name` , `module` , `label` , `plugin` ,`params`, `menu`, `enabled`, `custom`, `order`) VALUES ("sitepage_sitereview_gutter_create_' . $listingType->listingtype_id . '", "sitepage", "Post New ' . ucfirst($values['title_singular']) . ' ", \'Sitepage_Plugin_Menus::sitepagesitereviewGutterCreate\', \'{"route":"sitereview_general_listtype_' . $listingType->listingtype_id . '", "action":"create", "listing_id": "' . $listingType->listingtype_id . '", "class":"buttonlink item_icon_sitereview_listtype_' . $listingType->listingtype_id . '"}\', "sitepage_gutter", 1, 0, 999 )');
         }
         //END FOR PAGE INRAGRATION WORK.
+
+        //START FOR VIDEO INRAGRATION WORK.
+        $sitevideointegrationEnabled = Engine_Api::_()->getDbtable('modules', 'core')->isModuleEnabled('sitevideointegration');
+        if (!empty($sitevideointegrationEnabled)) {
+          $listingtype_id = $listingType->listingtype_id;
+          $singular_title = ucfirst( $listingType->title_singular ) ;
+          $db->query("INSERT IGNORE INTO `engine4_sitevideo_modules` (`item_type`, `item_id`, `item_module`, `enabled`, `integrated`, `item_title`, `item_membertype`) VALUES ('sitereview_listing_$listingtype_id', 'listing_id', 'sitereview', '0', '0', '$singular_title Videos', 'a:1:{i:0;s:18:\"contentlikemembers\";}')");
+          $db->query('INSERT IGNORE INTO `engine4_core_settings` ( `name`, `value`) VALUES( "sitevideo.video.leader.owner.sitereview.listing.' . $listingtype_id . '", "1");');
+        }
+        //END FOR VIDEO INRAGRATION WORK
+                
+        //START FOR NESTECOMMENT INRAGRATION WORK.
+        $nestedcommentEnabled = Engine_Api::_()->getDbtable('modules', 'core')->isModuleEnabled('nestedcomment');
+        if (!empty($nestedcommentEnabled)) {
+          $listingtype_id = $listingType->listingtype_id;
+
+          $db->query("INSERT IGNORE INTO `engine4_nestedcomment_modules` (`module`, `resource_type`, `enabled`) 
+                        VALUES ('sitereview', 'sitereview_listing_$listingtype_id', 0)");
+        }
+        //END FOR NESTECOMMENT INRAGRATION WORK
+
         //START FOR BUSINESS INRAGRATION WORK.
         $sitebusinessintegrationEnabled = Engine_Api::_()->getDbtable('modules', 'core')->isModuleEnabled('sitebusinessintegration');
         if (!empty($sitebusinessintegrationEnabled)) {
@@ -645,7 +686,6 @@ class Sitereviewlistingtype_AdminListingtypesController extends Core_Controller_
 
           $listingTypeApi->activityFeedQueryEdit($listingType, $titleSingular, $titlePlural);
           $listingTypeApi->searchFormSettingEdit($listingType, $titleSingular, $titlePlural);
-          
 
           //START INTERGRATION EXTENSION WORK
           //START FOR PAGE INRAGRATION.
@@ -654,22 +694,32 @@ class Sitereviewlistingtype_AdminListingtypesController extends Core_Controller_
             Engine_Api::_()->sitepageintegration()->pageintergrationTitleEdit($values['title_singular'], $this->_getParam('listingtype_id'), $titlePlural);
           }
           //END FOR PAGE INRAGRATION.
+
+          //START FOR VIDEO INRAGRATION WORK.
+          $sitevideointegrationEnabled = Engine_Api::_()->getDbtable('modules', 'core')->isModuleEnabled('sitevideointegration');
+          if (!empty($sitevideointegrationEnabled)) {
+            $listingtype_id = $listingType->listingtype_id;
+            $singular_title = ucfirst( $values['title_singular'] ) ;
+            $db->query( "UPDATE `engine4_sitevideo_modules` set `item_title` = '$singular_title Videos' where item_type like 'sitereview_listing_$listingtype_id'");
+          }
+          //END FOR VIDEO INRAGRATION WORK
+          
           //START FOR BUSINESS INRAGRATION.
           $sitebusinessintegrationEnabled = Engine_Api::_()->getDbtable('modules', 'core')->isModuleEnabled('sitebusinessintegration');
           if (!empty($sitebusinessintegrationEnabled)) {
-            Engine_Api::_()->sitebusinessintegration()->businessintergrationTitleEdit($values['title_singular'], $this->_getParam('listingtype_id'));
+            Engine_Api::_()->sitebusinessintegration()->businessintergrationTitleEdit($values['title_singular'], $this->_getParam('listingtype_id'), $titlePlural);
           }
           //END FOR BUSINESS INRAGRATION.
           //START FOR STORE INRAGRATION.
           $sitestoreintegrationEnabled = Engine_Api::_()->getDbtable('modules', 'core')->isModuleEnabled('sitestoreintegration');
           if (!empty($sitestoreintegrationEnabled)) {
-            Engine_Api::_()->sitestoreintegration()->storeintergrationTitleEdit($values['title_singular'], $this->_getParam('listingtype_id'));
+            Engine_Api::_()->sitestoreintegration()->storeintergrationTitleEdit($values['title_singular'], $this->_getParam('listingtype_id'), $titlePlural);
           }
           //END FOR STORE INRAGRATION.
           //START FOR GROUP INRAGRATION.
           $sitegroupintegrationEnabled = Engine_Api::_()->getDbtable('modules', 'core')->isModuleEnabled('sitegroupintegration');
           if (!empty($sitegroupintegrationEnabled)) {
-            Engine_Api::_()->sitegroupintegration()->groupintergrationTitleEdit($values['title_singular'], $this->_getParam('listingtype_id'));
+            Engine_Api::_()->sitegroupintegration()->groupintergrationTitleEdit($values['title_singular'], $this->_getParam('listingtype_id'), $titlePlural);
           }
           //END FOR GROUP INRAGRATION.
           //START INTERGRATION EXTENSION WORK
@@ -836,19 +886,21 @@ class Sitereviewlistingtype_AdminListingtypesController extends Core_Controller_
         Engine_Api::_()->facebookse()->addReviewList($listingType, 'delete');
       }
 
-      //DELETE ADVANCED SEARCH PAGE FOR THIS MLT
-      $pageTable = Engine_Api::_()->getDbTable('pages', 'core');
-      $pageTableName = $pageTable->info('name');
+      //Delete from NESTECOMMENT WORK.
+      $nestedcommentEnabled = Engine_Api::_()->getDbtable('modules', 'core')->isModuleEnabled('nestedcomment');
+      if (!empty($nestedcommentEnabled)) {
+        $listingtype_id = $listingType->listingtype_id;
 
-      $page_id = $pageTable->select()
-        ->from($pageTableName, 'page_id')
-        ->where('name = ?', "siteadvsearch_index_browse-page_listtype_" . $listingtype_id)
-        ->query()
-        ->fetchColumn();
+        $db->query("DELETE FROM `engine4_nestedcomment_modules` where resource_type like 'sitereview_listing_$listingtype_id' ");
+      }
+      //END FOR NESTECOMMENT INRAGRATION WORK
 
-      if (!empty($page_id)) {
-        Engine_Api::_()->getDbTable('content', 'core')->delete(array('page_id = ?' => $page_id));
-        $pageTable->delete(array('page_id = ?' => $page_id));
+      // Delete listing from SITEVIDEOINTEGRATION
+      $sitevideointegration = Engine_Api::_()->getDbtable('modules', 'core')->getModule('sitevideointegration');
+      if (!empty( $sitevideointegration ) ) {
+        $listingtype_id = $listingType->listingtype_id;
+        $db->query('DELETE FROM `engine4_sitevideo_modules` where item_type like ' . "'sitereview_listing_$listingtype_id'" );
+        $db->query('DELETE FROM `engine4_core_settings` where name like ' . "'sitevideo.video.leader.owner.sitereview.listing.$listingtype_id'" );
       }
 
       //DELETE LISTING TYPE OBJECT
@@ -915,7 +967,7 @@ class Sitereviewlistingtype_AdminListingtypesController extends Core_Controller_
         Engine_Api::_()->sitepageintegration()->getEnabled($listingtype_id, $enabled);
       }
       //END FOR PAGE INRAGRATION.
-      //START FOR Advanvced Search INRAGRATION.
+//START FOR Advanvced Search INRAGRATION.
       if (Engine_Api::_()->getDbtable('modules', 'core')->isModuleEnabled('siteadvsearch')) {
         Engine_Api::_()->siteadvsearch()->getEnabled($listingtype_id, $enabled);
       }

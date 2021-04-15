@@ -30,7 +30,7 @@
     <?php echo 'Latest versions of Extensions for ' . $moduleTitle; ?>
 </h3>
 <p>
-    <?php echo $this->translate('Here, you can upgrade the latest version of these extensions by using ‘Upgrade’ button available in front of all the desired extensions that needs to be upgraded.<br />The latest versions of Extensions for "' . $moduleTitle . '" are also available to you in your SocialEngineAddOns Client Area. Login into your SocialEngineAddOns Client Area here: <a href="http://www.socialengineaddons.com/user/login" target="_blank">http://www.socialengineaddons.com/user/login</a>.'); ?>
+    <?php echo $this->translate('Here, you can upgrade the latest version of these extensions by using ‘Upgrade’ button available in front of all the desired extensions that needs to be upgraded.<br />The latest versions of Extensions for "' . $moduleTitle . '" are also available to you in your SocialApps.tech Client Area. Login into your SocialApps.tech Client Area here: <a href="http://www.socialapps.tech/user/login" target="_blank">http://www.socialapps.tech/user/login</a>.'); ?>
 </p><br/>
 
 <div class='sociealengineaddons_admin_tabs'>
@@ -54,7 +54,7 @@ if (count($this->OnSiteModules)):
                     <?php echo $this->translate("Extension Title"); ?>
                 </th>
                 <th align="left">
-                    <?php echo $this->translate("Latest version on SocialEngineAddOns.com"); ?>
+                    <?php echo $this->translate("Latest version on SocialApps.tech"); ?>
                 </th>
                 <th align="left">
                     <?php echo $this->translate("Version on your website"); ?>
@@ -68,7 +68,7 @@ if (count($this->OnSiteModules)):
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($this->channel as $item): ?>	
+            <?php foreach ($this->channel as $item): ?> 
                 <?php
                 $running_version = $item['running_version'];
                 $product_version = $item['product_version'];

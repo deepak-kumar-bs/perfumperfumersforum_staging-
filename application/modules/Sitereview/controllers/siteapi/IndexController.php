@@ -222,6 +222,8 @@ class Sitereview_IndexController extends Siteapi_Controller_Action_Standard {
             foreach ($paginator as $listing) {
                 $listingArray = $listing->toArray();
 
+                $listingArray['price'] = (double) $listingArray['price'];
+               
                 // Set the price & currency 
                 if (isset($listingArray['price']) && $listingArray['price'] > 0) {
                     $listingArray['currency'] = Engine_Api::_()->getApi('settings', 'core')->getSetting('payment.currency', 'USD');
@@ -359,8 +361,10 @@ class Sitereview_IndexController extends Siteapi_Controller_Action_Standard {
                     $listingArray['sitevideoPluginEnabled'] = 0;
                 }
 
-                if (empty($listingArray['price']))
+                $listingArray['price'] = (double) $listingArray['price'];
+                if (empty($listingArray['price'])){
                     unset($listingArray['price']);
+                }
 
                 // Set the price & currency 
                 if (isset($listingArray['price']) && $listingArray['price'] > 0)
@@ -494,7 +498,7 @@ class Sitereview_IndexController extends Siteapi_Controller_Action_Standard {
                 }
                 if ($package->price > 0.00) {
                     $packageShowArray['price']['label'] = $this->translate('Price');
-                    $packageShowArray['price']['value'] = (int) $package->price;
+                    $packageShowArray['price']['value'] = (double) $package->price;
                     $packageShowArray['price']['currency'] = Engine_Api::_()->getApi('settings', 'core')->getSetting('payment.currency', 'USD');
                 } else {
                     $packageShowArray['price']['label'] = $this->translate('Price');
@@ -688,7 +692,7 @@ class Sitereview_IndexController extends Siteapi_Controller_Action_Standard {
                     }
                     if ($package->price > 0.00) {
                         $packageShowArray['price']['label'] = $this->translate('Price');
-                        $packageShowArray['price']['value'] = (int) $package->price;
+                        $packageShowArray['price']['value'] = (double) $package->price;
                         $packageShowArray['price']['currency'] = Engine_Api::_()->getApi('settings', 'core')->getSetting('payment.currency', 'USD');
                     } else {
                         $packageShowArray['price']['label'] = $this->translate('Price');
@@ -1934,6 +1938,8 @@ class Sitereview_IndexController extends Siteapi_Controller_Action_Standard {
             if (isset($sitereviewObj) && !empty($sitereviewObj)) {
                 $sitereview = $sitereviewObj->toArray();
 
+                $sitereview['price'] = (double) $sitereview['price'];
+                
                 if (empty($sitereview['price']))
                     unset($sitereview['price']);
 
@@ -1946,6 +1952,9 @@ class Sitereview_IndexController extends Siteapi_Controller_Action_Standard {
                 $sitereview = array_merge($sitereview, $getContentImages);
 
                 $sitereview["owner_title"] = $sitereviewObj->getOwner()->getTitle();
+
+                //Member verification Work...............
+                $sitereview['showVerifyIcon'] = Engine_Api::_()->getApi('Core', 'siteapi')->getVerifyInfo($sitereviewObj->getOwner());
 
                 $sitereview['content_url'] = Engine_Api::_()->getApi('Core', 'siteapi')->getContentUrl($sitereviewObj);
                 //GETTING CATEGORY and SUBCATEGORY,SUBSUBCATEGORY-if any
@@ -2176,7 +2185,7 @@ class Sitereview_IndexController extends Siteapi_Controller_Action_Standard {
                     }
 
                     if (isset($sitereviewObj->price) && !empty($sitereviewObj->price) && $sitereviewObj->price > 0) {
-                        $sitereview['profile_fields']['Price'] = $sitereviewObj->price;
+                        $sitereview['profile_fields']['Price'] = (double) $sitereviewObj->price;
                     }
                 }
 
@@ -3404,7 +3413,8 @@ class Sitereview_IndexController extends Siteapi_Controller_Action_Standard {
 
                     $sitereview["owner_title"] = $result_info->getOwner()->getTitle();
                 }
-
+                $sitereview['price'] = (double) $sitereview['price'];
+                
                 if (empty($sitereview['price']))
                     unset($sitereview['price']);
 

@@ -419,9 +419,10 @@
 	float:left;
 }
 .sr_photo_edit_wrapper .sr_photo_edit i::before{
-  content:"\f040";
-	font-family: 'Font Awesome 5 Free','fontawesome';
+  content:"\f303";
+	font-family: 'Font Awesome 5 Free';
 	margin-right: 6px;
+	font-weight: 900;
 }
 [dir="rtl"] .sr_photo_edit_wrapper .sr_photo_edit img{
   float:right;
@@ -925,7 +926,7 @@ a.price_see_it_button{
 }
 .sr_pro_specs ul > li > span + span{
 	font-weight:bold;
-	width:100%;
+	width:60%;
 	margin-left:10px;
 }
 [dir="rtl"] .sr_pro_specs ul > li > span + span{

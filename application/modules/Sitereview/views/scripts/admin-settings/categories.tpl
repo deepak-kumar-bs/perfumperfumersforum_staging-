@@ -101,10 +101,10 @@
 		                  'target'=>'_blank',
 		                  'class'=>'compare_link_'.$value['category_id']
 		              )); else:
-		             echo $this->htmlLink(array('route' => 'admin_default', 'module' => 'sitereview', 'controller' => 'settings', 'action' => 'applay-compare', 'category_id' => $value['category_id']), $this->translate('Apply Comparison'), array('class' => 'smoothbox','title' => 'Apply the compare on this category'));
+		             echo $this->htmlLink(array('route' => 'admin_default', 'module' => 'sitereview', 'controller' => 'settings', 'action' => 'apply-compare', 'category_id' => $value['category_id']), $this->translate('Apply Comparison'), array('class' => 'smoothbox','title' => 'Apply the compare on this category'));
 		                endif; ?> | 
                   <?php endif; ?>  
-		   					<a class="smoothbox" href="<?php echo $this->url(array('module' => 'sitereview', 'controller' => 'settings', 'listingtype_id' => $this->listingtype_id,  'action' => 'mapping-category', 'category_id' => $value['category_id']), "admin_default", true);?>" title="<?php echo $this->translate("Delete Category"); ?>"><?php echo $this->translate("Delete"); ?></a> 
+		   					<a class="smoothbox" href="<?php echo $this->url(array('module' => 'sitereview', 'controller' => 'settings','action' => 'delete-category', 'category_id' => $value['category_id']), "admin_default", true);?>" title="<?php echo $this->translate("Delete Category"); ?>"><?php echo $this->translate("Delete"); ?></a> 
 		   				</span>
 		   				<?php echo "<span class='sr_cat_det_name' id='cat_" . $value['category_id'] . "_span'>$link</span>" ?> 
 	          </div>			
@@ -138,7 +138,7 @@
 				                      'clas'=>'sr_cat_icon compare_link_'.$subcategory['sub_cat_id']
 				                  ));
 				                   else:
-				                 echo $this->htmlLink(array('route' => 'admin_default', 'module' => 'sitereview', 'controller' => 'settings', 'action' => 'applay-compare', 'category_id' => $subcategory['sub_cat_id']), $this->translate('Apply Comparison'), array('class' => 'smoothbox','title' => 'Apply the compare on this category'))
+				                 echo $this->htmlLink(array('route' => 'admin_default', 'module' => 'sitereview', 'controller' => 'settings', 'action' => 'apply-compare', 'category_id' => $subcategory['sub_cat_id']), $this->translate('Apply Comparison'), array('class' => 'smoothbox','title' => 'Apply the compare on this category'))
 			                  ?>
 			                <?php endif; ?> |
                     <?php endif; ?>  
@@ -178,7 +178,7 @@
 									                      'clas'=>'sr_cat_icon compare_link_'.$treesubcategory['tree_sub_cat_id']
 									                  ));
 									                   else:
-									                 echo $this->htmlLink(array('route' => 'admin_default', 'module' => 'sitereview', 'controller' => 'settings', 'action' => 'applay-compare', 'category_id' => $treesubcategory['tree_sub_cat_id']), $this->translate('Apply Comparison'), array('class' => 'smoothbox','title' => 'Apply the compare on this category'))
+									                 echo $this->htmlLink(array('route' => 'admin_default', 'module' => 'sitereview', 'controller' => 'settings', 'action' => 'apply-compare', 'category_id' => $treesubcategory['tree_sub_cat_id']), $this->translate('Apply Comparison'), array('class' => 'smoothbox','title' => 'Apply the compare on this category'))
 									                  ?> 
 									            <?php endif;?> | 
                               <?php endif; ?>

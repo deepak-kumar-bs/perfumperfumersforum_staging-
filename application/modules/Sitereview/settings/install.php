@@ -22,7 +22,7 @@ class Sitereview_Installer extends Engine_Package_Installer_Module {
         $db = $this->getDb();
         $PRODUCT_TYPE = 'sitereview';
         $PLUGIN_TITLE = 'Sitereview';
-        $PLUGIN_VERSION = '5.2.1p7';
+        $PLUGIN_VERSION = '5.4.1p6';
         $PLUGIN_CATEGORY = 'plugin';
         $PRODUCT_DESCRIPTION = 'Multiple Listing Types';
         $_PRODUCT_FINAL_FILE = 0;

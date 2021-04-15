@@ -15,11 +15,11 @@ return array(
     array(
         'type' => 'module',
         'name' => 'sitereviewlistingtype',
-        'version' => '4.10.3',
+        'version' => '5.4.1',
         'path' => 'application/modules/Sitereviewlistingtype',
         'title' => 'Multiple Listing Types - Listing Type Creation Extension',
         'description' => 'Multiple Listing Types - Listing Type Creation Extension',
-      'author' => '<a href="http://www.socialengineaddons.com" style="text-decoration:underline;" target="_blank">SocialEngineAddOns</a>',
+      'author' => '<a href="http://www.socialapps.tech" style="text-decoration:underline;" target="_blank">SocialApps.tech</a>',
         'actions' => array(
             'install',
             'upgrade',

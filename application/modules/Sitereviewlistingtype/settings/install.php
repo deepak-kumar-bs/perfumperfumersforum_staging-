@@ -55,7 +55,7 @@ class Sitereviewlistingtype_Installer extends Engine_Package_Installer_Module {
 
       $PRODUCT_TYPE = 'sitereviewlistingtype';
       $PLUGIN_TITLE = 'Sitereviewlistingtype';
-      $PLUGIN_VERSION = '4.10.3';
+      $PLUGIN_VERSION = '5.4.1';
       $PLUGIN_CATEGORY = 'plugin';
       $PRODUCT_DESCRIPTION = 'Multiple Listing Types - Listing Type Creation Extension';
       $_PRODUCT_FINAL_FILE = 0;

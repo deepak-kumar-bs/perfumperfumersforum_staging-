@@ -13,4 +13,4 @@
 -- --------------------------------------------------------
 
 
-INSERT IGNORE INTO `engine4_core_modules` (`name`, `title`, `description`, `version`, `enabled`, `type`) VALUES  ('sitereviewlistingtype', 'Multiple Listing Types - Listing Type Creation Extension', 'Multiple Listing Types - Listing Type Creation Extension', '4.10.3', 1, 'extra') ;
+INSERT IGNORE INTO `engine4_core_modules` (`name`, `title`, `description`, `version`, `enabled`, `type`) VALUES  ('sitereviewlistingtype', 'Multiple Listing Types - Listing Type Creation Extension', 'Multiple Listing Types - Listing Type Creation Extension', '5.4.1', 1, 'extra') ;
