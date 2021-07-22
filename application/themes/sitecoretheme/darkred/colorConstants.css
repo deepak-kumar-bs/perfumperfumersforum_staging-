@@ -1,0 +1,64 @@
+/* Header Constants */
+sitecoretheme_header_header_background_color: #151515;
+sitecoretheme_header_logo_font_color: #f44336;
+sitecoretheme_header_mini_menu_items_color: #e5e5e5;
+sitecoretheme_header_mini_menu_items_color_on_hover: #ffffff;
+sitecoretheme_header_minimenu_items_background_color: #2d2d2d;
+sitecoretheme_header_minimenu_items_background_color_on_hover: #333333;
+sitecoretheme_header_header_searchbox_text_color: #999;
+sitecoretheme_header_header_searchbox_border_color: #d9d8d8;
+sitecoretheme_header_main_menu_background_color: #f44336;
+sitecoretheme_header_main_menu_link_color: #e5e5e5;
+sitecoretheme_header_main_menu_link_color_on_hover: #ffffff;
+sitecoretheme_header_theme_main_menu_links_color_on_hover: #f44336;
+sitecoretheme_header_top_header_two_background_color: #db3c30;
+sitecoretheme_header_top_header_two_link_color: #fff;
+sitecoretheme_header_top_header_two_link_color_hover: #fff;
+
+/* Footer Constants */
+sitecoretheme_footer_footer_background_color: #303030;
+sitecoretheme_footer_footer_link_and_description_color: #cccccc;
+sitecoretheme_footer_footer_link_color_on_hover: #f44336;
+sitecoretheme_footer_footer_heading_color: #e5e5e5;
+sitecoretheme_footer_bottom_footer_background_color: #111;
+sitecoretheme_footer_bottom_footer_text_color: #444;
+sitecoretheme_footer_bottom_footer_link_color: #cccccc;
+sitecoretheme_footer_bottom_footer_link_color_on_hover: #f44336;
+
+/* Body Constants */
+sitecoretheme_body_theme_color: #f44336;
+sitecoretheme_body_body_background_color: #000;
+sitecoretheme_body_content_background_color: #151515;
+sitecoretheme_body_font_color: #b2b2b2;
+sitecoretheme_body_font_color_light: #888;
+sitecoretheme_body_header_color: #dedbdb;
+sitecoretheme_body_link_color: #fff;
+sitecoretheme_body_link_color_on_hover: #f44336;
+sitecoretheme_body_form_label_font_color: #b2b2b2;
+sitecoretheme_body_input_background_color: #1e1e1e;
+sitecoretheme_body_input_font_color: #999;
+sitecoretheme_body_input_border_color: #272727;
+sitecoretheme_body_button_background_color: #f44336;
+sitecoretheme_body_button_background_color_on_hover: #d32f2f;
+sitecoretheme_body_button_font_color: #ffffff;
+sitecoretheme_body_button_font_color_on_hover: #ffffff;
+sitecoretheme_body_button_border_color: #f44336;
+sitecoretheme_body_button_border_color_on_hover: #d32f2f;
+sitecoretheme_body_comments_background_color: #222;
+sitecoretheme_body_border_color: #2d2d2d;
+sitecoretheme_body_border_medium_color: #282828;
+sitecoretheme_body_border_dark_color: #242424;
+sitecoretheme_body_tag_background_color: #000;
+sitecoretheme_body_pulldown_background_color: #2c2c2c;
+sitecoretheme_body_pulldown_background_color_on_hover: #272727;
+sitecoretheme_body_pulldown_background_color_on_active: #232323;
+sitecoretheme_body_pulldown_border_color: #424242;
+sitecoretheme_body_list_background_color: #2c2c2c;
+sitecoretheme_body_list_background_color_alt: #272727;
+sitecoretheme_body_list_background_color_on_hover: #232323;
+sitecoretheme_body_tabs_font_color: #cccccc;
+sitecoretheme_body_tabs_font_color_on_hover : #f44336;
+sitecoretheme_body_tabs_border_color_on_hover: #f44336;
+sitecoretheme_body_tabs_font_color_on_active: #f44336;
+sitecoretheme_body_landingpage_purchase_now_button_background_color: #151515;
+sitecoretheme_body_landingpage_purchase_now_button_font_color : #fff;

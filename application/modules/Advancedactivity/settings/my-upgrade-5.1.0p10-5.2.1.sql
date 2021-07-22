@@ -1,0 +1,1 @@
+INSERT INTO `engine4_core_jobtypes` (`title`, `type`, `module`, `plugin`, `form`, `enabled`, `priority`, `multi`) VALUES ('Modify Hashtags', 'sitehashtag_hashtags', 'sitehashtag', 'Sitehashtag_Plugin_Job_Hashtags', NULL, '1', '100', '2');

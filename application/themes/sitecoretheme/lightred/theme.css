@@ -1,0 +1,7 @@
+@include "constants.css";
+@include "~/application/themes/sitecoretheme/structure.css";
+
+.layout_core_menu_mini #core_menu_mini_menu > ul > li > a { border-color:$sitecoretheme_header_mini_menu_items_color; }
+.sitecoretheme_top_header_two .layout_core_menu_mini #core_menu_mini_menu > ul > li > a,
+ .layout_core_menu_mini #core_menu_mini_menu > ul > li > a{border: 1px solid $sitecoretheme_header_mini_menu_items_color;}
+.layout_core_menu_mini #core_menu_mini_menu > ul > li > a:before {color: $sitecoretheme_header_mini_menu_items_color;}

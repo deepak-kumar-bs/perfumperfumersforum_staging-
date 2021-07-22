@@ -1,0 +1,4 @@
+@include "constants.css";
+@include "~/application/themes/sitecoretheme/structure.css";
+
+.demo_app_container {background-color: $sitecoretheme_theme_primary_color;}

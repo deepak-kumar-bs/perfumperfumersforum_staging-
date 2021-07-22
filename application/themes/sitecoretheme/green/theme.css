@@ -1,0 +1,16 @@
+@include "constants.css";
+@include "~/application/themes/sitecoretheme/structure.css";
+
+div.layout_sitecoretheme_menu_social_sites li > a {
+ color: #e4e4e4;
+}
+div.layout_sitecoretheme_menu_social_sites li > a,
+._fix_top_header .sitecoretheme_main_menu .navigation > li > a,
+._fix_top_header .layout_sitecoretheme_browse_menu_main .sitecoretheme_main_menu ul.navigation > li > .sub_navigation_toggle {
+	color: #fff;
+}
+.sitecoretheme_top_header_one .sitecoretheme_main_menu .navigation > li.more_link {border-color: #fff;}
+.sitecoretheme_top_header_one .sitecoretheme_main_menu .navigation > li.more_link > span {background-color: #fff;}
+@media (min-width: 921px) {
+.sitecoretheme_top_header_one .sitecoretheme_main_menu .navigation > li > a {color: #fff;}
+}

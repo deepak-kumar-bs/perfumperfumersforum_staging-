@@ -1,0 +1,246 @@
+/* $Id: constants.css 2010-09-24 9:40:21Z SocialEngineAddOns Copyright 2009-2010 BigStep Technologies Pvt. Ltd. $ */
+
+/*
+DEFAULT STYLES FOR THIS THEME
+*/
+
+/*
+NOTE TO SELVES ---------------------------------------------------------------
+Also add constants to application/settings/constants.xml
+END NOTE ---------------------------------------------------------------------
+*/
+
+
+sitecoretheme_fonts_body_font_family: Roboto, sans-serif;
+sitecoretheme_fonts_body_font_size: 13px;
+sitecoretheme_fonts_heading_font_family: Roboto, sans-serif;
+sitecoretheme_fonts_heading_fontsize: 15px;
+sitecoretheme_fonts_mainmenu_font_family: Roboto, sans-serif;
+sitecoretheme_fonts_mainmenu_font_size: 14px;
+sitecoretheme_fonts_tab_font_family: Roboto, sans-serif;
+sitecoretheme_fonts_tab_font_size: 13px;
+sitecoretheme_layout_theme_width: 1200px;
+sitecoretheme_layout_left_column_width: 250px;
+sitecoretheme_layout_right_column_width: 250px;
+sitecoretheme_layout_hide_left_column: none;
+sitecoretheme_layout_hide_right_column: block;
+sitecoretheme_landing_heading_icon:"f10b";
+sitecoretheme_landing_page_tabs_style: 1;
+sitecoretheme_layout_container_headding_style: 1;
+sitecoretheme_layout_container_design: 3;
+sitecoretheme_button_design: 1;
+sitecoretheme_navtab_button_design_button: 1;
+sitecoretheme_landingpage_width_type: 2;
+
+@include "~/public/seaocore_themes/sitecorethemeThemeGeneralConstants.css";
+/*
+NEW CONSTANTS ADDED FOR THEME COLOR SETTING AND CUSTOM COLOR WORK */
+sitecoretheme_top_header_two_background_color: $sitecoretheme_header_top_header_two_background_color;
+sitecoretheme_top_header_two_link_color: $sitecoretheme_header_top_header_two_link_color;
+sitecoretheme_top_header_two_link_color_hover: $sitecoretheme_header_top_header_two_link_color_hover;
+sitecoretheme_top_header_background_color: $sitecoretheme_header_header_background_color;
+sitecoretheme_logo_font_color: $sitecoretheme_header_logo_font_color;
+sitecoretheme_header_searchbox_text_color: $sitecoretheme_header_header_searchbox_text_color;
+sitecoretheme_header_searchbox_border_color: $sitecoretheme_header_header_searchbox_border_color;
+theme_topbar_minimenu_link_background_color : $sitecoretheme_header_minimenu_items_background_color;
+theme_button_font_color_hover: $sitecoretheme_body_button_font_color_on_hover;
+theme_button_border_color_hover: $sitecoretheme_body_button_border_color_on_hover;
+theme_commentlist_background_color: $sitecoretheme_body_comments_background_color;
+sitecoretheme_main_menu_hover_active_color: $sitecoretheme_header_theme_main_menu_links_color_on_hover;
+theme_footer_background_color : $sitecoretheme_footer_footer_background_color;
+theme_footer_link_description_color: $sitecoretheme_footer_footer_link_and_description_color;
+theme_footer_link_color_hover: $sitecoretheme_footer_footer_link_color_on_hover;
+theme_footer_title_color: $sitecoretheme_footer_footer_heading_color;
+theme_bottom_footer_background: $sitecoretheme_footer_bottom_footer_background_color;
+theme_bottom_footer_text_color: $sitecoretheme_footer_bottom_footer_text_color;
+theme_bottom_footer_link_color: $sitecoretheme_footer_bottom_footer_link_color;
+theme_bottom_footer_link_color_hover: $sitecoretheme_footer_bottom_footer_link_color_on_hover;
+sitecoretheme_theme_primary_color: $sitecoretheme_body_theme_color; /* Common constant to use anywhere in theme whereever you want theme primary color */
+sitecoretheme_landingpage_achievement_button_background: $sitecoretheme_body_landingpage_purchase_now_button_background_color;
+sitecoretheme_landingpage_achievement_button_color: $sitecoretheme_body_landingpage_purchase_now_button_font_color;
+
+/*
+PAGE WIDTHS & BACKGROUND COLOR
+Specify the top bar wrapper width (which contains the mini menu, logo, and main menu
+by default), the footer width, and the width of left & right-side columns.
+*/
+theme_topbar_width: $sitecoretheme_layout_theme_width;
+theme_topbar_minimenu_width: $sitecoretheme_layout_theme_width;
+theme_topbar_logo_width: $sitecoretheme_layout_theme_width;
+theme_topbar_menu_width: $sitecoretheme_layout_theme_width;
+theme_footer_width: $sitecoretheme_layout_theme_width;
+theme_content_width: $sitecoretheme_layout_theme_width;
+theme_content_columns_left_width: $sitecoretheme_layout_left_column_width;
+theme_content_columns_right_width: $sitecoretheme_layout_right_column_width;
+theme_body_background_color: $sitecoretheme_body_body_background_color;
+
+/* 
+HEADER AND FOOTER COLORS
+These values are only used to style the site-wide header and footer.
+*/
+theme_topbar_background_color: $sitecoretheme_header_main_menu_background_color;
+theme_topbar_menu_background_color: $sitecoretheme_header_main_menu_background_color;
+theme_topbar_menu_background_color_hover: $sitecoretheme_header_main_menu_background_color;
+theme_topbar_menu_link_color: $sitecoretheme_header_main_menu_link_color;
+theme_topbar_menu_link_decoration: none;
+theme_topbar_menu_link_hover_color: $sitecoretheme_header_main_menu_link_color_on_hover;
+theme_topbar_menu_link_hover_decoration: none;
+theme_topbar_menu_link_size: 18px;
+theme_topbar_menu_link_background_color: transparent;
+theme_topbar_menu_link_background_color_hover:transparent;
+theme_topbar_menu_border: none;
+theme_topbar_minimenu_background_color: transparent;
+theme_topbar_minimenu_background_color_hover: transparent;
+theme_topbar_minimenu_border: none;
+theme_topbar_minimenu_border_left: transparent;
+theme_topbar_minimenu_border_right: transparent;
+theme_topbar_minimenu_link_size: .7em;
+theme_topbar_minimenu_link_color: $sitecoretheme_header_mini_menu_items_color;
+theme_topbar_minimenu_link_hover_color: $sitecoretheme_header_mini_menu_items_color_on_hover;
+theme_topbar_minimenu_link_hover_decoration: none;
+theme_topbar_minimenu_link_hover_background_color: $sitecoretheme_header_minimenu_items_background_color_on_hover;
+theme_topbar_border: 0px solid transparent;
+theme_topbar_minimenu_searchbar_background: $sitecoretheme_body_input_background_color;
+theme_topbar_minimenu_searchbar_border: $sitecoretheme_body_input_border_color;
+ 
+/* 
+TEXT & LINKS
+These values affect the size and colors of your text and links throughout your layout.
+*/
+theme_font_family: $sitecoretheme_fonts_body_font_family; 
+theme_font_size: $sitecoretheme_fonts_body_font_size;
+theme_font_color: $sitecoretheme_body_font_color;
+theme_font_color_light: $sitecoretheme_body_font_color_light;
+theme_text_align: left;
+theme_link_color: $sitecoretheme_body_link_color;
+theme_link_color_hover: $sitecoretheme_body_link_color_on_hover;
+theme_link_decoration: none;
+theme_link_decoration_hover:none;
+theme_headline_color: $sitecoretheme_body_header_color;
+theme_headline_size_large: 16px;
+theme_headline_size_medium: 15px;
+/*  theme_title_color:$sitecoretheme_theme_primary_color;*/
+
+/* 
+BORDER COLORS
+These colors are mostly applied to borders that separate items in lists of content.
+*/
+theme_border_color: $sitecoretheme_body_border_color;
+theme_border_medium_color: $sitecoretheme_body_border_medium_color;
+theme_border_dark_color: $sitecoretheme_body_border_dark_color;
+
+/*
+WIDGET BOX BORDER COLORS
+These colors are applied to borders around or within boxes that have a background color,
+like widgets.
+*/
+theme_foreground_border_color: transparent;
+theme_foreground_border_color_light: transparent;
+theme_foreground_background_color: $sitecoretheme_body_content_background_color;
+
+/*
+INPUT FIELDS AND BUTTONS
+These values style input fields and buttons that appear throughout the layout.
+*/
+theme_input_background_color: $sitecoretheme_body_input_background_color;
+theme_input_font_color: $sitecoretheme_body_input_font_color;
+theme_input_border_colors: $sitecoretheme_body_input_border_color;
+theme_button_background_color: $sitecoretheme_body_button_background_color;
+theme_button_background_color_hover: $sitecoretheme_body_button_background_color_on_hover;
+theme_button_font_color: $sitecoretheme_body_button_font_color;
+theme_button_border_color: $sitecoretheme_body_button_border_color;
+
+/*
+PHOTO BORDERS
+These colors are applied to the borders drawn around most images and thumbnails.
+*/
+theme_photo_border_color: #e4e4e4;
+theme_photo_border_color_hover: #e4e4e4;
+
+/* 
+FORMS
+These colors are applied to most forms throughout the layout.
+*/
+theme_form_border_color: transparent;
+theme_form_background_color: $theme_foreground_background_color;
+theme_form_label_font_color: $sitecoretheme_body_form_label_font_color;
+theme_form_description_font_color:$sitecoretheme_theme_primary_color;
+
+/*
+TABS (BUTTON-STYLE)
+These colors are applied to the button-style tab menus which are often shown
+on browse pages.
+*/
+theme_buttontabs_font_size:14px;
+theme_buttontabs_font_color: $sitecoretheme_body_tabs_font_color;
+theme_buttontabs_font_color_hover: $sitecoretheme_body_tabs_font_color_on_hover;
+theme_buttontabs_font_color_active: $sitecoretheme_body_tabs_font_color_on_active;
+theme_buttontabs_background_color: transparent;
+theme_buttontabs_background_color_hover: transparent;
+theme_buttontabs_background_color_active: transparent;
+
+/*
+TABS
+These colors are applied to tab menus (as seen on several pages, including
+the member profile page).
+*/
+theme_tabs_background_color: transparent;
+theme_tabs_border_color: $sitecoretheme_body_border_color;
+theme_tabs_border_color_hover: $sitecoretheme_body_tabs_border_color_on_hover;
+theme_tabs_font_color: $sitecoretheme_body_tabs_font_color;
+theme_tabs_font_color_active: $sitecoretheme_body_tabs_font_color_on_active;
+theme_tabs_font_color_hover:$sitecoretheme_body_tabs_font_color_on_hover;
+theme_tabs_background_color_active:transparent;
+theme_tabs_background_color_hover: transparent;
+
+/*
+LISTS
+These colors are applied to some lists, especially in pull-down menus.
+*/
+theme_list_background_color: $sitecoretheme_body_list_background_color;
+theme_list_background_color_alt: $sitecoretheme_body_list_background_color_alt;
+theme_list_background_color_hover: $sitecoretheme_body_list_background_color_on_hover;
+
+/*
+TAGS
+These colors are applied to tags, which appear on blogs, messages, etc.
+*/
+theme_tag_background_color: $sitecoretheme_body_tag_background_color;
+
+/*
+INLINE PULLDOWN MENUS
+These colors style the inline pulldown menus that appear throughout the layout.
+*/
+theme_pulldown_background_color: $sitecoretheme_body_pulldown_background_color;
+theme_pulldown_background_color_hover: $sitecoretheme_body_pulldown_background_color_on_hover;
+theme_pulldown_background_color_active:$sitecoretheme_body_pulldown_background_color_on_active;
+theme_pulldown_font_color_active: $sitecoretheme_theme_primary_color;
+theme_pulldown_border_color: $sitecoretheme_body_pulldown_border_color;
+theme_pulldown_contents_background_color: $sitecoretheme_body_pulldown_background_color;
+theme_pulldown_contents_list_background_color_hover: $sitecoretheme_body_pulldown_background_color_on_hover;
+theme_pulldown_contents_list_background_color_active: $sitecoretheme_body_pulldown_background_color_on_active;
+
+/*
+GRID VIEW LAYOUT
+These values set the width and height of grid layout.
+*/
+theme_grid_width: 220px;
+theme_grid_height: 290px;
+
+/*
+POST BOX CONTAINER
+ThesE colors style postox container content that appear throughout the layout.
+*/
+theme_postbox_background_color:$sitecoretheme_body_content_background_color;
+
+/*
+COVER PHOTO LINKS STYLING
+ThesE colors style coverphoto container content that appear throughout the layout.
+*/
+theme_coverphoto_link_color:$sitecoretheme_theme_primary_color;
+/*
+BACKGROUND COLOR FOR WHOLE THEME 
+ThesE colors style background of content that appear throughout the layout.
+*/
+theme_layout_background_color:$sitecoretheme_body_content_background_color;
+

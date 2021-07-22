@@ -1,0 +1,45 @@
+/* These CSS will be applied only for dark themes overrides */
+
+
+/* Dark them overlay */
+#TB_overlay {background: #333;}
+.seao_smoothbox_lightbox_overlay {background: rgba(0, 0, 0, .5)!important;}
+
+/* Core banner widget */
+.layout_core_banner > div,
+.profile_cover_photo_empty {
+  background: -webkit-linear-gradient(to left, $theme_button_background_color, #333);
+  background: linear-gradient(to left, $theme_button_background_color, #333);
+}
+/* AAF Action icons */
+.layout_advancedactivity_home_feeds #activity-feed .feed_item_icon > ul li.feed_item_option_like,
+.layout_advancedactivity_home_feeds #activity-feed .feed_item_icon > ul li.feed_item_option_reaction a[data-current-reaction="unlike"] {
+  background-image: url(../images/like.png);
+}
+.layout_advancedactivity_home_feeds #activity-feed .feed_item_icon > ul li.feed_item_option_unlike .nstcomment_unlike {
+  background-image: url(../images/dislike.png);
+}
+.layout_advancedactivity_home_feeds #activity-feed .feed_item_icon > ul li.feed_item_option_comment a {
+  background-image: url(../images/comment.png);
+}
+.layout_advancedactivity_home_feeds #activity-feed .feed_item_icon > ul li.feed_item_option_share > a {
+  background-image: url(../images/share.png);
+}
+.layout_advancedactivity_home_feeds #activity-feed .feed_item_icon > ul li.feed_item_option_add_tag a.icon_friend_add {
+  background-image: url(../images/taguser.png);
+}
+.layout_advancedactivity_home_feeds #activity-feed .feed_item_icon > ul li.feed_item_option_remove_tag a.icon_friend_remove,
+.layout_advancedactivity_home_feeds #activity-feed .feed_item_icon > ul li.feed_item_option_add_tag a.icon_friend_remove {
+  background-image: url(../images/removeuser.png);
+}
+.layout_advancedactivity_home_feeds #activity-feed .feed_item_icon > ul li.feed_item_option_delete a {
+  background-image: url(../images/delete.png);
+}
+.layout_advancedactivity_home_feeds #activity-feed .feed_item_icon ul li.feed_item_option_translate a {
+  background-image: url(../images/translate.png);
+  background-size: 14px;
+}
+.layout_sitecoretheme_markers{background:url(~/application/themes/sitecoretheme/images/map-bg-dark.png); background-position: center bottom; width:100%; height: 100%; background-repeat: no-repeat;  }
+html .sitemenu_lightbox #user_signup_form select {
+  background-image: url(../images/down-arrow.png);
+}
