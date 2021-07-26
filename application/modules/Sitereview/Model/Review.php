@@ -44,7 +44,23 @@ class Sitereview_Model_Review extends Core_Model_Item_Abstract {
 		//GET LISTING TYPE ID
 		$listingtype_id = $this->getParent()->listingtype_id;
     if ($this->type == 'editor') {
-      return $this->getParent()->getHref(array('tab' => Engine_Api::_()->sitereview()->getTabId($listingtype_id, 'sitereview.editor-reviews-sitereview')));
+      // return $this->getParent()->getHref(array('tab' => Engine_Api::_()->sitereview()->getTabId($listingtype_id, 'sitereview.editor-reviews-sitereview')));
+
+      $content_id = Engine_Api::_()->sitereview()->existWidget('sitereview_view_editorreviews', 0);
+      $params = array_merge(array(
+          'route' => "sitereview_view_editorreview_listtype_$listingtype_id",
+          'reset' => true,
+          'listing_id' => $this->resource_id,
+          'review_id' => $this->review_id,
+          'slug' => $this->getSlug(),
+          'tab' => $content_id,
+              ), $params);
+      $route = $params['route'];
+      $reset = $params['reset'];
+      unset($params['route']);
+      unset($params['reset']);
+      return Zend_Controller_Front::getInstance()->getRouter()
+                      ->assemble($params, $route, $reset);
     } else {
 
       //GET CONTENT ID
@@ -144,8 +160,12 @@ class Sitereview_Model_Review extends Core_Model_Item_Abstract {
             ->where('review_id < (?)', $this->review_id)
             ->where('resource_id =?', $this->resource_id)
             ->where('resource_type =?', $this->resource_type)
-            ->where("type in (?)", array('user', 'visitor'))
             ->order('review_id DESC');
+    if($this->type == 'editor')
+      $select->where("type in (?)", array('editor'));
+    else
+      $select->where("type in (?)", array('user', 'visitor'));
+            
     return $this->getTable()->fetchRow($select);
   }
 
@@ -157,7 +177,12 @@ class Sitereview_Model_Review extends Core_Model_Item_Abstract {
                     ->where('status =?', 1)
                     ->where('review_id > (?)', $this->review_id)
                     ->where('resource_id =?', $this->resource_id)
-                    ->where('resource_type =?', $this->resource_type)->where("type in (?)", array('user', 'visitor'));
+                    ->where('resource_type =?', $this->resource_type)
+                    ->order('review_id DESC');
+    if($this->type == 'editor')
+      $select->where("type in (?)", array('editor'));
+    else
+      $select->where("type in (?)", array('user', 'visitor'));
     return $this->getTable()->fetchRow($select);
   }
 

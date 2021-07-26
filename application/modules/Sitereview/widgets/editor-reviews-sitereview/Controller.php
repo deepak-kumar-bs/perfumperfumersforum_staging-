@@ -45,6 +45,8 @@ class Sitereview_Widget_EditorReviewsSitereviewController extends Seaocore_Conte
       $this->view->addEditorReview = $editor_review_id = 0;
     }
 
+    $this->view->viewer_id = $viewer_id = $viewer->getIdentity();
+
     $this->view->canshowratings = false;
     if($listingType->allow_review != 2){
       $this->view->canshowratings = true;
@@ -165,6 +167,9 @@ class Sitereview_Widget_EditorReviewsSitereviewController extends Seaocore_Conte
       $this->getElement()->removeDecorator('Title');
       $this->getElement()->removeDecorator('Container');
     }
+
+    //CHECK PAGE
+    $this->view->checkPage = "listingProfile";
 
   }
 

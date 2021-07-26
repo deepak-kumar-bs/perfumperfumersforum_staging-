@@ -100,15 +100,25 @@ class Core_Model_Comment extends Core_Model_Item_Abstract
         $poster = $this->getPoster();
         $activityApi = Engine_Api::_()->getDbtable('actions', 'activity');
         $owner = $commentedItem->getOwner();
-        if( $owner->getType() != 'user' || $owner->getIdentity() == $poster->getIdentity() ) {
+        if( $owner->getType() != 'user' ) {
             return;
         }
+
+
         $body = $this->body;
-        $action = $activityApi->addActivity($poster, $commentedItem, 'comment_' . $commentedItem->getType(), $body, array(
+        $params = array(
             'owner' => $owner->getGuid(),
             'body' => $body,
             'privacy' => isset($commentedItem->networks) ? 'network_'. implode(',network_', explode(',',$commentedItem->networks)) : null,
-        ));
+        );
+        if($commentedItem->getType() == 'sitereview_listing'){
+
+            $listingtype_id = $commentedItem->listingtype_id;
+            $listingtypeName = strtolower(Engine_Api::_()->getDbTable('listingtypes', 'sitereview')->getListingTypeColumn($listingtype_id, 'title_singular'));
+            $params['listingtyp'] = $listingtypeName;
+
+        }
+        $action = $activityApi->addActivity($poster, $commentedItem, 'comment_' . $commentedItem->getType(), $body, $params);
         if( $action ) {
             $activityApi->attachActivity($action, $commentedItem);
         }

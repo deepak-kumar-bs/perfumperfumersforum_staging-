@@ -3405,6 +3405,17 @@ $final_array = array(
         ),
     ),
     array(
+        'title' => $view->translate('Review Profile: Editor Review View'),
+        'description' => $view->translate('Displays the main Editor Review. You can configure various setting from Edit Settings of this widget. This widget should be placed on Multiple Listing Types - Editor Review View page.'),
+        'category' => 'Multiple Listing Types',
+        'type' => 'widget',
+        'name' => 'sitereview.profile-editor-review-sitereview',
+        'defaultParams' => array(
+            'title' => 'Editor Reviews',
+            'titleCount' => true,
+        ),
+    ),
+    array(
         'title' => $view->translate('Listing Profile: Breadcrumb'),
         'description' => $view->translate('Displays breadcrumb of the listing based on the categories. This widget should be placed on the Multiple Listing Types - Listing Profile page.'),
         'category' => 'Multiple Listing Types',

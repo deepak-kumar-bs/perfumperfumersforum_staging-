@@ -32,7 +32,12 @@ $this->view->listingType = $listingType = Zend_Registry::get('listingtypeArray' 
     $this->view->reviewTitleSingular = $listingType->review_title_singular ? $listingType->review_title_singular : 'Review';
     $this->view->reviewTitlePlular = $listingType->review_title_plural ? $listingType->review_title_plural : 'Reviews';
     //GET TAB ID
-    $this->view->tab_id = Engine_Api::_()->sitereview()->existWidget('sitereview_reviews', 0, $listingtype_id);
+    if($this->view->reviews->type == 'editor'){
+
+      $this->view->tab_id = Engine_Api::_()->sitereview()->existWidget('editor_reviews_sitereview', 0, $listingtype_id);
+    } else {
+      $this->view->tab_id = Engine_Api::_()->sitereview()->existWidget('sitereview_reviews', 0, $listingtype_id);
+    }
 
     //GET LISTING TYPE TITLE
     $this->view->title_plural = Engine_Api::_()->getDbTable('listingtypes', 'sitereview')->getListingTypeColumn($listingtype_id, 'title_plural');

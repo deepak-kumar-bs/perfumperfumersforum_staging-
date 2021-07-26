@@ -28,6 +28,9 @@ class Sitereaction_View_Helper_Reactions extends Sitereaction_View_Helper_Reacti
     if ($like && isset($params['icons'][$like->reaction])) {
       $reaction = $params['icons'][$like->reaction];
       $caption = $reaction['caption'];
+      if($caption == 'Like'){
+        $caption = 'Liked';
+      }
     }
     //$likeClass = !empty($params['likeClass']) ? $params['likeClass'] : '';
     $data = array(

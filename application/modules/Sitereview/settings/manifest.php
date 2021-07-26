@@ -374,6 +374,23 @@ if (empty($request) || !($module == "default" && ( strpos( $getURL, '/install') 
                 'listing_id' => '\d+'
             ),
         ),
+
+        'sitereview_view_editorreview_listtype_' . $listingtype_id => array(
+            'route' => $slug_plural . '/editor-review/view/:review_id/:listing_id/:slug/:tab/*',
+            'defaults' => array(
+                'module' => 'sitereview',
+                'controller' => 'review',
+                'action' => 'editor-view',
+                'listingtype_id' => $listingtype_id,
+                'slug' => '',
+                'tab' => ''
+            ),
+            'reqs' => array(
+                'review_id' => '\d+',
+                'listing_id' => '\d+'
+            ),
+        ),
+
         'sitereview_video_general_listtype_' . $listingtype_id => array(
             'route' => $slug_plural . '/video/:action/*',
             'defaults' => array(

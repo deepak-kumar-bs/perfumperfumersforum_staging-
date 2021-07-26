@@ -394,6 +394,26 @@ class Sitereview_Api_Core extends Core_Api_Abstract {
                     ->fetchColumn();
 
             return $content_id;
+        } elseif ($widget == 'sitereview_view_editorreviews') {
+            //GET PAGE ID
+            $page_id = $tablePage->select()
+                    ->from($tablePageName, array('page_id'))
+                    ->where('name = ?', "sitereview_review_editor-view")
+                    ->query()
+                    ->fetchColumn();
+
+            if (empty($page_id)) {
+                return 0;
+            }
+
+            $content_id = $tableContent->select()
+                    ->from($tableContent->info('name'), array('content_id'))
+                    ->where('page_id = ?', $page_id)
+                    ->where('name = ?', 'sitereview.profile-editor-review-sitereview')
+                    ->query()
+                    ->fetchColumn();
+
+            return $content_id;
         }
     }
 

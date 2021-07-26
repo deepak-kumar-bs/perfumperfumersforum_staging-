@@ -141,8 +141,8 @@ class Sitereview_Form_Editor_Create extends Engine_Form {
 
     $this->addElement('Select', 'status', array(
         'label' => 'Status',
-        'multiOptions' => array("1" => "Published", "0" => "Saved As Draft"),
-        'description' => 'If this entry is published, it cannot be switched back to draft mode.'
+        'multiOptions' => array("1" => "Published"),
+        // 'description' => 'If this entry is published, it cannot be switched back to draft mode.'
     ));
     $this->status->getDecorator('Description')->setOption('placement', 'append');
 

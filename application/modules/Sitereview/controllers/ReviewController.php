@@ -1172,4 +1172,71 @@ class Sitereview_ReviewController extends Seaocore_Controller_Action_Standard {
     }
   }
 
+  //ACTION FOR VIEW EDITOR REVIEWS
+  public function editorViewAction() {
+
+    //IF ANONYMOUS USER THEN SEND HIM TO SIGN IN PAGE
+    $check_anonymous_help = $this->_getParam('anonymous');
+    if ($check_anonymous_help) {
+      if (!$this->_helper->requireUser()->isValid())
+        return;
+    }
+
+    //GET LOGGED IN USER INFORMATION
+    $viewer = Engine_Api::_()->user()->getViewer();
+    $viewer_id = $viewer->getIdentity();
+
+    if (!Engine_Api::_()->core()->hasSubject()) {
+      return $this->_forwardCustom('notfound', 'error', 'core');
+    }
+
+    //GET LISTING ID AND OBJECT
+    $sitereview = Engine_Api::_()->core()->getSubject()->getParent();
+
+    $listingtype_id = $this->_listingType->listingtype_id;
+
+    //WHO CAN VIEW THE LISTINGS
+    if (!$this->_helper->requireAuth()->setAuthParams($sitereview, null, "view_listtype_$listingtype_id")->isValid() || empty($this->_listingType->allow_review)) {
+      return $this->_forwardCustom('requireauth', 'error', 'core');
+    }
+
+    if (Engine_Api::_()->sitereview()->hasPackageEnable()) {
+      if (!Engine_Api::_()->sitereviewpaidlisting()->allowPackageContent($sitereview->package_id, "user_review"))
+        return $this->_forward('requireauth', 'error', 'core');
+    }
+
+    $review = Engine_Api::_()->core()->getSubject();
+    if (empty($review)) {
+      return $this->_forwardCustom('requireauth', 'error', 'core');
+    }
+
+    //GET USER LEVEL ID
+    if (!empty($viewer_id)) {
+      $level_id = $viewer->level_id;
+    } else {
+      $level_id = Engine_Api::_()->getDbtable('levels', 'authorization')->fetchRow(array('type = ?' => "public"))->level_id;
+    }
+
+    //GET LEVEL SETTING
+    $can_view = Engine_Api::_()->authorization()->getPermission($level_id, 'sitereview_listing', "view_listtype_$listingtype_id");
+
+    if ($can_view != 2 && $viewer_id != $sitereview->owner_id && ($sitereview->draft == 1 || $sitereview->search == 0 || $sitereview->approved != 1)) {
+      return $this->_forwardCustom('requireauth', 'error', 'core');
+    }
+
+    if ($can_view != 2 && ($review->status != 1 && empty($review->owner_id))) {
+      return $this->_forwardCustom('requireauth', 'error', 'core');
+    }
+
+    //IF MODE IS APP  THEN FIXED THE HEADER.
+    if (Engine_Api::_()->seaocore()->isSitemobileApp()) {
+      Zend_Registry::set('setFixedCreationFormBack', 'Back');
+    }
+
+    $this->_helper->content
+            ->setContentName('sitereview_review_editor-view')
+            ->setNoRender()
+            ->setEnabled();
+  }
+
 }

@@ -317,19 +317,19 @@ class Seaocore_NestedcommentController extends Core_Controller_Action_Standard {
             $subjectOwner = $subject->getOwner('user');
 
             // Activity
-            if (empty($comment->parent_comment_id)) {
-                $action = $activityApi->addActivity($viewer, $subject, 'comment_' . $subject->getType(), '', array(
-                    'owner' => $subjectOwner->getGuid(),
-                    'body' => $body,
-                    'listingtype' => $listingtypeName
-                ));
-            } else {
-                $action = $activityApi->addActivity($viewer, $subject, 'nestedcomment_' . $subject->getType(), '', array(
-                    'owner' => $subjectOwner->getGuid(),
-                    'body' => $body,
-                    'listingtype' => $listingtypeName
-                ));
-            }
+            // if (empty($comment->parent_comment_id)) {
+            //     $action = $activityApi->addActivity($viewer, $subject, 'comment_' . $subject->getType(), '', array(
+            //         'owner' => $subjectOwner->getGuid(),
+            //         'body' => $body,
+            //         'listingtype' => $listingtypeName
+            //     ));
+            // } else {
+            //     $action = $activityApi->addActivity($viewer, $subject, 'nestedcomment_' . $subject->getType(), '', array(
+            //         'owner' => $subjectOwner->getGuid(),
+            //         'body' => $body,
+            //         'listingtype' => $listingtypeName
+            //     ));
+            // }
 
 //       if (!empty($action)) {
 //         $activityApi->attachActivity($action, $subject);

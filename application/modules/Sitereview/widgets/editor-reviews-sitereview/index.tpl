@@ -38,6 +38,9 @@ endif;
 <?php endif; ?>
 
 <?php if ($this->showContent): ?>
+  <?php $helpfulTable = Engine_Api::_()->getDbtable('helpful', 'sitereview'); ?>
+  <?php $reviewDescriptionsTable = Engine_Api::_()->getDbtable('reviewDescriptions', 'sitereview'); ?>
+
   <?php if($this->addEditorReview): ?>
     <script type="text/javascript">
       var editorPageAction = function(page){
@@ -178,7 +181,7 @@ endif;
                   <?php if($review->title):?>
                     <div class="sr_reviews_listing_proscons">
                       <?php //echo '<b>' . $this->translate("The Bottom Line:") . ' </b>' . $review->title; ?>
-                      <?php echo '<b>' .$review->title . '</b>'; ?>
+                      <b><?php echo $this->htmlLink($review->getHref(), Engine_Api::_()->seaocore()->seaocoreTruncateText($review->title, 60), array('title' => $review->title)) ?></b>
                     </div>
                   <?php endif;?>
                   
@@ -360,6 +363,8 @@ endif;
             <?php echo $review->body; ?>
           </div>
 
+          <?php include APPLICATION_PATH . '/application/modules/Sitereview/views/scripts/_formEditorReplyReview.tpl'; ?>
+
         </div>
 
       <?PHP endforeach; ?>
@@ -376,28 +381,28 @@ endif;
     </div>
   </div>
 
-  <?php 
+  <!-- <?php 
 
    //CHECK IF THE FACEBOOK PLUGIN IS ENABLED AND ADMIN HAS SET ONLY SHOW FACEBOOK COMMENT BOX THEN WE WILL NOT SHOW THE SITE COMMENT BOX.
-   $fbmodule = Engine_Api::_()->getDbtable('modules', 'core')->getModule('facebookse');
-   $success_showFBCommentBox = 0;
-   $checkVersion = Engine_Api::_()->sitereview()->checkVersion($fbmodule->version, '4.2.7p1');
-   if (!empty($fbmodule) && !empty($fbmodule->enabled) && $checkVersion == 1) {
+   // $fbmodule = Engine_Api::_()->getDbtable('modules', 'core')->getModule('facebookse');
+   // $success_showFBCommentBox = 0;
+   // $checkVersion = Engine_Api::_()->sitereview()->checkVersion($fbmodule->version, '4.2.7p1');
+   // if (!empty($fbmodule) && !empty($fbmodule->enabled) && $checkVersion == 1) {
 
-     $success_showFBCommentBox =  Engine_Api::_()->facebookse()->showFBCommentBox ('sitereview');
-   }
+   //   $success_showFBCommentBox =  Engine_Api::_()->facebookse()->showFBCommentBox ('sitereview');
+   // }
 
-  ?>
+  ?> -->
 
-  <?php if( empty($this->isAjax) && $this->showComments && $success_showFBCommentBox != 1):?>
+  <!-- <?php // if( empty($this->isAjax) && $this->showComments && $success_showFBCommentBox != 1):?>
      <?php 
-        include_once APPLICATION_PATH . '/application/modules/Seaocore/views/scripts/_listNestedComment.tpl';
+        // include_once APPLICATION_PATH . '/application/modules/Seaocore/views/scripts/_listNestedComment.tpl';
     ?>
-  <?php endif;?>
+  <?php // endif;?>
 
-  <?php if( empty($this->isAjax) && $success_showFBCommentBox != 0):?>
-     <?php  echo $this->content()->renderWidget("Facebookse.facebookse-comments", array("type" => $this->sitereview->getType(), "id" => $this->sitereview->listing_id, 'task' => 1, 'module_type' => 'sitereview' , 'curr_url' => ( _ENGINE_SSL ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $this->sitereview->getHref()));?>
-  <?php endif;?>
+  <?php // if( empty($this->isAjax) && $success_showFBCommentBox != 0):?>
+     <?php // echo $this->content()->renderWidget("Facebookse.facebookse-comments", array("type" => $this->sitereview->getType(), "id" => $this->sitereview->listing_id, 'task' => 1, 'module_type' => 'sitereview' , 'curr_url' => ( _ENGINE_SSL ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $this->sitereview->getHref()));?>
+  <?php // endif;?> -->
 
   <?php if($this->addEditorReview): ?>
     <script type="text/javascript">
