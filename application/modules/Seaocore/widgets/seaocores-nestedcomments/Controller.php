@@ -30,7 +30,7 @@ class Seaocore_Widget_SeaocoresNestedcommentsController extends Engine_Content_W
     if(!$subject)
       return $this->setNoRender();
     
-   if(($subject->getType() != 'sitereview_listing' && $subject->getType() != 'sitereview_review') && ($subject->getType() != 'siteevent_event' && $subject->getType() != 'siteevent_review')) {
+   if(($subject->getType() != 'sitereview_listing' && $subject->getType() != 'sitereview_review' && $subject->getType() != 'sitereview_wishlist') && ($subject->getType() != 'siteevent_event' && $subject->getType() != 'siteevent_review')) {
       return $this->setNoRender();
     }
 
