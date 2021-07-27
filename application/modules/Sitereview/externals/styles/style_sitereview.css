@@ -398,6 +398,48 @@ ul.sr_browse_list > li{
 ul.sr_browse_list > li + li{
   border-top-width:1px;
 }
+.pf_browse_listing > li > .sr_browse_list_info {
+  display: flex;
+  justify-content: space-between;
+}
+.list_quick_specification ul li table.recipe_data tr {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.pf_browse_listing > li > .sr_browse_list_info > div {
+  width: 100%;
+  max-width: 33%;
+  margin: 0 5px;
+}
+.pf_browse_listing > li > .sr_browse_list_info .ingredients_list_quick_specification ul li {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+}
+.pf_browse_listing > li > .sr_browse_list_info .ingredients_list_quick_specification ul li span + span {
+      float: right;
+    font-weight: bold;
+    width: 50%;
+    word-break: break-all;
+}
+.pf_browse_listing > li > .sr_browse_list_info .ingredients_list_quick_specification ul li span {
+    font-size: 11px;
+    float: left;
+    margin: 0px 5px 0 0;
+    padding: 0px;
+    width: 45% !important;
+}
+.list_quick_specification ul li table.recipe_data tr th, .list_quick_specification ul li table.recipe_data tr td {
+      padding-right: 7px;
+      width: 80px;
+      font-weight: 700;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      display: inline-block;
+}
 li.lists_highlight + li{
   border-top-width:0;
 }
@@ -2215,6 +2257,23 @@ i.arrow_btm{
 }
 .sr_reviews_listing_proscons > b{
   margin-right:5px;
+  font-size: 17px;
+}
+.review_date_owner_info {
+  font-size: 11px;
+}
+#editorReviewContent div#review_content > div > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+div.editor_review_body {
+  position: absolute;
+  right: 0;
+  bottom: 15px;
+}
+#editorReviewContent #review_content div.editor_review_body {
+  position: static;
 }
 .sr_reviews_listing_content{
   border-width:1px;
@@ -3743,5 +3802,12 @@ ul.sitereview_package_list .sitereview_list_details{
 @media only screen and (max-width:320px){
 /* Browse list view rating */
 .sr_browse_list_rating{display:none;}		
+}
+
+form#sitereview_filter_form_custom .form-wrapper .form-element input {
+  width: 100%;
+}
+#filter_form button {
+  margin-top: 22px;
 }
 

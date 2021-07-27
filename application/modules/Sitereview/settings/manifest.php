@@ -109,6 +109,15 @@ if (empty($request) || !($module == "default" && ( strpos( $getURL, '/install') 
       )
   );
 
+  $routes['sitereview_hasgtagfeed'] = array(
+            'route' => 'listingHashtags/*',
+            'defaults' => array(
+                'module' => 'sitereview',
+                'controller' => 'hashtagfeed',
+                'action' => 'index'
+            )
+        );
+
   $db = Engine_Db_Table::getDefaultAdapter();
   $listingTypes = $db->query("SELECT listingtype_id, slug_plural, slug_singular FROM `engine4_sitereview_listingtypes`")->fetchAll();
   foreach ($listingTypes as $listingType) {

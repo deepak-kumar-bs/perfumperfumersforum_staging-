@@ -104,17 +104,26 @@ class Sitereview_EditorController extends Seaocore_Controller_Action_Standard {
     $this->view->listing_id = $listing_id = $sitereview->listing_id;
     $this->view->listingtype_id = $listingtype_id = $sitereview->listingtype_id;
 
+    $this->view->editor_rating = Engine_Api::_()->getDbTable('listingtypes', 'sitereview')->getListingTypeColumn($listingtype_id, 'allow_review');
+
     //CHECK EDITOR REVIEW IS ALLOWED OR NOT
     $allow_editor_review = Engine_Api::_()->getDbTable('listingtypes', 'sitereview')->getListingTypeColumn($listingtype_id, 'reviews');
     if (empty($allow_editor_review) || $allow_editor_review == 2) {
       return $this->_forward('requireauth', 'error', 'core');
     }
 
-    //SHOW THIS LINK ONLY EDITOR FOR THIS LISTING TYPE
-    $isEditor = Engine_Api::_()->getDbTable('editors', 'sitereview')->isEditor($viewer_id, $listingtype_id);
-    if (empty($isEditor)) {
+    //CHECK MEMBER LEVEL EDITOR REVIEW IS ALLOWED OR NOT
+    $level_id = $viewer->level_id;
+    $autorizationApi = Engine_Api::_()->authorization();
+    if(!$autorizationApi->getPermission($level_id, 'user', "editor_review") ) {
       return $this->_forward('requireauth', 'error', 'core');
     }
+
+    //SHOW THIS LINK ONLY EDITOR FOR THIS LISTING TYPE
+    // $isEditor = Engine_Api::_()->getDbTable('editors', 'sitereview')->isEditor($viewer_id, $listingtype_id);
+    // if (empty($isEditor)) {
+    //   return $this->_forward('requireauth', 'error', 'core');
+    // }
 
     //EDITOR REVIEW HAS BEEN POSTED OR NOT
     $params = array();
@@ -184,7 +193,7 @@ class Sitereview_EditorController extends Seaocore_Controller_Action_Standard {
 
     if ($this->getRequest()->isPost() && $form->isValid($this->getRequest()->getPost())) {
 
-      if (empty($_POST['review_rate_0'])) {
+      if (empty($_POST['review_rate_0']) && $this->view->editor_rating != 2) {
 
         $error = $this->view->translate('Please choose Overall Rating field - it is required.');
         $error = Zend_Registry::get('Zend_Translate')->_($error);
@@ -258,6 +267,17 @@ class Sitereview_EditorController extends Seaocore_Controller_Action_Standard {
           $auth->setAllowed($review, $role, 'comment', ($i <= $commentMax));
         }
 
+        if ($_POST['status'] == 1) {
+          $activityApi = Engine_Api::_()->getDbtable('actions', 'activity');
+
+          //ACTIVITY FEED
+          $action = $activityApi->addActivity($viewer, $sitereview, 'sitereview_editorreview_add_listtype_' . $listingtype_id);
+
+          if ($action != null) {
+            $activityApi->attachActivity($action, $review);
+          }
+        }
+
         if ($sitereview->owner_id != $viewer_id) {
 
           $host = $_SERVER['HTTP_HOST'];
@@ -306,11 +326,20 @@ class Sitereview_EditorController extends Seaocore_Controller_Action_Standard {
     $this->view->listing_id = $listing_id = $sitereview->listing_id;
     $this->view->listingtype_id = $listingtype_id = $sitereview->listingtype_id;
 
-    //SHOW THIS LINK ONLY EDITOR FOR THIS LISTING TYPE
-    $isEditor = Engine_Api::_()->getDbTable('editors', 'sitereview')->isEditor($viewer_id, $listingtype_id);
-    if (empty($isEditor)) {
+    $this->view->editor_rating = Engine_Api::_()->getDbTable('listingtypes', 'sitereview')->getListingTypeColumn($listingtype_id, 'allow_review');
+
+    $level_id = $viewer->level_id;
+    $autorizationApi = Engine_Api::_()->authorization();
+    if(!$autorizationApi->getPermission($level_id, 'user', "editor_review") ) {
       return $this->_forward('requireauth', 'error', 'core');
     }
+
+
+    //SHOW THIS LINK ONLY EDITOR FOR THIS LISTING TYPE
+    // $isEditor = Engine_Api::_()->getDbTable('editors', 'sitereview')->isEditor($viewer_id, $listingtype_id);
+    // if (empty($isEditor)) {
+    //   return $this->_forward('requireauth', 'error', 'core');
+    // }
 
     $review_id = $this->_getParam('review_id', null);
     $review = Engine_Api::_()->getItem('sitereview_review', $review_id);
@@ -390,7 +419,7 @@ class Sitereview_EditorController extends Seaocore_Controller_Action_Standard {
       $this->view->reviewRateData = Engine_Api::_()->sitereview()->prefieldRatingData($_POST);
       $this->_GETLISTINGTYPE = Engine_Api::_()->getApi('listingType', 'sitereview')->getListingTypeInfo();
 
-      if (empty($_POST['review_rate_0'])) {
+      if (empty($_POST['review_rate_0']) && $this->view->editor_rating != 2) {
 
         $error = $this->view->translate('Please choose Overall Rating field - it is required.');
         $error = Zend_Registry::get('Zend_Translate')->_($error);
@@ -430,6 +459,19 @@ class Sitereview_EditorController extends Seaocore_Controller_Action_Standard {
 
         //CREATE RATING DATA
         $reviewRatingTable->createRatingData($_POST, 'editor');
+
+
+        if ($_POST['status'] == 1) {
+
+          $activityApi = Engine_Api::_()->getDbtable('actions', 'activity');
+
+          //ACTIVITY FEED
+          $action = $activityApi->addActivity($viewer, $sitereview, 'sitereview_editorreview_add_listtype_' . $listingtype_id);
+
+          if ($action != null) {
+            $activityApi->attachActivity($action, $review);
+          }
+        }
 
         //IF PUBLISHED 
         if ($review->status == 1) {

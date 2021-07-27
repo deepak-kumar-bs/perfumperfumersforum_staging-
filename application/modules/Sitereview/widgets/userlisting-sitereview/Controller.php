@@ -28,6 +28,10 @@ class Sitereview_Widget_UserlistingSitereviewController extends Seaocore_Content
     Engine_Api::_()->sitereview()->setListingTypeInRegistry($listing->listingtype_id);
     $listingtypeArray = Zend_Registry::get('listingtypeArray' . $listing->listingtype_id);
 
+    //SEND REVIEW TITLE TO TPL
+    $this->view->reviewTitleSingular = $listingtypeArray->review_title_singular ? $listingtypeArray->review_title_singular : 'Review';
+    $this->view->reviewTitlePlular = $listingtypeArray->review_title_plural ? $listingtypeArray->review_title_plural : 'Reviews';
+
     $this->view->listing_singular_uc = ucfirst($listingtypeArray->title_singular);
 
     if (!empty($this->view->statistics) && empty($listingtypeArray->reviews) || $listingtypeArray->reviews == 1) {

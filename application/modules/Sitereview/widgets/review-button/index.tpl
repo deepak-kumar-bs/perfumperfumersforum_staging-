@@ -13,12 +13,16 @@
 
 <?php if($this->listingtypeArray->allow_review):?>
 	<?php if($this->createAllow == 1):?>
-		<button class="sr_review_button" onclick="writeAReview('create');"><?php echo $this->translate("Write a Review") ?></button>
+		<button class="sr_review_button" onclick="writeAReview('create');"><?php echo $this->translate("Write a $this->reviewTitleSingular") ?></button>
 	<?php elseif($this->createAllow == 2):?>
-		<button class="sr_review_button" onclick="writeAReview('update');"><?php echo $this->translate("Update your Review") ?></button>
+		<button class="sr_review_button" onclick="writeAReview('update');"><?php echo $this->translate("Update your $this->reviewTitleSingular") ?></button>
 	<?php endif;?>
 	<script type="text/javascript">
   function writeAReview(option){
+  	if($('sitereview_update')){
+      $('sitereview_update').style.display = 'block';
+      // $('edit_review_form_toggle').innerHTML = 'Edit Your Review';
+    }
     <?php if($this->listing_profile_page): ?>
       if($('main_tabs') && $('main_tabs').getElement('.tab_layout_sitereview_user_sitereview')){
         if($('sitereview_create') && $('main_tabs').getElement('.tab_layout_sitereview_user_sitereview').hasClass('active')){

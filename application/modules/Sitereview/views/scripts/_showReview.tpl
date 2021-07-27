@@ -10,6 +10,11 @@
  * @author     SocialEngineAddOns
  */
  ?>
+
+ <?php 
+ $reviewTitleSingular = $this->reviewTitleSingular ? $this->reviewTitleSingular : 'Review'; 
+ $reviewTitlePlular = $this->reviewTitlePlular ? $this->reviewTitlePlular : 'Reviews';
+ ?>
  
 <?php $listingType = Engine_Api::_()->getItem('sitereview_listingtype', $this->sitereview->listingtype_id);?>
 <?php if(isset ($this->sitereview->rating_editor) && $this->sitereview->rating_editor && $this->sitereview->review_count==1):
@@ -22,11 +27,11 @@ endif;
 ?>
 
 <?php if(!empty($listingType->allow_review)):?>
-	<span title="<?php echo $html_title ?>">
-	<?php echo $this->translate(array('%s review', '%s reviews', $this->sitereview->review_count), $this->locale()->toNumber($this->sitereview->review_count)) ?>
+	<span title="<?php //echo $html_title ?>">
+	<?php echo $this->translate(array("%s $reviewTitleSingular", "%s $reviewTitlePlular", $this->sitereview->review_count), $this->locale()->toNumber($this->sitereview->review_count)) ?>
 	</span>
 <?php elseif(isset($this->sitereview->rating_editor) && $this->sitereview->rating_editor):?>
-  <span title="<?php echo $html_title ?>">
+  <span title="<?php // echo $html_title ?>">
    <?php echo $this->translate('1 review'); ?>
   </span>
 <?php endif;?>

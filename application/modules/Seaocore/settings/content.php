@@ -18,6 +18,57 @@ $temp_show_in_mini_options = array(
     1 => 'Global Search',
 );
 
+
+// Get available types
+$searchApi = Engine_Api::_()->getApi('search', 'core');
+$availableTypes = $searchApi->getAvailableTypes();
+if( is_array($availableTypes) && count($availableTypes) > 0 ) {
+$options = array();
+foreach( $availableTypes as $index => $type1 ) {
+    $type = str_replace("_",'',$type1);
+    $options[$type] = strtoupper('ITEM_TYPE_' . $type1);
+
+       if(in_array($type, array("forumpost","forumtopic","siteqaquestion","sitereviewpost","sitereviewtopic","sitereviewwishlist"))){
+            $optionForHashtag[$type] = strtoupper('ITEM_TYPE_' . $type1);
+        }
+  }
+}
+
+$options['post'] = 'Post';
+$optionForHashtag['post'] = 'Post';
+$optionForHashtag['comment'] = 'Comment';
+
+if(Engine_Api::_()->getDbtable('modules', 'core')->isModuleEnabled('sitereview')){
+    $listingtypesTable = Engine_Api::_()->getDbtable('listingtypes', 'sitereview');
+    $listingTypes = $listingtypesTable->fetchAll($listingtypesTable->select());
+    foreach ($listingTypes as $key => $type) {
+        $options["sitereviewlisting".$type['listingtype_id']] = $type['title_plural'];
+        $optionForHashtag["sitereviewlisting".$type['listingtype_id']] = $type['title_plural'];
+    }
+
+}
+
+
+$statisticsForPfSearch = array(
+    'MultiCheckbox',
+    'contentTypeOptions',
+    array(
+        'label' => $view->translate('Choose the statistics that you want to be displayed for searching.'),
+        'multiOptions' => $options,
+    //'value' =>array("viewCount","likeCount","commentCount","reviewCount"),
+    ),
+);
+
+$optionForHashtagSearch = array(
+    'MultiCheckbox',
+    'contentTypeOptions',
+    array(
+        'label' => $view->translate('Choose the statistics that you want to be displayed for searching.'),
+        'multiOptions' => $optionForHashtag,
+    //'value' =>array("viewCount","likeCount","commentCount","reviewCount"),
+    ),
+);
+
 $detactLocationElement = array(
     'Select',
     'detactLocation',
@@ -306,7 +357,7 @@ $content_array = array(
             )
         )
     ),
-     array(
+    array(
         'title' => $view->translate('Favourite Button'),
         'description' => $view->translate('This widget is used to add favourite button.'),
         'category' => 'SocialEngineAddOns-Core',
@@ -326,6 +377,70 @@ $content_array = array(
             )
         )
     ),
+    array(
+        'title' => 'PF Search Bar',
+        'description' => 'Add the ability to search your site\'s content on any page.',
+        'category' => 'Core',
+        'type' => 'widget',
+        'name' => 'seaocore.pf-search',
+        'defaultParams' => array(
+            'title' => '',
+            // 'contentTypeOptions' => array("forumpost", "forumtopic", "group", "poll", "siteqaanswer", "sitereviewlisting", "sitereviewpost", "sitereviewreview", "sitereviewtopic","user"),
+        ),
+        'adminForm' => array(
+            'elements' => array(
+                $statisticsForPfSearch,
+            )
+        ),
+    ),
+
+    array(
+        'title' => 'Pf Spacer Block',
+        'description' => 'This widget is used to set the space between widgets on a page. You can enter the space from the Edit Settings of this widget.',
+        'category' => 'Core',
+        'type' => 'widget',
+        'name' => 'seaocore.pf-spacer-block',
+        'autoEdit' => true,
+        'adminForm' => array(
+            'elements' => array(
+                array(
+                    'hidden',
+                    'title',
+                    array(
+                        'label' => '',
+                        'order' => 1006
+                    )
+                ),
+                array(
+                    'text',
+                    'layoutSpace',
+                    array(
+                        'label' => $view->translate('Enter the space between blocks in px.'),
+                        'validators' => array(
+                            array('Int', true),
+                            array('GreaterThan', true, array(20)),
+                        ),
+                    )
+                ),
+            )
+        ),
+    ),
+
+    array(
+        'title' => 'PF Search Hashtags',
+        'description' => 'This widget searches hashtags over various popularity criterias. This widget can be placed only on hashtag results page or listing hashtag results page.',
+        'category' => 'Hashtag',
+        'type' => 'widget',
+        'name' => 'seaocore.pf-search-hashtags',
+        'autoEdit' => true,
+        'adminForm' => array(
+            'elements' => array(
+                $optionForHashtagSearch,
+            )
+        ),
+    ),
+
+
  
 );
 

@@ -109,6 +109,12 @@ if (count($this->OnSiteModules)):
                     </tr>
                 <?php } ?>
             <?php endforeach; ?>
+            <td></td>
+            <td><?php echo "Multiple Listing Types - Perfumer’s Forum Extension" ?></td>
+            <td><?php echo "-"; ?></td>
+            <td><?php echo "4.10.4"; ?></td>
+            <td><?php echo "-"; ?></td>
+            <td><?php echo "-"; ?></td>
         </tbody>
     </table>
     <?php if(!empty($isPlugin)): ?>

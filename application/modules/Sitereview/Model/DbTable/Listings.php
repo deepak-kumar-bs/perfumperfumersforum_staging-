@@ -422,11 +422,14 @@ class Sitereview_Model_DbTable_Listings extends Engine_Db_Table {
     } else if (!empty($params['orderby']) && $params['orderby'] == "spfesp") {
       $select->order($sitereviewTableName . '.featured' . ' DESC')
               ->order($sitereviewTableName . '.sponsored' . ' DESC');
+    } else if (!empty($params['orderby']) && $params['orderby'] == 'like_desc') {
+      $select->order($sitereviewTableName . '.like_count' . ' DESC');
     } else if (!empty($params['orderby']) && $params['orderby'] != 'creation_date') {
       $select->order($sitereviewTableName . '.' . $params['orderby'] . ' DESC');
     }
     $select->order($sitereviewTableName . '.creation_date DESC');
     $getResult = !empty($sitereviewSelectQuery)? $select: $tempSelect;
+
     return $getResult;
   }
 

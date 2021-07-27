@@ -42,6 +42,8 @@
             'subject' : subject_guid,
             'search' : '<?php echo $this->search ?>',
             'isHashtagPage' : '<?php echo $this->isHashtagPage ?>',
+            'query' : '<?php echo $this->actionBodyText ?>',
+            // 'order' : '<?php // echo $this->actionOrder ?>',
           },
           evalScripts : true,
           onSuccess : function(responseTree, responseElements, responseHTML, responseJavaScript) {
@@ -121,7 +123,7 @@ endif; ?>
    </script>
 <?php endif; ?>
 
-<?php if( $this->enableComposer && !$this->isHashtagPage): ?>
+<?php if( $this->enableComposer && !$this->isHashtagPage && !$this->actionBodyText && !$this->isListingHashtagPage ): ?>
   <div class="activity-post-container nolinks">
 
     <form method="post" action="<?php echo $this->url(array('module' => 'activity', 'controller' => 'index', 'action' => 'post'), 'default', true) ?>" class="activity" enctype="application/x-www-form-urlencoded" id="activity-form">
@@ -388,7 +390,7 @@ endif; ?>
     <div class="tip" id="no-feed-tip">
       <span>
         <?php
-          if(!$this->isHashtagPage) {
+          if(!$this->isHashtagPage && !$this->actionBodyText && !$this->isListingHashtagPage) {
             echo $this->translate("Nothing has been posted here yet - be the first!");
           } else {
             echo $this->translate("No results found!");

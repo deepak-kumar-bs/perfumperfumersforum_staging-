@@ -63,9 +63,11 @@ class Sitereview_Form_Review_Create extends Engine_Form {
         $listing_singular_uc = ucfirst($listingtypeArray->title_singular);
 
         $listing_title = "<b>" . $getItemListing->title . "</b>";
+        
+        $reviewTitleSingular = $listingtypeArray->review_title_singular ? $listingtypeArray->review_title_singular : 'Review';
 
         //IF NOT HAS POSTED THEN THEN SET FORM
-        $this->setTitle('Write a Review')
+        $this->setTitle("Write a $reviewTitleSingular")
                 ->setDescription(sprintf(Zend_Registry::get('Zend_Translate')->_("Give your ratings and opinion for %s below:"), $listing_title))
                 ->setAttrib('name', 'sitereview_create')
                 ->setAttrib('id', 'sitereview_create')

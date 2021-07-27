@@ -24,7 +24,7 @@
 <?php if($this->showContent): ?>
 	<div class='sr_pro_specs'>
 		<?php if(!empty($this->otherDetails)): ?>
-			<?php echo Engine_Api::_()->sitereview()->removeMapLink($this->fieldValueLoop($this->sitereview, $this->fieldStructure)) ?>
+			<?php echo html_entity_decode(Engine_Api::_()->sitereview()->removeMapLink($this->fieldValueLoop($this->sitereview, $this->fieldStructure))) ?>
 	  <?php else: ?>
 	    <div class="tip">
         <span ><?php echo$this->translate("There no any information.");  ?></span>

@@ -50,7 +50,7 @@ class Fields_View_Helper_FieldValueLoop extends Fields_View_Helper_FieldAbstract
     $lastContents = '';
     $lastHeadingTitle = null; //Zend_Registry::get('Zend_Translate')->_("Missing heading");
     $showHidden = $viewer->getIdentity()
-                 ? ($subject->getOwner()->isSelf($viewer) || 'admin' === Engine_Api::_()->getItem('authorization_level', $viewer->level_id)->type)
+                 ? ($subject->getOwner()->isSelf($viewer))
                  : false;
     $alreadyId = array();
     $alreadyHeading = array();
@@ -103,7 +103,7 @@ class Fields_View_Helper_FieldValueLoop extends Fields_View_Helper_FieldAbstract
           }
           $notice = $isHidden && $showHidden
                   ? sprintf('<div class="tip"><span>%s</span></div>',
-                      $this->view->translate('This field is hidden and only visible to you and admins:'))
+                      $this->view->translate('This field is hidden and only visible to you:'))
                   : '';
           $alreadyId[] = $field->field_id;
           if( !$isHidden || $showHidden ) {

@@ -103,6 +103,10 @@ function duplicateRecipeFields(values, id = 0,el_id = '') {
     var recipeContainer = $(form_el_id);
     var recipElement = $(dummy_ele_id).cloneNode( true );
 
+    for (var i = 0; i < recipElement.querySelectorAll("label").length; i++) {
+        recipElement.querySelectorAll("label")[i].style.display = 'none';
+     }
+
     recipElement.style.display = 'block';
     recipElement.className = 'form-element';
     recipElement.id = new_ele_id;
@@ -138,7 +142,12 @@ function duplicateRecipeFields(values, id = 0,el_id = '') {
             if(el.id.includes('name')) {
               element_id = el.id;
             }
-            el.value = '';
+            if(el.id.includes('dilution')) {
+                el.value = 100;
+            }
+            else {
+                el.value = '';
+            }
         });
     }
     

@@ -161,6 +161,18 @@ return array(
                 'action' => 'instagram',
             )
         ),
+        'seaocore_search' => array(
+            'route' => 'pf-search/*',
+            'defaults' => array(
+                'module' => 'seaocore',
+                'controller' => 'search',
+                'action' => 'index'
+            ),
+            // 'reqs' => array(
+            //     'action' => '\D+',
+            //     'action' => '(index)',
+            // ),
+        ),
     )
 );
 ?>

@@ -431,6 +431,17 @@ class Sitereview_Form_Admin_Settings_Leveltype extends Authorization_Form_Admin_
             'value' => 1,
         ));
 
+        // $editor_review_create_element = "editor_review_create_listtype_$listingtype_id";
+        // $this->addElement('Radio', "$editor_review_create_element", array(
+        //     'label' => 'Allow Editor Reviews',
+        //     'description' => 'Do you want to let editors write reviews for listings?',
+        //     'multiOptions' => array(
+        //         1 => 'Yes, allow editors to write reviews.',
+        //         0 => 'No, do not allow editors to write reviews.',
+        //     ),
+        //     'value' => 1,
+        // ));
+
         $claim_element = "claim_listtype_$listingtype_id";
         $this->addElement('Radio', "$claim_element", array(
             'label' => 'Claim Listings',

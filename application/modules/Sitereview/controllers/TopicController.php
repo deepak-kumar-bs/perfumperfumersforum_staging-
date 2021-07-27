@@ -224,12 +224,29 @@ class Sitereview_TopicController extends Seaocore_Controller_Action_Standard {
       //ADD ACTIVITY
       if (time() >= strtotime($sitereview->creation_date)) {      
         $activityApi = Engine_Api::_()->getDbtable('actions', 'activity');
-        $action = $activityApi->addActivity($viewer, $topic, 'sitereview_topic_create_listtype_' . $listingtype_id);
+        $action = $activityApi->addActivity($viewer, $topic, 'sitereview_topic_create_listtype_' . $listingtype_id,'', array('privacy' => 'everyone'));
 
         if ($action) {
           $action->attach($topic);
         }
       }
+
+      //ADDING TAGS
+      $keywords = '';
+      if (isset($values['tags']) && !empty($values['tags'])) {
+          $tags = preg_split('/[,]+/', $values['tags']);
+          $tags = array_filter(array_map("trim", $tags));
+          $topic->tags()->addTagMaps($viewer, $tags);
+
+          foreach ($tags as $tag) {
+              $keywords .= " $tag";
+          }
+      }
+
+      //UPDATE KEYWORDS IN SEARCH TABLE
+        if (!empty($keywords)) {
+            Engine_Api::_()->getDbTable('search', 'core')->update(array('keywords' => $keywords), array('type = ?' => 'sitereview_topic', 'id = ?' => $topic->topic_id));
+        }
 
       $db->commit();
     } catch (Exception $e) {
@@ -315,6 +332,23 @@ class Sitereview_TopicController extends Seaocore_Controller_Action_Standard {
       $post->setFromArray($values);
       $post->save();
 
+      //ADDING TAGS
+      $keywords = '';
+      if (isset($values['tags']) && !empty($values['tags'])) {
+          $tags = preg_split('/[,]+/', $values['tags']);
+          $tags = array_filter(array_map("trim", $tags));
+          $post->tags()->addTagMaps($viewer, $tags);
+
+          foreach ($tags as $tag) {
+              $keywords .= " $tag";
+          }
+      }
+
+      //UPDATE KEYWORDS IN SEARCH TABLE
+      if (!empty($keywords)) {
+          Engine_Api::_()->getDbTable('search', 'core')->update(array('keywords' => $keywords), array('type = ?' => 'sitereview_post', 'id = ?' => $post->post_id));
+      }
+
       //WATCH
       if (false === $isWatching) {
         $topicWatchesTable->insert(array(
@@ -333,13 +367,28 @@ class Sitereview_TopicController extends Seaocore_Controller_Action_Standard {
         ));
       }
 
+
       //ACTIVITY
       if(time() >= strtotime($sitereview->creation_date)) {
-        $action = $activityApi->addActivity($viewer, $topic, 'sitereview_topic_reply_listtype_' . $listingtype_id);
-        if ($action) {
-          $action->attach($post, Activity_Model_Action::ATTACH_DESCRIPTION);
+        $activityApi = Engine_Api::_()->getDbtable('actions', 'activity');
+          $action = $activityApi->addActivity($viewer, $post, 'sitereview_topic_reply_listtype_' . $listingtype_id.'_custom');
+
+          // if ($action) {
+          //   $action->attach($post, Activity_Model_Action::ATTACH_DESCRIPTION);
+          // }
+          if( $action ) {
+          Engine_Api::_()->getDbtable('actions', 'activity')->attachActivity($action, $post);
         }
       }
+
+      
+      //ACTIVITY
+      // if(time() >= strtotime($sitereview->creation_date)) {
+        // $action = $activityApi->addActivity($viewer, $topic, 'sitereview_topic_reply_listtype_' . $listingtype_id);
+        // if ($action) {
+        //   $action->attach($post, Activity_Model_Action::ATTACH_DESCRIPTION);
+        // }
+      // }
 
       //NOTIFICATIONS
       $notifyUserIds = $topicWatchesTable->getNotifyUserIds($values);

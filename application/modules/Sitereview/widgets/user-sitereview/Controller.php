@@ -39,6 +39,12 @@ class Sitereview_Widget_UserSitereviewController extends Seaocore_Content_Widget
     $sitereviewUserReview = Zend_Registry::isRegistered('sitereviewUserReview') ? Zend_Registry::get('sitereviewUserReview') : null;
     $this->view->listing_singular_uc = ucfirst($listingtypeArray->title_singular);
     $this->view->listing_singular_lc = strtolower($listingtypeArray->title_singular);
+
+    //SEND REVIEW TITLE TO TPL
+    $this->view->reviewTitleSingular = $listingtypeArray->review_title_singular ? $listingtypeArray->review_title_singular : 'Review';
+    $this->view->reviewTitlePlular = $listingtypeArray->review_title_plural ? $listingtypeArray->review_title_plural : 'Reviews';
+
+
     if (empty($listingtypeArray->reviews) || $listingtypeArray->reviews == 1 || empty($sitereviewUserReview)) {
       return $this->setNoRender();
     }
@@ -188,10 +194,13 @@ class Sitereview_Widget_UserSitereviewController extends Seaocore_Content_Widget
     }
 
     //GET SORTING ORDER
-    $this->view->reviewOrder = $params['order'] = $this->_getParam('order', 'creationDate');
+    $this->view->reviewOrder = $params['order'] = $this->_getParam('order', 'helpful');
     $this->view->rating_value = $this->_getParam('rating_value', 0);
-
-    $params['rating'] = 'rating';
+    $this->view->canshowrating = false;
+    if($listingtypeArray->allow_review != 2 ){
+      $params['rating'] = 'rating';
+      $this->view->canshowrating = true;
+    }
     $params['rating_value'] = $this->view->rating_value;
     $params['resource_id'] = $listing_id;
     $params['resource_type'] = $sitereview->getType();

@@ -802,6 +802,7 @@ ul.seaocore_like_users_block .likes_member_seaocore .likes_member_name {
   clear:both;
   font-size:11px;
   overflow:hidden;
+  vertical-align: top;
 }
 .seaocore_searchform_criteria ul > li > span,
 .seaocore_searchformcriteria #filter_form label,

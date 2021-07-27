@@ -91,6 +91,20 @@ $this->getDecorator('Description')->setOption('escape', false);
       $this->tags->getDecorator("Description")->setOption("placement", "append");
     }
 
+    //custom work
+    $this->addElement('Text', 'custom_profiletags', array(
+        'label' => 'Listing profile tags',
+        'allowEmpty' => false,
+        'required' => true,
+        'autocomplete' => 'off',
+        'description' => 'Separate tags with commas.',
+        'filters' => array(
+            new Engine_Filter_Censor(),
+        ),
+    ));
+      $this->custom_profiletags->getDecorator("Description")->setOption("placement", "append");
+      //end custom work
+
     $defaultProfileId = "0_0_" . $this->getDefaultProfileId();
 
     if (!$this->_item || (isset($this->_item->category_id) && empty($this->_item->category_id)) || ($this->_item && $listingtypeArray->category_edit)) {

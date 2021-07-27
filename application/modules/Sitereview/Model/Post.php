@@ -112,4 +112,9 @@ class Sitereview_Model_Post extends Core_Model_Item_Abstract {
     parent::_delete();
   }
 
+  public function tags()
+  {
+    return new Engine_ProxyObject($this, Engine_Api::_()->getDbtable('tags', 'core'));
+  }
+
 }

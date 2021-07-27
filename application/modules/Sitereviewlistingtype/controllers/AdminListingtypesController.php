@@ -435,6 +435,10 @@ class Sitereviewlistingtype_AdminListingtypesController extends Core_Controller_
 
     $previous_slug_singular = $listingType->slug_singular;
     $previous_slug_plural = $listingType->slug_plural;
+
+    $previous_reviewTitle_singular = $listingType->review_title_singular;
+    $previous_reviewTitle_plural = $listingType->review_title_plural;
+
     $titleSinUc = ucfirst($listingType->title_singular);
     $titleSinUpper = strtoupper($listingType->title_singular);
     $titleSinLc = strtolower($listingType->title_singular);
@@ -641,6 +645,7 @@ class Sitereviewlistingtype_AdminListingtypesController extends Core_Controller_
 
           $listingTypeApi->activityFeedQueryEdit($listingType, $titleSingular, $titlePlural);
           $listingTypeApi->searchFormSettingEdit($listingType, $titleSingular, $titlePlural);
+          
 
           //START INTERGRATION EXTENSION WORK
           //START FOR PAGE INRAGRATION.
@@ -668,6 +673,12 @@ class Sitereviewlistingtype_AdminListingtypesController extends Core_Controller_
           }
           //END FOR GROUP INRAGRATION.
           //START INTERGRATION EXTENSION WORK
+        }
+
+        if ($previous_reviewTitle_singular != $listingType->review_title_plural || $previous_reviewTitle_plural != $listingType->review_title_singular) {
+
+          $listingTypeApi->activityFeedQueryForReviewEdit($listingType, $previous_reviewTitle_singular, $previous_reviewTitle_plural);
+          
         }
 
         if ($values['translation_file'] || ((isset($_POST['package']) && !empty($_POST['package'])) && ($_POST['package'] != $packageValue))) {

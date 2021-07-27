@@ -48,6 +48,10 @@ class Sitereview_Widget_ReviewButtonController extends Seaocore_Content_Widget_A
       return $this->setNoRender();
     }
 
+    //SEND REVIEW TITLE TO TPL
+    $this->view->reviewTitleSingular = $listingtypeArray->review_title_singular ? $listingtypeArray->review_title_singular : 'Review';
+    $this->view->reviewTitlePlular = $listingtypeArray->review_title_plural ? $listingtypeArray->review_title_plural : 'Reviews';
+
     //GET VIEWER
     $this->view->viewer = $viewer = Engine_Api::_()->user()->getViewer();
     $this->view->viewer_id = $viewer_id = $viewer->getIdentity();

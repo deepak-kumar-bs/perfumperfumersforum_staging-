@@ -27,6 +27,19 @@ class Sitereview_Form_Review_Search extends Sitereview_Form_Searchfields {
 
   public function init() {
 
+    $listingtype_id = Zend_Controller_Front::getInstance()->getRequest()->getParam('listingtype_id', null);
+    //GET REVIEW TITLE
+    if ($listingtype_id) {
+      $listingtypestable = Engine_Api::_()->getDbTable('listingtypes', 'sitereview');
+      $review_title_singular = $listingtypestable->getListingTypeColumn($listingtype_id, 'review_title_singular');
+      $review_title_plural = $listingtypestable->getListingTypeColumn($listingtype_id, 'review_title_plural');
+      $allow_review = $listingtypestable->getListingTypeColumn($listingtype_id, 'allow_review');
+    }
+
+    $reviewTitleSingular = $review_title_singular ? $review_title_singular : 'Review';
+    $reviewTitlePlular = $review_title_plural ? $review_title_plural : 'Reviews';
+
+
     $view = Zend_Registry::isRegistered('Zend_View') ? Zend_Registry::get('Zend_View') : null;
     $this->setAttribs(array(
                 'id' => 'filter_form',
@@ -51,7 +64,7 @@ class Sitereview_Form_Review_Search extends Sitereview_Form_Searchfields {
     if ($viewer_id) {
       $this->addElement('Select', 'show', array(
           'label' => 'Show',
-          'multiOptions' => array('' => "Everyone's Reviews", 'friends_reviews' => "My Friends' Reviews", 'self_reviews' => "My Reviews", 'featured' => "Featured Reviews"),
+          'multiOptions' => array('' => "Everyone's $reviewTitlePlular", 'friends_reviews' => "My Friends' $reviewTitlePlular", 'self_reviews' => "My $reviewTitlePlular", 'featured' => "Featured $reviewTitlePlular"),
           'order' => $order++,
       ));
     }
@@ -62,7 +75,7 @@ class Sitereview_Form_Review_Search extends Sitereview_Form_Searchfields {
       $listingtypeArray = Zend_Registry::get('listingtypeArray' . $listingtype_id);
       if ($listingtypeArray->reviews == 3) {
         $this->addElement('Select', 'type', array(
-            'label' => 'Reviews Written By',
+            'label' => "$reviewTitlePlular Written By",
             'multiOptions' => array('' => 'Everyone', 'editor' => 'Editors', 'user' => 'Users'),
             'onchange' => "addReviewTypeOptions(this.value);",
             'order' => $order++,
@@ -70,7 +83,7 @@ class Sitereview_Form_Review_Search extends Sitereview_Form_Searchfields {
       }
     } else {
       $this->addElement('Select', 'type', array(
-          'label' => 'Reviews Written By',
+          'label' => "$reviewTitlePlular Written By",
           'multiOptions' => array('' => 'Everyone', 'editor' => 'Editors', 'user' => 'Users'),
           'onchange' => "addReviewTypeOptions(this.value);",
           'order' => $order++,
@@ -83,7 +96,7 @@ class Sitereview_Form_Review_Search extends Sitereview_Form_Searchfields {
     $ListingTypesArray = Engine_Api::_()->getDbtable('listingtypes', 'sitereview')->getListingTypesArray(0, 1, $params);
     if (count($ListingTypesArray) > 2) {
       $this->addElement('Select', 'listingtype_id', array(
-          'label' => 'Reviews For',
+          'label' => "$reviewTitlePlular For",
           'multiOptions' => $ListingTypesArray,
           'onchange' => $this->getHasMobileMode()?"sm4.core.category.set(this.value, 'category');":"addOptions(this.value, 'listingtype_id', 'category_id', 0);",
           'order' => $order++,
@@ -119,33 +132,47 @@ class Sitereview_Form_Review_Search extends Sitereview_Form_Searchfields {
 
     $this->getMemberTypeElement();
 
-    $this->addElement('Select', 'order', array(
-        'label' => 'Browse By',
-        'order' => $order++ + 50000,
-        'multiOptions' => array(
-            'recent' => 'Most Recent',
-            'rating_highest' => 'Highest Rating',
-            'rating_lowest' => 'Lowest Rating',
-            'helpfull_most' => 'Most Helpful',
-            'replay_most' => 'Most Reply',
-            'view_most' => 'Most Viewed'
-        ),
-    ));
-    $this->addElement('Select', 'rating', array(
-        'label' => 'Ratings',
-        'order' => $order++ + 50000,
-        'multiOptions' => array(
-            '' => '',
-            '5' => sprintf(Zend_Registry::get('Zend_Translate')->_('%1s Star'), 5),
-            '4' => sprintf(Zend_Registry::get('Zend_Translate')->_('%1s Star'), 4),
-            '3' => sprintf(Zend_Registry::get('Zend_Translate')->_('%1s Star'), 3),
-            '2' => sprintf(Zend_Registry::get('Zend_Translate')->_('%1s Star'), 2),
-            '1' => sprintf(Zend_Registry::get('Zend_Translate')->_('%1s Star'), 1),
-        ),
-    ));
+    if($allow_review != 2){
+      $this->addElement('Select', 'order', array(
+          'label' => 'Browse By',
+          'order' => $order++ + 50000,
+          'multiOptions' => array(
+              'recent' => 'Most Recent',
+              'rating_highest' => 'Highest Rating',
+              'rating_lowest' => 'Lowest Rating',
+              'helpfull_most' => 'Most Helpful',
+              'replay_most' => 'Most Reply',
+              'view_most' => 'Most Viewed'
+          ),
+      ));
+    
+      $this->addElement('Select', 'rating', array(
+          'label' => 'Ratings',
+          'order' => $order++ + 50000,
+          'multiOptions' => array(
+              '' => '',
+              '5' => sprintf(Zend_Registry::get('Zend_Translate')->_('%1s Star'), 5),
+              '4' => sprintf(Zend_Registry::get('Zend_Translate')->_('%1s Star'), 4),
+              '3' => sprintf(Zend_Registry::get('Zend_Translate')->_('%1s Star'), 3),
+              '2' => sprintf(Zend_Registry::get('Zend_Translate')->_('%1s Star'), 2),
+              '1' => sprintf(Zend_Registry::get('Zend_Translate')->_('%1s Star'), 1),
+          ),
+      ));
+    } else{
+      $this->addElement('Select', 'order_by_1', array(
+          'label' => 'Browse By',
+          'order' => $order++ + 50000,
+          'multiOptions' => array(
+              'recent' => 'Most Recent',
+              'helpfull_most' => 'Most Helpful',
+              'replay_most' => 'Most Reply',
+              'view_most' => 'Most Viewed'
+          ),
+      ));
+    }
 
     $this->addElement('Checkbox', 'recommend', array(
-        'label' => 'Only Recommended Reviews',
+        'label' => 'Only Recommended $reviewTitlePlular',
         'order' => $order++ + 50000,
     ));
     $this->addElement('Hidden', 'page', array(

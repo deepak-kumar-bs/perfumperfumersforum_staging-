@@ -68,74 +68,41 @@ endif;
       <?php echo $this->content()->renderWidget("sitereview.slideshow-list-photo", array('show_slideshow_always' => 1, 'slideshow_width' => $this->slideshow_width, 'slideshow_height' => $this->slideshow_height, 'showCaption' => $this->showCaption, 'captionTruncation' => $this->captionTruncation, 'showButtonSlide' => $this->showButtonSlide, 'mouseEnterEvent' => $this->mouseEnterEvent, 'thumbPosition' => $this->thumbPositions, 'autoPlay' => $this->autoPlay, 'slidesLimit' => $this->slidesLimit)) ?>
     <?php endif; ?>
     <div id='editorReviewContent'>
-      <?php if($this->addEditorReview): ?>
 
-      <?php if ($this->current == 1): ?>
-        <div id="review_content">
-          <div class="sr_profile_review b_medium sr_review_block">
-            <div class="sr_profile_review_left">
+
+
+
+    <?php if($this->addEditorReview): ?>
+
+
+      <!-- make this overall review -->
+      <?php if($this->canshowratings): ?>
+        <div class="sr_profile_review b_medium sr_review_block">
+          <div class="sr_profile_review_left">
+            <?php if($this->canshowratings): ?>
+                
               <div class="sr_profile_review_title">
-                <?php echo $this->translate("Editor Rating"); ?>
-              </div>	 
+                <?php echo $this->translate("Average Editor Rating"); ?>
+              </div>   
               <div class="sr_profile_review_stars">
-                <?php $ratingData = Engine_Api::_()->getDbtable('ratings', 'sitereview')->profileRatingbyCategory($this->review->review_id); ?>
-                <?php foreach ($ratingData as $reviewCat): ?>
-                  <?php if (empty($reviewCat['ratingparam_name'])): ?>
                     <span class="sr_profile_editorreview_overall_rating">
                       <span class="fleft">
-                        <?php echo $this->showRatingStar($reviewCat['rating'], 'editor', 'big-star', $this->sitereview->listingtype_id); ?>
+                        <?php echo $this->showRatingStar($this->sitereview->rating_editor, 'editor', 'big-star', $this->sitereview->listingtype_id); ?>
                       </span>
                       <?php if (count($ratingData) > 1): ?>
                         <i class="arrow_btm fleft"></i>
                       <?php endif; ?>
                      </span> 
-                    <?php break; ?>
-                  <?php endif; ?>
-                <?php endforeach; ?>
-              </div>	
+              </div>  
 
-              <!--Rating Breakdown Hover Box Starts-->
-              <?php if (count($ratingData) > 1): ?>
-                <div class="sr_ur_bdown_box_wrapper br_body_bg b_medium">
-                  <div class="sr_ur_bdown_box">
-                    <div class="sr_profile_review_title">
-                      <?php echo $this->translate("Editor Rating"); ?>
-                    </div>	 
-                    <div class="sr_profile_review_stars">
-                      <?php foreach ($ratingData as $reviewCat): ?>
-                        <?php if (empty($reviewCat['ratingparam_name'])): ?>
-                          <?php echo $this->showRatingStar($reviewCat['rating'], 'editor', 'big-star', $this->sitereview->listingtype_id); ?>
-                          <?php break; ?>
-                        <?php endif; ?>
-                      <?php endforeach; ?>
-                    </div>	
-
-                    <div class="sr_profile_rating_parameters">
-                      <?php foreach ($ratingData as $reviewCat): ?>
-                        <?php if (empty($reviewCat['ratingparam_name'])): ?>
-                          <?php continue; ?>
-                        <?php endif; ?>
-                        <div class="o_hidden">
-                          <div class="parameter_title">
-                            <?php echo $this->translate($reviewCat['ratingparam_name']); ?>
-                          </div>
-                          <div class="parameter_value">
-                            <?php echo $this->showRatingStar($reviewCat['rating'], 'editor', 'small-box', $this->sitereview->listingtype_id,$reviewCat['ratingparam_name']); ?>
-                          </div>
-                        </div>	
-                      <?php endforeach; ?>
-                    </div>
-                    <div class="clr"></div>
-                  </div>
-                </div>
-              <?php endif; ?>
-              <!--Rating Breakdown Hover Box Ends-->
-            </div>
-
-            <div class="sr_profile_review_user fright">
+            <?php endif; ?>
+          </div>
+        
+          <div class="sr_profile_review_right ">
+            <?php if($this->canshowratings): ?>
               <div class="sr_profile_review_title t_right">
                 <?php echo $this->translate("Average User Rating"); ?>
-              </div>	 
+              </div>   
               <div class="clr sr_profile_review_stars fright sr_profile_review_rating_right">
                 <?php if (count($this->userRatingDataTopbox) > 1): ?>
                   <i class="arrow_btm fright"></i>
@@ -155,10 +122,10 @@ endif;
                       <?php echo $this->showRatingStar($this->sitereview->rating_users, 'user', 'big-star', $this->sitereview->listingtype_id); ?>
                     </div>
                     <?php if($this->listingType->allow_review):?>
-											<div class="sr_profile_review_stat clr">
-												<?php //echo $this->translate(array('%s user review', '%s user reviews', ($this->sitereview->review_count - 1)), $this->locale()->toNumber(($this->sitereview->review_count - 1))) ?>
-												<?php echo $this->translate(array('Based on %s review', 'Based on %s reviews', $this->subject()->getNumbersOfUserRating('user')), '<b>'.$this->locale()->toNumber($this->subject()->getNumbersOfUserRating('user')).'</b>') ?>
-											</div>
+                      <div class="sr_profile_review_stat clr">
+                        <?php //echo $this->translate(array('%s user review', '%s user reviews', ($this->sitereview->review_count - 1)), $this->locale()->toNumber(($this->sitereview->review_count - 1))) ?>
+                        <?php echo $this->translate(array('Based on %s review', 'Based on %s reviews', $this->subject()->getNumbersOfUserRating('user')), '<b>'.$this->locale()->toNumber($this->subject()->getNumbersOfUserRating('user')).'</b>') ?>
+                      </div>
                     <?php endif;?>
                     <div class="sr_profile_review_title mtop10">
                       <?php echo $this->translate("Rating Parameter"); ?>
@@ -184,118 +151,220 @@ endif;
                 </div>
               <?php endif; ?>
               <!--Rating Breakdown Hover Box Ends-->
-            </div>
-
-            <div class="sr_profile_review_middle">
-              <?php if ($this->min_price < 0): ?>
-                <div class="sr_profile_review_title">
-                  <?php echo $this->translate("Review Date:"); ?>
-                </div>
-                <div>
-                  <?php echo $this->timestamp(strtotime($this->review->creation_date)) ?>
-                </div>
-              <?php else: ?>
-                <div>
-                  <?php if ($this->min_price == $this->max_price && $this->min_price > 0): ?>
-                    <span style='font-size:24px;'>
-                      <?php echo Engine_Api::_()->sitereview()->getPriceWithCurrency($this->min_price); ?>
-                    </span>
-                  <?php elseif($this->min_price > 0 && $this->max_price > 0): ?>
-
-                    <?php echo $this->translate("%s to %1s", "<span style='font-size:24px;'>" . Engine_Api::_()->sitereview()->getPriceWithCurrency($this->min_price). "</span>", Engine_Api::_()->sitereview()->getPriceWithCurrency($this->max_price)); ?>
-                  <?php endif; ?>
-                  <div>
-                    <?php echo $this->translate("Review Date:"); ?>
-                    <?php echo $this->timestamp(strtotime($this->review->creation_date)); ?>
-                  </div>
-                </div>
-              <?php endif; ?>
-            </div>
-
-          </div>  
-
-          <div class="sr_editor_review_stats_box b_medium">
-            <?php if($this->review->pros):?>
-            <div class='sr_reviews_listing_proscons'>
-              <?php echo '<b>' . $this->translate("The Good:") . ' </b>' . $this->viewMore($this->review->pros); ?>
-            </div>
-            <?php endif;?>
-            <?php if($this->review->cons):?>
-            <div class="sr_reviews_listing_proscons"> 
-              <?php echo '<b>' . $this->translate("The Bad:") . ' </b>' . $this->viewMore($this->review->cons); ?>
-            </div>
-            <?php endif;?>
-
-            <?php if($this->review->title):?>
-            <div class="sr_reviews_listing_proscons">
-              <?php echo '<b>' . $this->translate("The Bottom Line:") . ' </b>' . $this->review->title; ?>
-            </div>
-            <?php endif;?>
-
-            <?php if($this->review->profile_type_review): ?>
-              <div class="sr_reviews_listing_proscons"> 
-                <?php $custom_field_values = $this->fieldValueLoopReview($this->review, $this->fieldStructure); ?>
-                <?php echo htmlspecialchars_decode($custom_field_values); ?>        
-              </div>   
             <?php endif; ?>
-
-            <?php if($this->review->update_reason):?>
-            <div class="sr_reviews_listing_proscons">
-              <?php echo '<b>' . $this->translate("Update On "). $this->timestamp(strtotime($this->review->modified_date)) . ':</b>' . $this->review->update_reason; ?>
-            </div>
-            <?php endif;?>          
-
           </div>
-        <?php endif; ?>
-
-        <div class="sr_editor_full_review">
-          <?php echo $this->body_pages; ?>
-        </div>    
-
-        <?php if ($this->showconclusion && $this->review->body): ?>
-          <div class='sr_reviews_listing_proscons sr_editor_review_conclusion b_medium'>
-            <?php echo '<b>' . $this->translate("Conclusion: ") . '</b>'; ?>
-            <?php echo $this->review->body; ?>
-          </div>
-        <?php endif; ?>
-        <?php if ($this->pageCount > 1): ?>
-          <div class="seaocore_pagination o_hidden"> 
-            <div class="pages fright">    
-              <ul class="paginationControl">
-                <?php /* Previous page link */ ?>
-                <?php if (isset($this->previous)): ?>
-                  <li>
-                    <a href="javascript:void(0)" onclick="javascript:editorPageAction('<?php echo $this->previous; ?>')"><?php echo $this->translate("&#171; Previous") ?></a>
-                  </li>
-                <?php endif; ?>
-
-                <?php foreach ($this->pagesInRange as $page): ?>
-                  <?php if ($page != $this->current): ?>
-                    <li>
-                      <a href="javascript:void(0)" onclick="javascript:editorPageAction('<?php echo $page; ?>')"><?php echo $page; ?></a>
-                    </li>
-                  <?php else: ?>
-                    <li class="selected">
-                      <a href="javascript:void(0)"><?php echo $page; ?></a>
-                    </li>
-                  <?php endif; ?>
-                <?php endforeach; ?>
-
-                <?php /* Next page link */ ?>
-                <?php if (isset($this->next)): ?>
-                  <li>
-                    <a href="javascript:void(0)" onclick="javascript:editorPageAction('<?php echo $this->next; ?>')"><?php echo $this->translate("Next &#187;") ?></a>
-                  </li>	
-                <?php endif; ?>
-              </ul>
-            </div>
-            <span id="pagination_loader_image" style="display:none;">
-              <img src="<?php echo $this->layout()->staticBaseUrl; ?>application/modules/Seaocore/externals/images/core/loading.gif" alt="" />
-            </span>  
-          </div> 
         </div>
       <?php endif; ?>
-      <?php else:?>
+
+      <div class="sr_browse_lists_view_options b_medium">
+        <div> 
+          <?php echo $this->translate(array("%s $this->reviewTitleSingular found.", "%s $this->reviewTitlePlular found.", count($this->reviews)), $this->locale()->toNumber(count($this->reviews))) ?></div>
+      </div>
+
+      <div class="editor_review_heading"><?php echo $this->translate("Editor $this->reviewTitlePlular") ?></div>
+
+      <?php foreach ($this->reviews as $key => $review):?>
+
+       <!--  <?php if ($this->current == 1): ?> -->
+          <div id="review_content">
+            
+             
+
+            <div class="">
+              <div class="">
+
+                <div class="sr_editor_full_review">
+
+                  <?php if($review->title):?>
+                    <div class="sr_reviews_listing_proscons">
+                      <?php //echo '<b>' . $this->translate("The Bottom Line:") . ' </b>' . $review->title; ?>
+                      <?php echo '<b>' .$review->title . '</b>'; ?>
+                    </div>
+                  <?php endif;?>
+                  
+
+                  <div class=" review_date_owner_info">
+                    <?php if ($this->min_price < 0): ?>
+                      <!-- <div class="sr_profile_review_title">
+                        <?php // echo $this->translate("Review Date:"); ?>
+                      </div> -->
+                      <div>
+                        <?php echo $this->timestamp(strtotime($review->creation_date)) ?>
+                      </div>
+                    <?php else: ?>
+                      <div>
+                        <?php if ($this->min_price == $this->max_price && $this->min_price > 0): ?>
+                          <span style='font-size:24px;'>
+                            <?php echo Engine_Api::_()->sitereview()->getPriceWithCurrency($this->min_price); ?>
+                          </span>
+                        <?php elseif($this->min_price > 0 && $this->max_price > 0): ?>
+
+                          <?php echo $this->translate("%s to %1s", "<span style='font-size:24px;'>" . Engine_Api::_()->sitereview()->getPriceWithCurrency($this->min_price). "</span>", Engine_Api::_()->sitereview()->getPriceWithCurrency($this->max_price)); ?>
+                        <?php endif; ?>
+                        <div>
+                          <?php // echo $this->translate("Review Date:"); ?>
+                          <?php echo $this->timestamp(strtotime($review->creation_date)); ?>
+                          <?php  echo $this->translate("By:"); ?>
+                      <?php echo $review->getOwner(); ?>
+                        </div>
+                      </div>
+                    <?php endif; ?>
+                  </div>
+                  
+                </div>
+                  <?php if($this->canshowratings): ?>
+                      
+                    <!-- <div class="sr_profile_review_title">
+                      <?php // echo $this->translate("Editor Rating"); ?>
+                    </div>  -->  
+                    <div class="sr_profile_review_stars">
+                      <?php $ratingData = Engine_Api::_()->getDbtable('ratings', 'sitereview')->profileRatingbyCategory($review->review_id); ?>
+                      <?php foreach ($ratingData as $reviewCat): ?>
+                        <?php if (empty($reviewCat['ratingparam_name'])): ?>
+                          <span class="sr_profile_editorreview_overall_rating">
+                            <span class="fleft">
+                              <?php echo $this->showRatingStar($reviewCat['rating'], 'editor', 'big-star', $this->sitereview->listingtype_id); ?>
+                            </span>
+                            <?php if (count($ratingData) > 1): ?>
+                              <i class="arrow_btm fleft"></i>
+                            <?php endif; ?>
+                           </span> 
+                          <?php break; ?>
+                        <?php endif; ?>
+                      <?php endforeach; ?>
+                    </div>  
+
+                    <!--Rating Breakdown Hover Box Starts-->
+                    <?php if (count($ratingData) > 1): ?>
+                      <div class="sr_ur_bdown_box_wrapper br_body_bg b_medium">
+                        <div class="sr_ur_bdown_box">
+                          <div class="sr_profile_review_title">
+                            <?php echo $this->translate("Editor Rating"); ?>
+                          </div>   
+                          <div class="sr_profile_review_stars">
+                            <?php foreach ($ratingData as $reviewCat): ?>
+                              <?php if (empty($reviewCat['ratingparam_name'])): ?>
+                                <?php echo $this->showRatingStar($reviewCat['rating'], 'editor', 'big-star', $this->sitereview->listingtype_id); ?>
+                                <?php break; ?>
+                              <?php endif; ?>
+                            <?php endforeach; ?>
+                          </div>  
+
+                          <div class="sr_profile_rating_parameters">
+                            <?php foreach ($ratingData as $reviewCat): ?>
+                              <?php if (empty($reviewCat['ratingparam_name'])): ?>
+                                <?php continue; ?>
+                              <?php endif; ?>
+                              <div class="o_hidden">
+                                <div class="parameter_title">
+                                  <?php echo $this->translate($reviewCat['ratingparam_name']); ?>
+                                </div>
+                                <div class="parameter_value">
+                                  <?php echo $this->showRatingStar($reviewCat['rating'], 'editor', 'small-box', $this->sitereview->listingtype_id,$reviewCat['ratingparam_name']); ?>
+                                </div>
+                              </div>  
+                            <?php endforeach; ?>
+                          </div>
+                          <div class="clr"></div>
+                        </div>
+                      </div>
+                    <?php endif; ?>
+                    <!--Rating Breakdown Hover Box Ends-->
+                  <?php endif; ?>
+              
+              
+
+            </div> 
+
+              <!-- <?php if($review->pros):?>
+              <div class='sr_reviews_listing_proscons'>
+                <?php echo '<b>' . $this->translate("The Good:") . ' </b>' . $this->viewMore($review->pros); ?>
+              </div>
+              <?php endif;?>
+              <?php if($review->cons):?>
+              <div class="sr_reviews_listing_proscons"> 
+                <?php echo '<b>' . $this->translate("The Bad:") . ' </b>' . $this->viewMore($review->cons); ?>
+              </div>
+              <?php endif;?>
+
+              <?php if($review->title):?>
+              <div class="sr_reviews_listing_proscons">
+                <?php echo '<b>' . $this->translate("The Bottom Line:") . ' </b>' . $review->title; ?>
+              </div>
+              <?php endif;?> -->
+
+              <?php if($review->profile_type_review): ?>
+                <div class="sr_reviews_listing_proscons"> 
+                  <?php $custom_field_values = $this->fieldValueLoopReview($review, $this->fieldStructure); ?>
+                  <?php echo htmlspecialchars_decode($custom_field_values); ?>        
+                </div>   
+              <?php endif; ?>
+
+              <!-- <?php if($review->update_reason):?>
+              <div class="sr_reviews_listing_proscons">
+                <?php echo '<b>' . $this->translate("Update On "). $this->timestamp(strtotime($review->modified_date)) . ':</b>' . $review->update_reason; ?>
+              </div>
+              <?php endif;?> -->          
+
+          </div>
+        <!-- <?php endif; ?> -->
+
+              
+        <!-- 
+          <?php if ($this->showconclusion && $this->review->body): ?>
+            <div class='sr_reviews_listing_proscons sr_editor_review_conclusion b_medium'>
+              <?php echo '<b>' . $this->translate("Conclusion: ") . '</b>'; ?>
+              <?php echo $this->review->body; ?>
+            </div>
+          <?php endif; ?>
+          <?php if ($this->pageCount > 1): ?>
+            <div class="seaocore_pagination o_hidden"> 
+              <div class="pages fright">    
+                <ul class="paginationControl">
+                  <?php /* Previous page link */ ?>
+                  <?php if (isset($this->previous)): ?>
+                    <li>
+                      <a href="javascript:void(0)" onclick="javascript:editorPageAction('<?php echo $this->previous; ?>')"><?php echo $this->translate("&#171; Previous") ?></a>
+                    </li>
+                  <?php endif; ?>
+
+                  <?php foreach ($this->pagesInRange as $page): ?>
+                    <?php if ($page != $this->current): ?>
+                      <li>
+                        <a href="javascript:void(0)" onclick="javascript:editorPageAction('<?php echo $page; ?>')"><?php echo $page; ?></a>
+                      </li>
+                    <?php else: ?>
+                      <li class="selected">
+                        <a href="javascript:void(0)"><?php echo $page; ?></a>
+                      </li>
+                    <?php endif; ?>
+                  <?php endforeach; ?>
+
+                  <?php /* Next page link */ ?>
+                  <?php if (isset($this->next)): ?>
+                    <li>
+                      <a href="javascript:void(0)" onclick="javascript:editorPageAction('<?php echo $this->next; ?>')"><?php echo $this->translate("Next &#187;") ?></a>
+                    </li>	
+                  <?php endif; ?>
+                </ul>
+              </div>
+              <span id="pagination_loader_image" style="display:none;">
+                <img src="<?php echo $this->layout()->staticBaseUrl; ?>application/modules/Seaocore/externals/images/core/loading.gif" alt="" />
+              </span>  
+            </div> 
+            </div>
+          <?php endif; ?> -->
+
+          <div class="editor_review_body">
+            <?php // echo $this->body_pages; ?>
+            <?php echo $review->body; ?>
+          </div>
+
+        </div>
+
+      <?PHP endforeach; ?>
+
+    <?php else:?>
       <div class="sr_profile_overview">
         <?php if(empty($this->CanShowOverview)):?>
 					<?php echo nl2br($this->sitereview->body);?>
@@ -303,7 +372,7 @@ endif;
 				  <?php echo $this->listingType->overview && $this->overview ? $this->overview : nl2br($this->sitereview->body)?>
 				<?php endif;?>
       </div>	
-      <?php endif;?>
+    <?php endif;?>
     </div>
   </div>
 

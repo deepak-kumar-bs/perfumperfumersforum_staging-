@@ -30,10 +30,12 @@ class Sitereview_Form_Editor_Edit extends Sitereview_Form_Editor_Create {
     $sitereview = Engine_Api::_()->getItem('sitereview_listing', $listing_id);
     $this->loadDefaultDecorators();
     $sitereview_title = "<b>" . $sitereview->title . "</b>";
+    $listingtypeArray = Engine_Api::_()->getItem('sitereview_listingtype', $sitereview->listingtype_id);
+    $reviewTitleSingular = $listingtypeArray->review_title_singular ? $listingtypeArray->review_title_singular : 'Review';
 
     $this
-            ->setTitle('Edit an Editor Review')
-            ->setDescription(sprintf(Zend_Registry::get('Zend_Translate')->_("You can edit the editor review for %s below:"), $sitereview_title))
+            ->setTitle("Edit an Editor $reviewTitleSingular")
+            ->setDescription(sprintf(Zend_Registry::get('Zend_Translate')->_("You can edit the editor $reviewTitleSingular for %s below:"), $sitereview_title))
             ->setAction(Zend_Controller_Front::getInstance()->getRouter()->assemble(array()))->getDecorator('Description')->setOption('escape', false);
 
     $this->submit->setLabel('Save Changes');

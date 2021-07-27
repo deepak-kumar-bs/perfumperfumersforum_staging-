@@ -65,6 +65,18 @@ class Sitereview_PostController extends Seaocore_Controller_Action_Standard {
     //MAKE FORM
     $this->view->form = $form = new Sitereview_Form_Post_Edit();
 
+
+    $tagStr = '';
+    foreach( $post->tags()->getTagMaps() as $tagMap ) {
+      $tag = $tagMap->getTag();
+      if( !isset($tag->text) ) continue;
+      if( '' !== $tagStr ) $tagStr .= ', ';
+      $tagStr .= $tag->text;
+    }
+    $form->populate(array(
+      'tags' => $tagStr,
+    )); 
+
     //CHECK METHOD
     if (!$this->getRequest()->isPost()) {
       $form->populate($post->toArray());
@@ -85,6 +97,25 @@ class Sitereview_PostController extends Seaocore_Controller_Action_Standard {
       $post->setFromArray($form->getValues());
       $post->modified_date = date('Y-m-d H:i:s');
       $post->save();
+
+      //ADDING TAGS
+      $values = $form->getValues();
+      $keywords = '';
+      if (isset($values['tags']) && !empty($values['tags'])) {
+        $tags = preg_split('/[,]+/', $values['tags']);
+        $tags = array_filter(array_map("trim", $tags));
+        $post->tags()->setTagMaps($viewer, $tags);
+
+        foreach ($tags as $tag) {
+            $keywords .= " $tag";
+        }
+      }
+
+      //UPDATE KEYWORDS IN SEARCH TABLE
+      if (!empty($keywords)) {
+          Engine_Api::_()->getDbTable('search', 'core')->update(array('keywords' => $keywords), array('type = ?' => 'sitereview_post', 'id = ?' => $post->post_id));
+      }
+
       $db->commit();
     } catch (Exception $e) {
       $db->rollBack();

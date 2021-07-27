@@ -29,6 +29,7 @@ $this->headLink()
 
 <div class="o_hidden">
   <div class="sr_view_top">
+    <?php // echo "<pre>"; print_r($this->sitereview); die; ?>
     <?php echo $this->htmlLink($this->sitereview->getHref(array('profile_link' => 1)), $this->itemPhoto($this->sitereview, 'thumb.icon', $this->sitereview->getTitle()), array('class' => "thumb_icon", 'title' => $this->sitereview->getTitle())) ?>
     <div class="sr_review_view_right">
       <?php echo $this->content()->renderWidget("sitereview.review-button", array('listing_guid' => $this->sitereview->getGuid(), 'listing_profile_page' => 1, 'identity' => $this->identity)) ?>
@@ -46,7 +47,7 @@ $this->headLink()
       <?php echo $this->addToWishlist($this->sitereview, array('classIcon' => 'sr_icon_wishlist_add', 'classLink' => ''));?>
     </div> 
   </div>
-
+<?php if($this->canshowrating): ?>
   <div class="sr_profile_review b_medium sr_review_block">
     <div class="sr_profile_review_left">
       <div class="sr_profile_review_title">
@@ -99,7 +100,7 @@ $this->headLink()
       <?php endif; ?>
 
       <div class="sr_profile_review_stat clr">
-        <?php echo $this->translate(array('Based on %s review', 'Based on %s reviews', $this->totalReviews), $this->locale()->toNumber($this->totalReviews)); ?>
+        <?php echo $this->translate(array("Based on %s $this->reviewTitleSingular", "Based on %s $this->reviewTitlePlular", $this->totalReviews), $this->locale()->toNumber($this->totalReviews)); ?>
       </div>
 
 			<?php if (Engine_Api::_()->getApi('settings', 'core')->getSetting('sitereview.recommend', 1)):?>
@@ -124,12 +125,12 @@ $this->headLink()
         </div>
         <?php if (!empty($this->reviewRateMyData) && !empty($this->hasPosted) && !empty($this->can_update)): ?>
           <div class="sr_profile_review_stat mtop10">
-            <?php echo $this->translate('Please %1$sclick here%2$s to update your reviews for this '.$this->listing_singular_lc.'.', "<a href='javascript:void(0);' onclick='showForm();'>", "</a>"); ?>
+            <?php echo $this->translate("Please %1$sclick here%2$s to update your $this->reviewTitlePlular for this ".$this->listing_singular_lc.'.', "<a href='javascript:void(0);' onclick='showForm();'>", "</a>"); ?>
           </div>	
         <?php endif; ?>
         <?php if (empty($this->reviewRateMyData) && empty($this->hasPosted) && !empty($this->create_level_allow)): ?>
           <div class="sr_profile_review_stat">
-            <?php echo $this->translate('Please %1$sclick here%2$s to give your review and ratings for this '.$this->listing_singular_lc.'.', "<a href='javascript:void(0);' onclick='showForm();'>", "</a>"); ?>
+            <?php echo $this->translate("Please %1$sclick here%2$s to give your $this->reviewTitleSingular and ratings for this ".$this->listing_singular_lc.'.', "<a href='javascript:void(0);' onclick='showForm();'>", "</a>"); ?>
           </div>	
         <?php endif; ?>
       <?php endif; ?>
@@ -159,12 +160,13 @@ $this->headLink()
     </div>
     <!--Rating Breakdown Hover Box Ends-->
   </div>
+<?php endif; ?>
 
   <ul class="sr_reviews_listing" id="profile_sitereview_content">
     <?php if ($review->status == 0): ?>
       <div class="tip">
         <span>
-          <?php echo $this->translate("This review has been written by a visitor of your site and is not visible to the users of your site. Please %s to take an appropriate action on this review.", $this->htmlLink(array('route' => 'admin_default', 'module' => 'sitereview', 'controller' => 'review', 'action' => 'take-action', 'review_id' => $review->review_id, 'listing_id' => $this->sitereview->listing_id), $this->translate('click over here'), array('class' => 'smoothbox'))); ?>
+          <?php echo $this->translate("This $this->reviewTitleSingular has been written by a visitor of your site and is not visible to the users of your site. Please %s to take an appropriate action on this $this->reviewTitleSingular.", $this->htmlLink(array('route' => 'admin_default', 'module' => 'sitereview', 'controller' => 'review', 'action' => 'take-action', 'review_id' => $review->review_id, 'listing_id' => $this->sitereview->listing_id), $this->translate('click over here'), array('class' => 'smoothbox'))); ?>
         </span>
       </div>
     <?php endif; ?>
@@ -179,51 +181,53 @@ $this->headLink()
       </div>
       <div class="sr_reviews_listing_info">
         <div class=" sr_reviews_listing_title">
-          <div class="sr_ur_show_rating_star">
-            <?php $ratingData = $review->getRatingData(); ?>
-            <?php
-            $rating_value = 0;
-            foreach ($ratingData as $reviewcat):
-              if (empty($reviewcat['ratingparam_name'])):
-                $rating_value = $reviewcat['rating'];
-                break;
-              endif;
-            endforeach;
-            ?>
-            <span class="fright">  
-              <span class="fleft">
-                <?php echo $this->showRatingStar($rating_value, 'user', 'big-star', $this->sitereview->listingtype_id); ?>
+          <?php if($this->canshowrating): ?>
+            <div class="sr_ur_show_rating_star">
+              <?php $ratingData = $review->getRatingData(); ?>
+              <?php
+              $rating_value = 0;
+              foreach ($ratingData as $reviewcat):
+                if (empty($reviewcat['ratingparam_name'])):
+                  $rating_value = $reviewcat['rating'];
+                  break;
+                endif;
+              endforeach;
+              ?>
+              <span class="fright">  
+                <span class="fleft">
+                  <?php echo $this->showRatingStar($rating_value, 'user', 'big-star', $this->sitereview->listingtype_id); ?>
+                </span>
+                <?php if (count($ratingData) > 1): ?>
+                  <i class="fright arrow_btm"></i>
+                <?php endif; ?>
               </span>
               <?php if (count($ratingData) > 1): ?>
-                <i class="fright arrow_btm"></i>
-              <?php endif; ?>
-            </span>
-            <?php if (count($ratingData) > 1): ?>
-              <div class="sr_ur_show_rating  br_body_bg b_medium">
-                <div class="sr_profile_rating_parameters sr_ur_show_rating_box">
-                  <?php foreach ($ratingData as $reviewcat): ?>
-                    <div class="o_hidden">
-                      <?php if (!empty($reviewcat['ratingparam_name'])): ?>
-                        <div class="parameter_title">
-                          <?php echo $this->translate($reviewcat['ratingparam_name']); ?>
-                        </div>
-                        <div class="parameter_value">
-                          <?php echo $this->showRatingStar($reviewcat['rating'], 'user', 'small-box', $this->sitereview->listingtype_id, $reviewcat['ratingparam_name']); ?>
-                        </div>
-                      <?php else: ?>
-                        <div class="parameter_title">
-                          <?php echo $this->translate("Overall Rating"); ?>
-                        </div>	
-                        <div class="parameter_value">
-                          <?php echo $this->showRatingStar($reviewcat['rating'], $review->type, 'big-star', $this->sitereview->listingtype_id); ?>
-                        </div>
-                      <?php endif; ?> 
-                    </div>
-                  <?php endforeach; ?>
+                <div class="sr_ur_show_rating  br_body_bg b_medium">
+                  <div class="sr_profile_rating_parameters sr_ur_show_rating_box">
+                    <?php foreach ($ratingData as $reviewcat): ?>
+                      <div class="o_hidden">
+                        <?php if (!empty($reviewcat['ratingparam_name'])): ?>
+                          <div class="parameter_title">
+                            <?php echo $this->translate($reviewcat['ratingparam_name']); ?>
+                          </div>
+                          <div class="parameter_value">
+                            <?php echo $this->showRatingStar($reviewcat['rating'], 'user', 'small-box', $this->sitereview->listingtype_id, $reviewcat['ratingparam_name']); ?>
+                          </div>
+                        <?php else: ?>
+                          <div class="parameter_title">
+                            <?php echo $this->translate("Overall Rating"); ?>
+                          </div>	
+                          <div class="parameter_value">
+                            <?php echo $this->showRatingStar($reviewcat['rating'], $review->type, 'big-star', $this->sitereview->listingtype_id); ?>
+                          </div>
+                        <?php endif; ?> 
+                      </div>
+                    <?php endforeach; ?>
+                  </div>
                 </div>
-              </div>
-            <?php endif; ?>
-          </div>
+              <?php endif; ?>
+            </div>
+          <?php endif; ?>
           <?php if ($review->featured): ?>
             <i class="sr_icon seaocore_icon_featured fright" title="<?php echo $this->translate('Featured'); ?>"></i> 
           <?php endif; ?>	
@@ -266,12 +270,12 @@ $this->headLink()
 
         <?php if ($review->getDescription()): ?>
           <div class="sr_reviews_listing_proscons">
-            <b><?php echo $this->translate("Summary") ?>: </b>
+            <b><?php // echo $this->translate("Summary") ?> </b>
             <?php echo $review->body ?>
           </div>
         <?php endif; ?>
 
-        <div class="feed_item_link_desc">
+        <!-- <div class="feed_item_link_desc">
           <?php $this->reviewDescriptions = $reviewDescriptionsTable->getReviewDescriptions($this->reviews->review_id); ?>
           <?php if (count($this->reviewDescriptions) > 0): ?>
             <div class="sitereview_profile_info_des_update sr_review_block">        
@@ -289,7 +293,7 @@ $this->headLink()
               <?php endforeach; ?>
             </div> 
           <?php endif; ?> 
-        </div>
+        </div> -->
         <?php
         include APPLICATION_PATH . '/application/modules/Sitereview/views/scripts/_formReplyReview.tpl';
         ?> 
@@ -303,7 +307,7 @@ $this->headLink()
   <?php else: ?>
     <?php if ($this->level_id == 1): ?>
       <div class="tip">
-        <span><?php echo $this->translate("Comments on review have been disabled, as this review was written by a visitor of your site."); ?></span>
+        <span><?php echo $this->translate("Comments on $this->reviewTitleSingular have been disabled, as this $this->reviewTitleSingular was written by a visitor of your site."); ?></span>
       </div>
     <?php endif; ?>
   <?php endif; ?>
@@ -311,7 +315,7 @@ $this->headLink()
   <div class="clr o_hidden b_medium sr_review_view_footer fleft">  
     <div class="fleft">
       <a href='<?php echo $this->url(array('listing_id' => $this->sitereview->listing_id, 'slug' => $this->sitereview->getSlug(), 'tab' => $this->tab_id), "sitereview_entry_view_listtype_$this->listingtype_id", true) ?>' class="buttonlink sr_item_icon_back">
-        <?php echo $this->translate('Back to Reviews'); ?>
+        <?php echo $this->translate("Back to $this->reviewTitleSingular"); ?>
       </a>
     </div>      
     <div class="o_hidden fright sr_review_view_paging">
@@ -338,6 +342,7 @@ $this->headLink()
     </div>
   </div>
   <div class="clr fleft widthfull">
+    <?php $allow_review =  $this->listingtypeArray->allow_review; ?>
     <?php if ($this->hasPosted && $this->can_update): ?>
       <?php echo $this->update_form->setAttrib('class', 'sr_review_form global_form')->render($this) ?>
       <?php

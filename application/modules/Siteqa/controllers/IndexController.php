@@ -134,9 +134,9 @@ class Siteqa_IndexController extends Core_Controller_Action_Standard
         }
 
         //UPDATE KEYWORDS IN SEARCH TABLE
-        if(!empty($keywords)) {
-            Engine_Api::_()->getDbTable('search', 'core')->update(array('keywords' => $keywords), array('type = ?' => 'siteqa_question', 'id = ?' => $question->question_id));
-        }
+        // if(!empty($keywords)) {
+            Engine_Api::_()->getDbTable('search', 'core')->insert(array('keywords' => $keywords, 'type' => 'siteqa_question', 'id' => $question->question_id, 'title' => $question->title, 'description' => $question->body));
+        // }
 
         return $this->_helper->redirector->gotoRoute(array('action' => 'manage'));
     } catch( Exception $e ) {
@@ -441,6 +441,15 @@ class Siteqa_IndexController extends Core_Controller_Action_Standard
                 $tags = preg_split('/[,]+/', $values['tags']);
                 $tags = array_filter(array_map("trim", $tags));
                 $question->tags()->setTagMaps($viewer, $tags);
+
+                foreach($tags as $tag) {
+                    $keywords .= " $tag";
+                }
+            }
+
+            //UPDATE KEYWORDS IN SEARCH TABLE
+            if(!empty($keywords)) {
+                Engine_Api::_()->getDbTable('search', 'core')->update(array('keywords' => $keywords,'title' => $values['title'], 'desciption' => $values['body']), array('type = ?' => 'siteqa_question', 'id = ?' => $question->question_id));
             }
 
             // Auth

@@ -344,7 +344,7 @@ $this->headScript()->appendFile("https://maps.googleapis.com/maps/api/js?librari
 
                                          if(in_array('reviewCount', $this->statistics) && (!empty($this->listingtypeArray->allow_review) || (isset($sitereview->rating_editor) && $sitereview->rating_editor))) {
                       $statistics .= $this->partial(
-                      '_showReview.tpl', 'sitereview', array('sitereview'=>$sitereview)).', ';
+                      '_showReview.tpl', 'sitereview', array('sitereview'=>$sitereview, 'reviewTitlePlular' => $this->reviewTitlePlular, 'reviewTitleSingular' => $this->reviewTitleSingular)).', ';
                     }
 
                     if(in_array('viewCount', $this->statistics)) {
@@ -503,164 +503,165 @@ $this->headScript()->appendFile("https://maps.googleapis.com/maps/api/js?librari
 
                     </div>  
                   <?php endif; ?>
-
-                  <div class="sr_browse_list_rating">
-                    <?php if(!empty($sitereview->rating_editor) && ($ratingValue == 'rating_both'|| $ratingValue == 'rating_editor')): ?>
-                      <div class="clr">	
-                        <div class="sr_browse_list_rating_stats">
-                          <?php echo $this->translate("Editor Rating");?>
-                        </div>
-                       <?php $ratingData = $this->ratingTable->ratingbyCategory($sitereview->listing_id,'editor', $sitereview->getType()); ?>
-                        <div class="sr_ur_show_rating_star fnone o_hidden">
-                          <span class="sr_browse_list_rating_stars">
-                            <span class="fleft">
-                              <?php echo $this->showRatingStar($sitereview->rating_editor, 'editor', 'big-star', $sitereview->listingtype_id); ?>
+                  <?php if($this->ratingShouldShow): ?>
+                    <div class="sr_browse_list_rating">
+                      <?php if(!empty($sitereview->rating_editor) && ($ratingValue == 'rating_both'|| $ratingValue == 'rating_editor')): ?>
+                        <div class="clr">	
+                          <div class="sr_browse_list_rating_stats">
+                            <?php echo $this->translate("Editor Rating");?>
+                          </div>
+                         <?php $ratingData = $this->ratingTable->ratingbyCategory($sitereview->listing_id,'editor', $sitereview->getType()); ?>
+                          <div class="sr_ur_show_rating_star fnone o_hidden">
+                            <span class="sr_browse_list_rating_stars">
+                              <span class="fleft">
+                                <?php echo $this->showRatingStar($sitereview->rating_editor, 'editor', 'big-star', $sitereview->listingtype_id); ?>
+                              </span>
+                              <?php if (count($ratingData) > 1): ?>
+                                <i class="fright arrow_btm"></i>
+                            <?php endif; ?>
                             </span>
+
                             <?php if (count($ratingData) > 1): ?>
-                              <i class="fright arrow_btm"></i>
-                          <?php endif; ?>
-                          </span>
+                              <div class="sr_ur_show_rating br_body_bg b_medium">
+                                <div class="sr_profile_rating_parameters sr_ur_show_rating_box">
 
-                          <?php if (count($ratingData) > 1): ?>
-                            <div class="sr_ur_show_rating br_body_bg b_medium">
-                              <div class="sr_profile_rating_parameters sr_ur_show_rating_box">
+                                  <?php foreach ($ratingData as $reviewcat): ?>
 
-                                <?php foreach ($ratingData as $reviewcat): ?>
+                                    <div class="o_hidden">
+                                      <?php if (!empty($reviewcat['ratingparam_name'])): ?>
+                                        <div class="parameter_title">
+                                          <?php echo $this->translate($reviewcat['ratingparam_name']); ?>
+                                        </div>
+                                        <div class="parameter_value">
+                                          <?php echo $this->showRatingStar($reviewcat['avg_rating'], 'editor', 'small-box', $sitereview->listingtype_id,$reviewcat['ratingparam_name']); ?>
+                                        </div>
+                                      <?php else: ?>
+                                        <div class="parameter_title">
+                                          <?php echo $this->translate("Overall Rating"); ?>
+                                        </div>	
+                                        <div class="parameter_value" style="margin: 0px 0px 5px;">
+                                          <?php echo $this->showRatingStar($reviewcat['avg_rating'], 'editor', 'big-star', $sitereview->listingtype_id); ?>
+                                        </div>
+                                      <?php endif; ?> 
+                                    </div>
 
-                                  <div class="o_hidden">
-                                    <?php if (!empty($reviewcat['ratingparam_name'])): ?>
-                                      <div class="parameter_title">
-                                        <?php echo $this->translate($reviewcat['ratingparam_name']); ?>
-                                      </div>
-                                      <div class="parameter_value">
-                                        <?php echo $this->showRatingStar($reviewcat['avg_rating'], 'editor', 'small-box', $sitereview->listingtype_id,$reviewcat['ratingparam_name']); ?>
-                                      </div>
-                                    <?php else: ?>
-                                      <div class="parameter_title">
-                                        <?php echo $this->translate("Overall Rating"); ?>
-                                      </div>	
-                                      <div class="parameter_value" style="margin: 0px 0px 5px;">
-                                        <?php echo $this->showRatingStar($reviewcat['avg_rating'], 'editor', 'big-star', $sitereview->listingtype_id); ?>
-                                      </div>
-                                    <?php endif; ?> 
-                                  </div>
-
-                                <?php endforeach; ?>
+                                  <?php endforeach; ?>
+                                </div>
                               </div>
-                            </div>
-                          <?php endif; ?>
-                        </div>
-                       </div> 
-                     <?php endif; ?>
-                    <?php if(!empty($sitereview->rating_users) && ($ratingValue == 'rating_both'|| $ratingValue == 'rating_users')): ?>
-                      <div class="clr">
-                        <div class="sr_browse_list_rating_stats">
-                        <?php echo $this->translate("User Ratings");?><br />
-                          <?php 
-                            $totalUserReviews = $sitereview->review_count;
-                            if($sitereview->rating_editor){
-                              $totalUserReviews = $sitereview->review_count - 1;
-                            }
-                          ?>
+                            <?php endif; ?>
+                          </div>
+                         </div> 
+                       <?php endif; ?>
+                      <?php if(!empty($sitereview->rating_users) && ($ratingValue == 'rating_both'|| $ratingValue == 'rating_users')): ?>
+                        <div class="clr">
+                          <div class="sr_browse_list_rating_stats">
+                          <?php echo $this->translate("User Ratings");?><br />
+                            <?php 
+                              $totalUserReviews = $sitereview->review_count;
+                              if($sitereview->rating_editor){
+                                $totalUserReviews = $sitereview->review_count - 1;
+                              }
+                            ?>
+                            <?php if($this->listingtypeArray->allow_review): ?>
+  														<?php echo $this->translate(array('Based on %s review', 'Based on %s reviews', $totalUserReviews), $this->locale()->toNumber($totalUserReviews)) ?>
+                            <?php endif;?>
+                          </div>
+                           <?php $ratingData = $this->ratingTable->ratingbyCategory($sitereview->listing_id, 'user', $sitereview->getType());?>
+                            <div class="sr_ur_show_rating_star fnone o_hidden">
+                              <span class="sr_browse_list_rating_stars">
+                               <span class="fleft">
+                                 <?php echo $this->showRatingStar($sitereview->rating_users, 'user', 'big-star', $sitereview->listingtype_id); ?>
+                               </span>
+                               <?php if (count($ratingData) > 1): ?>
+                                 <i class="fright arrow_btm"></i>
+                             <?php endif; ?>
+                             </span>
+
+                             <?php if (count($ratingData) > 1): ?>
+                               <div class="sr_ur_show_rating  br_body_bg b_medium">
+                                 <div class="sr_profile_rating_parameters sr_ur_show_rating_box">
+
+                                   <?php foreach ($ratingData as $reviewcat): ?>
+
+                                     <div class="o_hidden">
+                                       <?php if (!empty($reviewcat['ratingparam_name'])): ?>
+                                         <div class="parameter_title">
+                                           <?php echo $this->translate($reviewcat['ratingparam_name']); ?>
+                                         </div>
+                                         <div class="parameter_value">
+                                           <?php echo $this->showRatingStar($reviewcat['avg_rating'], 'user', 'small-box', $sitereview->listingtype_id,$reviewcat['ratingparam_name']); ?>
+                                         </div>
+                                       <?php else: ?>
+                                         <div class="parameter_title">
+                                           <?php echo $this->translate("Overall Rating"); ?>
+                                         </div>	
+                                         <div class="parameter_value" style="margin: 0px 0px 5px;">
+                                           <?php echo $this->showRatingStar($reviewcat['avg_rating'], 'user', 'big-star', $sitereview->listingtype_id); ?>
+                                         </div>
+                                       <?php endif; ?> 
+                                     </div>
+
+                                   <?php endforeach; ?>
+                                 </div>
+                               </div> 
+                             <?php endif; ?> 
+                           </div>
+                         </div>  
+                     <?php endif;?>
+
+                      <?php if(!empty($sitereview->rating_avg) && ($ratingValue == 'rating_avg')): ?>
+                        <div class="clr">
                           <?php if($this->listingtypeArray->allow_review): ?>
-														<?php echo $this->translate(array('Based on %s review', 'Based on %s reviews', $totalUserReviews), $this->locale()->toNumber($totalUserReviews)) ?>
+  													<div class="sr_browse_list_rating_stats">
+  		                        <!--<?php //echo $this->translate("Overall Rating");?><br />-->
+
+  														<?php echo $this->translate(array('Based on %s review', 'Based on %s reviews', $sitereview->review_count), $this->locale()->toNumber($sitereview->review_count)) ?>
+  													</div>
                           <?php endif;?>
-                        </div>
-                         <?php $ratingData = $this->ratingTable->ratingbyCategory($sitereview->listing_id, 'user', $sitereview->getType());?>
-                          <div class="sr_ur_show_rating_star fnone o_hidden">
-                            <span class="sr_browse_list_rating_stars">
-                             <span class="fleft">
-                               <?php echo $this->showRatingStar($sitereview->rating_users, 'user', 'big-star', $sitereview->listingtype_id); ?>
+                           <?php $ratingData = $this->ratingTable->ratingbyCategory($sitereview->listing_id, null, $sitereview->getType());?>
+                            <div class="sr_ur_show_rating_star fnone o_hidden">
+                              <span class="sr_browse_list_rating_stars">
+                               <span class="fleft">
+                                 <?php echo $this->showRatingStar($sitereview->rating_avg, $ratingType, 'big-star', $sitereview->listingtype_id); ?>
+                               </span>
+                               <?php if (count($ratingData) > 1): ?>
+                                 <i class="fright arrow_btm"></i>
+                             <?php endif; ?>
                              </span>
+
                              <?php if (count($ratingData) > 1): ?>
-                               <i class="fright arrow_btm"></i>
-                           <?php endif; ?>
-                           </span>
+                               <div class="sr_ur_show_rating  br_body_bg b_medium">
+                                 <div class="sr_profile_rating_parameters sr_ur_show_rating_box">
 
-                           <?php if (count($ratingData) > 1): ?>
-                             <div class="sr_ur_show_rating  br_body_bg b_medium">
-                               <div class="sr_profile_rating_parameters sr_ur_show_rating_box">
+                                   <?php foreach ($ratingData as $reviewcat): ?>
 
-                                 <?php foreach ($ratingData as $reviewcat): ?>
+                                     <div class="o_hidden">
+                                       <?php if (!empty($reviewcat['ratingparam_name'])): ?>
+                                         <div class="parameter_title">
+                                           <?php echo $this->translate($reviewcat['ratingparam_name']); ?>
+                                         </div>
+                                         <div class="parameter_value">
+                                           <?php echo $this->showRatingStar($reviewcat['avg_rating'], $ratingType, 'small-box', $sitereview->listingtype_id,$reviewcat['ratingparam_name']); ?>
+                                         </div>
+                                       <?php else: ?>
+                                         <div class="parameter_title">
+                                           <?php echo $this->translate("Overall Rating"); ?>
+                                         </div>	
+                                         <div class="parameter_value" style="margin: 0px 0px 5px;">
+                                           <?php echo $this->showRatingStar($reviewcat['avg_rating'], $ratingType, 'big-star', $sitereview->listingtype_id); ?>
+                                         </div>
+                                       <?php endif; ?> 
+                                     </div>
 
-                                   <div class="o_hidden">
-                                     <?php if (!empty($reviewcat['ratingparam_name'])): ?>
-                                       <div class="parameter_title">
-                                         <?php echo $this->translate($reviewcat['ratingparam_name']); ?>
-                                       </div>
-                                       <div class="parameter_value">
-                                         <?php echo $this->showRatingStar($reviewcat['avg_rating'], 'user', 'small-box', $sitereview->listingtype_id,$reviewcat['ratingparam_name']); ?>
-                                       </div>
-                                     <?php else: ?>
-                                       <div class="parameter_title">
-                                         <?php echo $this->translate("Overall Rating"); ?>
-                                       </div>	
-                                       <div class="parameter_value" style="margin: 0px 0px 5px;">
-                                         <?php echo $this->showRatingStar($reviewcat['avg_rating'], 'user', 'big-star', $sitereview->listingtype_id); ?>
-                                       </div>
-                                     <?php endif; ?> 
-                                   </div>
-
-                                 <?php endforeach; ?>
-                               </div>
-                             </div> 
-                           <?php endif; ?> 
-                         </div>
-                       </div>  
-                   <?php endif;?>
-
-                    <?php if(!empty($sitereview->rating_avg) && ($ratingValue == 'rating_avg')): ?>
-                      <div class="clr">
-                        <?php if($this->listingtypeArray->allow_review): ?>
-													<div class="sr_browse_list_rating_stats">
-		<!--	                    <?php //echo $this->translate("Overall Rating");?><br />-->
-
-														<?php echo $this->translate(array('Based on %s review', 'Based on %s reviews', $sitereview->review_count), $this->locale()->toNumber($sitereview->review_count)) ?>
-													</div>
-                        <?php endif;?>
-                         <?php $ratingData = $this->ratingTable->ratingbyCategory($sitereview->listing_id, null, $sitereview->getType());?>
-                          <div class="sr_ur_show_rating_star fnone o_hidden">
-                            <span class="sr_browse_list_rating_stars">
-                             <span class="fleft">
-                               <?php echo $this->showRatingStar($sitereview->rating_avg, $ratingType, 'big-star', $sitereview->listingtype_id); ?>
-                             </span>
-                             <?php if (count($ratingData) > 1): ?>
-                               <i class="fright arrow_btm"></i>
-                           <?php endif; ?>
-                           </span>
-
-                           <?php if (count($ratingData) > 1): ?>
-                             <div class="sr_ur_show_rating  br_body_bg b_medium">
-                               <div class="sr_profile_rating_parameters sr_ur_show_rating_box">
-
-                                 <?php foreach ($ratingData as $reviewcat): ?>
-
-                                   <div class="o_hidden">
-                                     <?php if (!empty($reviewcat['ratingparam_name'])): ?>
-                                       <div class="parameter_title">
-                                         <?php echo $this->translate($reviewcat['ratingparam_name']); ?>
-                                       </div>
-                                       <div class="parameter_value">
-                                         <?php echo $this->showRatingStar($reviewcat['avg_rating'], $ratingType, 'small-box', $sitereview->listingtype_id,$reviewcat['ratingparam_name']); ?>
-                                       </div>
-                                     <?php else: ?>
-                                       <div class="parameter_title">
-                                         <?php echo $this->translate("Overall Rating"); ?>
-                                       </div>	
-                                       <div class="parameter_value" style="margin: 0px 0px 5px;">
-                                         <?php echo $this->showRatingStar($reviewcat['avg_rating'], $ratingType, 'big-star', $sitereview->listingtype_id); ?>
-                                       </div>
-                                     <?php endif; ?> 
-                                   </div>
-
-                                 <?php endforeach; ?>
-                               </div>
-                             </div> 
-                           <?php endif; ?> 
-                         </div>
-                       </div>  
-                   <?php endif;?>
-                  </div>
+                                   <?php endforeach; ?>
+                                 </div>
+                               </div> 
+                             <?php endif; ?> 
+                           </div>
+                         </div>  
+                     <?php endif;?>
+                    </div>
+                  <?php endif; ?>
 
                   <div class="sr_browse_list_info">
                     <div class="sr_browse_list_info_header">
@@ -689,7 +690,7 @@ $this->headScript()->appendFile("https://maps.googleapis.com/maps/api/js?librari
 
                                                if(in_array('reviewCount', $this->statistics) && (!empty($this->listingtypeArray->allow_review) || (isset($sitereview->rating_editor) && $sitereview->rating_editor))) {
                             $statistics .= $this->partial(
-                          '_showReview.tpl', 'sitereview', array('sitereview'=>$sitereview)).', ';
+                          '_showReview.tpl', 'sitereview', array('sitereview'=>$sitereview, 'reviewTitlePlular' => $this->reviewTitlePlular, 'reviewTitleSingular' => $this->reviewTitleSingular)).', ';
                           }
 
                           if(in_array('viewCount', $this->statistics)) {
@@ -836,8 +837,8 @@ $this->headScript()->appendFile("https://maps.googleapis.com/maps/api/js?librari
                     <?php if(in_array('reviewCount', $this->statistics)): ?>
                       <span class="fright">
                        <?php echo $this->htmlLink($sitereview->getHref(), $this->partial(
-                      '_showReview.tpl', 'sitereview', array('sitereview'=>$sitereview)), array('title' => $this->partial(
-                      '_showReview.tpl', 'sitereview', array('sitereview'=>$sitereview)))); ?>
+                      '_showReview.tpl', 'sitereview', array('sitereview'=>$sitereview, 'reviewTitlePlular' => $this->reviewTitlePlular, 'reviewTitleSingular' => $this->reviewTitleSingular)), array('title' => $this->partial(
+                      '_showReview.tpl', 'sitereview', array('sitereview'=>$sitereview, 'reviewTitlePlular' => $this->reviewTitlePlular, 'reviewTitleSingular' => $this->reviewTitleSingular)))); ?>
                       </span>
                     <?php endif; ?> 
                     <?php if ($ratingValue == 'rating_both'): ?>

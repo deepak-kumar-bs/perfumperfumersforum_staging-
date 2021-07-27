@@ -15,8 +15,8 @@ class Sitereview_Form_Wishlist_Edit extends Sitereview_Form_Wishlist_Create {
   public function init() {
     
     parent::init();
-    $this->setTitle('Edit Wishlist')
-            ->setDescription('Edit your wishlist over here and then click on "Save Changes" to save it.');
+    $this->setTitle('Edit List')
+            ->setDescription('Edit your list over here and then click on "Save Changes" to save it.');
     $this->submit->setLabel('Save Changes');
   }
 

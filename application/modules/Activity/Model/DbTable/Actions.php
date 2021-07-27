@@ -117,12 +117,17 @@ class Activity_Model_DbTable_Actions extends Engine_Db_Table
     }
     $ids = array_unique($ids);
 
+    $select = $this->select()
+        ->where('action_id IN('.join(',', $ids).')');
+
+        if($params['actionOrder'] == 'like_count'){
+          $select->order('like_count DESC');
+        }
+
+        $select->order('action_id DESC');
+        
     // Finally get activity
-    return $this->fetchAll(
-      $this->select()
-        ->where('action_id IN('.join(',', $ids).')')
-        ->order('action_id DESC')
-    );
+    return $this->fetchAll($select);
   }
 
   public function getActivityActions(User_Model_User $user, array $params = array())
@@ -138,12 +143,34 @@ class Activity_Model_DbTable_Actions extends Engine_Db_Table
     $union = new Zend_Db_Select($db);
     // For Hashtag Search
     $hashtag = '';
-    if (isset($params['hashtag'])) {
-      $hastTagActionIds = $this->getHashTagActionsIds($params['hashtag']);
+    $hastTagActionIds = array();
+
+    if (isset($params['hashtag']) && !empty($params['isListingHashtagPage']) ) {
+      $hastTagActionIds = $this->getMultiHashTagActionsIds($params['hashtag']);
+      if (empty($hastTagActionIds)) {
+        return;
+      }
+    } elseif (isset($params['hashtag'])) {
+      $hastTagActionIds = $this->getMultiHashTagActionsIds($params['hashtag']);
       if (empty($hastTagActionIds)) {
         return;
       }
     }
+
+
+    $ByBodyActionIds = array();
+    if (!empty($params['actionBodyText'])) {
+
+      $ByBodyActionIds = $this->getByBodyActionsIds($params['actionBodyText']);
+      if (empty($ByBodyActionIds)) {
+        return;
+      }
+      foreach ($ByBodyActionIds as $key => $ByBodyActionId) {
+        array_push($hastTagActionIds, $ByBodyActionId);
+      }
+
+    }
+
 
     // Prepare action types
     $masterActionTypes = Engine_Api::_()->getDbtable('actionTypes', 'activity')->getActionTypes();
@@ -154,6 +181,12 @@ class Activity_Model_DbTable_Actions extends Engine_Db_Table
       if( $type->displayable & 4 ) {
         $mainActionTypes[] = $type->type;
       }
+    }
+
+    if (!empty($params['isHashtagPage'])) {
+      $showTypes = $this->handleShowTypes($params['content_type'], $params['isHashtagPage']);
+    } elseif (!empty($params['isListingHashtagPage']) ) {
+      $showTypes = $this->handleShowTypes($params['content_type'], $params['isListingHashtagPage']);
     }
 
     // Filter types based on user request
@@ -189,6 +222,10 @@ class Activity_Model_DbTable_Actions extends Engine_Db_Table
         $select->where('action_id IN (?)', $hastTagActionIds);
       }
 
+      // if( !empty($ByBodyActionIds) ) {
+      //   $select->where('action_id IN (?)', $ByBodyActionIds);
+      // }
+
       // Add action_id/max_id/min_id
       if( $actionId !== null && $actionId != 0 ) {
         $select->where('action_id = ?', $actionId);
@@ -210,6 +247,7 @@ class Activity_Model_DbTable_Actions extends Engine_Db_Table
         ->limit($limit);
 
       return $db->fetchAll($select);
+
     }
 
     // Prepare sub queries
@@ -251,6 +289,10 @@ class Activity_Model_DbTable_Actions extends Engine_Db_Table
       if( !empty($hastTagActionIds) ) {
         $select->where('action_id IN (?)', $hastTagActionIds);
       }
+
+      // if( !empty($ByBodyActionIds) ) {
+      //   $select->where('action_id IN (?)', $ByBodyActionIds);
+      // }
 
       // Add action_id/max_id/min_id
       if( null !== $actionId && $actionId != 0) {
@@ -390,6 +432,7 @@ class Activity_Model_DbTable_Actions extends Engine_Db_Table
       $union
         ->order('action_id DESC')
         ->limit($limit);
+
 
       return $db->fetchAll($union);
     }
@@ -791,5 +834,728 @@ class Activity_Model_DbTable_Actions extends Engine_Db_Table
     }
 
     return $actionIds;
+  }
+
+  private function getByBodyActionsIds($search)
+  {
+
+
+    $actionTable = Engine_Api::_()->getDbtable('actions', 'activity');
+
+    $select = $actionTable->select()
+          ->where("body LIKE '%$search%'");
+        $actions = $actionTable->fetchAll($select);
+        foreach ($actions as $action) {
+          $actionIds[] = $action->action_id;
+        }
+
+    return $actionIds;
+  }
+
+  private function handleShowTypes($search, $page)
+  {
+
+  $stack = array();
+    if(empty($search) && $page == 'hashtagPage' ){
+      return;
+    }
+    if(!is_array($search) && $page == 'listingHashtagPage' ){
+      array_push($stack, 'sitereview_admin_new_module_listtype_4', 'sitereview_editorreview_add_listtype_4', 'sitereview_new_listtype_4', 'sitereview_new_module_listtype_4', 'sitereview_photo_upload_listtype_4', 'sitereview_review_add_listtype_4', 'video_sitereview_listtype_4');
+
+      array_push($stack, 'sitereview_admin_new_module_listtype_3', 'sitereview_editorreview_add_listtype_3', 'sitereview_new_listtype_3', 'sitereview_new_module_listtype_3', 'sitereview_photo_upload_listtype_3', 'sitereview_review_add_listtype_3', 'video_sitereview_listtype_3');
+
+      array_push($stack, 'sitereview_admin_new_module_listtype_1', 'sitereview_editorreview_add_listtype_1', 'sitereview_new_listtype_1', 'sitereview_new_module_listtype_1', 'sitereview_photo_upload_listtype_1', 'sitereview_review_add_listtype_1', 'video_sitereview_listtype_1');
+
+      array_push($stack, 'sitereview_wishlist_add_listing_listtype_1', 'sitereview_wishlist_add_listing_listtype_3', 'sitereview_wishlist_add_listing_listtype_4');
+
+      array_push($stack, 'sitereview_topic_reply_listtype_1_custom', 'sitereview_topic_reply_listtype_3_custom', 'sitereview_topic_reply_listtype_4_custom');
+
+      array_push($stack, 'sitereview_topic_create_listtype_1', 'sitereview_topic_create_listtype_3', 'sitereview_topic_create_listtype_4');
+      array_push($stack, 'comment_user', 'comment_sitereview_listing', 'comment_siteqa_que', 'comment_activity_action');
+
+      return $stack;
+
+    }
+
+    
+    if(in_array('post', $search)){
+      array_push($stack, 'post', 'post_event', 'post_group', 'post_self', 'post_self_multi_photo');
+    }
+
+    if(in_array('siteqa_question', $search)){
+      array_push($stack, 'question_new');
+    }
+
+    if(in_array('forum_topic', $search)){
+      array_push($stack, 'forum_topic_create');
+    }
+
+    if(in_array('forum_post', $search)){
+      array_push($stack, 'forum_topic_reply');
+    }
+
+    if(in_array('comment', $search)){
+      array_push($stack, 'comment_user', 'comment_sitereview_listing', 'comment_siteqa_que', 'comment_activity_action');
+    }
+
+    if(in_array('sitereview_topic', $search)){
+      array_push($stack, 'sitereview_topic_create_listtype_1', 'sitereview_topic_create_listtype_3', 'sitereview_topic_create_listtype_4');
+    }
+    if(in_array('sitereview_post', $search)){
+      array_push($stack, 'sitereview_topic_reply_listtype_1_custom', 'sitereview_topic_reply_listtype_3_custom', 'sitereview_topic_reply_listtype_4_custom');
+    }
+
+    if(in_array('sitereview_post', $search)){
+      array_push($stack, 'sitereview_topic_reply_listtype_1_custom', 'sitereview_topic_reply_listtype_3_custom', 'sitereview_topic_reply_listtype_4_custom');
+    }
+    if(in_array('sitereview_wishlist', $search)){
+      array_push($stack, 'sitereview_wishlist_add_listing_listtype_1', 'sitereview_wishlist_add_listing_listtype_3', 'sitereview_wishlist_add_listing_listtype_4', 'sitereview_new_wishlist');
+    }
+    if(in_array('sitereview_listing_1', $search)){
+      array_push($stack, 'sitereview_admin_new_module_listtype_1', 'sitereview_editorreview_add_listtype_1', 'sitereview_new_listtype_1', 'sitereview_new_module_listtype_1', 'sitereview_photo_upload_listtype_1', 'sitereview_review_add_listtype_1', 'video_sitereview_listtype_1');
+    }
+
+    if(in_array('sitereview_listing_3', $search)){
+      array_push($stack, 'sitereview_admin_new_module_listtype_3', 'sitereview_editorreview_add_listtype_3', 'sitereview_new_listtype_3', 'sitereview_new_module_listtype_3', 'sitereview_photo_upload_listtype_3', 'sitereview_review_add_listtype_3', 'video_sitereview_listtype_3');
+    }
+
+    if(in_array('sitereview_listing_4', $search)){
+      array_push($stack, 'sitereview_admin_new_module_listtype_4', 'sitereview_editorreview_add_listtype_4', 'sitereview_new_listtype_4', 'sitereview_new_module_listtype_4', 'sitereview_photo_upload_listtype_4', 'sitereview_review_add_listtype_4', 'video_sitereview_listtype_4');
+    }
+
+    return $stack;
+
+  }
+
+  private function getMultiHashTagActionsIds($search)
+  {
+    $search = array_filter(explode("#", $search));
+    $hashtagIds = $actionIds = array();
+    $tagTable = Engine_Api::_()->getDbtable('tags', 'core');
+    $tagmapTable = Engine_Api::_()->getDbtable('TagMaps', 'core');
+    $attachmentTable = Engine_Api::_()->getDbtable('attachments', 'activity');
+    if (!empty($search)) {
+      $tagTableRow = $tagTable->fetchAll(
+        $tagTable->select()
+        ->where('text IN ( ? )', $search)
+      );
+    }
+    
+    if( $tagTableRow ) { 
+      foreach ($tagTableRow as $key => $value) {
+        $hashtagIds[] = $value->tag_id;
+      }
+    }
+
+    if (empty($search)) {
+      $hashtagIds = $tagTable->select()->from($tagTable->info('name'), 'tag_id')->query()->fetchAll();
+    }
+
+    foreach( $hashtagIds as $hashtagId ) {
+      $rowsets = $tagmapTable->fetchAll($tagmapTable->select()->where('tag_id = ?', $hashtagId));
+
+      foreach( $rowsets as $row ) {
+        if ($row->resource_type == 'activity_action') {
+          $actionIds[] = $row->resource_id;
+          continue;
+        }
+        if ($row->resource_type == 'activity_comment') {
+            try {
+                $item = Engine_Api::_()->getItem($row->resource_type, $row->resource_id);
+                $item = $item ? $item->getParent() : null;
+            }catch(Exception $e){
+                $item = null;
+            }
+          if(!empty($item)) {
+            $actionIds[] = $item->getIdentity();
+          }
+          continue;
+        }
+        if ($row->resource_type == 'core_comment') {
+          $item = Engine_Api::_()->getItem($row->resource_type, $row->resource_id);
+          $row = !empty($item) ? $item : $row;
+        }
+
+        $select = $attachmentTable->select()
+          ->where('type = ? ', $row->resource_type)
+          ->where('id = ? ', $row->resource_id);
+        $attachments = $attachmentTable->fetchAll($select);
+        foreach ($attachments as $attachment) {
+          $action = Engine_Api::_()->getItem('activity_action', $attachment->action_id);
+          if (!$action) {
+            continue;
+          }
+
+          $actionIds[] = $attachment->action_id;
+        }
+      }
+    }
+
+
+    return $actionIds;
+  }
+
+
+  public function getListingActivityByCustomPlofileTags(User_Model_User $user, array $params = array(), $about = null)
+  {
+    
+    // Get actions
+    // if( $about instanceof Core_Model_Item_Abstract ) {
+    //   $actions = $this->getActionsAbout($about, $user, $params);
+    // } else {
+      // $actions = $this->getCustomActionsAbout($about,$user, $params);
+      $actions = $this->getCustomActivityActions($user, $params);
+    // }
+
+    // No visible actions
+    if( empty($actions) )
+    {
+      return null;
+    }
+
+    // Process ids
+    $ids = array();
+    foreach( $actions as $data )
+    {
+      $ids[] = $data['action_id'];
+    }
+    $ids = array_unique($ids);
+
+    $select = $this->select()
+        ->where('action_id IN('.join(',', $ids).')');
+
+        if($params['actionOrder'] == 'like_count'){
+          $select->order('like_count DESC');
+        }
+
+        $select->order('action_id DESC');
+        
+    // Finally get activity
+    return $this->fetchAll($select);
+  }
+
+   public function getCustomActivityActions(User_Model_User $user, array $params = array())
+  {
+    $actionId = $params['action_id'];
+    $minId = $params['min_id'];
+    $maxId = $params['max_id'];
+    $limit = $params['limit'];
+
+    // Prepare main query
+    $streamTable = Engine_Api::_()->getDbtable('stream', 'activity');
+    $db = $streamTable->getAdapter();
+    $union = new Zend_Db_Select($db);
+    // For Hashtag Search
+    $hashtag = '';
+    $hastTagActionIds = array();
+
+    if (isset($params['hashtag']) && !empty($params['isListingHashtagPage']) ) {
+      $hastTagActionIds = $this->getMultiHashTagActionsIds($params['hashtag']);
+      if (empty($hastTagActionIds)) {
+        return;
+      }
+    } elseif (isset($params['hashtag'])) {
+      $hastTagActionIds = $this->getMultiHashTagActionsIds($params['hashtag']);
+      if (empty($hastTagActionIds)) {
+        return;
+      }
+    }
+
+    if(!empty($params['contentTypeOptions']) || !empty($params['listingProfileTags'])){
+      $hastTagActionIds = $this->getCustomHashTagActionIds($params['listingProfileTags'], $params['contentTypeOptions']);
+    }
+
+
+    $ByBodyActionIds = array();
+    if (!empty($params['actionBodyText'])) {
+
+      $ByBodyActionIds = $this->getByBodyActionsIds($params['actionBodyText']);
+      if (empty($ByBodyActionIds)) {
+        return;
+      }
+      foreach ($ByBodyActionIds as $key => $ByBodyActionId) {
+        array_push($hastTagActionIds, $ByBodyActionId);
+      }
+
+    }
+
+
+    // Prepare action types
+    $masterActionTypes = Engine_Api::_()->getDbtable('actionTypes', 'activity')->getActionTypes();
+    $mainActionTypes = array();
+
+    // Filter out types set as not displayable
+    foreach( $masterActionTypes as $type ) {
+      if( $type->displayable & 4 ) {
+        $mainActionTypes[] = $type->type;
+      }
+    }
+
+    if (!empty($params['isHashtagPage'])) {
+      $showTypes = $this->handleShowTypes($params['content_type'], $params['isHashtagPage']);
+    } elseif (!empty($params['isListingHashtagPage']) ) {
+      $showTypes = $this->handleShowTypes($params['content_type'], $params['isListingHashtagPage']);
+    }
+
+    if(!empty($params['contentTypeOptions'])){
+      $showTypes = $this->handleCustomShowTypes($params['contentTypeOptions']);
+    }
+
+    // Filter types based on user request
+    if( isset($showTypes) && is_array($showTypes) && !empty($showTypes) ) {
+      $mainActionTypes = array_intersect($mainActionTypes, $showTypes);
+    } else if( isset($hideTypes) && is_array($hideTypes) && !empty($hideTypes) ) {
+      $mainActionTypes = array_diff($mainActionTypes, $hideTypes);
+    }
+
+    // Nothing to show
+    if( empty($mainActionTypes) ) {
+      return null;
+    }
+    // Show everything
+    else if( count($mainActionTypes) == count($masterActionTypes) ) {
+      $mainActionTypes = true;
+    }
+    // Build where clause
+    else {
+      $mainActionTypes = "'" . join("', '", $mainActionTypes) . "'";
+    }
+
+    $viewer = Engine_Api::_()->user()->getViewer();
+
+    // For Admin & Moderators show all feed
+    if( $viewer && $viewer->isAdmin() ) {
+      $select = $streamTable->select()
+        ->distinct()
+        ->from($streamTable->info('name'), 'action_id')
+        ;
+
+      if( !empty($hastTagActionIds) ) {
+        $select->where('action_id IN (?)', $hastTagActionIds);
+      }
+
+      // if( !empty($ByBodyActionIds) ) {
+      //   $select->where('action_id IN (?)', $ByBodyActionIds);
+      // }
+
+      // Add action_id/max_id/min_id
+      if( $actionId !== null && $actionId != 0 ) {
+        $select->where('action_id = ?', $actionId);
+      } else {
+        if( $minId !== null && $minId != 0 ) {
+          $select->where('action_id >= ?', $minId);
+        } elseif( $maxId !== null && $maxId != 0 ) {
+          $select->where('action_id <= ?', $maxId);
+        }
+      }
+
+      if( $mainActionTypes !== true ) {
+        $select->where('type IN(' . $mainActionTypes . ')');
+      }
+
+      // Add order/limit
+      $select
+        ->order('action_id DESC')
+        ->limit($limit);
+
+
+      return $db->fetchAll($select);
+
+    }
+
+    // Prepare sub queries
+    $event = Engine_Hooks_Dispatcher::getInstance()->callEvent('getActivity', array(
+      'for' => $user,
+    ));
+    $responses = (array) $event->getResponses();
+
+    if( empty($responses) ) {
+      return null;
+    }
+
+    foreach( $responses as $response )
+    {
+      if( empty($response) ) continue;
+
+      $select = $streamTable->select()
+        ->from($streamTable->info('name'), 'action_id')
+        ->where('target_type = ?', $response['type'])
+        ;
+
+      if( empty($response['data']) ) {
+        // Simple
+        $select->where('target_id = ?', 0);
+      } else if( is_scalar($response['data']) || count($response['data']) === 1 ) {
+        // Single
+        if( is_array($response['data']) ) {
+          list($response['data']) = $response['data'];
+        }
+        $select->where('target_id = ?', $response['data']);
+      } else if( is_array($response['data']) ) {
+        // Array
+        $select->where('target_id IN(?)', (array) $response['data']);
+      } else {
+        // Unknown
+        continue;
+      }
+
+      if( !empty($hastTagActionIds) ) {
+        $select->where('action_id IN (?)', $hastTagActionIds);
+      }
+
+      // if( !empty($ByBodyActionIds) ) {
+      //   $select->where('action_id IN (?)', $ByBodyActionIds);
+      // }
+
+      // Add action_id/max_id/min_id
+      if( null !== $actionId && $actionId != 0) {
+        $select->where('action_id = ?', $actionId);
+      } else {
+        if( $minId !== null && $minId != 0 ) {
+          $select->where('action_id >= ?', $minId);
+        } elseif( $maxId !== null && $maxId != 0 ) {
+          $select->where('action_id <= ?', $maxId);
+        }
+      }
+
+      if( $mainActionTypes !== true ) {
+        $select->where('type IN(' . $mainActionTypes . ')');
+      }
+
+      // Add order/limit
+      $select
+        ->order('action_id DESC')
+        ->limit($limit);
+
+      // Add to main query
+      $union->union(array('('.$select->__toString().')')); // (string) not work before PHP 5.2.0
+    }
+
+    // Finish main query
+    $union
+      ->order('action_id DESC')
+      ->limit($limit);
+
+    // Get actions
+    return $db->fetchAll($union);
+  }
+
+   private function getCustomHashTagActionIds($search, $contentTypeOptions)
+  {
+    
+    $attachmentTable = Engine_Api::_()->getDbtable('attachments', 'activity');
+    $actionTable = Engine_Api::_()->getDbtable('actions', 'activity');
+    
+          $search = array_filter(explode(",", $search));
+
+          $listingTable = Engine_Api::_()->getDbtable('listings', 'sitereview');
+          $select = $listingTable->select();
+          $q = array();
+          foreach ($search as $key => $value) {
+            if(!empty($value)){
+              $q[] = "custom_profiletags LIKE '%$value%'";
+
+            }
+          }
+
+          // implode(' OR ', $q);
+          if(!empty($q))
+            $select->where(implode(' OR ', $q));
+
+          $qw = array();
+
+          if(in_array('sitereviewlisting1', $contentTypeOptions)){
+            $qw[] = "listingtype_id = 1";
+          }
+          if(in_array('sitereviewlisting3', $contentTypeOptions)){
+            $qw[] = "listingtype_id = 3";
+          }
+          if(in_array('sitereviewlisting4', $contentTypeOptions)){
+            $qw[] = "listingtype_id = 4";
+          }
+          if(!empty($qw))
+            $select->where(implode(' OR ', $qw));
+          $lists = $listingTable->fetchAll($select);
+
+
+
+
+
+      foreach ($lists as $key => $list) {
+
+
+        $select = $actionTable->select()
+          ->where('object_type = ? ', $list->getType())
+          ->where('object_id = ? ', $list->getIdentity());
+        $directActionIds = $actionTable->fetchAll($select);
+        foreach ($directActionIds as $key => $id) {
+          $actionIds[] = $id->action_id;
+        }
+     
+        $select = $attachmentTable->select()
+          ->where('type = ? ', $list->getType())
+          ->where('id = ? ', $list->getIdentity());
+        $attachments = $attachmentTable->fetchAll($select);
+        foreach ($attachments as $attachment) {
+          $action = Engine_Api::_()->getItem('activity_action', $attachment->action_id);
+          if (!$action) {
+            continue;
+          }
+
+          $actionIds[] = $attachment->action_id;
+        }
+      }
+
+    return $actionIds;
+  }
+
+  public function getCustomActionsAbout(Core_Model_Item_Abstract $about, User_Model_User $user, array $params = array())
+  {
+    $actionId = $params['action_id'];
+    $minId = $params['min_id'];
+    $maxId = $params['max_id'];
+    $limit = $params['limit'];
+
+    // Prepare main query
+    $streamTable = Engine_Api::_()->getDbtable('stream', 'activity');
+    $db = $streamTable->getAdapter();
+    $union = new Zend_Db_Select($db);
+
+    // Prepare action types
+    $masterActionTypes = Engine_Api::_()->getDbtable('actionTypes', 'activity')->getActionTypes();
+    $subjectActionTypes = array();
+    $objectActionTypes = array();
+
+    // Filter types based on displayable
+    foreach( $masterActionTypes as $type ) {
+      if( $type->displayable & 1 ) {
+        $subjectActionTypes[] = $type->type;
+      }
+      if( $type->displayable & 2 ) {
+        $objectActionTypes[] = $type->type;
+      }
+    }
+
+    
+
+
+    if(!empty($params['contentTypeOptions'])){
+      $showTypes = $this->handleCustomShowTypes($params['contentTypeOptions']);
+    }
+
+    // Filter types based on user request
+    if( isset($showTypes) && is_array($showTypes) && !empty($showTypes) ) {
+      $subjectActionTypes = array_intersect($subjectActionTypes, $showTypes);
+      $objectActionTypes = array_intersect($objectActionTypes, $showTypes);
+    } else if( isset($hideTypes) && is_array($hideTypes) && !empty($hideTypes) ) {
+      $subjectActionTypes = array_diff($subjectActionTypes, $hideTypes);
+      $objectActionTypes = array_diff($objectActionTypes, $hideTypes);
+    }
+
+    // Nothing to show
+    if( empty($subjectActionTypes) && empty($objectActionTypes) ) {
+      return null;
+    }
+
+    if( empty($subjectActionTypes) ) {
+      $subjectActionTypes = null;
+    } else if( count($subjectActionTypes) == count($masterActionTypes) ) {
+      $subjectActionTypes = true;
+    } else {
+      $subjectActionTypes = "'" . join("', '", $subjectActionTypes) . "'";
+    }
+
+    if( empty($objectActionTypes) ) {
+      $objectActionTypes = null;
+    } else if( count($objectActionTypes) == count($masterActionTypes) ) {
+      $objectActionTypes = true;
+    } else {
+      $objectActionTypes = "'" . join("', '", $objectActionTypes) . "'";
+    }
+
+    $viewer = Engine_Api::_()->user()->getViewer();
+
+    // For Admin & Moderators show all feed
+    if( $viewer && $viewer->isAdmin() ) {
+      $select = $streamTable->select()
+        ->distinct()
+        ->from($streamTable->info('name'), 'action_id')
+        ;
+
+      // Add actionId/maxId/minId
+      if( $actionId !== null && $actionId != 0 ) {
+        $select->where('action_id = ?', $actionId);
+      } else {
+        if( $minId !== null && $minId != 0 ) {
+          $select->where('action_id >= ?', $minId);
+        } elseif( $maxId !== null && $maxId != 0 ) {
+          $select->where('action_id <= ?', $maxId);
+        }
+      }
+
+      // Add subject to main query
+      $selectSubject = clone $select;
+      if( $subjectActionTypes !== null ) {
+        if( $subjectActionTypes !== true ) {
+          $selectSubject->where('type IN('.$subjectActionTypes.')');
+        }
+        $selectSubject
+          ->where('subject_type = ?', $about->getType())
+          ->where('subject_id = ?', $about->getIdentity());
+        $union->union(array('('.$selectSubject->__toString().')')); // (string) not work before PHP 5.2.0
+      }
+
+      // Add object to main query
+      $selectObject = clone $select;
+      if( $objectActionTypes !== null ) {
+        if( $objectActionTypes !== true ) {
+          $selectObject->where('type IN('.$objectActionTypes.')');
+        }
+        $selectObject
+          ->where('object_type = ?', $about->getType())
+          ->where('object_id = ?', $about->getIdentity());
+        $union->union(array('('.$selectObject->__toString().')')); // (string) not work before PHP 5.2.0
+      }
+
+      // Add order/limit
+      $union
+        ->order('action_id DESC')
+        ->limit($limit);
+
+
+      return $db->fetchAll($union);
+    }
+
+    // Prepare sub queries
+    $event = Engine_Hooks_Dispatcher::getInstance()->callEvent('getActivity', array(
+      'for' => $user,
+      'about' => $about,
+    ));
+    $responses = (array) $event->getResponses();
+
+    if( empty($responses) ) {
+      return null;
+    }
+
+    foreach( $responses as $response )
+    {
+      if( empty($response) ) continue;
+
+      // Target info
+      $select = $streamTable->select()
+        ->from($streamTable->info('name'), 'action_id')
+        ->where('target_type = ?', $response['type'])
+        ;
+
+      if( empty($response['data']) ) {
+        // Simple
+        $select->where('target_id = ?', 0);
+      } else if( is_scalar($response['data']) || count($response['data']) === 1 ) {
+        // Single
+        if( is_array($response['data']) ) {
+          list($response['data']) = $response['data'];
+        }
+        $select->where('target_id = ?', $response['data']);
+      } else if( is_array($response['data']) ) {
+        // Array
+        $select->where('target_id IN(?)', (array) $response['data']);
+      } else {
+        // Unknown
+        continue;
+      }
+
+      // Add actionId/maxId/minId
+      if( $actionId !== null && $actionId != 0 ) {
+        $select->where('action_id = ?', $actionId);
+      } else {
+        if( $minId !== null && $minId != 0 ) {
+          $select->where('action_id >= ?', $minId);
+        } elseif( $maxId !== null && $maxId != 0 ) {
+          $select->where('action_id <= ?', $maxId);
+        }
+      }
+
+      // Add order/limit
+      $select
+        ->order('action_id DESC')
+        ->limit($limit);
+
+
+      // Add subject to main query
+      $selectSubject = clone $select;
+      if( $subjectActionTypes !== null ) {
+        if( $subjectActionTypes !== true ) {
+          $selectSubject->where('type IN('.$subjectActionTypes.')');
+        }
+        $selectSubject
+          ->where('subject_type = ?', $about->getType())
+          ->where('subject_id = ?', $about->getIdentity());
+        $union->union(array('('.$selectSubject->__toString().')')); // (string) not work before PHP 5.2.0
+      }
+
+      // Add object to main query
+      $selectObject = clone $select;
+      if( $objectActionTypes !== null ) {
+        if( $objectActionTypes !== true ) {
+          $selectObject->where('type IN('.$objectActionTypes.')');
+        }
+        $selectObject
+          ->where('object_type = ?', $about->getType())
+          ->where('object_id = ?', $about->getIdentity());
+        $union->union(array('('.$selectObject->__toString().')')); // (string) not work before PHP 5.2.0
+      }
+    }
+
+    // Finish main query
+    $union
+      ->order('action_id DESC')
+      ->limit($limit);
+
+    // Get actions
+    return $db->fetchAll($union);
+  }
+
+  private function handleCustomShowTypes($search)
+  {
+
+    if(in_array('all', $search)){
+      return;
+    }
+    $stack =array();
+
+    if(in_array('post', $search)){
+      array_push($stack, 'post');
+    
+    }
+
+    if(in_array('comment', $search)){
+      array_push($stack, 'comment_user', 'comment_sitereview_listing');
+    }
+
+    if(in_array('sitereviewtopic', $search)){
+      array_push($stack, 'sitereview_topic_create_listtype_1', 'sitereview_topic_create_listtype_3', 'sitereview_topic_create_listtype_4');
+    }
+    if(in_array('sitereviewpost', $search)){
+      array_push($stack, 'sitereview_topic_reply_listtype_1_custom', 'sitereview_topic_reply_listtype_3_custom', 'sitereview_topic_reply_listtype_4_custom');
+    }
+
+    if(in_array('sitereviewwishlist', $search)){
+      array_push($stack, 'sitereview_wishlist_add_listing_listtype_1', 'sitereview_wishlist_add_listing_listtype_3', 'sitereview_wishlist_add_listing_listtype_4', 'sitereview_new_wishlist');
+    }
+    if(in_array('sitereviewlisting1', $search)){
+      array_push($stack, 'sitereview_admin_new_module_listtype_1', 'sitereview_editorreview_add_listtype_1', 'sitereview_new_listtype_1', 'sitereview_new_module_listtype_1', 'sitereview_photo_upload_listtype_1', 'sitereview_review_add_listtype_1', 'video_sitereview_listtype_1');
+    }
+
+    if(in_array('sitereviewlisting3', $search)){
+      array_push($stack, 'sitereview_admin_new_module_listtype_3', 'sitereview_editorreview_add_listtype_3', 'sitereview_new_listtype_3', 'sitereview_new_module_listtype_3', 'sitereview_photo_upload_listtype_3', 'sitereview_review_add_listtype_3', 'video_sitereview_listtype_3');
+    }
+
+    if(in_array('sitereviewlisting4', $search)){
+      array_push($stack, 'sitereview_admin_new_module_listtype_4', 'sitereview_editorreview_add_listtype_4', 'sitereview_new_listtype_4', 'sitereview_new_module_listtype_4', 'sitereview_photo_upload_listtype_4', 'sitereview_review_add_listtype_4', 'video_sitereview_listtype_4');
+    }
+
+    return $stack;
+
+
   }
 }

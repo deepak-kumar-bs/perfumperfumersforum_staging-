@@ -94,7 +94,7 @@ class Engine_View_Helper_FormRecipe extends Zend_View_Helper_FormElement
           }
           
         } else {
-          $set_value = array('name' => '','amount' => '', 'dilution' => '' );
+          $set_value = array('name' => '','amount' => '', 'dilution' => '100' );
           $recipe_data = json_encode(array('field_name'=> $name, 'field_id' => $field_id));
         }
 
@@ -172,8 +172,17 @@ class Engine_View_Helper_FormRecipe extends Zend_View_Helper_FormElement
 
         $option_ele = '<option></option>';
         foreach ($listings as $value) {
-          // $data[] = array('id' => $value->listing_id, 'label' => $value->title);
-          $option_ele = $option_ele.'<option value ='.$value->listing_id.' >'.$value->title.'</option>';
+          
+          $field_objectValue = Engine_Api::_()->fields()->getFieldsValues($value)->getRowMatching('field_id', 34);
+
+          $string = $field_objectValue->value;
+          $string = str_replace("<br>", " ", html_entity_decode($string));
+
+
+          if(!empty($string) )
+            $option_ele = $option_ele.'<option value ='.$value->listing_id.' >'.$value->title.'</option>'.'<option value ='.$value->listing_id.' >'.$string.'</option>';
+          else
+            $option_ele = $option_ele.'<option value ='.$value->listing_id.' >'.$value->title.'</option>';
         }
         
         $xhtml1 = $xhtml1.$option_ele."</select></div>";

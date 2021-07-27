@@ -43,12 +43,31 @@ class Sitereview_Form_Review_Update extends Engine_Form {
     $params['type'] = 'user';
     $hasPosted = $reviewTable->canPostReview($params);
 
+    $review = Engine_Api::_()->getItem('sitereview_review', $hasPosted);
+    $listingtypeArray = Engine_Api::_()->getItem('sitereview_listingtype', $getItemListing->listingtype_id);
+    $reviewTitleSingular = $listingtypeArray->review_title_singular ? $listingtypeArray->review_title_singular : 'Review';
+
     //IF NOT HAS POSTED THEN THEN SET FORM
-    $this->setTitle('Update your Review')
+    $this->setTitle("Update your $reviewTitleSingular")
             ->setDescription(sprintf(Zend_Registry::get('Zend_Translate')->_("You can update your review for %s below:"), $sitereview_title))
             ->setAttrib('name', 'sitereview_update')
             ->setAttrib('id', 'sitereview_update')
-            ->setAttrib('style', 'display:block')->getDecorator('Description')->setOption('escape', false);
+            ->setAttrib('style', 'display:none')->getDecorator('Description')->setOption('escape', false);
+
+    $this->addElement('Textarea', 'title', array(
+        'label' => 'One-line summary',
+        'rows' => 1,
+        'allowEmpty' => false,
+        'maxlength' => 63,
+        'required' => true,
+        'filters' => array(
+            'StripTags',
+            new Engine_Filter_Censor(),
+            new Engine_Filter_HtmlSpecialChars(),
+            new Engine_Filter_EnableLinks(),
+        ),
+        'value' => $review->title,
+    ));
 
     $this->addElement('Textarea', 'body', array(
         'label' => 'Summary',
@@ -61,6 +80,7 @@ class Sitereview_Form_Review_Update extends Engine_Form {
             new Engine_Filter_HtmlSpecialChars(),
             new Engine_Filter_EnableLinks(),
         ),
+        'value' => $review->body,
     ));
 
     $this->addElement('Button', 'submit', array(

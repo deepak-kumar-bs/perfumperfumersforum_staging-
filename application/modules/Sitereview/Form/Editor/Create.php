@@ -31,9 +31,12 @@ class Sitereview_Form_Editor_Create extends Engine_Form {
     $sitereview = Engine_Api::_()->getItem('sitereview_listing', $listing_id);
 
     $sitereview_title = "<b>" . $sitereview->title . "</b>";
+
+    $listingtypeArray = Engine_Api::_()->getItem('sitereview_listingtype', $sitereview->listingtype_id);
+    $reviewTitleSingular = $listingtypeArray->review_title_singular ? $listingtypeArray->review_title_singular : 'Review';
     $this->loadDefaultDecorators();
 
-    $this->setTitle('Write an Editor Review')
+    $this->setTitle("Write an Editor $reviewTitleSingular")
             ->setDescription(sprintf(Zend_Registry::get('Zend_Translate')->_("Give your ratings and opinion for %s below:"), $sitereview_title))
             ->setAttrib('name', 'sitereview_create')
             ->setAttrib('id', 'sitereview_create')
@@ -41,30 +44,30 @@ class Sitereview_Form_Editor_Create extends Engine_Form {
 
     $this->addElement('Textarea', 'pros', array(
         'label' => 'The Good',
-        'allowEmpty' => false,
+        'allowEmpty' => true,
         'attribs' => array('rows' => 3),
         'maxlength' => 500,
-        'required' => true,
+        'required' => false,
          'filters' => array(
                             'StripTags',
                          new Engine_Filter_Censor(),
                          ),
     ));
 
-    $this->addElement('Textarea', 'cons', array(
-        'label' => 'The Bad',
-        'allowEmpty' => false,
-        'attribs' => array('rows' => 3),
-        'maxlength' => 500,
-        'required' => true,
-         'filters' => array(
-                            'StripTags',
-                         new Engine_Filter_Censor(),
-                         ),
-    ));
+    // $this->addElement('Textarea', 'cons', array(
+    //     'label' => 'The Bad',
+    //     'allowEmpty' => false,
+    //     'attribs' => array('rows' => 3),
+    //     'maxlength' => 500,
+    //     'required' => true,
+    //      'filters' => array(
+    //                         'StripTags',
+    //                      new Engine_Filter_Censor(),
+    //                      ),
+    // ));
 
     $this->addElement('Textarea', 'title', array(
-        'label' => 'The Bottom Line',
+        'label' => 'Title',
         'allowEmpty' => false,
         'attribs' => array('rows' => 3),
         'maxlength' => 500,
@@ -121,20 +124,20 @@ class Sitereview_Form_Editor_Create extends Engine_Form {
     
     ));
 
-    if ($this->_item && $this->_item->status == 1) {
-      $this->addElement('Textarea', 'update_reason', array(
-          'label' => 'Reason Of Updation',
-          'allowEmpty' => false,
-          'attribs' => array('rows' => 3),
-          'required' => true,
-         'required' => true,
-         'filters' => array(
-                            'StripTags',
-                         new Engine_Filter_Censor(),
-                         ),
+    // if ($this->_item && $this->_item->status == 1) {
+    //   $this->addElement('Textarea', 'update_reason', array(
+    //       'label' => 'Reason Of Updation',
+    //       'allowEmpty' => false,
+    //       'attribs' => array('rows' => 3),
+    //       'required' => true,
+    //      'required' => true,
+    //      'filters' => array(
+    //                         'StripTags',
+    //                      new Engine_Filter_Censor(),
+    //                      ),
     
-      ));
-    }
+    //   ));
+    // }
 
     $this->addElement('Select', 'status', array(
         'label' => 'Status',
