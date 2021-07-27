@@ -94,19 +94,19 @@ if (!empty($is_enabled)) {
           
           return $this->_error('<div class="global_form"><div><div><a href="' . $final_url_1 . '" class="smoothbox">Click here</a> to proceed with the installation of: "<strong>' . $PRODUCT_TITLE . '</strong>" package.. (If you get a "Page Not Found" in the next step, then <a href="' . $final_url_2 . '" class="smoothbox">Click here</a>.)</div></div></div>');
         } else {
-          return $this->_error('<div class="global_form"><div><div>Please check the license key of ' . $PLUGIN_TITLE . ' in the Global Settings of Admin Panel for this plugin. Please go to the Global Settings and check the license key there. If you still have any problem then please contact the Support Team of SocialEngineAddOns from the Support section of your Account Area.</div></div></div>');
+          return $this->_error('<div class="global_form"><div><div>Please check the license key of ' . $PLUGIN_TITLE . ' in the Global Settings of Admin Panel for this plugin. Please go to the Global Settings and check the license key there. If you still have any problem then please contact the Support Team of SocialApps.tech from the Support section of your Account Area.</div></div></div>');
         }
       } else {
         
       }
     } else {
-      return $this->_error('<div class="global_form"><div><div> You do not have the latest version ' . $SocialEngineAddOns_version . ' of the SocialEngineAddOns Core Plugin. Please download the latest version of this FREE plugin from your Client Area on <a href="http://www.socialengineaddons.com" target="_blank">SocialEngineAddOns</a> and upgrade this on your site.</div></div></div>');
+      return $this->_error('<div class="global_form"><div><div> You do not have the latest version ' . $SocialEngineAddOns_version . ' of the SocialApps.tech Core Plugin. Please download the latest version of this FREE plugin from your Client Area on <a href="http://www.socialapps.tech" target="_blank">SocialApps.tech</a> and upgrade this on your site.</div></div></div>');
     }
   } else {
-    return $this->_error('<div class="global_form"><div><div>The SocialEngineAddOns Core Plugin is not enabled on your site. Please enable it or download the latest version of this FREE plugin from your Client Area on <a href="http://www.socialengineaddons.com" target="_blank">SocialEngineAddOns</a>.</div></div></div>');
+    return $this->_error('<div class="global_form"><div><div>The SocialApps.tech Core Plugin is not enabled on your site. Please enable it or download the latest version of this FREE plugin from your Client Area on <a href="http://www.socialapps.tech" target="_blank">SocialApps.tech</a>.</div></div></div>');
   }
 } else {
-  return $this->_error('<div class="global_form"><div><div>The SocialEngineAddOns Core Plugin is not installed on your site. Please download the latest version of this FREE plugin from your Client Area on <a href="http://www.socialengineaddons.com" target="_blank">SocialEngineAddOns</a>.</div></div></div>');
+  return $this->_error('<div class="global_form"><div><div>The SocialApps.tech Core Plugin is not installed on your site. Please download the latest version of this FREE plugin from your Client Area on <a href="http://www.socialapps.tech" target="_blank">SocialApps.tech</a>.</div></div></div>');
 }
 
 

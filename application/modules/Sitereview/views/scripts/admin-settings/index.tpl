@@ -67,7 +67,7 @@ endif;
                     endforeach;
                     ?>
                 </ul>
-    <?php echo $this->translate("1) If you do not want to use this plugin on Multiple Domains, then please click on 'Dismiss' button.<br/> 2) If above is not the case and you want to use this plugin on multiple domains, then please file a support ticket from your SocialEngineAddOns <a href='http://www.socialengineaddons.com/user/login' target='_blank'>client area</a>."); ?>
+    <?php echo $this->translate("1) If you do not want to use this plugin on Multiple Domains, then please click on 'Dismiss' button.<br/> 2) If above is not the case and you want to use this plugin on multiple domains, then please file a support ticket from your SocialApps.tech <a href='http://www.socialapps.tech/user/login' target='_blank'>client area</a>."); ?>
             </div>
         </div>
     </div>

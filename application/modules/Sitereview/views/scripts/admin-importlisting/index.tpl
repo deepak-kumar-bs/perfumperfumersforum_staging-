@@ -48,7 +48,7 @@
 <?php if(empty($this->sitereviewlistingtypeInsalled)): ?>
 		<div class="tip">
 			<span>
-				<?php echo $this->translate("<b>Note:</b> You can also import listings into various Listing Types on your site. This importing of listings into various Listing Type is dependent on the '%1sReviews & Ratings - Multiple Listing Types Extension%2s' and requires it to be installed and enabled on your site. Please install this plugin after downloading it from your Client Area on SocialEngineAddOns. You may purchase this plugin %3sover here%4s.", "<a href='http://www.socialengineaddons.com/reviewsextensions/socialengine-multiple-listing-types-extension' target='_blank'>", "</a>", "<a href='http://www.socialengineaddons.com/reviewsextensions/socialengine-multiple-listing-types-extension' target='_blank'>", "</a>");?>
+				<?php echo $this->translate("<b>Note:</b> You can also import listings into various Listing Types on your site. This importing of listings into various Listing Type is dependent on the '%1sReviews & Ratings - Multiple Listing Types Extension%2s' and requires it to be installed and enabled on your site. Please install this plugin after downloading it from your Client Area on SocialApps.tech. You may purchase this plugin %3sover here%4s.", "<a href='http://www.socialengineaddons.com/reviewsextensions/socialengine-multiple-listing-types-extension' target='_blank'>", "</a>", "<a href='http://www.socialengineaddons.com/reviewsextensions/socialengine-multiple-listing-types-extension' target='_blank'>", "</a>");?>
 			</span>
 		</div> 
 <?php endif; ?>

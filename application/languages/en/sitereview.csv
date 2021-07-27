@@ -1436,3 +1436,275 @@ This user has also sent a message:
 [message]
 
 [footer]"
+
+"_EMAIL_SITEREVIEW_FOOD_CLAIM_APPROVED_EMAIL_TITLE";" Food Item Claim Approved"
+"_EMAIL_SITEREVIEW_FOOD_BECOMEOWNER_EMAIL_TITLE";" Food - Item Ownership Given"
+"_EMAIL_SITEREVIEW_FOOD_CLAIMOWNER_EMAIL_TITLE";" Food Item Claimed"
+"_EMAIL_SITEREVIEW_FOOD_CLAIM_HOLDING_EMAIL_TITLE";" Food Item Claim Approval on Hold"
+"_EMAIL_SITEREVIEW_FOOD_CHANGEOWNER_EMAIL_TITLE";" Food - Item Owner Changed"
+"_EMAIL_SITEREVIEW_FOOD_CLAIM_DECLINED_EMAIL_TITLE";" Food Item Claim Declined"
+
+"_EMAIL_SITEREVIEW_JOB_CLAIM_APPROVED_EMAIL_TITLE";" Job Listing Claim Approved"
+"_EMAIL_SITEREVIEW_JOB_BECOMEOWNER_EMAIL_TITLE";"  Job - Listing Ownership Given"
+"_EMAIL_SITEREVIEW_JOB_CLAIMOWNER_EMAIL_TITLE";" Job - Listing Claimed"
+"_EMAIL_SITEREVIEW_JOB_CLAIM_HOLDING_EMAIL_TITLE";" Job - Listing Claim Approval on Hold"
+"_EMAIL_SITEREVIEW_JOB_CHANGEOWNER_EMAIL_TITLE";" Job Listing Owner Changed"
+"_EMAIL_SITEREVIEW_JOB_CLAIM_DECLINED_EMAIL_TITLE";" Job Listing  Claim Declined"
+
+"_EMAIL_SITEREVIEW_JOB_ACTIVE_TITLE";" Job Listing Activated"
+"_EMAIL_SITEREVIEW_JOB_CANCELLED_TITLE";" Job Listing Cancelled"
+"_EMAIL_SITEREVIEW_JOB_EXPIRED_TITLE";" Job Listing Expired: (for free packages)"
+"_EMAIL_SITEREVIEW_JOB_RENEW_TITLE";" Job Listing Renewed"
+"_EMAIL_SITEREVIEW_JOB_OVERDUE_TITLE";" Job Listing Overdue"
+"_EMAIL_SITEREVIEW_JOB_PENDING_TITLE";"Job Listing Activation Pending"
+"_EMAIL_SITEREVIEW_JOB_REFUNDED_TITLE";"Job Listing Payment Refunded"
+"_EMAIL_SITEREVIEW_JOB_APPROVED_TITLE";" Job Listing Approved"
+"_EMAIL_SITEREVIEW_JOB_DISAPPROVED_TITLE";" Job Listing Disapproved"
+"_EMAIL_SITEREVIEW_JOB_APPROVAL_PENDING_TITLE";"Job Listing Approval Pending"
+"_EMAIL_SITEREVIEW_JOB_DECLINED_TITLE";" Job Listing Declined"
+"_EMAIL_SITEREVIEW_JOB_RECURRENCE_TITLE";" Job Listing Payment Recurrence"
+
+
+"_EMAIL_SITEREVIEW_PROPERTY_CLAIM_APPROVED_EMAIL_TITLE";" Property Listing Claim Approved"
+"_EMAIL_SITEREVIEW_PROPERTY_BECOMEOWNER_EMAIL_TITLE";" Property - Listing Ownership Given"
+"_EMAIL_SITEREVIEW_PROPERTY_CLAIMOWNER_EMAIL_TITLE";" Property Listing Claimed"
+"_EMAIL_SITEREVIEW_PROPERTY_CLAIM_HOLDING_EMAIL_TITLE";" Property Listing Claim Approval on Hold"
+"_EMAIL_SITEREVIEW_PROPERTY_CHANGEOWNER_EMAIL_TITLE";" Property - Listing Owner Changed"
+"_EMAIL_SITEREVIEW_PROPERTY_CLAIM_DECLINED_EMAIL_TITLE";" Property Listing Claim Declined"
+"_EMAIL_SITEREVIEW_PROPERTY_ACTIVE_TITLE";" Property Listing Activated"
+"_EMAIL_SITEREVIEW_PROPERTY_CANCELLED_TITLE";" Property Listing Cancelled"
+
+"_EMAIL_SITEREVIEW_PROPERTY_CLAIM_APPROVED_EMAIL_TITLE"; "Property Listing Claim Approved"
+"_EMAIL_SITEREVIEW_PROPERTY_BECOMEOWNER_EMAIL_TITLE"; "Property - Listing Ownership Given"
+"_EMAIL_SITEREVIEW_PROPERTY_CLAIMOWNER_EMAIL_TITLE"; "Property Listing Claimed"
+"_EMAIL_SITEREVIEW_PROPERTY_CLAIM_HOLDING_EMAIL_TITLE"; "Property Listing Claim Approval on Hold"
+"_EMAIL_SITEREVIEW_PROPERTY_CHANGEOWNER_EMAIL_TITLE"; "Property - Listing Owner Changed"
+"_EMAIL_SITEREVIEW_PROPERTY_CLAIM_DECLINED_EMAIL_TITLE"; "Property Listing Claim Declined"
+"_EMAIL_SITEREVIEW_PROPERTY_ACTIVE_TITLE"; "Property Listing Activated"
+"_EMAIL_SITEREVIEW_PROPERTY_CANCELLED_TITLE"; "Property Listing Cancelled"
+
+"_EMAIL_SITEREVIEW_PROPERTY_RENEW_TITLE";" Property Listing Renewed"
+"_EMAIL_SITEREVIEW_PROPERTY_OVERDUE_TITLE";" Property Listing Overdue"
+"_EMAIL_SITEREVIEW_PROPERTY_PENDING_TITLE";" Property Listing Activation Pending"
+"_EMAIL_SITEREVIEW_PROPERTY_REFUNDED_TITLE";" Property Listing Payment Refunded"
+"_EMAIL_SITEREVIEW_PROPERTY_APPROVED_TITLE";" Property Listing Approved"
+"_EMAIL_SITEREVIEW_PROPERTY_DISAPPROVED_TITLE";" Property Listing Disapproved"
+"_EMAIL_SITEREVIEW_PROPERTY_APPROVAL_PENDING_TITLE";" Property Listing Approval Pending"
+"_EMAIL_SITEREVIEW_PROPERTY_DECLINED_TITLE";" Property Listing Declined"
+"_EMAIL_SITEREVIEW_PROPERTY_RECURRENCE_TITLE";" Property Listing Payment Recurrence"
+
+
+"_EMAIL_SITEAPI_ADMIN_ANDROIDPUSHNOTIFICATION_TITLE";" When admin send any push notification"
+
+"_EMAIL_SITEREVIEW_FASHION_CLAIM_APPROVED_EMAIL_TITLE";" Fashion Listing Claim Approved"
+
+"_EMAIL_SITEREVIEW_FASHION_BECOMEOWNER_EMAIL_TITLE";"Fashion - Listing Ownership Given"
+
+"_EMAIL_SITEREVIEW_FASHION_CLAIMOWNER_EMAIL_TITLE";"Fashion Listing Claimed"
+
+"_EMAIL_SITEREVIEW_FASHION_CLAIM_HOLDING_EMAIL_TITLE";"Fashion Listing Claim Approval on Hold"
+
+"_EMAIL_SITEREVIEW_FASHION_CHANGEOWNER_EMAIL_TITLE";"Fashion- Listing Owner Changed"
+
+"_EMAIL_SITEREVIEW_FASHION_CLAIM_DECLINED_EMAIL_TITLE";"Fashion Listing Claim Declined"
+
+"_EMAIL_SITEREVIEW_ELECTRONICS_CLAIM_APPROVED_EMAIL_TITLE";"Electronics Listing Claim Approved"
+
+"_EMAIL_SITEREVIEW_ELECTRONICS_BECOMEOWNER_EMAIL_TITLE";" Electronics Listing Ownership Given"
+
+"_EMAIL_SITEREVIEW_ELECTRONICS_CLAIMOWNER_EMAIL_TITLE";"Electronics Listing Claimed"
+
+"_EMAIL_SITEREVIEW_ELECTRONICS_CLAIM_HOLDING_EMAIL_TITLE";" Electronics Listing Claim Approval on Hold"
+
+"_EMAIL_SITEREVIEW_ELECTRONICS_CHANGEOWNER_EMAIL_TITLE";" Electronics- Listing Owner Changed"
+
+"_EMAIL_SITEREVIEW_ELECTRONICS_CLAIM_DECLINED_EMAIL_TITLE";" Electronics Listing Claim Declined"
+
+"_EMAIL_SITEREVIEW_SPORTS_CLAIM_APPROVED_EMAIL_TITLE";"Sports Listing Claim Approved"
+
+"_EMAIL_SITEREVIEW_SPORTS_BECOMEOWNER_EMAIL_TITLE";"Sports Listing Ownership Given"
+
+"_EMAIL_SITEREVIEW_SPORTS_CLAIMOWNER_EMAIL_TITLE";"Sports Listing Claimed"
+
+"_EMAIL_SITEREVIEW_SPORTS_CLAIM_HOLDING_EMAIL_TITLE";"Sports Listing Claim Approval on Hold"
+
+"_EMAIL_SITEREVIEW_SPORTS_CHANGEOWNER_EMAIL_TITLE";"Sports- Listing Owner Changed"
+
+"_EMAIL_SITEREVIEW_SPORTS_CLAIM_DECLINED_EMAIL_TITLE";" Sports Listing Claim Declined"
+
+"_EMAIL_SITEREVIEW_ENTERTAINMENT_CLAIM_APPROVED_EMAIL_TITLE";"Entertainment Listing Claim Approved"
+
+
+"_EMAIL_SITEREVIEW_ENTERTAINMENT_BECOMEOWNER_EMAIL_TITLE";"Entertainment Listing Ownership Given"
+
+"_EMAIL_SITEREVIEW_ENTERTAINMENT_CLAIMOWNER_EMAIL_TITLE";"Entertainment Listing Claimed"
+
+"_EMAIL_SITEREVIEW_ENTERTAINMENT_CLAIM_HOLDING_EMAIL_TITLE";"Entertainment Listing Claimed"
+
+"_EMAIL_SITEREVIEW_ENTERTAINMENT_CHANGEOWNER_EMAIL_TITLE";"Entertainment Listing Owner Changed"
+
+"_EMAIL_SITEREVIEW_ENTERTAINMENT_CLAIM_DECLINED_EMAIL_TITLE";"Entertainment Listing Claim Declined"
+
+"_EMAIL_SITEREVIEW_FOOD_ACTIVE_TITLE";" Food Listing Activated"
+
+"_EMAIL_SITEREVIEW_FOOD_CANCELLED_TITLE";"Food Listing Cancelled"
+
+"_EMAIL_SITEREVIEW_FOOD_EXPIRED_TITLE";"Food Listing Expired"
+
+"_EMAIL_SITEREVIEW_FOOD_RENEW_TITLE";"Food Listing Renewed"
+
+"_EMAIL_SITEREVIEW_FOOD_OVERDUE_TITLE";"Food Listing Overdue"
+
+"_EMAIL_SITEREVIEW_FOOD_PENDING_TITLE";"Food Listing Activation Pending"
+
+"_EMAIL_SITEREVIEW_FOOD_REFUNDED_TITLE";"Food Listing Payment Refunded"
+
+"_EMAIL_SITEREVIEW_FOOD_APPROVED_TITLE";"Food Listing Approved"
+
+"_EMAIL_SITEREVIEW_FOOD_DISAPPROVED_TITLE";"Food Listing Disapproved"
+
+"_EMAIL_SITEREVIEW_FOOD_APPROVAL_PENDING_TITLE";"Food Listing Approval Pending"
+
+"_EMAIL_SITEREVIEW_FOOD_DECLINED_TITLE";"Food Listing Declined"
+
+"_EMAIL_SITEREVIEW_FOOD_RECURRENCE_TITLE";"Food Listing Payment Recurrence"
+
+"_EMAIL_SITEREVIEW_TOURISM_CLAIM_APPROVED_EMAIL_TITLE";"Tourism Listing Claim Approved"
+
+"_EMAIL_SITEREVIEW_TOURISM_BECOMEOWNER_EMAIL_TITLE";"Tourism Listing Claim Approved"
+
+"_EMAIL_SITEREVIEW_TOURISM_CLAIMOWNER_EMAIL_TITLE";"Tourism Listing Claimed"
+
+"_EMAIL_SITEREVIEW_TOURISM_CLAIM_HOLDING_EMAIL_TITLE";"Tourism Listing Claimed"
+
+"_EMAIL_SITEREVIEW_TOURISM_CHANGEOWNER_EMAIL_TITLE";"Tourism Listing Owner Changed"
+
+"_EMAIL_SITEREVIEW_TOURISM_CLAIM_DECLINED_EMAIL_TITLE";"Tourism Listing Owner Changed"
+
+"_EMAIL_SITEREVIEW_COOKING_CLAIM_APPROVED_EMAIL_TITLE";" Cooking Listing Claim Approved"
+
+"_EMAIL_SITEREVIEW_COOKING_BECOMEOWNER_EMAIL_TITLE";"Cooking Listing Claim Approved"
+
+"_EMAIL_SITEREVIEW_COOKING_CLAIMOWNER_EMAIL_TITLE";" Cooking Listing Claimed"
+
+"_EMAIL_SITEREVIEW_COOKING_CLAIM_HOLDING_EMAIL_TITLE";"Cooking Listing Claimed"
+
+"_EMAIL_SITEREVIEW_COOKING_CHANGEOWNER_EMAIL_TITLE";"Cooking Listing Owner Changed"
+
+"_EMAIL_SITEREVIEW_COOKING_CLAIM_DECLINED_EMAIL_TITLE";"Cooking Listing Owner Changed"
+
+"_EMAIL_SITEREVIEW_COOKING_ACTIVE_TITLE";"Cooking Listing Activated"
+
+"_EMAIL_SITEREVIEW_COOKING_CANCELLED_TITLE";" Cooking Listing Cancelled"
+
+"_EMAIL_SITEREVIEW_COOKING_EXPIRED_TITLE";"Cooking Listing Expired"
+
+"_EMAIL_SITEREVIEW_COOKING_RENEW_TITLE";"Cooking Listing Renewed"
+
+"_EMAIL_SITEREVIEW_COOKING_OVERDUE_TITLE";"Cooking Listing Overdue"
+
+"_EMAIL_SITEREVIEW_COOKING_PENDING_TITLE";"Cooking Listing Activation Pending"
+
+"_EMAIL_SITEREVIEW_COOKING_REFUNDED_TITLE";"Cooking Listing Payment Refunded"
+
+"_EMAIL_SITEREVIEW_COOKING_APPROVED_TITLE";"Cooking Listing Approved"
+
+"_EMAIL_SITEREVIEW_COOKING_DISAPPROVED_TITLE";"Cooking Listing Disapproved"
+
+"_EMAIL_SITEREVIEW_COOKING_APPROVAL_PENDING_TITLE";"Cooking Listing Approval Pending"
+
+"_EMAIL_SITEREVIEW_COOKING_DECLINED_TITLE";"Cooking Listing Declined"
+
+"_EMAIL_SITEREVIEW_COOKING_RECURRENCE_TITLE";"Cooking Listing Payment Recurrence"
+"_EMAIL_SITEREVIEW_CLASSIFIED_CLAIM_APPROVED_EMAIL_TITLE"; "Classified Listing Claim Approved"
+"_EMAIL_SITEREVIEW_CLASSIFIED_BECOMEOWNER_EMAIL_TITLE"; "Classified - Listing Ownership Given"
+"_EMAIL_SITEREVIEW_CLASSIFIED_CLAIMOWNER_EMAIL_TITLE"; "Classified Listing Claimed"
+"_EMAIL_SITEREVIEW_CLASSIFIED_CLAIM_HOLDING_EMAIL_TITLE"; "Classified Listing Claim Approval on Hold"
+"_EMAIL_SITEREVIEW_CLASSIFIED_CHANGEOWNER_EMAIL_TITLE"; "Classified - Listing Owner Changed"
+"_EMAIL_SITEREVIEW_CLASSIFIED_CLAIM_DECLINED_EMAIL_TITLE"; "Classified Listing Claim Declined"
+
+"_EMAIL_SITEREVIEW_BLOG_CLAIM_APPROVED_EMAIL_TITLE"; "Blog Listing Claim Approved"
+"_EMAIL_SITEREVIEW_BLOG_BECOMEOWNER_EMAIL_TITLE"; "Blog - Listing Ownership Given"
+"_EMAIL_SITEREVIEW_BLOG_CLAIMOWNER_EMAIL_TITLE"; "Blog Listing Claimed"
+"_EMAIL_SITEREVIEW_BLOG_CLAIM_HOLDING_EMAIL_TITLE"; "Blog Listing Claim Approval on Hold"
+"_EMAIL_SITEREVIEW_BLOG_CHANGEOWNER_EMAIL_TITLE"; "Blog - Listing Owner Changed"
+"_EMAIL_SITEREVIEW_BLOG_CLAIM_DECLINED_EMAIL_TITLE"; "Blog Listing Claim Declined"
+
+"_EMAIL_SITE_TEAM_CONTACT_TITLE"; "Advertisement Contact to Team"
+
+
+"_EMAIL_SITEREVIEW_BLOG_CLAIM_APPROVED_EMAIL_TITLE";  "Blog Listing Claim Approved"
+"_EMAIL_SITEREVIEW_BLOG_BECOMEOWNER_EMAIL_TITLE"; "Blog - Listing Ownership Given"
+"_EMAIL_SITEREVIEW_BLOG_CLAIMOWNER_EMAIL_TITLE"; "Blog Listing Claimed"
+"_EMAIL_SITEREVIEW_BLOG_CLAIM_HOLDING_EMAIL_TITLE"; "Blog Listing Claim Approval on Hold"
+"_EMAIL_SITEREVIEW_BLOG_CHANGEOWNER_EMAIL_TITLE"; "Blog- Listing Owner Changed"
+"_EMAIL_SITEREVIEW_BLOG_CLAIM_DECLINED_EMAIL_TITLE"; "Blog Listing Claim Declined"
+"_EMAIL_SITEREVIEW_BLOG_CLAIMOWNER_EMAIL_DESCRIPTION"; "This mail is sent to the Site Admin when any member claims that Listing."
+"_EMAIL_SITEREVIEW_BLOG_CLAIMOWNER_EMAIL_SUBJECT"; "This Blog listing: [list_title] has been claimed."
+"_EMAIL_SITEREVIEW_BLOG_CLAIMOWNER_EMAIL_BODY"; "[header]
+
+This Blog listing: [list_title_with_link] has been claimed.
+
+To view this Blog listing, click on the link below, or copy-paste it in your browser:
+[object_link]
+
+[footer]
+"
+"_EMAIL_SITEREVIEW_SPORTS_CLAIMOWNER_EMAIL_DESCRIPTION"; "This mail is sent to the Site Admin when any member claims that Listing."
+"_EMAIL_SITEREVIEW_SPORTS_CLAIMOWNER_EMAIL_SUBJECT"; "This Sport listing: [list_title] has been claimed."
+"_EMAIL_SITEREVIEW_SPORTS_CLAIMOWNER_EMAIL_BODY"; "[header]
+
+This Sport listing: [list_title_with_link] has been claimed.
+
+To view this Sport listing, click on the link below, or copy-paste it in your browser:
+[object_link]
+
+[footer]
+"
+"_EMAIL_SITEREVIEW_CLASSIFIED_CLAIMOWNER_EMAIL_DESCRIPTION"; "This mail is sent to the Site Admin when any member claims that Listing."
+"_EMAIL_SITEREVIEW_CLASSIFIED_CLAIMOWNER_EMAIL_SUBJECT"; "This Classified listing: [list_title] has been claimed."
+"_EMAIL_SITEREVIEW_CLASSIFIED_CLAIMOWNER_EMAIL_BODY"; "[header]
+
+This Classified listing: [list_title_with_link] has been claimed.
+
+To view this Classified listing, click on the link below, or copy-paste it in your browser:
+[object_link]
+
+[footer]
+"
+"_EMAIL_SITEREVIEW_ENTERTAINMENT_CLAIMOWNER_EMAIL_DESCRIPTION"; "This mail is sent to the Site Admin when any member claims that Listing."
+"_EMAIL_SITEREVIEW_ENTERTAINMENT_CLAIMOWNER_EMAIL_SUBJECT"; "This Entertainment listing: [list_title] has been claimed."
+"_EMAIL_SITEREVIEW_ENTERTAINMENT_CLAIMOWNER_EMAIL_BODY"; "[header]
+
+This Entertainment listing: [list_title_with_link] has been claimed.
+
+To view this Entertainment listing, click on the link below, or copy-paste it in your browser:
+[object_link]
+
+[footer]
+"
+"_EMAIL_SITEREVIEW_FASHION_CLAIMOWNER_EMAIL_DESCRIPTION"; "This mail is sent to the Site Admin when any member claims that Listing."
+"_EMAIL_SITEREVIEW_FASHION_CLAIMOWNER_EMAIL_SUBJECT"; "This Fashion listing: [list_title] has been claimed."
+"_EMAIL_SITEREVIEW_FASHION_CLAIMOWNER_EMAIL_BODY"; "[header]
+
+This Fashion listing: [list_title_with_link] has been claimed.
+
+To view this Fashion listing, click on the link below, or copy-paste it in your browser:
+[object_link]
+
+[footer]
+"
+"_EMAIL_SITEREVIEW_ELECTRONICS_CLAIMOWNER_EMAIL_DESCRIPTION"; "This mail is sent to the Site Admin when any member claims that Listing."
+"_EMAIL_SITEREVIEW_ELECTRONICS_CLAIMOWNER_EMAIL_SUBJECT"; "This Electronics listing: [list_title] has been claimed."
+"_EMAIL_SITEREVIEW_ELECTRONICS_CLAIMOWNER_EMAIL_BODY"; "[header]
+
+This Electronics listing: [list_title_with_link] has been claimed.
+
+To view this Electronics listing, click on the link below, or copy-paste it in your browser:
+[object_link]
+
+[footer]
+"
+"_ACTIVITY_ACTIONTYPE_SITEREVIEW_ADMIN_NEW_MODULE_LISTTYPE_4"; "New job by admin in listing."
+"_ACTIVITY_ACTIONTYPE_SITEREVIEW_NEW_MODULE_LISTTYPE_4";"Created a new job."
+

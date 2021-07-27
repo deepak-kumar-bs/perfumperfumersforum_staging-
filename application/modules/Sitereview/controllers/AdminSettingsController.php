@@ -1989,7 +1989,7 @@ class Sitereview_AdminSettingsController extends Core_Controller_Action_Admin {
     $this->view->faq_type = $this->_getParam('faq_type', 'general');
   }
 
-  public function applayCompareAction() {
+  public function applyCompareAction() {
     //SET LAYOUT
     $this->_helper->layout->setLayout('admin-simple');
 

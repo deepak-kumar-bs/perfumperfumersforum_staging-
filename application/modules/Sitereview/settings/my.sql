@@ -14,7 +14,7 @@
 --
 
 INSERT IGNORE INTO `engine4_core_modules` (`name`, `title`, `description`, `version`, `enabled`, `type`) VALUES
-('sitereview', 'Multiple Listing Types Plugin Core (Reviews & Ratings Plugin)', 'Multiple Listing Types Plugin Core (Reviews & Ratings Plugin)', '5.2.1p7', 1, 'extra');
+('sitereview', 'Multiple Listing Types Plugin Core (Reviews & Ratings Plugin)', 'Multiple Listing Types Plugin Core (Reviews & Ratings Plugin)', '5.4.1p6', 1, 'extra');
 
 
 -- --------------------------------------------------------
